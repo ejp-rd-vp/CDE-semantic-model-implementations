@@ -1,0 +1,148 @@
+prefixes: 
+
+  
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+  dct: http://purl.org/dc/terms/
+  ordo: http://www.orpha.net/ORDO/
+  rxnorm: http://purl.bioontology.org/ontology/RXNORM/
+
+
+mappings:
+
+  identifier_role_drug:
+
+    source: 
+      - ['source_1.csv~csv'] 
+
+    s: this:drug_$(Drug_code)#ID 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C80244 # Pseudonym
+            type: iri 
+
+      - predicates: sio:SIO_000020 #denotes
+        objects: 
+            value: this:drug_$(Drug_code)#RoleDrug
+            type: iri
+
+      - predicates: sio:SIO_000300 #has-value 
+        objects: 
+            value: obo:NCIT_$(Drug_code) # problem *
+            type: iri
+
+      - predicates: rdfs:label 
+        objects: 
+            value: $(Drug_label) 
+            type: xsd:string
+            
+
+  entity_role_drug: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:drug_$(Drug_code)#Entity 
+    po: 
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:drug_$(Drug_code)#RoleDrug
+            type: iri 
+
+  taxon_entity_drug: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: obo:NCIT_$(Drug_code)
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_010038  #drug
+            type: iri 
+
+      - predicates: sio:SIO_000313 # is component part of
+        objects: 
+            value: this:drug_$(Drug_code)#Entity
+            type: iri
+            
+  role_process_drug:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:drug_$(Drug_code)#RoleDrug 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000040
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in 
+        objects: 
+            value: this:individual_$(Identifier)#TalkingDrugProcess
+            type: iri
+
+  #person
+
+  identifier_role_drugconsumer:
+
+    source: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#ID 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C80244 # Pseudonym
+            type: iri  
+
+      - predicates: sio:SIO_000020 #denotes  
+        objects: 
+            value: this:individual_$(Identifier)#RoleDrugconsume
+            type: iri
+
+      - predicates: sio:SIO_000300 #has-value 
+        objects: 
+            value: $(Identifier) 
+            type: xsd:string
+        
+  person_role_drugconsumer: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Person
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCBITaxon_9606 
+            type: iri 
+
+      - predicates: sio:has-role 
+        objects: 
+            value: this:individual_$(Identifier)#RolePerson
+            type: iri 
+            
+  role_process_drugconsumer:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#RolePerson
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in
+        objects: 
+            value: this:individual_$(Identifier)#TalkingDrugProcess
+            type: iri
+
+
+
