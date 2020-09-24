@@ -1,0 +1,190 @@
+prefixes: 
+
+  
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+  dct: http://purl.org/dc/terms/
+  ordo: http://www.orpha.net/ORDO/
+  rdc-meta: http://rdf.biosemantics.org/ontologies/rd-connect/
+  hgnc: http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#
+  dbsnp: https://www.ncbi.nlm.nih.gov/snp/
+
+mappings:
+
+#Person
+
+  identifier_role_person:
+
+    source: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#ID 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C80244 # Pseudonym
+            type: iri 
+       
+      - predicates: sio:SIO_000020  #denotes  
+        objects: 
+            value: this:individual_$(Identifier)#RolePerson
+            type: iri
+
+      - predicates: sio:SIO_000300  #has-value  
+        objects: 
+            value: $(Identifier)
+            type: iri
+            
+  person_role_person: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Entity 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCBITaxon_9606 
+            type: iri 
+
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C25190 # Person
+            type: iri
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:individual_$(Identifier)#Role
+            type: iri 
+            
+  role_process_person:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#Role 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in
+        objects: 
+            value: this:individual_$(Identifier)#GeneticTestingProcess
+            type: iri
+
+ # Gene
+
+  identifier_role_gene:
+
+    source: 
+      - ['source_1.csv~csv'] 
+
+    s: this:gene_$(Gene_ID)#ID 
+    po: 
+
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C48664 # Gene Identifier
+            type: iri 
+
+      - predicates: sio:SIO_000020  #denotes  
+        objects: 
+            value: this:genel_$(Gene_ID)#GeneRole
+            type: iri
+
+      - predicates: sio:SIO_000300  #has-value 
+        objects: 
+            value: hgnc:$(Gene_ID) 
+            type: iri
+            
+      - predicates: rdfs:label 
+        objects: 
+            value: (Gene_name) 
+            type: xsd:string
+      
+        
+  entity_role_gene: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:gene_$(Gene_ID)#Gene
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C16612 # Gene
+            type: iri 
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:gene_$(Gene_ID)#GeneRole
+            type: iri 
+            
+  role_process_gene:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:gene_$(Gene_ID)#GeneRole
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000883 #subject-role
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in  
+        objects: 
+            value: this:individual_$(Identifier)#GeneticTestingProcess
+            type: iri
+
+  process_mv_gene:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#GeneticTestingProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: NCIT_C15709 # Genetic Testing
+            type: iri 
+
+      - predicates: sio:SIO_000229  #has-output  
+        objects: 
+            value: dbsnp:$(snp_rs)
+            type: iri
+
+  mv_v_gene:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: dbsnp:$(snp_rs)
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:SO_0000694 #SNP
+            type: iri 
+
+      - predicates: a 
+        objects: 
+            value: obo:VariO_0138 #Variant
+            type: iri
+
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000015  #information-content-entity
+            type: iri
+
+      - predicates: rdfs:label 
+        objects: 
+            value: $(snp_rs)
+            type: iri
+
+
+
+
+

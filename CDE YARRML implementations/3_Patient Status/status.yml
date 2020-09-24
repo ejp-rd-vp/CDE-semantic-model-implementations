@@ -1,0 +1,219 @@
+
+
+prefixes: 
+
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+  rdc-meta: http://rdf.biosemantics.org/ontologies/rd-connect/
+  dct: http://purl.org/dc/terms/
+
+mappings: 
+
+
+# Status
+
+            
+  person_role_Status: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Person 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCBITaxon_9606 
+            type: iri
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:individual_$(Identifier)#RoleStatus
+            type: iri 
+            
+  role_process_Status:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#RoleStatus 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in
+        objects: 
+            value: this:individual_$(Identifier)#ProcessStatus
+            type: iri
+            
+  process_mv_Status:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessStatus 
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000006  #process
+            type: iri 
+
+      - predicates: sio:SIO_000229  #has-output 
+        objects: 
+            value: this:individual_$(Identifier)#MVStatus
+            type: iri
+            
+  person_quality_Status:
+   
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#Person 
+    po: 
+      - predicates: sio:SIO_000217 #has-quality 
+        objects: 
+            value: this:individual_$(Identifier)#QualityStatus
+            type: iri
+            
+      
+            
+  quality_mv_Status:
+   
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#QualityStatus
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C25688 #Status
+            type: iri 
+
+      - predicates: sio:SIO_000642  #is-base-for 
+        objects: 
+            value: this:individual_$(Identifier)#MVStatus
+            type: iri
+            
+  mv_v_Status:
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#MVStatus
+    po: 
+      - predicates: a 
+        objects: 
+            value: $(Status) # To-Do: Add conditions functions to choice different ontology terms
+            type: iri 
+
+
+# Death
+
+  person_role_Death:
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Person 
+    po:  
+      - predicates: sio:has-role 
+        objects: 
+            value: this:individual_$(Identifier)#RoleDeath 
+            type: iri
+
+  identifier_role_Death:
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#ID 
+    po: 
+      - predicates: sio:SIO_000020  #denotes 
+        objects: 
+            value: this:individual_$(Identifier)#RoleDeath
+            type: iri
+
+  role_process_Death:
+    sources: 
+      - ['source_1.csv~csv'] 
+    s: this:individual_$(Identifier)#RoleDeath 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessDeath
+            type: iri 
+
+  process_mv_Death:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessDeath
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000006  #process
+            type: iri 
+
+      - predicates: sio:SIO_000229  #has-output 
+        objects: 
+            value: this:individual_$(Identifier)#MVDeath
+            type: iri
+            
+  person_quality_Death:
+   
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#Person 
+    po: 
+      - predicates: sio:SIO_000217 #has-quality 
+        objects: 
+            value: this:individual_$(Identifier)#QualityStatus
+            type: iri
+            
+      
+            
+  quality_mv_Death:
+   
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#QualityDeath
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C70810 #Date of Death
+            type: iri 
+
+      - predicates: sio:SIO_000642  #is-base-for 
+        objects: 
+            value: this:individual_$(Identifier)#MVDeath
+            type: iri
+            
+  mv_value_Death:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#MVDeath
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000340 #realizable entity
+            type: iri 
+
+      - predicates: sio:SIO_000300 #has-value
+        objects: 
+            value: $(Death_date)
+            type: xsd:dateTime
+
+      - predicates: rdfs:label
+        objects: 
+            value: $(Death_date)
+            type: xsd:string

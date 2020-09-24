@@ -1,0 +1,226 @@
+
+
+prefixes: 
+
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+  rdc-meta: http://rdf.biosemantics.org/ontologies/rd-connect/
+  dct: http://purl.org/dc/terms/
+  ordo: http://www.orpha.net/ORDO/
+
+mappings: 
+            
+  person_role_birthdate: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Person 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCBITaxon_9606 
+            type: iri 
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:individual_$(Identifier)#RoleDiagnosis
+            type: iri 
+
+  role_process_diagnosis:
+    sources: 
+      - ['source_1.csv~csv'] 
+    s: this:individual_$(Identifier)#RoleDiagnosis 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessDiagnosis 
+            type: iri
+
+  process_mv_diagnosis:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessDiagnosis
+    po:
+      - predicates: a 
+        objects: 
+            value:  sio:SIO_001001  #medical-diagnosis
+            type: iri
+
+      - predicates: sio:SIO_000229  #has-output  
+        objects: 
+            value: this:individual_$(Identifier)#MVDiagnosis
+            type: iri
+
+      - predicates: dct:date 
+        objects: 
+            value: $(date_diagnosis)
+            type: xsd:dateTime
+
+         
+  mv_value_diagnosis:
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#MVDiagnosis
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000340 #realizable entity
+            type: iri 
+
+      - predicates: a
+        objects: 
+            value: ordo:$(Orphanet_code)
+            type: iri
+
+  #Symptom
+
+  process_process_diagnosis:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessDiagnosis
+    po: 
+      - predicates: prov:informedBy 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessSymptom
+            type: iri
+
+  person_quality_Symptom:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#Person
+    po: 
+      - predicates: sio:SIO_000217 #has-quality 
+        objects: 
+            value: this:individual_$(Identifier)#QualitySymptom
+            type: iri 
+
+  quality_mv_Symptom:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#QualitySymptom
+    po: 
+      - predicates: sio:SIO_000216  #has-measurement-value
+        objects: 
+            value: this:individual_$(Identifier)#MVSymptom
+            type: iri
+
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C124353 #Symptom onset
+            type: iri
+
+      - predicates: a 
+        objects: 
+            value: obo:$(Symptom_code)
+            type: iri 
+
+  process_mv_Symptom:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessSymptom
+    po: 
+      - predicates: dct:date 
+        objects: 
+            value: $(date_symptom_process)
+            type: iri
+
+      - predicates: sio:SIO_000229  #has-output  
+        objects: 
+            value: this:individual_$(Identifier)#MVSymptom
+            type: iri
+
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000006  #process
+            type: iri
+
+  mv_v_Symptom:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#MVSymptom
+    po: 
+
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000070  #measurement-value
+            type: iri
+
+      - predicates: sio:SIO_000300 #has-value 
+        objects: 
+            value: $(Symptom_date)
+            type: xsd:string
+  
+  #Birthdate:
+
+  person_quality_birthdate:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#Person
+    po: 
+      - predicates: sio:SIO_000217 #has-quality
+        objects: 
+            value: this:individual_$(Identifier)#QualityBirthdate
+            type: iri
+
+
+  quality_mv_birthdate:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#QualityBirthdate
+    po: 
+      - predicates: sio:SIO_000216  #has-measurement-value
+        objects: 
+            value: this:individual_$(Identifier)#MVBirthdate
+            type: iri
+
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C68615 # Birthdate
+            type: iri
+
+  mv_v_birthdate:
+
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#MVBirthdate
+    po: 
+      - predicates: sio:SIO_000300 #has-value 
+        objects: 
+            value: $(Birthdate)
+            type: iri
+            
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000070  #measurement-value
+            type: iri
+
+
+
+    
+
+

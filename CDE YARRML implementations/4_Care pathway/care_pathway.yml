@@ -1,0 +1,116 @@
+
+prefixes: 
+
+  
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+  dct: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+
+
+mappings: 
+            
+  person_role_pathway: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Person 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCBITaxon_9606 
+            type: iri 
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:individual_$(Identifier)#RolePathway
+            type: iri 
+            
+  role_p1_pathway:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#RoleBirthdate 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  #is-realized-in 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessPathway1
+            type: iri
+            
+  p1_p2_pathway:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessPathway1 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C159705
+            type: iri 
+
+      - predicates: prov:informedBy 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessPathway2
+            type: iri
+
+      - predicates: prov:informedBy 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessPathway3
+            type: iri
+
+      - predicates: prov:informedBy 
+        objects: 
+            value: this:individual_$(Identifier)#ProcessPathway4
+            type: iri
+
+      - predicates: dct:date 
+        objects: 
+            value: $(datepath1)
+            type: iri
+
+  p2_pathway:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessPathway2 
+    po: 
+      - predicates: dct:date 
+        objects: 
+            value: $(datepath2)
+            type: iri
+
+  p3_pathway:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessPathway3 
+    po: 
+      - predicates: dct:date 
+        objects: 
+            value: $(datepath3)
+            type: iri
+            
+  p4_pathway:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#ProcessPathway4 
+    po: 
+      - predicates: dct:date 
+        objects: 
+            value: $(datepath4)
+            type: iri
+
+          

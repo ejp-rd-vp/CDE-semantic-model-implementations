@@ -1,0 +1,60 @@
+
+prefixes: 
+
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+
+
+mappings: 
+      
+  identifier_:
+
+    source: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#ID 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C80244 # Pseudonym
+            type: iri 
+
+      - predicates: sio:denotes 
+        objects: 
+            value: this:individual_$(Identifier)#Role 
+            type: iri
+
+      - predicates: sio:has-value 
+        objects: 
+            value: $(Identifier) 
+            type: xsd:string
+            
+  person_: 
+
+    sources: 
+      - ['source_1.csv~csv'] 
+
+    s: this:individual_$(Identifier)#Person 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCBITaxon_9606 
+            type: iri
+
+      - predicates: sio:SIO_000228 #has-role 
+        objects: 
+            value: this:individual_$(Identifier)#Role
+            type: iri 
+            
+  role_:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#Role 
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093 
+            type: iri 
