@@ -6,38 +6,10 @@ prefixes:
   sio: https://semanticscience.org/resource/ 
   dct: http://purl.org/dc/terms/
   ordo: http://www.orpha.net/ORDO/
-  rxnorm: http://purl.bioontology.org/ontology/RXNORM/
+  
 
 
 mappings:
-
-  identifier_role_drug:
-
-    source: 
-      - ['source_1.csv~csv'] 
-
-    s: this:drug_$(Drug_code)#ID 
-    po: 
-      - predicates: a 
-        objects: 
-            value: obo:NCIT_C80244 # Pseudonym
-            type: iri 
-
-      - predicates: sio:SIO_000020 #denotes
-        objects: 
-            value: this:drug_$(Drug_code)#RoleDrug
-            type: iri
-
-      - predicates: sio:SIO_000300 #has-value 
-        objects: 
-            value: obo:NCIT_$(Drug_code) # problem *
-            type: iri
-
-      - predicates: rdfs:label 
-        objects: 
-            value: $(Drug_label) 
-            type: xsd:string
-            
 
   entity_role_drug: 
 
@@ -46,22 +18,26 @@ mappings:
 
     s: this:drug_$(Drug_code)#Entity 
     po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_010038  #drug
+            type: iri 
 
       - predicates: sio:SIO_000228 #has-role 
         objects: 
             value: this:drug_$(Drug_code)#RoleDrug
             type: iri 
 
-  taxon_entity_drug: 
+  component_entity_drug: 
 
     sources: 
       - ['source_1.csv~csv'] 
 
-    s: obo:NCIT_$(Drug_code)
+    s: obo:NCIT_$(Drug_code)#Drug_component
     po: 
       - predicates: a 
         objects: 
-            value: sio:SIO_010038  #drug
+            value: obo:NCIT_$(Drug_ID)
             type: iri 
 
       - predicates: sio:SIO_000313 # is component part of
@@ -78,7 +54,7 @@ mappings:
     po: 
       - predicates: a 
         objects: 
-            value: obo:OBI_0000040
+            value: obo:OBI_0000040 #Drug role
             type: iri 
 
       - predicates: sio:SIO_000356  #is-realized-in 
@@ -87,28 +63,6 @@ mappings:
             type: iri
 
   #person
-
-  identifier_role_drugconsumer:
-
-    source: 
-      - ['source_1.csv~csv'] 
-
-    s: this:individual_$(Identifier)#ID 
-    po: 
-      - predicates: a 
-        objects: 
-            value: obo:NCIT_C80244 # Pseudonym
-            type: iri  
-
-      - predicates: sio:SIO_000020 #denotes  
-        objects: 
-            value: this:individual_$(Identifier)#RoleDrugconsume
-            type: iri
-
-      - predicates: sio:SIO_000300 #has-value 
-        objects: 
-            value: $(Identifier) 
-            type: xsd:string
         
   person_role_drugconsumer: 
 
@@ -122,7 +76,7 @@ mappings:
             value: obo:NCBITaxon_9606 
             type: iri 
 
-      - predicates: sio:has-role 
+      - predicates: sio:SIO_000228 #has-role  
         objects: 
             value: this:individual_$(Identifier)#RolePerson
             type: iri 
@@ -136,7 +90,7 @@ mappings:
     po: 
       - predicates: a 
         objects: 
-            value: obo:OBI_0000093
+            value: obo:OBI_0000093 # Patient Role
             type: iri 
 
       - predicates: sio:SIO_000356  #is-realized-in
