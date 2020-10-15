@@ -4,8 +4,7 @@ prefixes:
   obo: http://purl.obolibrary.org/obo/ 
   this: http://our-data.org/data/ 
   sio: https://semanticscience.org/resource/ 
-  dct: http://purl.org/dc/terms/
-  ordo: http://www.orpha.net/ORDO/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
   
 
 
@@ -16,7 +15,7 @@ mappings:
     sources: 
       - ['source_1.csv~csv'] 
 
-    s: this:drug_$(Drug_code)#Entity 
+    s: this:drug_$(Bnode)#Drug
     po: 
       - predicates: a 
         objects: 
@@ -25,7 +24,7 @@ mappings:
 
       - predicates: sio:SIO_000228 #has-role 
         objects: 
-            value: this:drug_$(Drug_code)#RoleDrug
+            value: this:drug_$(Bnode)#RoleDrug
             type: iri 
 
   component_entity_drug: 
@@ -33,16 +32,21 @@ mappings:
     sources: 
       - ['source_1.csv~csv'] 
 
-    s: obo:NCIT_$(Drug_code)#Drug_component
+    s: obo:NCIT_$(Bnode)#CompenentDrug
     po: 
       - predicates: a 
         objects: 
-            value: obo:NCIT_$(Drug_ID)
+            value: obo:NCIT_$(Drug_code)
             type: iri 
+            
+      - predicates: rdfs:label
+        objects: 
+            value: $(Drug1)
+            type: string 
 
       - predicates: sio:SIO_000313 # is component part of
         objects: 
-            value: this:drug_$(Drug_code)#Entity
+            value: this:drug_$(Bnode)#Drug
             type: iri
             
   role_process_drug:
@@ -50,7 +54,7 @@ mappings:
     source:
      - ['source_1.csv~csv'] 
      
-    s: this:drug_$(Drug_code)#RoleDrug 
+    s: this:drug_$(Bnode)#RoleDrug 
     po: 
       - predicates: a 
         objects: 
@@ -98,5 +102,19 @@ mappings:
             value: this:individual_$(Identifier)#TalkingDrugProcess
             type: iri
 
+  process_drugconsumer:
+  
+    source:
+     - ['source_1.csv~csv'] 
+     
+    s: this:individual_$(Identifier)#TalkingDrugProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C29862 # process
+            type: iri 
 
-
+      
+            
+            
+            
