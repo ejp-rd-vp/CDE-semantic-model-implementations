@@ -1,0 +1,7 @@
+
+- need to have sdmrdfizer running on port 4000 with a filder ./data mounted as /data
+
+run build_xxx_template to build the appropriate templates
+run generate csv then run YARRRML_Transform on it
+
+
