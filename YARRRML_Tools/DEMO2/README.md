@@ -1,13 +1,20 @@
+## Execute a CDE Transformation from CSV
 
-- need to have sdmrdfizer running on port 4000 with a filder ./data mounted as /data
+1) Need to have sdmrdfizer running on port 4000 with a filder ./data mounted as /data
 
-run build_xxx_template to build the appropriate templates
-run generate csv then run YARRRML_Transform on it
+2a) Run build_xxx_template to build the appropriate templates.  remember the names of the CSV columns
+
+2b) Generate CSV with headers sufficient to fill the template
+
+3) Run YARRRML_Transform to genereate nTriples
+
+
+## More specifically
 
 in the ./data folder, create a csv file with the necessary headings for your desired transform.
 
 
-
+## ...more documentation coming....
 
 y = YARRRML_Transform.new(datafile: "./data/height_experimental.csv", datatype: "height_experimental")
 y.yarrrml_transform
