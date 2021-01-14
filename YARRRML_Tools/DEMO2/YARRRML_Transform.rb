@@ -1,22 +1,39 @@
 require 'tempfile'
 require 'rest-client'
-#Dir[File.join(__dir__, 'config', '*.rb')].each { |file| require file }
 
-# note that SDBrdfizer needs to be running on port 4000 with the ./data folder mounted as /data
+# note that SDMrdfizer needs to be running on port 4000 with the ./data folder mounted as /data
+# docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data fairdatasystems/sdmrdfizer:0.1.0
 
 class YARRRML_Transform
   
   attr_accessor :datafile
+  attr_accessor :datatype_tag
   attr_accessor :yarrrmltemplate
   attr_accessor :yarrrmlfilename
   attr_accessor :configfilename
   attr_accessor :outputrmlfile
   attr_accessor :outputrdffolder
-  attr_accessor :datatype
   attr_accessor :formulation
   attr_accessor :inifile
   attr_accessor :inifilename
   
+
+# Creates the YARRRML Transformer object
+#
+# all params are passed as a hash, and retrieved by params.fetch(paramName).  the ini file used by yarrrml transform is auto-generated
+#
+# @param datafile [string]  (required) the path and filename to the file mounted in ./data (e.g. ./data/myfile.csv)
+# @param datatype_tag [string]   (required) a one-word indicator of the data type.  This is considered the "base" for all other filenames (see below)
+# @param outputrmlfile [string]  (optional - is auto-constructed from the datatype-tag (see below))
+# @param outputrdffolder [string]  (optional - defaults to /data/triples - this folder must exist, even if left to default.  NOTE - this path is not relative to the host, it is relative to the docker rdfizer, so it begins with /data not ./data)
+# @param formulation [string]  for the yarrrml transformer, what is the input file format (default 'csv')
+#
+# @return [YARRRML_Transform]
+#
+#  the datatype_tag is used to construct other input/output filenames.  e.g. a tag of "height" will
+# cause the output RML file to be "./data/height_rml.ttl", and the expected YARRRML template being named 
+# "./config/height_yarrrml_template.yaml"
+#
 
   def initialize(params = {}) # get a name from the "new" call, or set a default
     
@@ -26,10 +43,10 @@ class YARRRML_Transform
     @datafile = params.fetch(:datafile, nil)
     @outputrmlfile = params.fetch(:outputrmlfile, nil)
     @outputrdffolder = params.fetch(:outputrdffolder, nil)
-    @datatype = params.fetch( :datatype, nil)
+    @datatype = params.fetch( :datatype_tag, nil)
     @formulation = params.fetch(:formulation, "csv")
 
-    abort "must have a datatype parameter" unless @datatype
+    abort "must have a datatype_tag parameter" unless @datatype
     abort "must have a datafile parameter" unless @datafile
 
     unless @datafile =~ /data\/(.*)/
@@ -81,6 +98,11 @@ CONFIG
     File.open(inifile, "w"){|f| f.puts configfilecontent}
   end
   
+# Executes the yarrrml to rml transformation 
+#
+# no parameters
+#
+#
   def yarrrml_transform
     $stderr.puts "running docker yarrrml-parser:ejp-latest"
     parser_start_string = "docker run -e PARSERIN=#{self.yarrrmlfilename} -e PARSEROUT=#{self.outputrmlfile} --rm --name yarrrml-parser -v $PWD/data:/data markw/yarrrml-parser-ejp:latest"
@@ -89,9 +111,14 @@ CONFIG
     $stderr.puts "rml file has been created in #{self.outputrmlfile} - ready to make FAIR data"
   end
   
+# Executes the CSV to RDF based on the RML
+#
+# no parameters
+#
+#executes the sdmrdfizer transformation using the .ini file created by the 'initialize' routine
   
   def make_fair_data
-    $stderr.puts "making FAIR data with http://localhost:4000/graph_creation/data/#{self.inifilename}"
+    $stderr.puts "making FAIR data with http://localhost:4000/graph_creation/data/#{self.inifilename}"  # this is sdmrdfizer
     response = RestClient.get("http://localhost:4000/graph_creation/data/#{self.inifilename}")
     $stderr.puts response.body
     $stderr.puts "FAIR data is avaialable in .#{self.outputrdffolder}" + self.datatype + ".nt"

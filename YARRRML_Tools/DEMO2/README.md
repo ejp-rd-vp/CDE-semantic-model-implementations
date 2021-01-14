@@ -1,8 +1,20 @@
 ## Execute a CDE Transformation from CSV
 
+0) Default folder structure, relative to where you will run the transformation script:
+
+        .
+        ./data/   (this folder is mounted into sdmrdfizer - see step 1 below)
+        ./data/mydataX.csv  (input csv files)
+        ./data/mydataY.csv...
+        ./data/triples/  (output FAIR data ends up here)
+        ./config/
+        ./config/***_yarrrml_template.yaml (*** is a one-word tag of the "type" of data, e.g. "height")
+
 1) Need to have sdmrdfizer running on port 4000 with a filder ./data mounted as /data
 
-2a) Run build_xxx_template to build the appropriate templates.  remember the names of the CSV columns
+     docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data fairdatasystems/sdmrdfizer:0.1.0
+
+2a) Run build_xxx_template to build the appropriate templates (see "Example of creating a template", below).  remember the names of the CSV columns
 
 2b) Generate CSV with headers sufficient to fill the template
 
@@ -11,14 +23,17 @@
 
 ## More specifically
 
-in the ./data folder, create a csv file with the necessary headings for your desired transform.
+1) in the ./data folder, create a csv file with the necessary headings for your desired transform.
 
+2) create (or select) the appropriate YARRRML template (in the ./config folder, e.g. "height_yarrrml_template.yaml").  See "example of creating a template" below if you need to create one from-scratch.
 
-## ...more documentation coming....
+3) Identify the "tag" of the YARRML template you want to use (e.g. 'height' for "height_yarrrml_template.yaml" )
 
-y = YARRRML_Transform.new(datafile: "./data/height_experimental.csv", datatype: "height_experimental")
-y.yarrrml_transform
-y.make_fair_data
+4) execute the transformation:
+
+        y = YARRRML_Transform.new(datafile: "./data/myHeightData.csv", datatype_tag: "height")
+        y.yarrrml_transform
+        y.make_fair_data   # output goes to ./data/triples
 
 
 
@@ -75,3 +90,5 @@ y.make_fair_data
     puts b.generate
 
 
+Note that this will output the template to STDOUT, so capture it to a file.  For everything else to work "correctly" that file should be named
+XXXXXX_yarrrml_template.yaml, and should live in the ./config folder.   XXXXXX is the 'tag' of the data type (e.g. 'height')
