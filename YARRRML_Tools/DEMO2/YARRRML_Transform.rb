@@ -43,10 +43,10 @@ class YARRRML_Transform
     @datafile = params.fetch(:datafile, nil)
     @outputrmlfile = params.fetch(:outputrmlfile, nil)
     @outputrdffolder = params.fetch(:outputrdffolder, nil)
-    @datatype = params.fetch( :datatype_tag, nil)
+    @datatype_tag = params.fetch( :datatype_tag, nil)
     @formulation = params.fetch(:formulation, "csv")
 
-    abort "must have a datatype_tag parameter" unless @datatype
+    abort "must have a datatype_tag parameter" unless @datatype_tag
     abort "must have a datafile parameter" unless @datafile
 
     unless @datafile =~ /data\/(.*)/
@@ -56,27 +56,27 @@ class YARRRML_Transform
       @datafile = $1
     end
 
-    @outputrmlfile = "/data/"+ self.datatype+"_rml.ttl" unless @outputrmlfile
+    @outputrmlfile = "/data/#{self.datatype_tag}_rml.ttl" unless @outputrmlfile
     @outputrdffolder = "/data/triples/" unless @outputrdffolder
-    @yarrrmlfilename = "/data/#{self.datatype}_yarrrml.yaml" unless @yarrrmlfilename
-    @yarrrmltemplate = "./config/#{self.datatype}_yarrrml_template.yaml" unless @yarrrmltemplate
-    @inifile = "./data/#{self.datatype}.ini"
-    @inifilename = "#{self.datatype}.ini"
+    @yarrrmlfilename = "/data/#{self.datatype_tag}_yarrrml.yaml" unless @yarrrmlfilename
+    @yarrrmltemplate = "./config/#{self.datatype_tag}_yarrrml_template.yaml" unless @yarrrmltemplate
+    @inifile = "./data/#{self.datatype_tag}.ini"
+    @inifilename = "#{self.datatype_tag}.ini"
 
-    write_ini(self.inifile, self.outputrdffolder, self.outputrmlfile, self.datatype)
+    write_ini(self.inifile, self.outputrdffolder, self.outputrmlfile, self.datatype_tag)
     
     # transform appropriate template with this data
     File.open(self.yarrrmltemplate, "r") {|f| @template = f.read}
     @template.gsub!("|||DATA|||", self.datafile)
     @template.gsub!("|||FORMULATION|||", self.formulation)
     File.open("./"+self.yarrrmlfilename, "w") {|f| f.puts @template}
-    $stderr.puts "Ready to yarrrml transform #{datatype}"
+    $stderr.puts "Ready to yarrrml transform #{self.datatype_tag}"
     return self
 
   end
   
 
-  def write_ini(inifile = self.inifile, rdffolder = self.outputrdffolder, rmlfile = self.outputrmlfile, datatype = self.datatype)
+  def write_ini(inifile = self.inifile, rdffolder = self.outputrdffolder, rmlfile = self.outputrmlfile, datatype = self.datatype_tag)
     configfilecontent = <<CONFIG
 [default]
 main_directory: /data
@@ -121,8 +121,8 @@ CONFIG
     $stderr.puts "making FAIR data with http://localhost:4000/graph_creation/data/#{self.inifilename}"  # this is sdmrdfizer
     response = RestClient.get("http://localhost:4000/graph_creation/data/#{self.inifilename}")
     $stderr.puts response.body
-    $stderr.puts "FAIR data is avaialable in .#{self.outputrdffolder}" + self.datatype + ".nt"
-    return File.read("." + self.outputrdffolder + self.datatype + ".nt")
+    $stderr.puts "FAIR data is avaialable in .#{self.outputrdffolder}" + self.datatype_tag + ".nt"
+    return File.read("." + self.outputrdffolder + self.datatype_tag + ".nt")
   end
   
   

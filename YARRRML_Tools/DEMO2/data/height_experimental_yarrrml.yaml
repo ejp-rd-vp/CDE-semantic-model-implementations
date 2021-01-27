@@ -11,8 +11,8 @@ prefixes:
   this: http://marks.test/this/
 sources:
   patient_height-source:
-    access: "|||DATA|||"
-    referenceFormulation: "|||FORMULATION|||"
+    access: "height_experimental.csv"
+    referenceFormulation: "csv"
     iterator: "$"
 mappings:
   identifier_has_value:
@@ -35,7 +35,7 @@ mappings:
         type: iri
     - predicates: sio:denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole
+        value: this:individual_$(pid)_$(uniqid)#thisRole
         type: iri
   person_has_role:
     sources:
@@ -48,12 +48,12 @@ mappings:
         type: iri
     - predicates: sio:has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole
+        value: this:individual_$(pid)_$(uniqid)#thisRole
         type: iri
-  patientRole_annotation:
+  thisRole_annotation:
     sources:
     - patient_height-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole
+    s: this:individual_$(pid)_$(uniqid)#thisRole
     po:
     - predicates: a
       objects:
@@ -63,10 +63,10 @@ mappings:
       objects:
         value: Patient
         datatype: xsd:string
-  patientRole_realized_some_height_measuring_process:
+  thisRole_realized_some_height_measuring_process:
     sources:
     - patient_height-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole
+    s: this:individual_$(pid)_$(uniqid)#thisRole
     po:
     - predicates: sio:is-realized-in
       objects:
@@ -125,15 +125,6 @@ mappings:
       objects:
         value: this:individual__$(pid)_$(uniqid)#some_height_measuring_process_Output
         type: iri
-  some_height_measuring_process_Output_annotation:
-    sources:
-    - patient_height-source
-    s: this:individual__$(pid)_$(uniqid)#some_height_measuring_process_Output
-    po:
-    - predicates: rdf:type
-      objects:
-        value: sio:measurement-value
-        type: iri
   some_height_measuring_process_Output_type_annotation:
     sources:
     - patient_height-source
@@ -150,8 +141,26 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(measurementURI)"
+        value: "$(measurementLabel)"
         datatype: xsd:string
+  some_height_measuring_process_Output_annotation:
+    sources:
+    - patient_height-source
+    s: this:individual__$(pid)_$(uniqid)#some_height_measuring_process_Output
+    po:
+    - predicates: rdf:type
+      objects:
+        value: sio:measurement-value
+        type: iri
+  height_quality_quality_has_measurement_value:
+    sources:
+    - patient_height-source
+    s: this:individual__$(pid)_$(uniqid)#height_quality
+    po:
+    - predicates: sio:has-measurement-value
+      objects:
+        value: this:individual__$(pid)_$(uniqid)#some_height_measuring_process_Output
+        type: iri
   some_height_measuring_process_Output_value_annotation:
     sources:
     - patient_height-source

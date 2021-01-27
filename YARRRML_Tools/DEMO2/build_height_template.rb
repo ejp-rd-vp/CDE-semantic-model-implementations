@@ -4,7 +4,9 @@ require "./YARRRML_Template_BuilderII.rb"
 
 b = YARRRML_Template_BuilderII.new({
   baseURI: "http://marks.test/this/",
-  source_name: "patient_height"}
+  source_tag: "patient_height_experimental",
+  sio_verbose: 1,
+  }
   )
 
 b.person_identifier_role_mappings({

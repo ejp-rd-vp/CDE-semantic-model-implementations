@@ -7,7 +7,8 @@ class YARRRML_Template_BuilderII
   
   attr_accessor :prefix_map
   attr_accessor :baseURI  
-  attr_accessor :source_name
+  attr_accessor :sio_verbose  
+  attr_accessor :source_tag
   attr_accessor :sources_module
   
 
@@ -43,6 +44,25 @@ class YARRRML_Template_BuilderII
   
   attr_accessor :mappings  
 
+  SIO = {"has-attribute" => ["sio:has-attribute", "sio:SIO_000008"], 
+"has-quality" => ["sio:SIO_000217", "sio:has-quality"],
+"has-unit" => ["sio:SIO_000221", "sio:has-unit"],
+"has-value" => ["sio:SIO_000300", "sio:has-value"],
+"has-role" => ["sio:SIO_000228", "sio:has-role"],
+"is-participant-in" => ["sio:SIO_000062", "sio:is-participant-in"],
+"is-about" => ["sio:SIO_000332", "sio:is-about"],
+"has-output" => ["sio:SIO_000229", "sio:has-output"],
+"denotes" => ["sio:SIO_000020", "sio:denotes"],
+"is-realized-in" => ["sio:SIO_000356", "sio:is-realized-in"],
+"start-time" => ["sio:SIO_000669", "sio:start-time"],
+"end-time" => ["sio:SIO_000670", "sio:end-time"],
+"is-component-part-of" => ["sio:SIO_000313", "sio:is-component-part-of"],
+"drug" => ["sio:SIO_010038", "sio:drug"],
+"is-base-for" => ["sio:SIO_000642", "sio:is-base-for"],
+"has-concretization" => ["sio:SIO_000213", "sio:has-concretization"],
+"realizable-entity" =>  ["sio:SIO:000340", "sio:realizable-entity"],
+"measurement-value" => ["sio:SIO_000070", "sio:measurement-value"],
+}
 
 # Creates the Template Builder object
 #
@@ -50,17 +70,19 @@ class YARRRML_Template_BuilderII
 #
 # @param baseURI [string] a URL that will become the base for "urls owned by the data provider" e.g. "http://my.dataset.org/thisdataset/records/"
 # @param source_name [string]  a "short name" (i.e. a single word, no spaces) for the kind of data being transformed.  e.g. height_data
+# @param sio_verbose [0/1]  "1" means to use sio:has-value instead of sio:SIO_000300 for all sio.  Default is 0
 #
 # @return [YARRRML_Template_BuilderII]
 #
   def initialize(params = {}) # get a name from the "new" call, or set a default
     
     @baseURI = params.fetch(:baseURI, nil)
+    @sio_verbose = params.fetch(:sio_verbose, 0)
     abort "must have a baseURI parameter" unless self.baseURI
     @mappings = []
 
-    @source_name = params.fetch(:source_name, nil)
-    abort "must have a source_name parameter" unless self.source_name
+    @source_tag = params.fetch(:source_tag, nil)
+    abort "must have a source_name parameter" unless self.source_tag
 
     @prefix_map = {"rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
       "rdfs" => "http://www.w3.org/2000/01/rdf-schema#",
@@ -125,7 +147,7 @@ class YARRRML_Template_BuilderII
   def sources_module
     
     @sources_module =  {
-        "#{self.source_name}-source" =>
+        "#{self.source_tag}-source" =>
         {
           "access" => "|||DATA|||",
           "referenceFormulation" => "|||FORMULATION|||",
@@ -138,6 +160,19 @@ class YARRRML_Template_BuilderII
 
 
 
+
+# creates a single clause of the YARRRML (one subject, [p, o; p,o;....] mapping)
+#
+#  DO NOT use this externally!  I will eventually make it private...
+#
+# @param [name] (string) a unique name for that YARRRRML component (e.g. thisRole_realized_in_SomeProcess)
+# @param [source] (string) the YARRRML source identifier
+# @param [subject] (URI) URI of the subject
+# @param [name] (string) a unique name for that YARRRRML component (e.g. thisRole_realized_in_SomeProcess)
+# @param [pots] (Array) An array of arrays of [Predicate-object-datatype] (datatype is "iri" if it is a Node, rather than a literal)
+
+
+#
 
   def mapping_clause(name, source, s, pots)
     pos = []
@@ -184,40 +219,40 @@ class YARRRML_Template_BuilderII
     @uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
     @identifier_type = params.fetch(:identifier_type, 'https://ejp-rd.eu/vocab/identifier')
     @person_type = params.fetch(:person_type, 'https://ejp-rd.eu/vocab/Person')
-    @person_role = params.fetch(:person_role_tag, 'thisRole')
+    @person_role_tag = params.fetch(:person_role_tag, 'thisRole')
     @role_type = params.fetch(:role_type, 'obo:OBI_0000093')  # patient
     @role_label = params.fetch(:role_label, 'Patient')  # patient
 
 
     @mappings << mapping_clause(
                              "identifier_has_value",
-                             ["#{self.source_name}-source"],
+                             ["#{self.source_tag}-source"],
                              "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})#ID",
-                             [["sio:has-value", "$(#{self.personid_column})", "xsd:string"]]
+                             [[SIO["has-value"][self.sio_verbose], "$(#{self.personid_column})", "xsd:string"]]
                              )
 
     @mappings << mapping_clause(
                                   "identifier_denotes",
-                                  ["#{self.source_name}-source"],
+                                  ["#{self.source_tag}-source"],
                                   "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})#ID",
                                   [
                                    ["a", "#{self.identifier_type}", "iri"],
-                                   ["sio:denotes", "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
+                                   [SIO["denotes"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
                                   ]
                                  )
     @mappings << mapping_clause(
                                 "person_has_role",
-                                ["#{self.source_name}-source"],
+                                ["#{self.source_tag}-source"],
                                 "this:individual_$(#{self.personid_column})#Person",
                                 [
                                  ["a", "#{self.person_type}", "iri"],
-                                 ["sio:has-role", "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
+                                 [SIO["has-role"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
                                 ]
                                )
 
     @mappings << mapping_clause(
-                                "#{self.person_role}_annotation",
-                                ["#{self.source_name}-source"],
+                                "#{self.person_role_tag}_annotation",
+                                ["#{self.source_tag}-source"],
                                 "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}",
                                 [["a", "#{self.role_type}", "iri"],
                                  ["rdfs:label", "#{self.role_label}", "xsd:string"],
@@ -248,17 +283,17 @@ class YARRRML_Template_BuilderII
     abort "must have a process_type_column" unless self.process_type_column
     abort "must have a process_label_column" unless self.process_label_column
     @mappings << mapping_clause(
-      "#{self.person_role}_realized_#{self.process_tag}",
-      ["#{self.source_name}-source"],
-      "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role}",
+      "#{self.person_role_tag}_realized_#{self.process_tag}",
+      ["#{self.source_tag}-source"],
+      "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}",
       [
-            ["sio:is-realized-in", "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}","iri"]
+            [SIO["is-realized-in"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}","iri"]
       ]
       )
     
     @mappings << mapping_clause(
           "#{self.process_tag}_process_annotation",
-          ["#{self.source_name}-source"],
+          ["#{self.source_tag}-source"],
            "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
            [["rdf:type","$(#{self.process_type_column})", "iri"],
             ["rdfs:label","$(#{self.process_label_column})", "xsd:string"],
@@ -269,18 +304,18 @@ class YARRRML_Template_BuilderII
     if self.process_start_column
       @mappings << mapping_clause(
         "#{self.process_tag}_process_annotation_start",
-          ["#{self.source_name}-source"],
+          ["#{self.source_tag}-source"],
            "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
-           [["sio:start-time", "$(#{self.process_start_column})", "xsd:dateTime"]]
+           [[SIO["start-time"][self.sio_verbose], "$(#{self.process_start_column})", "xsd:dateTime"]]
            )
     end
     
     if self.process_end_column
       @mappings << mapping_clause(
           "#{self.process_tag}_process_annotation_end",
-          ["#{self.source_name}-source"],
+          ["#{self.source_tag}-source"],
            "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
-          [["sio:end-time", "$(#{self.process_end_column})", "xsd:dateTime"]]
+          [[SIO["end-time"][self.sio_verbose], "$(#{self.process_end_column})", "xsd:dateTime"]]
           )
     end
       
@@ -307,14 +342,14 @@ class YARRRML_Template_BuilderII
     
       @mappings << mapping_clause(
           "person_has_#{self.quality_tag}_quality",
-          ["#{self.source_name}-source"],
+          ["#{self.source_tag}-source"],
           "this:individual_$(#{self.personid_column})#Person",
-          [["sio:has-quality","this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.quality_tag}","iri"]]
+          [[SIO["has-quality"][self.sio_verbose],"this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.quality_tag}","iri"]]
           )
 
       @mappings << mapping_clause(
         "#{self.quality_tag}_quality_annotation",
-          ["#{self.source_name}-source"],
+          ["#{self.source_tag}-source"],
           "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.quality_tag}",
           [["rdf:type", "$(#{self.quality_type_column})", "iri"],
            ["rdfs:label","$(#{self.quality_label_column})", "xsd:string"]
@@ -339,9 +374,9 @@ class YARRRML_Template_BuilderII
     
     @mappings << mapping_clause(
         "#{self.quality_tag}_quality_basis_for_meas",
-        ["#{self.source_name}-source"],
+        ["#{self.source_tag}-source"],
         "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.quality_tag}",
-        [["sio:is-basis-for", "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output", "iri"]]
+        [[SIO["is-base-for"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output", "iri"]]
         )
   end
   
@@ -364,7 +399,7 @@ class YARRRML_Template_BuilderII
     @output_nature = params.fetch(:output_nature, nil)
     abort "must have an output nature of 'qualitative' or 'quantitative'" unless self.output_nature
     
-    @output_type_column = params.fetch(:output_type_column, "sio:realizable-entity")
+    @output_type_column = params.fetch(:output_type_column, SIO["realizable-entity"][self.sio_verbose])
     @output_type_label_column = params.fetch(:output_type_label_column, "measurement-value")
     @output_value_column = params.fetch(:output_value_column, nil)
     @output_value_datatype = params.fetch(:output_value_datatype, "xsd:string")
@@ -373,23 +408,23 @@ class YARRRML_Template_BuilderII
     
     @mappings << mapping_clause(
         "#{self.process_tag}_process_has_output",
-        ["#{self.source_name}-source"],
+        ["#{self.source_tag}-source"],
         "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
-        [["sio:has-output", "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output", "iri"]]
+        [[SIO["has-output"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output", "iri"]]
         )
     if self.output_nature == "quantitative"
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_annotation",
-              ["#{self.source_name}-source"],
+              ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["rdf:type","sio:measurement-value", "iri"]]
+              [["rdf:type",SIO["measurement-value"][self.sio_verbose], "iri"]]
               )      
     end
     
     if self.output_type_column
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_type_annotation",
-              ["#{self.source_name}-source"],
+              ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
               [["rdf:type","$(#{self.output_type_column})", "iri"]]
               )
@@ -398,7 +433,7 @@ class YARRRML_Template_BuilderII
     if self.output_type_label_column
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_type_label_annotation",
-              ["#{self.source_name}-source"],
+              ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
               [["rdfs:label","$(#{self.output_type_column})", "xsd:string"]]
               )
@@ -407,16 +442,16 @@ class YARRRML_Template_BuilderII
     if self.output_value_column
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_value_annotation",
-              ["#{self.source_name}-source"],
+              ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["sio:has-value","$(#{self.output_value_column})", "#{self.output_value_datatype}"]]
+              [[SIO["has-value"][self.sio_verbose],"$(#{self.output_value_column})", "#{self.output_value_datatype}"]]
               )
     end
     
     if self.output_comments_column
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_value_comments",
-              ["#{self.source_name}-source"],
+              ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
               [["rdfs:comment","$(#{self.output_comments_column})", "xsd:string"]]
               )
@@ -442,18 +477,18 @@ class YARRRML_Template_BuilderII
 
     @mappings << mapping_clause(
             "#{self.process_tag}_Output_hasunit_unit",
-              ["#{self.source_name}-source"],
+              ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["sio:has-unit", "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit", "iri"]]
+              [[SIO["has-unit"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit", "iri"]]
               )
     
 
     @mappings << mapping_clause(
             "#{self.process_tag}_Output_unit_annotation",
-            ["#{self.source_name}-source"],
+            ["#{self.source_tag}-source"],
             "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit",
-            [["rdf:type","#{self.output_unit_column}", "iri"],
-             ["rdfs:label","#{self.output_unit_label}","xsd:string"]
+            [["rdf:type","$(#{self.output_unit_column})", "iri"],
+             ["rdfs:label","$(#{self.output_unit_label})","xsd:string"]
             ]
             )
   end
