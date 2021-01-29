@@ -245,12 +245,12 @@ class YARRRML_Template_BuilderII
     @role_label = params.fetch(:role_label, 'Patient')  # patient
     @role_label_column = params.fetch(:role_label_column, nil)  # 
 
-    identifier_type = self.identifier_type_column?"$(#{self.identifier_type_column})":self.identifier_type
-    person_type = self.person_type_column?"$(#{self.person_type_column})":self.person_type
-    role_type = self.role_type_column?"$(#{self.role_type_column})":self.role_type
-    role_label = self.role_label_column?"$(#{self.role_label_column})":self.role_label
+    identifier_type = self.identifier_type_column ? "$(#{self.identifier_type_column})":self.identifier_type
+    person_type = self.person_type_column ? "$(#{self.person_type_column})":self.person_type
+    role_type = self.role_type_column ? "$(#{self.role_type_column})":self.role_type
+    role_label = self.role_label_column ? "$(#{self.role_label_column})":self.role_label
 
-    abort "You MUST have a personid_column and a uniqueid_column to use this library.  Sorry!"
+    abort "You MUST have a personid_column and a uniqueid_column to use this library.  Sorry!" unless @personid_column and @uniqueid_column
     @mappings << mapping_clause(
                              "identifier_has_value",
                              ["#{self.source_tag}-source"],
@@ -311,8 +311,8 @@ class YARRRML_Template_BuilderII
     @process_start_column = params.fetch(:process_start_column, nil) 
     @process_end_column = params.fetch(:process_end_column, nil) 
 
-    process_type = self.process_type_column?"$(#{self.process_type_column})":self.process_type
-    process_label = self.process_label_column?"$(#{self.process_label_column})":self.process_label
+    process_type = self.process_type_column ? "$(#{self.process_type_column})":self.process_type
+    process_label = self.process_label_column ? "$(#{self.process_label_column})":self.process_label
 
 
     @mappings << mapping_clause(
@@ -328,8 +328,8 @@ class YARRRML_Template_BuilderII
           "#{self.process_tag}_process_annotation",
           ["#{self.source_tag}-source"],
            "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
-           [["rdf:type","$(#{process_type})", "iri"],
-            ["rdfs:label","$(#{process_label})", "xsd:string"],
+           [["rdf:type","#{process_type}", "iri"],
+            ["rdfs:label","#{process_label}", "xsd:string"],
            ]
            )      
       
@@ -371,11 +371,11 @@ class YARRRML_Template_BuilderII
     @quality_type = params.fetch(:quality_type, "sio:quality")  
     @quality_type_column = params.fetch(:quality_type_column, nil)  
     @quality_tag  = params.fetch(:quality_tag, "someQuality")  # some one-word name
-    @quality_label = params.fetch(:quality_label, nil) 
+    @quality_label = params.fetch(:quality_label, "quality") 
     @quality_label_column = params.fetch(:quality_label_column, nil)
     
-    quality_type = self.quality_type_column?"$(#{self.quality_type_column})":self.quality_type
-    quality_label = self.quality_label_column?"$(#{self.quality_label_column})":self.quality_label
+    quality_type = self.quality_type_column ? "$(#{self.quality_type_column})":self.quality_type
+    quality_label = self.quality_label_column ? "$(#{self.quality_label_column})":self.quality_label
 
         
     
@@ -390,8 +390,8 @@ class YARRRML_Template_BuilderII
         "#{self.quality_tag}_quality_annotation",
           ["#{self.source_tag}-source"],
           "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.quality_tag}",
-          [["rdf:type", "$(#{quality_type})", "iri"],
-           ["rdfs:label","$(#{quality_label})", "xsd:string"]
+          [["rdf:type", "#{quality_type}", "iri"],
+           ["rdfs:label","#{quality_label}", "xsd:string"]
           ]
           )
     
@@ -426,12 +426,13 @@ class YARRRML_Template_BuilderII
 #
 # Parameters passed as a hash
 #
+# @param [:output_value] (string)  (optional) the default value of that output (defaults to nil, and the output node is not created in the RDF)
+# @param [:output_value_column] (string)  (optional) the column header for the value of that output (e.g. the column that contains "80"  for "80 mmHg")
 # @param [:output_nature] (string) either 'qualitative' (e.g. "healthy") or 'quantitative' (e.g. 82mmHg)# @param [:process_tag] (string) some single-word tag for that process; defaults to "thisprocess"
 # @param [:output_type] (URL) the URL associated with the output ontological type (defaults to sio:realizable-entity)
 # @param [:output_type_column] (string) the column header for the URL associated with the output ontological type (overrides output_type)
 # @param [:output_type_label] (string) (optional) the the label of that ontological type (defaults to "measurement-value")
 # @param [:output_type_label_column] (string) (optional) the column header for the label of that ontological type (overrides output_type_label)
-# @param [:output_value_column] (string)  (optional) the column header for the value of that output (e.g. the column that contains "80"  for "80 mmHg")
 # @param [:output_value_datatype] (xsd:type)  (optional) the xsd:type for that kind of measurement (defaults to xsd:string)
 # @param [:output_value_datatype_column] (string)  (optional) the column header for the xsd:type for that kind of measurement (overrides output_value_datatype)
 # @param [:output_comments_column] (string)  (optional) the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
@@ -441,18 +442,23 @@ class YARRRML_Template_BuilderII
     @output_nature = params.fetch(:output_nature, nil)
     abort "must have an output nature of 'qualitative' or 'quantitative'" unless self.output_nature
     
+    @output_value = params.fetch(:output_value, nil)
+    @output_value_column = params.fetch(:output_value_column, nil)
     @output_type = params.fetch(:output_type, SIO["realizable-entity"][self.sio_verbose])
     @output_type_column = params.fetch(:output_type_column, nil)
-    @output_type_label = params.fetch(:output_type_label_column, "measurement-value")
+    @output_type_label = params.fetch(:output_type_label, "measurement-value")
     @output_type_label_column = params.fetch(:output_type_label_column, nil)
-    @output_value_column = params.fetch(:output_value_column, nil)
     @output_value_datatype = params.fetch(:output_value_datatype, "xsd:string")
-    @output_value_datatype_column = params.fetch(:output_value_datatype, nil)
+    @output_value_datatype_column = params.fetch(:output_value_datatype_column, nil)
     @output_comments_column = params.fetch(:output_comments_column, nil)
 
-    output_type = self.output_type_column?"$(#{self.output_type_column})":self.output_type
-    output_type_label = self.output_type_label_column?"$(#{self.output_type_label_column})":self.output_type_label
-    output_value_datatype = self.output_value_datatype_column?"$(#{self.output_value_datatype_column})":self.output_value_datatype
+
+    output_value = self.output_value_column ? "$(#{self.output_value_column})":self.output_value
+    output_type = self.output_type_column ? "$(#{self.output_type_column})":self.output_type
+    output_type_label = self.output_type_label_column ? "$(#{self.output_type_label_column})":self.output_type_label
+    output_value_datatype = self.output_value_datatype_column ? "$(#{self.output_value_datatype_column})":self.output_value_datatype
+
+   return unless output_value
    
     @mappings << mapping_clause(
         "#{self.process_tag}_process_has_output",
@@ -474,7 +480,7 @@ class YARRRML_Template_BuilderII
               "#{self.process_tag}_Output_type_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["rdf:type","$(#{output_type})", "iri"]]
+              [["rdf:type","#{output_type}", "iri"]]
               )
     end
     
@@ -483,7 +489,7 @@ class YARRRML_Template_BuilderII
               "#{self.process_tag}_Output_type_label_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["rdfs:label","$(#{output_type_label})", "xsd:string"]]
+              [["rdfs:label","#{output_type_label}", "xsd:string"]]
               )
     end
     
@@ -525,8 +531,8 @@ class YARRRML_Template_BuilderII
     @output_unit_label = params.fetch(:output_unit_label, nil)
     @output_unit_label_column = params.fetch(:output_unit_label, nil)
     
-    output_unit = self.output_unit_column?"$(#{self.output_unit_column})":self.output_unit
-    output_unit_label = self.output_unit_label_column?"$(#{self.output_unit_label_column})":self.output_unit_label
+    output_unit = self.output_unit_column ? "$(#{self.output_unit_column})":self.output_unit
+    output_unit_label = self.output_unit_label_column ? "$(#{self.output_unit_label_column})":self.output_unit_label
 
     if output_unit
       @mappings << mapping_clause(
@@ -557,7 +563,7 @@ class YARRRML_Template_BuilderII
               "#{self.process_tag}_Output_unit_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit",
-              [["rdfs:label","$(#{output_unit_label})","xsd:string"]
+              [["rdfs:label","#{output_unit_label}","xsd:string"]
               ]
               )
     end
