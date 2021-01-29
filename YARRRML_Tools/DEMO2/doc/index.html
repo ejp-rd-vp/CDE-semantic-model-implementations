@@ -58,6 +58,10 @@
       </div>
 
       <div id="content"><div id='filecontents'>
+<h1 id="label-NOTA+BENE-3A+This+is+NOT+ready+for+public+use...+the+code+and+documentation+are+changing+rapidly+without+any+warning">NOTA BENE: This is NOT ready for public use… the code and documentation are changing rapidly without any warning</h1>
+
+<h2 id="label-Please+give+me+a+week+or+so+to+settle+things+down+before+trying+it+yourself.">Please give me a week or so to settle things down before trying it yourself.</h2>
+
 <h2 id="label-Execute+a+CDE+Transformation+from+CSV">Execute a CDE Transformation from CSV</h2>
 
 <p>0) Default folder structure, relative to where you will run the transformation script:</p>
@@ -73,7 +77,7 @@
 
 <p>1) Need to have sdmrdfizer running on port 4000 with a filder ./data mounted as /data</p>
 
-<pre class="code ruby"><code class="ruby"> docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data fairdatasystems/sdmrdfizer:0.1.0
+<pre class="code ruby"><code class="ruby"> docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data markw/sdmrdfizer_ejp:0.1.0
 </code></pre>
 
 <p>2a) Run build_xxx_template to build the appropriate templates (see “Example of creating a template”, below). remember the names of the CSV columns</p>
@@ -92,7 +96,7 @@
 
 <p>4) execute the transformation:</p>
 
-<pre class="code ruby"><code class="ruby">    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YARRRML_Transform.html" title="YARRRML_Transform (class)">YARRRML_Transform</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YARRRML_Transform.html#initialize-instance_method" title="YARRRML_Transform#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>datafile:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./data/myHeightData.csv</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>datatype_tag:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>height</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<pre class="code ruby"><code class="ruby">    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='const'>YARRRML_Transform</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>datafile:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./data/myHeightData.csv</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>datatype_tag:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>height</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_yarrrml_transform'>yarrrml_transform</span>
     <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_make_fair_data'>make_fair_data</span>   <span class='comment'># output goes to ./data/triples
 </span></code></pre>
@@ -104,7 +108,7 @@
 <span class='comment'># this is the header of the CSV we are going to transform
 </span><span class='comment'># &quot;pid,uniqid,qualityURI,qualityLabel,measurementURI,measurementLabel,processURI,processLabel,height,unitURI,unitLabel,date,comments&quot;
 </span>
-<span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='const'>YARRRML_Template_BuilderII</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+<span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YARRRML_Template_BuilderII.html" title="YARRRML_Template_BuilderII (class)">YARRRML_Template_BuilderII</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YARRRML_Template_BuilderII.html#initialize-instance_method" title="YARRRML_Template_BuilderII#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='lbrace'>{</span>
   <span class='label'>baseURI:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://marks.test/this/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='label'>source_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>patient_height</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
   <span class='rparen'>)</span>
@@ -153,7 +157,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Fri Jan 29 06:03:03 2021 by
+  Generated on Fri Jan 29 08:09:57 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>
