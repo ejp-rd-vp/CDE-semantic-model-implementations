@@ -15,29 +15,42 @@ class YARRRML_Template_BuilderII
   attr_accessor :personid_column
   attr_accessor :uniqueid_column
   attr_accessor :identifier_type
+  attr_accessor :identifier_type_column
   attr_accessor :person_type
+  attr_accessor :person_type_column
   attr_accessor :person_role_tag 
   attr_accessor :role_type 
+  attr_accessor :role_type_column
   attr_accessor :role_label
+  attr_accessor :role_label_column
   
+  attr_accessor :process_type
   attr_accessor :process_type_column
   attr_accessor :process_tag
+  attr_accessor :process_label
   attr_accessor :process_label_column
   attr_accessor :process_start_column
   attr_accessor :process_end_column
 
+  attr_accessor :quality_type
   attr_accessor :quality_type_column
   attr_accessor :quality_tag
+  attr_accessor :quality_label
   attr_accessor :quality_label_column
 
   attr_accessor :output_nature  # qualitative or quantitative
+  attr_accessor :output_type
   attr_accessor :output_type_column
+  attr_accessor :output_type_label
   attr_accessor :output_type_label_column
   attr_accessor :output_value_column
   attr_accessor :output_comments_column
   attr_accessor :output_value_datatype
+  attr_accessor :output_value_datatype_column
   
+  attr_accessor :output_unit
   attr_accessor :output_unit_column
+  attr_accessor :output_unit_label_column
   attr_accessor :output_unit_label
   
   
@@ -205,25 +218,39 @@ class YARRRML_Template_BuilderII
 #
 # Parameters passed as a hash
 #
-# @param [:personid_column] (string) the column header that contains the anonymous identifier of the person; defaults to "pid"
-# @param [:uniqueid_column] (string) the column header that contains unique ID for that row (over ALL datasets! e.g. a hash of a timestamp); defaults to "uniqid"
+# @param [:personid_column] (string) (required) the column header that contains the anonymous identifier of the person; defaults to "pid"
+# @param [:uniqueid_column] (string) (required) the column header that contains unique ID for that row (over ALL datasets! e.g. a hash of a timestamp); defaults to "uniqid"
 # @param [:identifier_type] (URL) the URL of the ontological type of that identifier; defaults to  'https://ejp-rd.eu/vocab/identifier'
+# @param [:identifier_type_column] (string) the column header for the ontological type of that identifier.  Overrides identifier_type.
 # @param [:person_type] (URL) the URL of the ontological type defining a "person"; defaults to 'https://ejp-rd.eu/vocab/Person'
+# @param [:person_type_column] (strong) the column header for the ontological type of the "individual".  Overrides person_type
 # @param [:person_role_tag] (string) a single-word label for the kind of role (e.g. "patient", "clinician") the person plays in this dataset; defaults to "thisRole"
 # @param [:role_type] (QName) the QName for the ontological type of that role; defaults to "obo:OBI_0000093" ("patient")
+# @param [:role_type_column] (strong) the column header that contains the ontological type of that role.  Overrides role_type
 # @param [:role_label] (string) the label for that kind of role; defaults to "Patient"
+# @param [:role_label_column] (string) the column header that has the label for that kind of role (overrides role_label)
 #
 
   def person_identifier_role_mappings(params = {})
     @personid_column = params.fetch(:personid_column, 'pid')
     @uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
+    
     @identifier_type = params.fetch(:identifier_type, 'https://ejp-rd.eu/vocab/identifier')
+    @identifier_type_column = params.fetch(:identifier_type_column, nil)
     @person_type = params.fetch(:person_type, 'https://ejp-rd.eu/vocab/Person')
+    @person_type_column = params.fetch(:person_type_column, nil)
     @person_role_tag = params.fetch(:person_role_tag, 'thisRole')
     @role_type = params.fetch(:role_type, 'obo:OBI_0000093')  # patient
+    @role_type_column = params.fetch(:role_type_column, nil)  # 
     @role_label = params.fetch(:role_label, 'Patient')  # patient
+    @role_label_column = params.fetch(:role_label_column, nil)  # 
 
+    identifier_type = self.identifier_type_column?"$(#{self.identifier_type_column})":self.identifier_type
+    person_type = self.person_type_column?"$(#{self.person_type_column})":self.person_type
+    role_type = self.role_type_column?"$(#{self.role_type_column})":self.role_type
+    role_label = self.role_label_column?"$(#{self.role_label_column})":self.role_label
 
+    abort "You MUST have a personid_column and a uniqueid_column to use this library.  Sorry!"
     @mappings << mapping_clause(
                              "identifier_has_value",
                              ["#{self.source_tag}-source"],
@@ -236,7 +263,7 @@ class YARRRML_Template_BuilderII
                                   ["#{self.source_tag}-source"],
                                   "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})#ID",
                                   [
-                                   ["a", "#{self.identifier_type}", "iri"],
+                                   ["a", "#{identifier_type}", "iri"],
                                    [SIO["denotes"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
                                   ]
                                  )
@@ -245,7 +272,7 @@ class YARRRML_Template_BuilderII
                                 ["#{self.source_tag}-source"],
                                 "this:individual_$(#{self.personid_column})#Person",
                                 [
-                                 ["a", "#{self.person_type}", "iri"],
+                                 ["a", "#{person_type}", "iri"],
                                  [SIO["has-role"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
                                 ]
                                )
@@ -254,8 +281,8 @@ class YARRRML_Template_BuilderII
                                 "#{self.person_role_tag}_annotation",
                                 ["#{self.source_tag}-source"],
                                 "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}",
-                                [["a", "#{self.role_type}", "iri"],
-                                 ["rdfs:label", "#{self.role_label}", "xsd:string"],
+                                [["a", "#{role_type}", "iri"],
+                                 ["rdfs:label", "#{role_label}", "xsd:string"],
                                 ]
                                )    
   
@@ -267,21 +294,27 @@ class YARRRML_Template_BuilderII
 #
 # Parameters passed as a hash
 #
-# @param [:process_type_column] (string) the column header that contains the URL for the ontological type of the process
+# @param [:process_type] (URI) the URL for the ontological type of the process (defaults to sio:process)
+# @param [:process_type_column] (string) the column header that contains the URL for the ontological type of the process - overrides process_type
 # @param [:process_tag] (string) some single-word tag for that process; defaults to "thisprocess"
+# @param [:process_label] (string) the label associated with the process type in that row (defaults to "thisprocess")
 # @param [:process_label_column] (string) the column header for the label associated with the process type in that row
 # @param [:process_start_column] (string) (optional) the column header for the timestamp when that process started
 # @param [:process_end_column] (string)  (optional) the column header for the timestamp when that process ended
 #  
   def role_in_process(params)
+    @process_type = params.fetch(:process_type, "sio:process")  
     @process_type_column = params.fetch(:process_type_column, nil)  
     @process_tag  = params.fetch(:process_tag, 'thisprocess')  # some one-word name
+    @process_label = params.fetch(:process_label, 'thisprocess') 
     @process_label_column = params.fetch(:process_label_column, nil) 
     @process_start_column = params.fetch(:process_start_column, nil) 
     @process_end_column = params.fetch(:process_end_column, nil) 
 
-    abort "must have a process_type_column" unless self.process_type_column
-    abort "must have a process_label_column" unless self.process_label_column
+    process_type = self.process_type_column?"$(#{self.process_type_column})":self.process_type
+    process_label = self.process_label_column?"$(#{self.process_label_column})":self.process_label
+
+
     @mappings << mapping_clause(
       "#{self.person_role_tag}_realized_#{self.process_tag}",
       ["#{self.source_tag}-source"],
@@ -295,8 +328,8 @@ class YARRRML_Template_BuilderII
           "#{self.process_tag}_process_annotation",
           ["#{self.source_tag}-source"],
            "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
-           [["rdf:type","$(#{self.process_type_column})", "iri"],
-            ["rdfs:label","$(#{self.process_label_column})", "xsd:string"],
+           [["rdf:type","$(#{process_type})", "iri"],
+            ["rdfs:label","$(#{process_label})", "xsd:string"],
            ]
            )      
       
@@ -328,17 +361,23 @@ class YARRRML_Template_BuilderII
 #
 # Parameters passed as a hash
 #
-# @param [:quality_type_column] (string) the column header that contains the URL for the ontological type of the quality
+# @param [:quality_type] (URL) the URL for the ontological type of the quality (defaults to sio:quality)
+# @param [:quality_type_column] (string) the column header that contains the URL for the ontological type of the quality (overrides quality_type)
 # @param [:quality_tag] (string) some single-word tag for that process; defaults to "someQuality"
-# @param [:quality_label_column] (string) the column header for the label associated with the quality type in that row
+# @param [:quality_label] (string) the the label associated with the quality type in that row (defaults to 'quality')
+# @param [:quality_label_column] (string) the column header for the label associated with the quality type in that row (overrides quality_label)
 #  
   def person_has_quality(params)
+    @quality_type = params.fetch(:quality_type, "sio:quality")  
     @quality_type_column = params.fetch(:quality_type_column, nil)  
-    @quality_tag  = params.fetch(:quality_tag, nil)  # some one-word name
-    @quality_label_column = params.fetch(:quality_label_column, nil) 
+    @quality_tag  = params.fetch(:quality_tag, "someQuality")  # some one-word name
+    @quality_label = params.fetch(:quality_label, nil) 
+    @quality_label_column = params.fetch(:quality_label_column, nil)
     
-    abort "must provide a quality_type_column, quality_tag, and quality_label_column" unless @quality_tag and @quality_type_column and @quality_label_column
-    
+    quality_type = self.quality_type_column?"$(#{self.quality_type_column})":self.quality_type
+    quality_label = self.quality_label_column?"$(#{self.quality_label_column})":self.quality_label
+
+        
     
       @mappings << mapping_clause(
           "person_has_#{self.quality_tag}_quality",
@@ -351,8 +390,8 @@ class YARRRML_Template_BuilderII
         "#{self.quality_tag}_quality_annotation",
           ["#{self.source_tag}-source"],
           "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.quality_tag}",
-          [["rdf:type", "$(#{self.quality_type_column})", "iri"],
-           ["rdfs:label","$(#{self.quality_label_column})", "xsd:string"]
+          [["rdf:type", "$(#{quality_type})", "iri"],
+           ["rdfs:label","$(#{quality_label})", "xsd:string"]
           ]
           )
     
@@ -388,10 +427,13 @@ class YARRRML_Template_BuilderII
 # Parameters passed as a hash
 #
 # @param [:output_nature] (string) either 'qualitative' (e.g. "healthy") or 'quantitative' (e.g. 82mmHg)# @param [:process_tag] (string) some single-word tag for that process; defaults to "thisprocess"
-# @param [:output_type_column] (string) the column header for the URL associated with the output ontological type (defaults to sio:realizable-entity)
-# @param [:output_type_label_column] (string) (optional) the column header for the label of that ontological type (defaults to "measurement-value")
+# @param [:output_type] (URL) the URL associated with the output ontological type (defaults to sio:realizable-entity)
+# @param [:output_type_column] (string) the column header for the URL associated with the output ontological type (overrides output_type)
+# @param [:output_type_label] (string) (optional) the the label of that ontological type (defaults to "measurement-value")
+# @param [:output_type_label_column] (string) (optional) the column header for the label of that ontological type (overrides output_type_label)
 # @param [:output_value_column] (string)  (optional) the column header for the value of that output (e.g. the column that contains "80"  for "80 mmHg")
 # @param [:output_value_datatype] (xsd:type)  (optional) the xsd:type for that kind of measurement (defaults to xsd:string)
+# @param [:output_value_datatype_column] (string)  (optional) the column header for the xsd:type for that kind of measurement (overrides output_value_datatype)
 # @param [:output_comments_column] (string)  (optional) the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
 #  
 
@@ -399,13 +441,19 @@ class YARRRML_Template_BuilderII
     @output_nature = params.fetch(:output_nature, nil)
     abort "must have an output nature of 'qualitative' or 'quantitative'" unless self.output_nature
     
-    @output_type_column = params.fetch(:output_type_column, SIO["realizable-entity"][self.sio_verbose])
-    @output_type_label_column = params.fetch(:output_type_label_column, "measurement-value")
+    @output_type = params.fetch(:output_type, SIO["realizable-entity"][self.sio_verbose])
+    @output_type_column = params.fetch(:output_type_column, nil)
+    @output_type_label = params.fetch(:output_type_label_column, "measurement-value")
+    @output_type_label_column = params.fetch(:output_type_label_column, nil)
     @output_value_column = params.fetch(:output_value_column, nil)
     @output_value_datatype = params.fetch(:output_value_datatype, "xsd:string")
+    @output_value_datatype_column = params.fetch(:output_value_datatype, nil)
     @output_comments_column = params.fetch(:output_comments_column, nil)
 
-    
+    output_type = self.output_type_column?"$(#{self.output_type_column})":self.output_type
+    output_type_label = self.output_type_label_column?"$(#{self.output_type_label_column})":self.output_type_label
+    output_value_datatype = self.output_value_datatype_column?"$(#{self.output_value_datatype_column})":self.output_value_datatype
+   
     @mappings << mapping_clause(
         "#{self.process_tag}_process_has_output",
         ["#{self.source_tag}-source"],
@@ -426,7 +474,7 @@ class YARRRML_Template_BuilderII
               "#{self.process_tag}_Output_type_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["rdf:type","$(#{self.output_type_column})", "iri"]]
+              [["rdf:type","$(#{output_type})", "iri"]]
               )
     end
     
@@ -435,7 +483,7 @@ class YARRRML_Template_BuilderII
               "#{self.process_tag}_Output_type_label_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [["rdfs:label","$(#{self.output_type_column})", "xsd:string"]]
+              [["rdfs:label","$(#{output_type_label})", "xsd:string"]]
               )
     end
     
@@ -444,7 +492,7 @@ class YARRRML_Template_BuilderII
               "#{self.process_tag}_Output_value_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [[SIO["has-value"][self.sio_verbose],"$(#{self.output_value_column})", "#{self.output_value_datatype}"]]
+              [[SIO["has-value"][self.sio_verbose],"$(#{self.output_value_column})", "#{output_value_datatype}"]]
               )
     end
     
@@ -465,32 +513,56 @@ class YARRRML_Template_BuilderII
 #
 # Parameters passed as a hash
 #
-# @param [:output_unit_column] (string) column containing the ontological type of that unit
-# @param [:output_unit_label] (string) the string label for that unit (e.g. "centimeters" for the ontological type "cm" )
+# @param [:output_unit] (URL) the ontological type of that unit (default nil)
+# @param [:output_unit_column] (string) column containing the ontological type of that unit (overrides output_unit)
+# @param [:output_unit_label] (string) the string label for that unit (e.g. "centimeters" for the ontological type "cm" ) (default nil)
+# @param [:output_unit_label_column] (string) column header containing the string label for that unit (e.g. "centimeters" for the ontological type "cm" )
   
   def output_has_unit(params)
 
+    @output_unit = params.fetch(:output_unit_column, nil)  # URI
     @output_unit_column = params.fetch(:output_unit_column, nil)  # URI
     @output_unit_label = params.fetch(:output_unit_label, nil)
-    abort "need both output unit column and label" unless self.output_unit_column and self.output_unit_label
+    @output_unit_label_column = params.fetch(:output_unit_label, nil)
     
+    output_unit = self.output_unit_column?"$(#{self.output_unit_column})":self.output_unit
+    output_unit_label = self.output_unit_label_column?"$(#{self.output_unit_label_column})":self.output_unit_label
 
-    @mappings << mapping_clause(
-            "#{self.process_tag}_Output_hasunit_unit",
+    if output_unit
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_hasunit_unit",
+                ["#{self.source_tag}-source"],
+                "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
+                [[SIO["has-unit"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit", "iri"]]
+                )
+
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_hasunit_unit",
+                ["#{self.source_tag}-source"],
+                "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
+                [[SIO["has-unit"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit", "iri"]]
+                )
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_unit_annotation",
               ["#{self.source_tag}-source"],
-              "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [[SIO["has-unit"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit", "iri"]]
+              "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit",
+              [["rdf:type","$(#{output_unit_column})", "iri"]]
               )
+
+    end
+
+    if output_unit_label
+    
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_unit_annotation",
+              ["#{self.source_tag}-source"],
+              "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit",
+              [["rdfs:label","$(#{output_unit_label})","xsd:string"]
+              ]
+              )
+    end
     
 
-    @mappings << mapping_clause(
-            "#{self.process_tag}_Output_unit_annotation",
-            ["#{self.source_tag}-source"],
-            "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit",
-            [["rdf:type","$(#{self.output_unit_column})", "iri"],
-             ["rdfs:label","$(#{self.output_unit_label})","xsd:string"]
-            ]
-            )
   end
   
 end
