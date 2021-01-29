@@ -1,3 +1,6 @@
+# NOTA BENE:  This is NOT ready for public use... the code and documentation are changing rapidly without any warning
+## Please give me a week or so to settle things down before trying it yourself.
+
 ## Execute a CDE Transformation from CSV
 
 0) Default folder structure, relative to where you will run the transformation script:
