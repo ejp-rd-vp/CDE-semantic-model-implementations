@@ -1,5 +1,10 @@
-# NOTA BENE:  This is NOT ready for public use... the code and documentation are changing rapidly without any warning
-## Please give me a week or so to settle things down before trying it yourself.
+# INSTRUCTIONS
+        $  bundle install
+        
+        $  gem build
+        
+        $  gem install yarrrml_template_builder-0.1.0.gem
+
 
 ## Execute a CDE Transformation from CSV
 
