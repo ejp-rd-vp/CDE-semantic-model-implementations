@@ -1,9 +1,7 @@
-require 'tempfile'
-require 'rest-client'
 require 'yaml'
 
 
-class YARRRML_Template_BuilderII
+class YARRRML_Template_Builder
   
   attr_accessor :prefix_map
   attr_accessor :baseURI  
