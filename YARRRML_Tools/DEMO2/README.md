@@ -44,7 +44,7 @@
 ## Example of creating a template:
 
 ### General Discussion:  
-The objective of the library is to make it easy to generate a template that matches your situation.  There is a fair amount of flexibility in what parameters are used, which are optional, and which have defaults (SIO-compliant)
+The objective of the library is to make it easy to generate a YARRRML template that matches your situation.  There is a fair amount of flexibility in what parameters are used, which are optional, and which have defaults (SIO-compliant).  *NOTE: What comes out of the yarrrml_template_builder is NOT a complete YARRRML file!  It has place-holders for the source filename and reference formulation.  you add those when calling the yarrrml_transform library.*
 
 personid_column and unique_id column are absolutely mandatory, and do not have a default.
 
@@ -60,12 +60,12 @@ Almost all cases will allow any of those three methods (see detailed documentati
 
 With that said, here's what a template-building script looks like:
 
-    require "./YARRRML_Template_BuilderII.rb"
+    require "./yarrrml_template_builder.rb"
 
     # this is the header of the CSV we are going to transform
     # "pid,uniqid,qualityURI,qualityLabel,measurementURI,measurementLabel,processURI,processLabel,height,unitURI,unitLabel,date,comments"
 
-    b = YARRRML_Template_BuilderII.new({
+    b = YARRRML_Template_Builder.new({
       baseURI: "http://marks.test/this/", # this should resolve to wherever you are going to serve the data from.
                                           # RDF URLs become e.g. http://marks.test/this/individual_X_Y#patientRole
       source_name: "patient_height"}
