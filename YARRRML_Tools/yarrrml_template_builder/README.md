@@ -3,8 +3,9 @@
         
         $  gem build
         
-        $  gem install yarrrml_template_builder-0.1.0.gem
+        $  gem install yarrrml_template_builder-{VERSION}.gem
 
+VERSION is some version that will appear in the filename of the gem.
 
 ## Execute a CDE Transformation from CSV
 
@@ -65,7 +66,7 @@ Almost all cases will allow any of those three methods (see detailed documentati
 
 With that said, here's what a template-building script looks like:
 
-    require "./yarrrml_template_builder.rb"
+    require "yarrrml-template-builder"
 
     # this is the header of the CSV we are going to transform
     # "pid,uniqid,qualityURI,qualityLabel,measurementURI,measurementLabel,processURI,processLabel,height,unitURI,unitLabel,date,comments"
