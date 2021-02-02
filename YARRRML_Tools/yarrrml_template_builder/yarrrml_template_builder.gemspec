@@ -4,7 +4,7 @@ require_relative "lib/yarrrml_template_builder/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "yarrrml_template_builder"
-  spec.version       = YARRRML_Template_Builder::VERSION
+  spec.version       = YARRRMLTemplateBuilder::VERSION
   spec.authors       = ["Mark Wilkinson"]
   spec.email         = ["markw@illuminae.com"]
 
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
 
-  spec.metadata["allowed_push_host"] = "http://rubygems.org'
+  spec.metadata["allowed_push_host"] = "http://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ejp-rd-vp/CDE-semantic-model-implementations/tree/master/YARRRML_Tools/yarrrml_template_builder"
