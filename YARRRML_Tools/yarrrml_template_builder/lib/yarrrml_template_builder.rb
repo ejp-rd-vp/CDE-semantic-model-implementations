@@ -56,7 +56,11 @@ class YARRRML_Template_Builder
   attr_accessor :output_unit_label_column
   attr_accessor :output_unit_label
   
-  
+  attr_accessor :output_ontology_type 
+  attr_accessor :output_ontology_type_column
+  attr_accessor :output_ontology_label
+  attr_accessor :output_ontology_label_column
+   
   
   attr_accessor :mappings  
 
@@ -78,6 +82,7 @@ class YARRRML_Template_Builder
 "has-concretization" => ["sio:SIO_000213", "sio:has-concretization"],
 "realizable-entity" =>  ["sio:SIO:000340", "sio:realizable-entity"],
 "measurement-value" => ["sio:SIO_000070", "sio:measurement-value"],
+"refers-to" => ["sio:SIO_000628", "sio:refers-to"],
 }
 
 # Creates the Template Builder object
@@ -461,7 +466,7 @@ class YARRRML_Template_Builder
     output_type_label = self.output_type_label_column ? "$(#{self.output_type_label_column})":self.output_type_label
     output_value_datatype = self.output_value_datatype_column ? "$(#{self.output_value_datatype_column})":self.output_value_datatype
 
-   return unless output_value
+   #return unless output_value
    
     @mappings << mapping_clause(
         "#{self.process_tag}_process_has_output",
@@ -478,7 +483,7 @@ class YARRRML_Template_Builder
               )      
     end
     
-    if self.output_type_column
+    if output_type
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_type_annotation",
               ["#{self.source_tag}-source"],
@@ -487,7 +492,7 @@ class YARRRML_Template_Builder
               )
     end
     
-    if self.output_type_label_column
+    if output_type_label
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_type_label_annotation",
               ["#{self.source_tag}-source"],
@@ -496,12 +501,12 @@ class YARRRML_Template_Builder
               )
     end
     
-    if self.output_value_column
+    if output_value
           @mappings << mapping_clause(
               "#{self.process_tag}_Output_value_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [[SIO["has-value"][self.sio_verbose],"$(#{self.output_value_column})", "#{output_value_datatype}"]]
+              [[SIO["has-value"][self.sio_verbose],"#{output_value})", "#{output_value_datatype}"]]
               )
     end
     
@@ -532,7 +537,7 @@ class YARRRML_Template_Builder
     @output_unit = params.fetch(:output_unit_column, nil)  # URI
     @output_unit_column = params.fetch(:output_unit_column, nil)  # URI
     @output_unit_label = params.fetch(:output_unit_label, nil)
-    @output_unit_label_column = params.fetch(:output_unit_label, nil)
+    @output_unit_label_column = params.fetch(:output_unit_label_column, nil)
     
     output_unit = self.output_unit_column ? "$(#{self.output_unit_column})":self.output_unit
     output_unit_label = self.output_unit_label_column ? "$(#{self.output_unit_label_column})":self.output_unit_label
@@ -555,7 +560,7 @@ class YARRRML_Template_Builder
               "#{self.process_tag}_Output_unit_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_unit",
-              [["rdf:type","$(#{output_unit_column})", "iri"]]
+              [["rdf:type","#{output_unit}", "iri"]]
               )
 
     end
@@ -574,4 +579,59 @@ class YARRRML_Template_Builder
 
   end
   
+
+
+
+# creates the output_refersto portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param [:output_ontology_type] (URL) the ontological type of that output (default nil)
+# @param [:output_ontology_type_column (string) column containing the ontological type of that output (overrides output_ontology_type)
+# @param [:output_ontology_label] (string) the string label for that unit (e.g. "duchenne muscular dystrophy")
+# @param [:output_ontology_label_column] (string) column header containing the string label for that type
+  
+  def output_refers_to(params)
+
+    @output_ontology_type = params.fetch(:output_ontology_type, nil)  # URI
+    @output_ontology_type_column = params.fetch(:output_ontology_type_column, nil)  # URI
+    @output_ontology_label = params.fetch(:output_ontology_label, nil)
+    @output_ontology_label_column = params.fetch(:output_ontology_label_column, nil)
+    
+    output_term = self.output_ontology_type_column ? "$(#{self.output_ontology_type_column})":self.output_ontology_type
+    output_term_label = self.output_ontology_label_column ? "$(#{self.output_ontology_label_column})":self.output_ontology_label
+
+    if output_term 
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_refersto_typed_thing",
+                ["#{self.source_tag}-source"],
+                "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
+                [[SIO["refers-to"][self.sio_verbose], "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_typednode", "iri"]]
+                )
+
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_typedthing_type",
+                ["#{self.source_tag}-source"],
+                "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_typednode",
+                [["rdf:type", "#{output_term}", "iri"]]
+                )
+
+    end
+
+    if output_term_label
+    
+      @mappings << mapping_clause(
+              "#{self.process_tag}_Output_typenode_annotation",
+              ["#{self.source_tag}-source"],
+              "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output_typednode",
+              [["rdfs:label","#{output_term_label}","xsd:string"]
+              ]
+              )
+    end
+    
+
+  end
+
+
+
 end
