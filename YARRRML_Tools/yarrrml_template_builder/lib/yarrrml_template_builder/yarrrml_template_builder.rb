@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'yarrrml_template_builder/version'
+require_relative 'version'
 require 'tempfile'
 require 'rest-client'
 require 'yaml'
