@@ -34,6 +34,9 @@ class YARRRML_Template_Builder
   attr_accessor :process_label_column
   attr_accessor :process_start_column
   attr_accessor :process_end_column
+  attr_accessor :input_process_tag
+  attr_accessor :primary_process_tag
+
 
   attr_accessor :quality_type
   attr_accessor :quality_type_column
@@ -46,6 +49,7 @@ class YARRRML_Template_Builder
   attr_accessor :output_type_column
   attr_accessor :output_type_label
   attr_accessor :output_type_label_column
+  attr_accessor :output_value
   attr_accessor :output_value_column
   attr_accessor :output_comments_column
   attr_accessor :output_value_datatype
@@ -64,7 +68,8 @@ class YARRRML_Template_Builder
   
   attr_accessor :mappings  
 
-  SIO = {"has-attribute" => ["sio:has-attribute", "sio:SIO_000008"], 
+  SIO = {
+"has-attribute" => ["sio:has-attribute", "sio:SIO_000008"], 
 "has-quality" => ["sio:SIO_000217", "sio:has-quality"],
 "has-unit" => ["sio:SIO_000221", "sio:has-unit"],
 "has-value" => ["sio:SIO_000300", "sio:has-value"],
@@ -83,6 +88,7 @@ class YARRRML_Template_Builder
 "realizable-entity" =>  ["sio:SIO:000340", "sio:realizable-entity"],
 "measurement-value" => ["sio:SIO_000070", "sio:measurement-value"],
 "refers-to" => ["sio:SIO_000628", "sio:refers-to"],
+"has-input" => ["sio:SIO_000230", "sio:has-input"],
 }
 
 # Creates the Template Builder object
@@ -363,6 +369,29 @@ class YARRRML_Template_Builder
   end
   
   
+# creates the process informed by process portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param [:input_process_tag] (string) (required) some single-word tag for that process that led to the output that will be the input to the primary process
+# @param [:primary_process_tag] (string) (required) some single-word tag for that process that receives the output 
+#  
+  def process_has_input(params)
+    @input_process_tag  = params.fetch(:input_process_tag, nil)  # some one-word name
+    @primary_process_tag  = params.fetch(:primary_process_tag, nil)  # some one-word name
+    
+
+    abort "must have an input process tag before you can use the process_has_input function" unless self.input_process_tag
+
+    @mappings << mapping_clause(
+        "#{self.process_tag}_Output_type_annotation",
+        ["#{self.source_tag}-source"],
+        "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.primary_process_tag}",
+        [[SIO["has-input"][self.sio_verbose],"this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_process_tag}_Output", "iri"]]
+        )
+      
+  end
+  
   
 
 # creates the person_has_quality portion of the CDE
@@ -506,7 +535,7 @@ class YARRRML_Template_Builder
               "#{self.process_tag}_Output_value_annotation",
               ["#{self.source_tag}-source"],
               "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}_Output",
-              [[SIO["has-value"][self.sio_verbose],"#{output_value})", "#{output_value_datatype}"]]
+              [[SIO["has-value"][self.sio_verbose],"#{output_value}", "#{output_value_datatype}"]]
               )
     end
     
