@@ -103,6 +103,7 @@ class YARRRML_Template_Builder
 "person" => ["sio:SIO_000498", "sio:person"],
 "identifier" => ["sio:SIO_000115", "sio:identifier"],
 "role" => ["sio:SIO_000016", "sio:role"],
+"process" => ["sio:SIO_000006", "sio:process"],
              
 }
 
