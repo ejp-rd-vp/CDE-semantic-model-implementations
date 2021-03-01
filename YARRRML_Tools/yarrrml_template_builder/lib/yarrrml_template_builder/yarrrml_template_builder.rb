@@ -338,7 +338,7 @@ class YARRRML_Template_Builder
 # @param [:process_end_column] (string)  (optional) the column header for the timestamp when that process ended
 #  
   def role_in_process(params)
-    @process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose], "iri")  
+    @process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose])  
     @process_type_column = params.fetch(:process_type_column, nil)  
     @process_tag  = params.fetch(:process_tag, 'thisprocess')  # some one-word name
     @process_label = params.fetch(:process_label, 'process') 
@@ -463,9 +463,9 @@ class YARRRML_Template_Builder
     end
     
     
-    if !(self.input_refers_to_column.empty?)
+    if !(self.input_refers_to_columns.empty?)
           references = []
-          self.input_refers_to_column.each do |e|
+          self.input_refers_to_columns.each do |e|
             references << [SIO["refers-to"][self.sio_verbose], "$(#{e})", "iri"]
           end   
 
