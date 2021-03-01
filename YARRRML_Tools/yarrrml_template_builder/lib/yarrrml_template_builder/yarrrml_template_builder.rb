@@ -34,9 +34,19 @@ class YARRRML_Template_Builder
   attr_accessor :process_label_column
   attr_accessor :process_start_column
   attr_accessor :process_end_column
-  attr_accessor :input_process_tag
-  attr_accessor :primary_process_tag
 
+  attr_accessor :process_with_input_tag  
+  attr_accessor :input_type 
+  attr_accessor :input_type_column
+  attr_accessor :input_type_label 
+  attr_accessor :input_type_label_column
+  attr_accessor :input_type_tag
+  attr_accessor :input_has_value
+  attr_accessor :input_has_value_column
+  attr_accessor :input_is_output_of_process_tag
+  attr_accessor :input_refers_to
+  attr_accessor :input_refers_to_columns
+    
 
   attr_accessor :quality_type
   attr_accessor :quality_type_column
@@ -44,7 +54,7 @@ class YARRRML_Template_Builder
   attr_accessor :quality_label
   attr_accessor :quality_label_column
 
-  attr_accessor :output_nature  # qualitative or quantitative
+  attr_accessor :output_nature
   attr_accessor :output_type
   attr_accessor :output_type_column
   attr_accessor :output_type_label
@@ -86,9 +96,14 @@ class YARRRML_Template_Builder
 "is-base-for" => ["sio:SIO_000642", "sio:is-base-for"],
 "has-concretization" => ["sio:SIO_000213", "sio:has-concretization"],
 "realizable-entity" =>  ["sio:SIO:000340", "sio:realizable-entity"],
+"information-content-entity" =>  ["sio:SIO:000015", "sio:information-content-entity"],
 "measurement-value" => ["sio:SIO_000070", "sio:measurement-value"],
 "refers-to" => ["sio:SIO_000628", "sio:refers-to"],
 "has-input" => ["sio:SIO_000230", "sio:has-input"],
+"person" => ["sio:SIO_000498", "sio:person"],
+"identifier" => ["sio:SIO_000115", "sio:identifier"],
+"role" => ["sio:SIO_000016", "sio:role"],
+             
 }
 
 # Creates the Template Builder object
@@ -119,6 +134,7 @@ class YARRRML_Template_Builder
       "vocab" => "https://ejp-rd.eu/vocab/", 
       "pico" => "http://data.cochrane.org/ontologies/pico/",
       "ndfrt" => "http://purl.bioontology.org/ontology/NDFRT/",
+      "edam" => "http://purl.bioontology.org/ontology/EDAM/",
       }
     
     self.add_prefixes(prefixesHash: {"this" => self.baseURI})
@@ -249,9 +265,9 @@ class YARRRML_Template_Builder
     @personid_column = params.fetch(:personid_column, 'pid')
     @uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
     
-    @identifier_type = params.fetch(:identifier_type, 'https://ejp-rd.eu/vocab/identifier')
+    @identifier_type = params.fetch(:identifier_type,  SIO["identifier"][self.sio_verbose])
     @identifier_type_column = params.fetch(:identifier_type_column, nil)
-    @person_type = params.fetch(:person_type, 'https://ejp-rd.eu/vocab/Person')
+    @person_type = params.fetch(:person_type, SIO["person"][self.sio_verbose])
     @person_type_column = params.fetch(:person_type_column, nil)
     @person_role_tag = params.fetch(:person_role_tag, 'thisRole')
     @role_type = params.fetch(:role_type, 'obo:OBI_0000093')  # patient
@@ -278,6 +294,7 @@ class YARRRML_Template_Builder
                                   "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})#ID",
                                   [
                                    ["a", "#{identifier_type}", "iri"],
+                                   ["a", SIO["identifier"][self.sio_verbose], "iri"],
                                    [SIO["denotes"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
                                   ]
                                  )
@@ -287,6 +304,7 @@ class YARRRML_Template_Builder
                                 "this:individual_$(#{self.personid_column})#Person",
                                 [
                                  ["a", "#{person_type}", "iri"],
+                                 ["a", SIO["person"][self.sio_verbose], "iri"],
                                  [SIO["has-role"][self.sio_verbose], "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}", "iri"],
                                 ]
                                )
@@ -295,8 +313,10 @@ class YARRRML_Template_Builder
                                 "#{self.person_role_tag}_annotation",
                                 ["#{self.source_tag}-source"],
                                 "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.person_role_tag}",
-                                [["a", "#{role_type}", "iri"],
-                                 ["rdfs:label", "#{role_label}", "xsd:string"],
+                                [
+                                  ["a", "#{role_type}", "iri"],
+                                  ["a", SIO["role"][self.sio_verbose], "iri"],
+                                  ["rdfs:label", "#{role_label}", "xsd:string"],
                                 ]
                                )    
   
@@ -317,10 +337,10 @@ class YARRRML_Template_Builder
 # @param [:process_end_column] (string)  (optional) the column header for the timestamp when that process ended
 #  
   def role_in_process(params)
-    @process_type = params.fetch(:process_type, "sio:process")  
+    @process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose], "iri")  
     @process_type_column = params.fetch(:process_type_column, nil)  
     @process_tag  = params.fetch(:process_tag, 'thisprocess')  # some one-word name
-    @process_label = params.fetch(:process_label, 'thisprocess') 
+    @process_label = params.fetch(:process_label, 'process') 
     @process_label_column = params.fetch(:process_label_column, nil) 
     @process_start_column = params.fetch(:process_start_column, nil) 
     @process_end_column = params.fetch(:process_end_column, nil) 
@@ -342,8 +362,10 @@ class YARRRML_Template_Builder
           "#{self.process_tag}_process_annotation",
           ["#{self.source_tag}-source"],
            "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_tag}",
-           [["rdf:type","#{process_type}", "iri"],
-            ["rdfs:label","#{process_label}", "xsd:string"],
+           [
+             ["rdf:type",SIO["process"][self.sio_verbose], "iri"],
+             ["rdf:type","#{process_type}", "iri"],
+             ["rdfs:label","#{process_label}", "xsd:string"],
            ]
            )      
       
@@ -369,30 +391,154 @@ class YARRRML_Template_Builder
   end
   
   
-# creates the process informed by process portion of the CDE
+# creates the process has input portion of the CDE
 #
 # Parameters passed as a hash
 #
-# @param [:input_process_tag] (string) (required) some single-word tag for that process that led to the output that will be the input to the primary process
-# @param [:primary_process_tag] (string) (required) some single-word tag for that process that receives the output 
-#  
+# @param [:process_with_input_tag] (string) (required) the same process tag that is used in the "role in process" for which this is the input
+# @param [:input_type] (string) the ontological type for the input node (default sio:information-content-entity).  Ignored if using output from another process (specify it there!)
+# @param [:input_type_column] (string) the column header specifying the ontological type for the input node (overrides input_type).  Ignored if using output from another process (specify it there!)
+# @param [:input_type_tag] (string) some single-word tag for that input (default thisInput).  required if more than one input!
+# @param [:input_type_label] (string) the label for all inputs
+# @param [:input_type_label_column] (string) the label column for each input
+# @param [:input_label_tag] (string) some single-word tag for that input (default thisInput).  required if more than one input!
+# @param [:input_is_output_of_process_tag] (string) (optional) if the input is the output of another process, then specify the process tag here (matches the "role in process" which generates taht output
+# @param [:input_refers_to] ([list of ontology uris]) (optional) if the input is related to some ontological concept, specify that here (e.g. in a PROM this is true)
+# @param [:input_refers_to_columns] ([list of string]) (optional) columns containing the referred-ontology terms
+# @param [:input_has_value] (string) the value of the input
+# @param [:input_has_value_column] (string) the column containing the value of the input
+
+
+
   def process_has_input(params)
-    @input_process_tag  = params.fetch(:input_process_tag, nil)  # some one-word name
-    @primary_process_tag  = params.fetch(:primary_process_tag, nil)  # some one-word name
+    @process_with_input_tag  = params.fetch(:process_with_input_tag, "thisprocess")  # some one-word name
+    @input_type  = params.fetch(:input_type, SIO["information-content-entity"][self.sio_verbose])  # some one-word name
+    @input_type_column  = params.fetch(:input_type_column, nil)  # some one-word name
+    @input_type_label  = params.fetch(:input_type_label, "information content entity")  # some one-word name
+    @input_type_label_column  = params.fetch(:input_type_label_column, nil)  # some one-word name
+    @input_has_value  = params.fetch(:input_has_value, nil)  # some one-word name
+    @input_has_value_column  = params.fetch(:input_has_value_column, nil)  # some one-word name
+    @input_type_tag  = params.fetch(:input_type_tag, "thisInput")  # some one-word name
+    @input_is_output_of_process_tag  = params.fetch(:input_is_output_of_process_tag, nil)  # some one-word name
+    @input_refers_to = params.fetch(:input_refers_to, [])  #list of ontology terms
+    @input_refers_to_columns = params.fetch(:input_refers_to_columns, [])  # list of column headers
+    #@input_refers_to_label = params.fetch(:input_refers_to_label, [] )  # some one-word name
+    #@input_refers_to_label_columns = params.fetch(:input_refers_to_label_columns, [] )  # some one-word name
     
+    
+    abort "must specify the process_with_input_tag (the identifier of the process that receives the input) before you can use the process_has_input function" unless self.process_with_input_tag
 
-    abort "must have an input process tag before you can use the process_has_input function" unless self.input_process_tag
+    input_type = self.input_type_column ? "$(#{self.input_type_column})":self.input_type
+    input_label = self.input_type_label_column ? "$(#{self.input_type_label_column})":self.input_type_label
+    input_value = self.input_has_value_column ? "$(#{self.input_has_value_column})":self.input_has_value
+    #refers_to = self.input_refers_to_column ? "$(#{self.input_refers_to_column})":self.input_refers_to_column
 
-    @mappings << mapping_clause(
-        "#{self.process_tag}_Output_type_annotation",
-        ["#{self.source_tag}-source"],
-        "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.primary_process_tag}",
-        [[SIO["has-input"][self.sio_verbose],"this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_process_tag}_Output", "iri"]]
-        )
+    if self.input_is_output_of_process_tag
+      @mappings << mapping_clause(
+          "#{self.process_with_input_tag}_has_input_#{self.input_type_tag}",
+          ["#{self.source_tag}-source"],
+          "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_with_input_tag}",
+          [[SIO["has-input"][self.sio_verbose],"this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_is_output_of_process_tag}_Output", "iri"]]
+          )
+    
+    else
+      @mappings << mapping_clause(
+          "#{self.process_with_input_tag}_has_input_#{self.input_type_tag}",
+          ["#{self.source_tag}-source"],
+          "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.process_with_input_tag}",
+          [[SIO["has-input"][self.sio_verbose],"this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_type_tag}_Input", "iri"]]
+          )
+      
+      @mappings << mapping_clause(
+          "#{self.process_with_input_tag}_has_input_#{self.input_type_tag}_annotation",
+          ["#{self.source_tag}-source"],
+          "this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_type_tag}_Input",
+          [
+            ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
+             ["rdf:type","#{input_type}", "iri"],
+             ["rdfs:label","#{input_label}", "xsd:string"],
+            ]
+          )
+    end
+    
+    
+    if !(self.input_refers_to_column.empty?)
+          references = []
+          self.input_refers_to_column.each do |e|
+            references << [SIO["refers-to"][self.sio_verbose], "$(#{e})", "iri"]
+          end   
+
+          @mappings << mapping_clause(
+          "input_#{self.input_type_tag}_refers_to_concepts",
+          ["#{self.source_tag}-source"],
+          "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_type_tag}_Input",
+          [
+           references
+            ]
+          )
+    elsif self.input_refers_to
+          references = []
+          self.input_refers_to.each do |e|
+            references << [SIO["refers-to"][self.sio_verbose], "#{e}", "iri"]
+          end   
+          @mappings << mapping_clause(
+          "input_#{self.input_type_tag}_refers_to_concepts",
+          ["#{self.source_tag}-source"],
+          "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_type_tag}_Input",
+          [
+           references
+            ]
+          )
+      
+    end
+
+    if input_value
+
+      @mappings << mapping_clause(
+      "input_#{self.input_type_tag}_has_value",
+      ["#{self.source_tag}-source"],
+      "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_type_tag}_Input",
+      [
+       references
+        ]
+      )
+    end
+
       
   end
   
   
+  
+## creates the process informed by process portion of the CDE
+##
+## Parameters passed as a hash
+##
+## @param [:input_process_tag] (string) (required) some single-word tag for that process that led to the output that will be the input to the primary process
+## @param [:primary_process_tag] (string) (required) some single-word tag for that process that receives the output 
+## @param [:input_type] (string) the ontological type fo the input (default "sio:input")
+## @param [:input_type_column] (string) the column header for the ontological type column regarding the input
+## @param [:input_type_label] (string) the label associated with the process type in that row (default 'input')
+## @param [:input_type_label_column] (string) the column header for the label associated with the process type in that row
+#
+#  def input_refers_to(params)
+#    @input_process_tag  = params.fetch(:input_process_tag, nil)  # some one-word name
+#    @input_type  = params.fetch(:input_type, "sio:input")  # some one-word name
+#    @input_type_column  = params.fetch(:input_type_column, nil)  # some one-word name
+#    @input_type_label  = params.fetch(:input_type_label, "input")  # some one-word name
+#    @input_type_label_column  = params.fetch(:input_type_label_column, nil)  # some one-word name
+#    
+#
+#    abort "must have an input process tag before you can use the process_has_input function" unless self.input_process_tag
+#
+#    @mappings << mapping_clause(
+#        "#{self.process_tag}_Output_type_annotation",
+#        ["#{self.source_tag}-source"],
+#        "this:individual_$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.primary_process_tag}",
+#        [[SIO["has-input"][self.sio_verbose],"this:individual__$(#{self.personid_column})_$(#{self.uniqueid_column})##{self.input_process_tag}_Output", "iri"]]
+#        )
+#      
+#  end
+#  
 
 # creates the person_has_quality portion of the CDE
 #
