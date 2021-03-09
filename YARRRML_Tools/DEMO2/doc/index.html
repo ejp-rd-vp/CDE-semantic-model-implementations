@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.26
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-NOTA+BENE-3A+This+is+NOT+ready+for+public+use...+the+code+and+documentation+are+changing+rapidly+without+any+warning">NOTA BENE: This is NOT ready for public use… the code and documentation are changing rapidly without any warning</h1>
+
+<h2 id="label-Please+give+me+a+week+or+so+to+settle+things+down+before+trying+it+yourself.">Please give me a week or so to settle things down before trying it yourself.</h2>
+
+<h2 id="label-Execute+a+CDE+Transformation+from+CSV">Execute a CDE Transformation from CSV</h2>
+
+<p>0) Default folder structure, relative to where you will run the transformation script:</p>
+
+<pre class="code ruby"><code class="ruby">    .
+    ./data/   (this folder is mounted into sdmrdfizer - see step 1 below)
+    ./data/mydataX.csv  (input csv files)
+    ./data/mydataY.csv...
+    ./data/triples/  (output FAIR data ends up here)
+    ./config/
+    ./config/***_yarrrml_template.yaml (*** is a one-word tag of the &quot;type&quot; of data, e.g. &quot;height&quot;)
+</code></pre>
+
+<p>1) Need to have sdmrdfizer running on port 4000 with a filder ./data mounted as /data</p>
+
+<pre class="code ruby"><code class="ruby"> docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data markw/sdmrdfizer_ejp:0.1.0
+</code></pre>
+
+<p>2a) Run build_xxx_template to build the appropriate templates (see “Example of creating a template”, below). remember the names of the CSV columns</p>
+
+<p>2b) Generate CSV with headers sufficient to fill the template</p>
+
+<p>3) Run YARRRML_Transform to genereate nTriples</p>
+
+<h2 id="label-More+specifically">More specifically</h2>
+
+<p>1) in the ./data folder, create a csv file with the necessary headings for your desired transform.</p>
+
+<p>2) create (or select) the appropriate YARRRML template (in the ./config folder, e.g. “height_yarrrml_template.yaml”). See “example of creating a template” below if you need to create one from-scratch.</p>
+
+<p>3) Identify the “tag” of the YARRML template you want to use (e.g. &#39;height&#39; for “height_yarrrml_template.yaml” )</p>
+
+<p>4) execute the transformation:</p>
+
+<pre class="code ruby"><code class="ruby">    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='const'>YARRRML_Transform</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>datafile:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./data/myHeightData.csv</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>datatype_tag:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>height</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_yarrrml_transform'>yarrrml_transform</span>
+    <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_make_fair_data'>make_fair_data</span>   <span class='comment'># output goes to ./data/triples
+</span></code></pre>
+
+<h2 id="label-Example+of+creating+a+template-3A">Example of creating a template:</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./YARRRML_Template_BuilderII.rb</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'># this is the header of the CSV we are going to transform
+</span><span class='comment'># &quot;pid,uniqid,qualityURI,qualityLabel,measurementURI,measurementLabel,processURI,processLabel,height,unitURI,unitLabel,date,comments&quot;
+</span>
+<span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YARRRML_Template_BuilderII.html" title="YARRRML_Template_BuilderII (class)">YARRRML_Template_BuilderII</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YARRRML_Template_BuilderII.html#initialize-instance_method" title="YARRRML_Template_BuilderII#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='lbrace'>{</span>
+  <span class='label'>baseURI:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://marks.test/this/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>source_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>patient_height</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='rparen'>)</span>
+
+<span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_person_identifier_role_mappings'>person_identifier_role_mappings</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+                                    <span class='label'>personid_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pid</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                    <span class='label'>uniqueid_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>uniqid</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                    <span class='label'>identifier_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://ejp-rd.eu/vocab/identifier</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                    <span class='label'>person_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://ejp-rd.eu/vocab/Person</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                    <span class='label'>person_role:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>patientRole</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                    <span class='label'>role_type:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>obo:OBI_0000093</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                                    <span class='label'>role_label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Patient</span><span class='tstring_end'>&quot;</span></span>
+                                    <span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_role_in_process'>role_in_process</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+    <span class='label'>process_type_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>processURI</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  
+    <span class='label'>process_tag:</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>some_height_measuring_process</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>process_label_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>processLabel</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
+    <span class='label'>process_start_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>date</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
+    <span class='label'>process_end_column:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_person_has_quality'>person_has_quality</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+    <span class='label'>quality_type_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>qualityURI</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  
+    <span class='label'>quality_tag:</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>height_quality</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>quality_label_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>qualityLabel</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
+    <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_process_hasoutput_output'>process_hasoutput_output</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+    <span class='label'>output_nature:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>quantitative</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>output_type_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>measurementURI</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>output_type_label_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>measurementLabel</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>output_value_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>height</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>output_value_datatype:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:float</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>output_comments_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>comments</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+    <span class='label'>output_unit_column:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unitURI</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>output_unit_label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unitLabel</span><span class='tstring_end'>&quot;</span></span>  
+<span class='rbrace'>}</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span>
+</code></pre>
+
+<p>Note that this will output the template to STDOUT, so capture it to a file. For everything else to work “correctly” that file should be named XXXXXX_yarrrml_template.yaml, and should live in the ./config folder. XXXXXX is the &#39;tag&#39; of the data type (e.g. &#39;height&#39;)</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Fri Jan 29 08:09:57 2021 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.26 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>
