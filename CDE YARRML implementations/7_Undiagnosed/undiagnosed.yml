@@ -264,7 +264,7 @@ mappings:
             
       - predicates: a 
         objects: 
-            value: ordo:Orphanet_$(orphanet_code)
+            value: ordo:Orphanet_$(Orphanet_code)
             type: iri
 
 #Diagnosis
