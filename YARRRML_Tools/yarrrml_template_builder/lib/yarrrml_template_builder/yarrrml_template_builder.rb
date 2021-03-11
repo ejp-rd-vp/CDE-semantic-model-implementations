@@ -204,7 +204,6 @@ class YARRRML_Template_Builder
 # @option params :role_label [String] the label for that kind of role; defaults to "Patient"
 # @option params :role_label_column [String] the column header that has the label for that kind of role (overrides role_label)
 #
-
   def person_identifier_role_mappings(params = {})
     personid_column = params.fetch(:personid_column, 'pid')
     uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
@@ -280,7 +279,6 @@ class YARRRML_Template_Builder
 # @option params :process_label_column  [String] the column header for the label associated with the process type in that row
 # @option params :process_start_column  [String] (optional) the column header for the timestamp when that process started
 # @option params :process_end_column  [String]  (optional) the column header for the timestamp when that process ended
-#  
   def role_in_process(params)
     process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose])  
     process_type_column = params.fetch(:process_type_column, nil)  
@@ -337,7 +335,7 @@ class YARRRML_Template_Builder
   
   
   
-# creates the process has input portion of the CDE
+# creates the process has annotations portion of the CDE
 #
 # Parameters passed as a hash
 #
@@ -345,7 +343,6 @@ class YARRRML_Template_Builder
 # @option params :process_tag  [String] (required) the same process tag that is used in the "role in process" 
 # @option params :process_annotations_columns [Array] ([[subcol,predcol,datatypecol], ...]) 
 # @option params :process_annotations [Array] ([[sub,pred,datatype]...]) (required) the same process tag that is used in the "role in process" 
-
   def process_has_annotations(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
     process_annotations_columns = params.fetch(:process_annotations_columns, [])  
@@ -405,9 +402,6 @@ class YARRRML_Template_Builder
 # @option params :input_has_value_column  [String] the column containing the value of the input
 # @option params :input_has_value_datatype  [String] datatype of the value (default xsd:string)
 # @option params :input_has_value_datatype_column  [String] the column containing the datatype of the value of the input )(overrides input_has_value_datatype)
-
-
-
   def process_has_input(params)
     process_with_input_tag  = params.fetch(:process_with_input_tag, "thisprocess")  # some one-word name
     input_is_output_of_process_tag  = params.fetch(:input_is_output_of_process_tag, 'unidentifiedProcess')  # some one-word name
@@ -613,8 +607,7 @@ class YARRRML_Template_Builder
 #
 # Parameters passed as a hash
 #
-
-# @param params [Hash]  a hash of options
+#@param params [Hash]  a hash of options
 #@option params  :inout_process_tag [String]  ("unidentifiedProcess")
 #@option params  :inout_refers_to [Array]  ([])
 #@option params  :inout_refers_to_columns [Array] ([])
@@ -841,6 +834,7 @@ class YARRRML_Template_Builder
   end
   
 
+# creates a time-based locally-unique identifier
 
   def get_uniq_id
         return  Time.now.to_f.to_s.gsub("\.", "") 
