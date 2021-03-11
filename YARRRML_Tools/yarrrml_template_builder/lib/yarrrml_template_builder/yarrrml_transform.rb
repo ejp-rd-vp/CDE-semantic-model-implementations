@@ -22,11 +22,12 @@ class YARRRML_Transform
 #
 # all params are passed as a hash, and retrieved by params.fetch(paramName).  the ini file used by yarrrml transform is auto-generated
 #
-# @param datafile [string]  (required) the path and filename to the file mounted in ./data (e.g. ./data/myfile.csv)
-# @param datatype_tag [string]   (required) a one-word indicator of the data type.  This is considered the "base" for all other filenames (see below)
-# @param outputrmlfile [string]  (optional - is auto-constructed from the datatype-tag (see below))
-# @param outputrdffolder [string]  (optional - defaults to /data/triples - this folder must exist, even if left to default.  NOTE - this path is not relative to the host, it is relative to the docker rdfizer, so it begins with /data not ./data)
-# @param formulation [string]  for the yarrrml transformer, what is the input file format (default 'csv')
+# @param params [Hash]  params   a Hash of options
+# @option params  :datafile [String]  (required) the path and filename to the file mounted in ./data (e.g. ./data/myfile.csv)
+# @option params  :datatype_tag [String]   (required) a one-word indicator of the data type.  This is considered the "base" for all other filenames (see below)
+# @option params  :outputrmlfile [String]  (optional - is auto-constructed from the datatype-tag (see below))
+# @option params  :outputrdffolder [String]  (optional - defaults to /data/triples - this folder must exist, even if left to default.  NOTE - this path is not relative to the host, it is relative to the docker rdfizer, so it begins with /data not ./data)
+# @option params  :formulation [String]  for the yarrrml transformer, what is the input file format (default 'csv')
 #
 # @return [YARRRML_Transform]
 #
