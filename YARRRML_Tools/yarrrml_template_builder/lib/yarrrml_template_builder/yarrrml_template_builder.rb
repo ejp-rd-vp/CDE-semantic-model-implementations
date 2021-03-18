@@ -205,8 +205,8 @@ class YARRRML_Template_Builder
 # @option params :role_label_column [String] the column header that has the label for that kind of role (overrides role_label)
 #
   def person_identifier_role_mappings(params = {})
-    personid_column = params.fetch(:personid_column, 'pid')
-    uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
+    @personid_column = params.fetch(:personid_column, 'pid')
+    @uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
     
     identifier_type = params.fetch(:identifier_type,  SIO["identifier"][self.sio_verbose])
     identifier_type_column = params.fetch(:identifier_type_column, nil)
@@ -223,39 +223,39 @@ class YARRRML_Template_Builder
     role_type = role_type_column ? "$(#{role_type_column})":role_type
     role_label = role_label_column ? "$(#{role_label_column})":role_label
 
-    abort "You MUST have a personid_column and a uniqueid_column to use this library.  Sorry!" unless personid_column and uniqueid_column
+    abort "You MUST have a @personid_column and a @uniqueid_column to use this library.  Sorry!" unless @personid_column and @uniqueid_column
     @mappings << mapping_clause(
                              "identifier_has_value",
                              ["#{source_tag}-source"],
-                             "this:individual_$(#{personid_column})_$(#{uniqueid_column})#ID",
-                             [[SIO["has-value"][self.sio_verbose], "$(#{personid_column})", "xsd:string"]]
+                             "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
+                             [[SIO["has-value"][self.sio_verbose], "$(#{@personid_column})", "xsd:string"]]
                              )
 
     @mappings << mapping_clause(
                                   "identifier_denotes",
                                   ["#{source_tag}-source"],
-                                  "this:individual_$(#{personid_column})_$(#{uniqueid_column})#ID",
+                                  "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
                                   [
                                    ["a", "#{identifier_type}", "iri"],
                                    ["a", SIO["identifier"][self.sio_verbose], "iri"],
-                                   [SIO["denotes"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{person_role_tag}", "iri"],
+                                   [SIO["denotes"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}", "iri"],
                                   ]
                                  )
     @mappings << mapping_clause(
                                 "person_has_role",
                                 ["#{source_tag}-source"],
-                                "this:individual_$(#{personid_column})#Person",
+                                "this:individual_$(#{@personid_column})#Person",
                                 [
                                  ["a", "#{person_type}", "iri"],
                                  ["a", SIO["person"][self.sio_verbose], "iri"],
-                                 [SIO["has-role"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{person_role_tag}", "iri"],
+                                 [SIO["has-role"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}", "iri"],
                                 ]
                                )
 
     @mappings << mapping_clause(
                                 "#{person_role_tag}_annotation",
                                 ["#{source_tag}-source"],
-                                "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{person_role_tag}",
+                                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
                                 [
                                   ["a", "#{role_type}", "iri"],
                                   ["a", SIO["role"][self.sio_verbose], "iri"],
@@ -272,6 +272,7 @@ class YARRRML_Template_Builder
 # Parameters passed as a hash
 #
 # @param params [Hash]  a hash of options
+# @option params :person_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see person_role_tag above, synchronize these tags!
 # @option params :process_type  [String] the URL for the ontological type of the process (defaults to http://semanticscience.org/resource/process)
 # @option params :process_type_column  [String] the column header that contains the URL for the ontological type of the process - overrides process_type
 # @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
@@ -280,6 +281,7 @@ class YARRRML_Template_Builder
 # @option params :process_start_column  [String] (optional) the column header for the timestamp when that process started
 # @option params :process_end_column  [String]  (optional) the column header for the timestamp when that process ended
   def role_in_process(params)
+    person_role_tag = params.fetch(:person_role_tag, 'thisRole')
     process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose])  
     process_type_column = params.fetch(:process_type_column, nil)  
     process_tag  = params.fetch(:process_tag, 'thisprocess')  # some one-word name
@@ -295,16 +297,16 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
       "#{person_role_tag}_realized_#{process_tag}",
       ["#{source_tag}-source"],
-      "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{person_role_tag}",
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
       [
-            [SIO["is-realized-in"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}","iri"]
+            [SIO["is-realized-in"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}","iri"]
       ]
       )
     
     @mappings << mapping_clause(
           "#{process_tag}_process_annotation",
           ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
            [
              ["rdf:type",SIO["process"][self.sio_verbose], "iri"],
              ["rdf:type","#{process_type}", "iri"],
@@ -317,7 +319,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
         "#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
            [[SIO["start-time"][self.sio_verbose], "$(#{process_start_column})", "xsd:dateTime"]]
            )
     end
@@ -326,7 +328,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
           "#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
           [[SIO["end-time"][self.sio_verbose], "$(#{process_end_column})", "xsd:dateTime"]]
           )
     end
@@ -360,7 +362,7 @@ class YARRRML_Template_Builder
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
             [["$(#{predicate})", "$(#{value})", datatype]]
             )
         
@@ -375,7 +377,7 @@ class YARRRML_Template_Builder
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
             [[predicate, value, datatype]]
             )
         
@@ -426,14 +428,14 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
         "#{process_with_input_tag}_has_input_#{input_type_tag}",
         ["#{source_tag}-source"],
-        "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_input_tag}",
-        [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{personid_column})_$(#{uniqueid_column})##{input_is_output_of_process_tag}_Output", "iri"]]
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_input_tag}",
+        [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output", "iri"]]
         )
     
     @mappings << mapping_clause(
         "#{process_with_input_tag}_has_input_#{input_type_tag}_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{input_is_output_of_process_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output",
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{input_type}", "iri"],
@@ -447,7 +449,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
       "input_#{input_type_tag}_has_value",
       ["#{source_tag}-source"],
-      "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{input_is_output_of_process_tag}_Output",
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output",
       [[SIO["has-value"][self.sio_verbose],"#{input_value}", "#{input_value_datatype}"]]
       )
     end
@@ -473,6 +475,8 @@ class YARRRML_Template_Builder
 # @option params :output_comments_column  [String]  the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
 # @option params :output_start_column  [xsd:datetime] the column header for start date
 # @option params :output_end_column  [xsd:datetime]   the column header for end date
+# @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)
+# @option params :output_annotations_columns  [Array]   Array of Arrays of [[predicate, value, datatype]...] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)
 
   def process_hasoutput_output(params)
     process_with_output_tag = params.fetch(:process_with_output_tag, "thisprocess")  # some one-word name
@@ -501,13 +505,13 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
         "#{process_with_output_tag}_process_has_output",
         ["#{source_tag}-source"],
-        "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}",
-        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output", "iri"]]
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}",
+        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output", "iri"]]
         )
     @mappings << mapping_clause(
-        "#{process_tag}_Output_annotation",
+        "#{process_with_output_tag}_Output_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
         [["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"]]
         )      
     
@@ -515,7 +519,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
               "#{process_with_output_tag}_Output_type_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
               [["rdf:type",output_type, "iri"]]
               )
     end
@@ -524,7 +528,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
               "#{process_with_output_tag}_Output_type_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
               [["rdfs:label",output_type_label, "xsd:string"]]
               )
     end
@@ -533,7 +537,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
               "#{process_with_output_tag}_Output_value_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
               [[SIO["has-value"][self.sio_verbose],output_value, output_value_datatype]]
               )
     end
@@ -542,7 +546,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
               "#{process_with_output_tag}_Output_value_comments",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
               [["rdfs:comment","$(#{output_comments_column})", "xsd:string"]]
               )
     end
@@ -552,7 +556,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
         "#{process_with_output_tag}_output_annotation_start",
           ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
            [[SIO["start-time"][self.sio_verbose], "$(#{output_start_column})", "xsd:dateTime"]]
            )
     end
@@ -561,30 +565,57 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
           "#{process_with_output_tag}_output_annotation_end",
           ["#{source_tag}-source"],
-           "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
           [[SIO["end-time"][self.sio_verbose], "$(#{output_end_column})", "xsd:dateTime"]]
           )
     end
     
     if !output_annotations_columns.empty?
-        output_annotations_columns.each do |predicate, value, datatype|
-          datatype = "$(#{datatype})" if datatype # make it the column reference if it exists          
-          datatype = "xsd:string" unless datatype  # otherwise make it default
+      $stderr.puts "found output annotations"
+        output_annotations_columns.each do |pred, value, dtype|
+          datatype = "xsd:string"
+          if dtype and dtype =~ /\S+\:\S+/  # URI or qname
+            datatype = dtype
+          elsif dtype
+            datatype = "$(#{datatype})" # make it the column reference if it exists, but isn't a uri
+          end
           
+          if pred and pred =~ /\S+\:\S+/  # URI or qname
+            predicate = pred
+          elsif pred
+            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
+          else
+            abort "didn't define a predicate for the output annotations"
+          end
+      $stderr.puts "found output annotations #{predicate}, #{value}"
+                    
           next unless predicate and value
           uniqid = get_uniq_id
           
           @mappings << mapping_clause(
               "#{uniqid}_output_custom_annotation",
               ["#{source_tag}-source"],
-               "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
               [["$(#{predicate})", "$(#{value})", datatype]]
               )
           
         end
     elsif !output_annotations.empty?
-        output_annotations.each do |predicate, value, datatype|
-          datatype = "xsd:string" unless datatype  # otherwise make it default
+        output_annotations_columns.each do |pred, value, dtype|
+          datatype = "xsd:string"
+          if dtype and dtype =~ /\S+\:\S+/  # URI or qname
+            datatype = dtype
+          elsif dtype
+            datatype = "$(#{datatype})" # make it the column reference if it exists, but isn't a uri
+          end
+          
+          if pred and pred =~ /\S+\:\S+/  # URI or qname
+            predicate = pred
+          elsif pred
+            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
+          else
+            abort "didn't define a predicate for the output annotations"
+          end
           
           next unless predicate and value
           uniqid = get_uniq_id
@@ -592,7 +623,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
               "#{uniqid}_output_custom_annotation",
               ["#{source_tag}-source"],
-               "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_with_output_tag}_Output",
+               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
               [[predicate, value, datatype]]
               )
           
@@ -631,7 +662,7 @@ class YARRRML_Template_Builder
           
           position = 0
           inout_refers_to_columns.each do |e|
-            references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{e}_TypedAttributeNode", "iri"]
+            references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
             types << ["rdf:type", "$(#{e})", "iri"]
             labels[e] << ["rdfs:label", inout_refers_to_label_columns[position] ] if !(inout_refers_to_label_columns.empty?)
             position += 1
@@ -640,7 +671,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
               "inout_from_#{inout_process_tag}_refers_to_concepts",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{inout_process_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
               
               references
                 
@@ -651,7 +682,7 @@ class YARRRML_Template_Builder
             @mappings << mapping_clause(
                 "inout_from_#{inout_process_tag}_refers_to_concept_#{e}_type",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{e}_TypedAttributeNode",
+                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode",
                 [
                   types[position]
                 ]
@@ -660,7 +691,7 @@ class YARRRML_Template_Builder
               @mappings << mapping_clause(
                 "inout_from_#{inout_process_tag}_refers_to_concept_#{e}_label",
                   ["#{source_tag}-source"],
-                  "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{e}_TypedAttributeNode",
+                  "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode",
                   [
                     labels[e]
                   ]
@@ -677,7 +708,7 @@ class YARRRML_Template_Builder
           position = 0
           inout_refers_to.each do |e|
             uniqtype = Digest::SHA2.hexdigest e
-            references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
+            references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
             types << ["rdf:type", "#{e}", "iri"]
             labels[e] << ["rdfs:label", inout_refers_to_label[position] ] if !(inout_refers_to_label.empty?)
             position += 1
@@ -686,7 +717,7 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
             "inout_from_#{inout_process_tag}_refers_to_concepts",
             ["#{source_tag}-source"],
-            "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{uniqtype}_TypedAttributeNode",
+            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
             
             references
             
@@ -698,7 +729,7 @@ class YARRRML_Template_Builder
             @mappings << mapping_clause(
               "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_type",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{uniqtype}_TypedAttributeNode",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
               [
                 types[position]
               ]
@@ -707,7 +738,7 @@ class YARRRML_Template_Builder
               @mappings << mapping_clause(
                 "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_label",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{uniqtype}_TypedAttributeNode",
+                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
                 [
                  labels[e]
                 ]
@@ -759,14 +790,14 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
         "person_has_#{attribute_tag}_attribute",
         ["#{source_tag}-source"],
-        "this:individual_$(#{personid_column})#Person",
-        [[SIO["has-attribute"][self.sio_verbose],"this:individual_$(#{personid_column})_$(#{uniqueid_column})##{uniqtype}_TypedAttributeNode","iri"]]
+        "this:individual_$(#{@personid_column})#Person",
+        [[SIO["has-attribute"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode","iri"]]
         )
 
     @mappings << mapping_clause(
       "#{attribute_tag}_attribute_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{uniqtype}_TypedAttributeNode",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
         [
           ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"],
           ["rdf:type", "#{attribute_type}", "iri"],
@@ -800,20 +831,20 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
               "#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}_Output",
-                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}_Output_unit", "iri"]]
+                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output",
+                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit", "iri"]]
                 )
 
       @mappings << mapping_clause(
               "#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}_Output",
-                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}_Output_unit", "iri"]]
+                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output",
+                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit", "iri"]]
                 )
       @mappings << mapping_clause(
               "#{process_tag}_Output_unit_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}_Output_unit",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
               [["rdf:type",output_unit, "iri"]]
               )
 
@@ -824,7 +855,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
               "#{process_tag}_Output_unit_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{personid_column})_$(#{uniqueid_column})##{process_tag}_Output_unit",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
               [["rdfs:label",output_unit_label,"xsd:string"]
               ]
               )
