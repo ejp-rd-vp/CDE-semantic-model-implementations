@@ -640,10 +640,10 @@ class YARRRML_Template_Builder
 #
 #@param params [Hash]  a hash of options
 #@option params  :inout_process_tag [String]  ("unidentifiedProcess")
-#@option params  :inout_refers_to [Array]  ([])
-#@option params  :inout_refers_to_columns [Array] ([])
-#@option params  :inout_refers_to_label  [Array]  ([])
-#@option params  :inout_refers_to_label_columns  [Array]  ([])
+#@option params  :inout_refers_to [Array]  ([])  an array of ontology URIs
+#@option params  :inout_refers_to_columns [Array] ([]) an array of column headers for columns of ontologyURIs
+#@option params  :inout_refers_to_label  [Array]  ([]) am array of ontology term/labels
+#@option params  :inout_refers_to_label_columns  [Array]  ([])  an array of column headers for columns of ontology term/labels
 
   def input_output_refers_to(params)
     inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
@@ -758,53 +758,65 @@ class YARRRML_Template_Builder
 
 # creates the person_has_attribute portion of the CDE
 #
-# Parameters passed as a hash.  Generally speaking, you will use the same column header(s) as you used for the
-# "inout refers to" to join this attribute with the output node that measures it.
+# Parameters passed as a hash.
 #
-# i.e. attribute_type[_column] and their label equivalents will be the same as inout_refers_to[_column] and their label equivalents but can only be one!  (for now)
+# An Attribute is referred-to by the output of some process, so we need the process_tag for the process that has this reference
 #
-# @option params  params [Hash]  a hash of options
-# @option params  :attribute_type [URL] the URL for the ontological type of the attribute (defaults to http://semanticscience.org/resource/attribute)
-# @option params  :attribute_type_column [String] the column header that contains the URL for the ontological type of the quality (overrides attribute_type)
-# @option params  :attribute_tag [String] some single-word tag for that process; defaults to "someQuality"
-# @option params  :attribute_label [string] the the label associated with the quality type in that row (defaults to 'quality')
-# @option params  :attribute_label_column [String] the column header for the label associated with the attribute type in that row (overrides attribute_label)
+# the inout-refers-to portion requires an array of elements or column headers.  That must be the same here, to make the connection
 #
-
+# @param  params [Hash]  a hash of options
+# @option params  :inout_process_tag [String]  ("unidentifiedProcess")
+# @option params  :inout_refers_to [Array]  ([])
+# @option params  :inout_refers_to_columns [Array] ([])
   def person_has_attribute(params)
-    attribute_type = params.fetch(:attribute_type, SIO["attribute"][self.sio_verbose])  
-    attribute_type_column = params.fetch(:attribute_type_column, nil)  
-    attribute_tag  = params.fetch(:attribute_tag, "someAttribute")  # some one-word name
-    attribute_label = params.fetch(:attribute_label, "attribute") 
-    attribute_label_column = params.fetch(:attribute_label_column, nil)
+    inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
+    inout_refers_to = params.fetch(:inout_refers_to, [] ) 
+    inout_refers_to_columns = params.fetch(:inout_refers_to_columns, [] ) 
     
-    attribute_type = attribute_type_column ? "$(#{attribute_type_column})":attribute_type
-    attribute_label = attribute_label_column ? "$(#{attribute_label_column})":attribute_label
+    abort "must specify inout_process_tag" unless inout_process_tag
+    abort "must specify inout_refers_to or inout_refers_to_columns" unless (inout_refers_to.first or inout_refers_to_columns.first)
+    
+    
+    if !(inout_refers_to_columns.empty?)
+      $stderr.puts "checking inout columns"
+          references = []
+          
+          position = 0
+          inout_refers_to_columns.each do |e|
+            references << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
+            position += 1
+          end   
 
-    uniqtype = ""  # here we are not dealing with lists, as we did last time, so we dont' generate this in a loop
-    if attribute_type_column
-      uniqtype = attribute_type_column
-    else
-      uniqtype = Digest::SHA2.hexdigest attribute_type
+          @mappings << mapping_clause(
+              "person_has_attribute_from_#{inout_process_tag}",
+              ["#{source_tag}-source"],
+              "this:individual_$(#{@personid_column})#Person",
+              
+              references
+                
+          )
+
+    elsif !(inout_refers_to.empty?)
+          references = []
+          position = 0
+          inout_refers_to.each do |e|
+            uniqtype = Digest::SHA2.hexdigest e
+            references << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
+            position += 1
+          end   
+
+          @mappings << mapping_clause(
+            "person_has_attribute_from_#{inout_process_tag}",
+            ["#{source_tag}-source"],
+              "this:individual_$(#{@personid_column})#Person",
+            
+            references
+            
+          ) 
+          
+ 
     end
-    @mappings << mapping_clause(
-        "person_has_#{attribute_tag}_attribute",
-        ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})#Person",
-        [[SIO["has-attribute"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode","iri"]]
-        )
 
-    @mappings << mapping_clause(
-      "#{attribute_tag}_attribute_annotation",
-        ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
-        [
-          ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"],
-          ["rdf:type", "#{attribute_type}", "iri"],
-          ["rdfs:label","#{attribute_label}", "xsd:string"]
-        ]
-        )
-    
   end
   
 
