@@ -187,6 +187,14 @@ class YARRRML_Template_Builder
   end
 
 
+  def get_root_url(uniq)
+    if uniq
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})_process"
+    else
+      "this:individual_$(#{@personid_column})_process"
+    end
+  end
+
 # creates the person/identifier/role portion of the CDE
 #
 # Parameters passed as a hash
@@ -280,6 +288,7 @@ class YARRRML_Template_Builder
 # @option params :process_label_column  [String] the column header for the label associated with the process type in that row
 # @option params :process_start_column  [String] (optional) the column header for the timestamp when that process started
 # @option params :process_end_column  [String]  (optional) the column header for the timestamp when that process ended
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def role_in_process(params)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
     process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose])  
@@ -288,18 +297,20 @@ class YARRRML_Template_Builder
     process_label = params.fetch(:process_label, 'process') 
     process_label_column = params.fetch(:process_label_column, nil) 
     process_start_column = params.fetch(:process_start_column, nil) 
-    process_end_column = params.fetch(:process_end_column, nil) 
+    process_end_column = params.fetch(:process_end_column, nil)
+    make_unique_process = params.fetch(:make_unique_process, true)
 
     process_type = process_type_column ? "$(#{process_type_column})":process_type
     process_label = process_label_column ? "$(#{process_label_column})":process_label
 
+    root_url = get_root_url(make_unique_process)
 
     @mappings << mapping_clause(
       "#{person_role_tag}_realized_#{process_tag}",
       ["#{source_tag}-source"],
       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
       [
-            [SIO["is-realized-in"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}","iri"]
+            [SIO["is-realized-in"][self.sio_verbose], root_url + "##{process_tag}","iri"]
       ]
       )
     
@@ -319,7 +330,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
         "#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
+           root_url + "##{process_tag}",
            [[SIO["start-time"][self.sio_verbose], "$(#{process_start_column})", "xsd:dateTime"]]
            )
     end
@@ -328,7 +339,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
           "#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
+           root_url + "##{process_tag}",
           [[SIO["end-time"][self.sio_verbose], "$(#{process_end_column})", "xsd:dateTime"]]
           )
     end
@@ -344,11 +355,16 @@ class YARRRML_Template_Builder
 # @param params [Hash]  a hash of options
 # @option params :process_tag  [String] (required) the same process tag that is used in the "role in process" 
 # @option params :process_annotations_columns [Array] ([[subcol,predcol,datatypecol], ...]) 
-# @option params :process_annotations [Array] ([[sub,pred,datatype]...]) (required) the same process tag that is used in the "role in process" 
+# @option params :process_annotations [Array] ([[sub,pred,datatype]...]) (required) the same process tag that is used in the "role in process"
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+
   def process_has_annotations(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
     process_annotations_columns = params.fetch(:process_annotations_columns, [])  
     process_annotations = params.fetch(:output_annotations, [])  
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
 
 
     if !process_annotations_columns.empty?
@@ -362,7 +378,7 @@ class YARRRML_Template_Builder
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
+            root_url + "##{process_tag}",
             [["$(#{predicate})", "$(#{value})", datatype]]
             )
         
@@ -377,7 +393,7 @@ class YARRRML_Template_Builder
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}",
+           root_url + "##{process_tag}",
             [[predicate, value, datatype]]
             )
         
@@ -404,6 +420,7 @@ class YARRRML_Template_Builder
 # @option params :input_has_value_column  [String] the column containing the value of the input
 # @option params :input_has_value_datatype  [String] datatype of the value (default xsd:string)
 # @option params :input_has_value_datatype_column  [String] the column containing the datatype of the value of the input )(overrides input_has_value_datatype)
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_has_input(params)
     process_with_input_tag  = params.fetch(:process_with_input_tag, "thisprocess")  # some one-word name
     input_is_output_of_process_tag  = params.fetch(:input_is_output_of_process_tag, 'unidentifiedProcess')  # some one-word name
@@ -416,6 +433,9 @@ class YARRRML_Template_Builder
     input_has_value_column  = params.fetch(:input_has_value_column, nil)  # some one-word name
     input_has_value_datatype  = params.fetch(:input_has_value_datatype, "xsd:string")  # some one-word name
     input_has_value_datatype_column  = params.fetch(:input_has_value_datatype_column, nil)  # some one-word name
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
     
     
     abort "must specify the process_with_input_tag (the identifier of the process that receives the input) before you can use the process_has_input function" unless process_with_input_tag
@@ -428,7 +448,7 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
         "#{process_with_input_tag}_has_input_#{input_type_tag}",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_input_tag}",
+        root_url + "##{process_with_input_tag}",
         [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output", "iri"]]
         )
     
@@ -477,7 +497,7 @@ class YARRRML_Template_Builder
 # @option params :output_end_column  [xsd:datetime]   the column header for end date
 # @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)
 # @option params :output_annotations_columns  [Array]   Array of Arrays of [[predicate, value, datatype]...] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)
-
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_hasoutput_output(params)
     process_with_output_tag = params.fetch(:process_with_output_tag, "thisprocess")  # some one-word name
     output_value = params.fetch(:output_value, nil)
@@ -498,6 +518,11 @@ class YARRRML_Template_Builder
     output_type = output_type_column ? "$(#{output_type_column})":output_type
     output_type_label = output_type_label_column ? "$(#{output_type_label_column})":output_type_label
     output_value_datatype = output_value_datatype_column ? "$(#{output_value_datatype_column})":output_value_datatype
+    
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
    
 
    #return unless output_value
@@ -505,7 +530,7 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
         "#{process_with_output_tag}_process_has_output",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}",
+        root_url + "##{process_with_output_tag}",
         [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output", "iri"]]
         )
     @mappings << mapping_clause(
