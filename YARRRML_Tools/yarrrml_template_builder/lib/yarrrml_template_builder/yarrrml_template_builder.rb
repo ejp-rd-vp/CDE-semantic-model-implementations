@@ -68,15 +68,15 @@ class YARRRML_Template_Builder
     @source_tag = params.fetch(:source_tag, nil)
     abort "must have a source_name parameter" unless self.source_tag
 
-    @prefix_map = {"rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "rdfs" => "http://www.w3.org/2000/01/rdf-schema#",
-      "ex" => "http://ejp-rd.eu/ids/",
-      "obo" => "http://purl.obolibrary.org/obo/",
-      "sio" => "http://semanticscience.org/resource/",
-      "vocab" => "http://ejp-rd.eu/vocab/", 
-      "pico" => "http://data.cochrane.org/ontologies/pico/",
-      "ndfrt" => "http://purl.bioontology.org/ontology/NDFRT/",
-      "edam" => "http://purl.bioontology.org/ontology/EDAM/",
+    @prefix_map = {"rdf" => "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs" => "https://www.w3.org/2000/01/rdf-schema#",
+      "ex" => "https://ejp-rd.eu/ids/",
+      "obo" => "https://purl.obolibrary.org/obo/",
+      "sio" => "https://semanticscience.org/resource/",
+      "vocab" => "https://ejp-rd.eu/vocab/", 
+      "pico" => "https://data.cochrane.org/ontologies/pico/",
+      "ndfrt" => "https://purl.bioontology.org/ontology/NDFRT/",
+      "edam" => "https://purl.bioontology.org/ontology/EDAM/",
       }
     
     self.add_prefixes(prefixesHash: {"this" => self.baseURI})
@@ -355,8 +355,8 @@ class YARRRML_Template_Builder
 #
 # @param params [Hash]  a hash of options
 # @option params :process_tag  [String] (required) the same process tag that is used in the "role in process" 
-# @option params :process_annotations_columns [Array] ([[subcol,predcol,datatypecol], ...]) 
-# @option params :process_annotations [Array] ([[sub,pred,datatype]...]) (required) the same process tag that is used in the "role in process"
+# @option params :process_annotations_columns [Array] ([[predcol, valcol,datatypecol], ...])   (if predol looks like a URI, it will be used as a URI)
+# @option params :process_annotations [Array] ([[pred, val,datatype]...]) (required) the same process tag that is used in the "role in process"
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_has_annotations(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
@@ -372,6 +372,12 @@ class YARRRML_Template_Builder
         datatype = "$(#{datatype})" if datatype # make it the column reference if it exists          
         datatype = "xsd:string" unless datatype  # otherwise make it default
         
+        if predicate =~ /https?\:\/\//
+          predicate = predicate
+        else
+          predicate = "$(#{predicate})"  # if the predicate looks like a URI, assume that it is, rather than a colulmn header
+        end
+        
         next unless predicate and value
         uniqid = get_uniq_id
         
@@ -379,7 +385,7 @@ class YARRRML_Template_Builder
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
             root_url + "##{process_tag}",
-            [["$(#{predicate})", "$(#{value})", datatype]]
+            [[predicate, "$(#{value})", datatype]]
             )
         
       end

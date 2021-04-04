@@ -830,15 +830,15 @@
   <span class='ivar'>@source_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:source_tag</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>must have a source_name parameter</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_source_tag'>source_tag</span>
 
-  <span class='ivar'>@prefix_map</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://www.w3.org/1999/02/22-rdf-syntax-ns#</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://www.w3.org/2000/01/rdf-schema#</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ex</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://ejp-rd.eu/ids/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>obo</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://purl.obolibrary.org/obo/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sio</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vocab</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://ejp-rd.eu/vocab/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pico</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://data.cochrane.org/ontologies/pico/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ndfrt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://purl.bioontology.org/ontology/NDFRT/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edam</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://purl.bioontology.org/ontology/EDAM/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='ivar'>@prefix_map</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://www.w3.org/1999/02/22-rdf-syntax-ns#</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://www.w3.org/2000/01/rdf-schema#</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ex</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://ejp-rd.eu/ids/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>obo</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://purl.obolibrary.org/obo/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sio</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://semanticscience.org/resource/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vocab</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://ejp-rd.eu/vocab/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pico</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://data.cochrane.org/ontologies/pico/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ndfrt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://purl.bioontology.org/ontology/NDFRT/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edam</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://purl.bioontology.org/ontology/EDAM/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
     <span class='rbrace'>}</span>
   
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_prefixes'>add_prefixes</span><span class='lparen'>(</span><span class='label'>prefixesHash:</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_baseURI'>baseURI</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1382,13 +1382,13 @@
       <pre class="lines">
 
 
-944
-945
-946
-947</pre>
+950
+951
+952
+953</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 944</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 950</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       <span class='kw'>return</span>  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
@@ -1532,12 +1532,6 @@
       <pre class="lines">
 
 
-710
-711
-712
-713
-714
-715
 716
 717
 718
@@ -1636,10 +1630,16 @@
 811
 812
 813
-814</pre>
+814
+815
+816
+817
+818
+819
+820</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 710</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 716</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_input_output_refers_to'>input_output_refers_to</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inout_process_tag'>inout_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2032,12 +2032,6 @@
       <pre class="lines">
 
 
-894
-895
-896
-897
-898
-899
 900
 901
 902
@@ -2077,10 +2071,16 @@
 936
 937
 938
-939</pre>
+939
+940
+941
+942
+943
+944
+945</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 894</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 900</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 
@@ -2230,12 +2230,6 @@
       <pre class="lines">
 
 
-833
-834
-835
-836
-837
-838
 839
 840
 841
@@ -2279,10 +2273,16 @@
 879
 880
 881
-882</pre>
+882
+883
+884
+885
+886
+887
+888</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 833</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 839</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_person_has_attribute'>person_has_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inout_process_tag'>inout_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2745,9 +2745,13 @@
           <span class="default">
             
               &mdash; default:
-              <tt>[[subcol</tt>, <tt>predcol</tt>, <tt>datatypecol]</tt>, <tt>...]</tt>
+              <tt>[[predcol</tt>, <tt>valcol</tt>, <tt>datatypecol]</tt>, <tt>...]</tt>
             
           </span>
+          
+            &mdash; <div class='inline'>
+<p>(if predol looks like a URI, it will be used as a URI)</p>
+</div>
           
         </li>
       
@@ -2757,7 +2761,7 @@
           <span class="default">
             
               &mdash; default:
-              <tt>[[sub</tt>, <tt>pred</tt>, <tt>datatype]...]</tt>
+              <tt>[[pred</tt>, <tt>val</tt>, <tt>datatype]...]</tt>
             
           </span>
           
@@ -2837,7 +2841,13 @@
 402
 403
 404
-405</pre>
+405
+406
+407
+408
+409
+410
+411</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 361</span>
@@ -2856,6 +2866,12 @@
       <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_datatype'>datatype</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_datatype'>datatype</span> <span class='comment'># make it the column reference if it exists          
 </span>      <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_datatype'>datatype</span>  <span class='comment'># otherwise make it default
 </span>      
+      <span class='kw'>if</span> <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>https?\:\/\/</span><span class='regexp_end'>/</span></span>
+        <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='id identifier rubyid_predicate'>predicate</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_predicate'>predicate</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>  <span class='comment'># if the predicate looks like a URI, assume that it is, rather than a colulmn header
+</span>      <span class='kw'>end</span>
+      
       <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_predicate'>predicate</span> <span class='kw'>and</span> <span class='id identifier rubyid_value'>value</span>
       <span class='id identifier rubyid_uniqid'>uniqid</span> <span class='op'>=</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       
@@ -2863,7 +2879,7 @@
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uniqid'>uniqid</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_custom_annotation</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
           <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-          <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_predicate'>predicate</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_datatype'>datatype</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+          <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_predicate'>predicate</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_datatype'>datatype</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
           <span class='rparen'>)</span>
       
     <span class='kw'>end</span>
@@ -3111,12 +3127,6 @@
       <pre class="lines">
 
 
-461
-462
-463
-464
-465
-466
 467
 468
 469
@@ -3165,10 +3175,16 @@
 512
 513
 514
-515</pre>
+515
+516
+517
+518
+519
+520
+521</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 461</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 467</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_input'>process_has_input</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_input_tag'>process_with_input_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_input_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -3351,12 +3367,6 @@
       <pre class="lines">
 
 
-418
-419
-420
-421
-422
-423
 424
 425
 426
@@ -3371,10 +3381,16 @@
 435
 436
 437
-438</pre>
+438
+439
+440
+441
+442
+443
+444</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 418</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 424</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_part'>process_has_part</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parent_process_tag'>parent_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:parent_process_tag</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  
@@ -3657,12 +3673,6 @@
       <pre class="lines">
 
 
-538
-539
-540
-541
-542
-543
 544
 545
 546
@@ -3815,10 +3825,16 @@
 693
 694
 695
-696</pre>
+696
+697
+698
+699
+700
+701
+702</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 538</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 544</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_hasoutput_output'>process_hasoutput_output</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_output_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -4293,7 +4309,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Apr  4 07:29:57 2021 by
+  Generated on Sun Apr  4 09:01:22 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>
