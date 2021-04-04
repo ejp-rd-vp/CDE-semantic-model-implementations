@@ -20,6 +20,7 @@ class YARRRML_Template_Builder
 "has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
 "has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
 "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
+"has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
 "has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
 "is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
 "is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
@@ -357,7 +358,6 @@ class YARRRML_Template_Builder
 # @option params :process_annotations_columns [Array] ([[subcol,predcol,datatypecol], ...]) 
 # @option params :process_annotations [Array] ([[sub,pred,datatype]...]) (required) the same process tag that is used in the "role in process"
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
-
   def process_has_annotations(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
     process_annotations_columns = params.fetch(:process_annotations_columns, [])  
@@ -404,6 +404,43 @@ class YARRRML_Template_Builder
     
   end
   
+
+
+# creates the process_has_part portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param params [Hash]  a hash of options
+# @option params :parent_process_tag  [String] (required) the same process tag that is used in the "role in process"  for the parent process
+# @option params :part_process_tag  [String] (required) the same process tag that is used in the "role in process" for the process that is a part of the parent
+# @option params :parent_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+# @option params :part_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+  def process_has_part(params)
+    parent_process_tag = params.fetch(:parent_process_tag, nil)  
+    part_process_tag = params.fetch(:part_process_tag, nil)  
+    parent_unique_process = params.fetch(:parent_unique_process, true)
+    part_unique_process = params.fetch(:part_unique_process, true)
+
+    parent_root_url = get_root_url(parent_unique_process)
+    part_root_url = get_root_url(part_unique_process)
+
+    abort "cannot create part relationship unless both parent and child processes have a tag" unless (parent_process_tag && part_process_tag)
+      
+    #uniqid = get_uniq_id
+    
+    @mappings << mapping_clause(
+        "#{parent_process_tag}_has_part_#{part_process_tag}",
+        ["#{source_tag}-source"],
+        parent_root_url + "##{parent_process_tag}",
+        [[SIO["has-part"][self.sio_verbose], part_root_url + "##{parent_process_tag}" , "iri"]]
+        )
+    
+  end
+
+
+
+
+
 # creates the process has input portion of the CDE
 #
 # Parameters passed as a hash
@@ -513,13 +550,13 @@ class YARRRML_Template_Builder
     output_end_column = params.fetch(:output_end_column, nil)
     output_annotations = params.fetch(:output_annotations, [])
     output_annotations_columns = params.fetch(:output_annotations_columns, [])
+    make_unique_process = params.fetch(:make_unique_process, true)
 
     output_value = output_value_column ? "$(#{output_value_column})":output_value
     output_type = output_type_column ? "$(#{output_type_column})":output_type
     output_type_label = output_type_label_column ? "$(#{output_type_label_column})":output_type_label
     output_value_datatype = output_value_datatype_column ? "$(#{output_value_datatype_column})":output_value_datatype
     
-    make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
 
