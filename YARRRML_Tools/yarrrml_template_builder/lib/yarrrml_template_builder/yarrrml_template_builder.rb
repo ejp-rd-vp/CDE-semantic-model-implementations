@@ -16,33 +16,33 @@ class YARRRML_Template_Builder
   attr_accessor :mappings  
 
   SIO = {
-"has-attribute" => ["https://semanticscience.org/resource/has-attribute", "https://semanticscience.org/resource/SIO_000008"], 
-"has-quality" => ["https://semanticscience.org/resource/SIO_000217", "https://semanticscience.org/resource/has-quality"],
-"has-unit" => ["https://semanticscience.org/resource/SIO_000221", "https://semanticscience.org/resource/has-unit"],
-"has-value" => ["https://semanticscience.org/resource/SIO_000300", "https://semanticscience.org/resource/has-value"],
-"has-part" => ["https://semanticscience.org/resource/SIO_000028", "https://semanticscience.org/resource/has-part"],
-"has-role" => ["https://semanticscience.org/resource/SIO_000228", "https://semanticscience.org/resource/has-role"],
-"is-participant-in" => ["https://semanticscience.org/resource/SIO_000062", "https://semanticscience.org/resource/is-participant-in"],
-"is-about" => ["https://semanticscience.org/resource/SIO_000332", "https://semanticscience.org/resource/is-about"],
-"has-output" => ["https://semanticscience.org/resource/SIO_000229", "https://semanticscience.org/resource/has-output"],
-"denotes" => ["https://semanticscience.org/resource/SIO_000020", "https://semanticscience.org/resource/denotes"],
-"is-realized-in" => ["https://semanticscience.org/resource/SIO_000356", "https://semanticscience.org/resource/is-realized-in"],
-"start-time" => ["https://semanticscience.org/resource/SIO_000669", "https://semanticscience.org/resource/start-time"],
-"end-time" => ["https://semanticscience.org/resource/SIO_000670", "https://semanticscience.org/resource/end-time"],
-"is-component-part-of" => ["https://semanticscience.org/resource/SIO_000313", "https://semanticscience.org/resource/is-component-part-of"],
-"drug" => ["https://semanticscience.org/resource/SIO_010038", "https://semanticscience.org/resource/drug"],
-"is-base-for" => ["https://semanticscience.org/resource/SIO_000642", "https://semanticscience.org/resource/is-base-for"],
-"has-concretization" => ["https://semanticscience.org/resource/SIO_000213", "https://semanticscience.org/resource/has-concretization"],
-"realizable-entity" =>  ["https://semanticscience.org/resource/SIO_000340", "https://semanticscience.org/resource/realizable-entity"],
-"information-content-entity" =>  ["https://semanticscience.org/resource/SIO_000015", "https://semanticscience.org/resource/information-content-entity"],
-"measurement-value" => ["https://semanticscience.org/resource/SIO_000070", "https://semanticscience.org/resource/measurement-value"],
-"refers-to" => ["https://semanticscience.org/resource/SIO_000628", "https://semanticscience.org/resource/refers-to"],
-"has-input" => ["https://semanticscience.org/resource/SIO_000230", "https://semanticscience.org/resource/has-input"],
-"person" => ["https://semanticscience.org/resource/SIO_000498", "https://semanticscience.org/resource/person"],
-"identifier" => ["https://semanticscience.org/resource/SIO_000115", "https://semanticscience.org/resource/identifier"],
-"role" => ["https://semanticscience.org/resource/SIO_000016", "https://semanticscience.org/resource/role"],
-"process" => ["https://semanticscience.org/resource/SIO_000006", "https://semanticscience.org/resource/process"],
-"attribute" => ["https://semanticscience.org/resource/SIO_000614]", "https://semanticscience.org/resource/attribute"]
+"has-attribute" => ["http://semanticscience.org/resource/has-attribute", "http://semanticscience.org/resource/SIO_000008"], 
+"has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
+"has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
+"has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
+"has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
+"has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
+"is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
+"is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
+"has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
+"denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
+"is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
+"start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
+"end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
+"is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
+"drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
+"is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
+"has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
+"realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],
+"information-content-entity" =>  ["http://semanticscience.org/resource/SIO_000015", "http://semanticscience.org/resource/information-content-entity"],
+"measurement-value" => ["http://semanticscience.org/resource/SIO_000070", "http://semanticscience.org/resource/measurement-value"],
+"refers-to" => ["http://semanticscience.org/resource/SIO_000628", "http://semanticscience.org/resource/refers-to"],
+"has-input" => ["http://semanticscience.org/resource/SIO_000230", "http://semanticscience.org/resource/has-input"],
+"person" => ["http://semanticscience.org/resource/SIO_000498", "http://semanticscience.org/resource/person"],
+"identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
+"role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
+"process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
+"attribute" => ["http://semanticscience.org/resource/SIO_000614]", "http://semanticscience.org/resource/attribute"]
              
 }
 
@@ -54,7 +54,7 @@ class YARRRML_Template_Builder
 # @param params [Hash]  params   a Hash of options
 # @option params [String] :baseURI a URL that will become the base for "urls owned by the data provider" e.g. "https://my.dataset.org/thisdataset/records/"
 # @option params [String] :source_name   a "short name" (i.e. a single word, no spaces) for the kind of data being transformed.  e.g. height_data
-# @option params [Integer] :sio_verbose (0)  "1" means to use https://semanticscience.org/resource/has-value instead of https://semanticscience.org/resource/SIO_000300 for all sio.  Default is 0
+# @option params [Integer] :sio_verbose (0)  "1" means to use http://semanticscience.org/resource/has-value instead of http://semanticscience.org/resource/SIO_000300 for all sio.  Default is 0
 #
 # @return [YARRRML_Template_BuilderII]
 #
@@ -68,15 +68,16 @@ class YARRRML_Template_Builder
     @source_tag = params.fetch(:source_tag, nil)
     abort "must have a source_name parameter" unless self.source_tag
 
-    @prefix_map = {"rdf" => "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "rdfs" => "https://www.w3.org/2000/01/rdf-schema#",
+    @prefix_map = {
+      "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs" => "http://www.w3.org/2000/01/rdf-schema#",
       "ex" => "https://ejp-rd.eu/ids/",
-      "obo" => "https://purl.obolibrary.org/obo/",
-      "sio" => "https://semanticscience.org/resource/",
+      "obo" => "http://purl.obolibrary.org/obo/",
+      "sio" => "http://semanticscience.org/resource/",
       "vocab" => "https://ejp-rd.eu/vocab/", 
       "pico" => "https://data.cochrane.org/ontologies/pico/",
-      "ndfrt" => "https://purl.bioontology.org/ontology/NDFRT/",
-      "edam" => "https://purl.bioontology.org/ontology/EDAM/",
+      "ndfrt" => "http://purl.bioontology.org/ontology/NDFRT/",
+      "edam" => "http://purl.bioontology.org/ontology/EDAM/",
       }
     
     self.add_prefixes(prefixesHash: {"this" => self.baseURI})
@@ -105,6 +106,7 @@ class YARRRML_Template_Builder
   def add_prefixes(params = {})
     
     prefixesHash = params.fetch(:prefixesHash, {})
+    $stderr.puts prefixesHash
     @prefix_map.merge!(prefixesHash)
     return self.prefix_map
     
@@ -168,6 +170,7 @@ class YARRRML_Template_Builder
       (pred, obj, type) = pot
       typetag = "type"
       typetag = "datatype" unless type == 'iri'
+      type = "xsd:string" unless type
       pos << {
            "predicates" => pred, 
            "objects" => { 
@@ -234,14 +237,14 @@ class YARRRML_Template_Builder
 
     abort "You MUST have a @personid_column and a @uniqueid_column to use this library.  Sorry!" unless @personid_column and @uniqueid_column
     @mappings << mapping_clause(
-                             "identifier_has_value",
+                             "identifier_has_value_for_#{person_role_tag}",
                              ["#{source_tag}-source"],
                              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
                              [[SIO["has-value"][self.sio_verbose], "$(#{@personid_column})", "xsd:string"]]
                              )
 
     @mappings << mapping_clause(
-                                  "identifier_denotes",
+                                  "identifier_denotes_role_#{person_role_tag}",
                                   ["#{source_tag}-source"],
                                   "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
                                   [
@@ -251,7 +254,7 @@ class YARRRML_Template_Builder
                                   ]
                                  )
     @mappings << mapping_clause(
-                                "person_has_role",
+                                "person_has_role_#{person_role_tag}",
                                 ["#{source_tag}-source"],
                                 "this:individual_$(#{@personid_column})#Person",
                                 [
@@ -282,7 +285,7 @@ class YARRRML_Template_Builder
 #
 # @param params [Hash]  a hash of options
 # @option params :person_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see person_role_tag above, synchronize these tags!
-# @option params :process_type  [String] the URL for the ontological type of the process (defaults to https://semanticscience.org/resource/process)
+# @option params :process_type  [String] the URL for the ontological type of the process (defaults to http://semanticscience.org/resource/process)
 # @option params :process_type_column  [String] the column header that contains the URL for the ontological type of the process - overrides process_type
 # @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
 # @option params :process_label  [String] the label associated with the process type in that row (defaults to "thisprocess")
@@ -463,7 +466,7 @@ class YARRRML_Template_Builder
 # @param params [Hash]  a hash of options
 # @option params :process_with_input_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
 # @option params :input_is_output_of_process_tag  [String] defaults to 'unidentifiedProcess'; if the input is the output of another process, then specify the process tag here (matches the "role in process" which generates taht output
-# @option params :input_type  [String] the ontological type for the input node (default https://semanticscience.org/resource/information-content-entity).  Ignored if using output from another process (specify it there!)
+# @option params :input_type  [String] the ontological type for the input node (default http://semanticscience.org/resource/information-content-entity).  Ignored if using output from another process (specify it there!)
 # @option params :input_type_tag  [String] a tag to differentiate this input from other inputs
 # @option params :input_type_column  [String] the column header specifying the ontological type for the input node (overrides input_type).  Ignored if using output from another process (specify it there!)
 # @option params :input_type_label  [String] the label for all inputs
@@ -540,7 +543,7 @@ class YARRRML_Template_Builder
 # @option params :process_with_output_tag  [String] Required - the same process tag that is used in the "role in process" for which this is the output
 # @option params :output_value  [String]  the default value of that output (defaults to nil, and the output node is not created in the RDF)
 # @option params :output_value_column  [String]   the column header for the value of that output (e.g. the column that contains "80"  for "80 mmHg")
-# @option params :output_type  [String]  the URL associated with the output ontological type (defaults to https://semanticscience.org/resource/realizable-entity)
+# @option params :output_type  [String]  the URL associated with the output ontological type (defaults to http://semanticscience.org/resource/realizable-entity)
 # @option params :output_type_column  [String] the column header for the URL associated with the output ontological type (overrides output_type)
 # @option params :output_type_label  [String] the the label of that ontological type (defaults to "measurement-value")
 # @option params :output_type_label_column  [String] the column header for the label of that ontological type (overrides output_type_label)
@@ -650,7 +653,7 @@ class YARRRML_Template_Builder
     end
     
     if !output_annotations_columns.empty?
-      $stderr.puts "found output annotations"
+      #$stderr.puts "found output annotations"
         output_annotations_columns.each do |pred, value, dtype|
           datatype = "xsd:string"
           if dtype and dtype =~ /\S+\:\S+/  # URI or qname
@@ -666,7 +669,7 @@ class YARRRML_Template_Builder
           else
             abort "didn't define a predicate for the output annotations"
           end
-      $stderr.puts "found output annotations #{predicate}, #{value}"
+      #$stderr.puts "found output annotations #{predicate}, #{value}"
                     
           next unless predicate and value
           uniqid = get_uniq_id
@@ -734,16 +737,16 @@ class YARRRML_Template_Builder
     abort "must specify in_out_process_tag" unless inout_process_tag
     
     if !(inout_refers_to_columns.empty?)
-      $stderr.puts "checking inout columns"
+      #$stderr.puts "checking inout columns"
           references = []
           types = []
-          labels = Hash.new
+          labels = Hash.new([])
           
           position = 0
           inout_refers_to_columns.each do |e|
             references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
             types << ["rdf:type", "$(#{e})", "iri"]
-            labels[e] << ["rdfs:label", inout_refers_to_label_columns[position] ] if !(inout_refers_to_label_columns.empty?)
+            labels[e] << ["rdfs:label", "$(#{inout_refers_to_label_columns[position]})" ] if !(inout_refers_to_label_columns.empty?)
             position += 1
           end   
 
@@ -766,14 +769,19 @@ class YARRRML_Template_Builder
                   types[position]
                 ]
             )
-            if labels[e]
+            if labels[e].first
+              #$stderr.puts "class" + labels[e].class.to_s
+              #$stderr.puts "first" + labels[e].first
+              #$stderr.puts "value" + labels[e].inspect
+              
               @mappings << mapping_clause(
                 "inout_from_#{inout_process_tag}_refers_to_concept_#{e}_label",
                   ["#{source_tag}-source"],
                   "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode",
                   [
-                    labels[e]
+                    labels[e][position]
                   ]
+                  
                 )
             end
             position += 1
@@ -783,7 +791,7 @@ class YARRRML_Template_Builder
     elsif !(inout_refers_to.empty?)
           references = []
           types = []
-          labels = Hash.new
+          labels = Hash.new([])
           position = 0
           inout_refers_to.each do |e|
             uniqtype = Digest::SHA2.hexdigest e
@@ -813,13 +821,14 @@ class YARRRML_Template_Builder
                 types[position]
               ]
               )
-            if labels[e]
+            if labels[e].first
+
               @mappings << mapping_clause(
                 "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_label",
                 ["#{source_tag}-source"],
                 "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
                 [
-                 labels[e]
+                 labels[e][position]
                 ]
               )
             end
@@ -857,7 +866,7 @@ class YARRRML_Template_Builder
     
     
     if !(inout_refers_to_columns.empty?)
-      $stderr.puts "checking inout columns"
+      #$stderr.puts "checking inout columns"
           references = []
           
           position = 0
