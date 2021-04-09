@@ -6,19 +6,23 @@ require 'rest-client'
 
 class YARRRML_Transform
   
-  attr_accessor :datafile
-  attr_accessor :datafile_path
-  attr_accessor :datatype_tag
-  attr_accessor :yarrrmltemplate
-  attr_accessor :yarrrmlfilename
-  attr_accessor :configfilename
-  attr_accessor :outputrmlfile
-  attr_accessor :outputrdffolder
-  attr_accessor :formulation
-  attr_accessor :inifile
-  attr_accessor :inifile_name
-  attr_accessor :inifile_path
+  attr_accessor :data_path_server
+  attr_accessor :data_path_client
+  attr_accessor :config_path_server
+  attr_accessor :config_path_client
   attr_accessor :rdfizer_base_url
+  attr_accessor :yarrrml_transform_base_url
+  attr_accessor :datatype_tag
+  attr_accessor :datafile
+  
+  attr_accessor :yarrrmltemplate
+  attr_accessor :yarrrmlfilename_client
+  attr_accessor :yarrrmlfilename_server
+  attr_accessor :outputrmlfile
+  attr_accessor :formulation
+  attr_accessor :outputrdffolder
+  attr_accessor :inifile_client
+  attr_accessor :inifile_server  
   attr_accessor :failure
  
   
@@ -36,62 +40,84 @@ class YARRRML_Transform
 # all params are passed as a hash, and retrieved by params.fetch(paramName).  the ini file used by yarrrml transform is auto-generated
 #
 # @param params [Hash]  params   a Hash of options
-# @option params  :datatype_tag [String]   (required) a one-word indicator of the data type.  This is considered the "base" for all other filenames (see below)
-# @option params  :rdfizer_base_url [String] (http://localhost:4000/graph_creation/) the base URL of the yarrrml_parser docker instance server 
-# @option params  :datafile [String]  (/data/[datatype_tag].csv) the path and filename to the csv file FROM THE PERSPECTIVE OF THE DOCKER INSTANCE 
-# @option params  :datafile_path [String]  (/data) the path to the csv file FROM THE PERSPECTIVE OF THE DOCKER INSTANCE 
-# @option params  :outputrmlfile [String]  (/data/[datatype_tag]_rml.ttl) - is auto-constructed from the datatype-tag (see below))
-# @option params  :outputrdffolder [String]  (/data/triples/) - defaults to /data/triples - this folder must exist, even if left to default.  NOTE - this path is not relative to the host, it is relative to the docker rdfizer, so it begins with /data not ./data)
-# @option params  :formulation [String]  for the yarrrml transformer, what is the input file format (default 'csv')
-# @option params  :inifile_path [String]  (/data/[datatype_tag].ini)  FROM THE PERSPECTIVE OF THE DOCKER INSTANCE
-# @option params  :inifile_name [String]  ([datatype_tag].ini)
-#
+# @option params   :datatype_tag [String] (required)  a one-word indicator of the data type.  This is considered the "base" for all other filenames (see below)
+# @option params   :data_path_server [String]  (/data) the path to data from the server perspective (default for Docker image)
+# @option params   :data_path_client  [String]  (/data) the path to data from the client perspective (default for Docker image)
+# @option params   :config_path_server [String]  (/config) the path to config from the server perspective (default for Docker image)
+# @option params   :config_path_client [String]  (/config) the path to config from the server perspective (default for Docker image)
+# @option params   :formulation [String]  (csv)
+# @option params   :rdfizer_base_url [String] (http://rdfizer:4000) the base URL of the yarrrml_parser (default for a docker)
+# @option params   :yarrrml_transform_base_url [String] ("http://yarrrml_transform:3000")  base URL of the yarrrml transform to rml script (default for a docker)
+
+# @option params   :outputrdffolder [String]  (/data/triples/) - defaults to /data/triples - this folder must exist, even if left to default.  NOTE - this path is not relative to the host, it is relative to the docker rdfizer, so it begins with /data not ./data)
 # @return [YARRRML_Transform]
   def initialize(params = {}) # get a name from the "new" call, or set a default
     
-
     @datatype_tag = params.fetch( :datatype_tag, nil)
     unless @datatype_tag
           $stderr.puts "must have a datatype_tag parameter.  Aborting"
           self.failure = true
           return nil
     end
-    @datafile = params.fetch(:datafile, "/data/" + @datatype_tag + ".csv")
-    unless File.exists?(@datafile)
-        $stderr.puts "the CSV file #{@datafile} doesn't exist!  Aborting"
-        self.failure = true
-        return nil
-        #abort "the CSV file #{@datafile} doesn't exist!  Aborting"
-    end
+    
+    @data_path_client = params.fetch(:data_path_client, "/data")   # from client perspective (default for docker)
+    @data_path_server = params.fetch(:data_path_server, self.data_path_client)     # potentially from Docker image perspective (default for docker)
+    @config_path_client = params.fetch(:config_path_client, "/config")  # from client perspective (default for docker)
+    @config_path_server = params.fetch(:config_path_server, self.config_path_client)  # potentially from Docker image perspective (default for docker)
+
+    @data_path_client.gsub!('/$', "")   # remove trailing slashes -I'll add them later if I need them
+    @data_path_server.gsub!('/$', "")
+    @config_path_client.gsub!('/$', "")
+    @config_path_server.gsub!('/$', "")
 
 
-    @rdfizer_base_url = params.fetch(:rdfizer_base_url, "http://rdfizer:4000/graph_creation")
-    @outputrdffolder = params.fetch(:outputrdffolder, "/data/triples")
+    @rdfizer_base_url = params.fetch(:rdfizer_base_url, "http://rdfizer:4000")
+    @yarrrml_transform_base_url = params.fetch(:yarrrml_transform_base_url, "http://yarrrml_transform:3000")
+    @rdfizer_base_url.gsub!('/$', "")
+    @yarrrml_transform_base_url.gsub!('/$', "")
+    
+    
+    @outputrdffolder = params.fetch(:outputrdffolder, "#{self.data_path_server}/triples")
     @formulation = params.fetch(:formulation, "csv")
-    @datafile = params.fetch(:datafile, "/data/" + @datatype_tag + ".csv")
-    @datafile_path = params.fetch(:datafile_path, "/data")
-    @outputrmlfile = params.fetch(:outputrmlfile, "/data/#{self.datatype_tag}_rml.ttl")
-    @yarrrmlfilename = params.fetch(:yarrrmlfilename, "/data/#{self.datatype_tag}_yarrrml.yaml")
-    @yarrrmltemplate = params.fetch(:yarrrmltemplate, "/config/#{self.datatype_tag}_yarrrml_template.yaml")
-    @inifile_path = params.fetch(:inifile_path, "/data/#{self.datatype_tag}.ini")
-    @inifile_name = params.fetch(:inifile_name, "#{self.datatype_tag}.ini")
-
+    @datafile = params.fetch(:datafile, "#{self.data_path_server}/#{self.datatype_tag}.csv")
+    @outputrmlfile = params.fetch(:outputrmlfile, "#{self.data_path_server}/#{self.datatype_tag}_rml.ttl")
+    @yarrrmlfilename_client = params.fetch(:yarrrmlfilename, "#{self.data_path_client}/#{self.datatype_tag}_yarrrml.yaml")
+    @yarrrmlfilename_server = params.fetch(:yarrrmlfilename, "#{self.data_path_server}/#{self.datatype_tag}_yarrrml.yaml")
+    @yarrrmltemplate = params.fetch(:yarrrmltemplate, "#{self.config_path_client}/#{self.datatype_tag}_yarrrml_template.yaml")
+    @inifile_client = params.fetch(:inifile_client, "#{self.data_path_client}/#{self.datatype_tag}.ini")
+    @inifile_server = params.fetch(:inifile_server, "#{self.data_path_server}/#{self.datatype_tag}.ini")   # this will be a docker image in almost all cases
     
-$stderr.puts "writing", self.datafile_path + "/" + self.inifile_name, self.datafile_path, self.outputrdffolder, self.outputrmlfile, self.datatype_tag
-    write_ini(self.datafile_path + "/" + self.inifile_name, self.datafile_path, self.outputrdffolder, self.outputrmlfile, self.datatype_tag)
     
-    # transform appropriate template with this data
-    File.open(self.yarrrmltemplate, "r") {|f| @template = f.read}
-    @template.gsub!("|||DATA|||", self.datafile)
-    @template.gsub!("|||FORMULATION|||", self.formulation)
-    File.open(self.yarrrmlfilename, "w") {|f| f.puts @template}
-    $stderr.puts "Ready to yarrrml transform #{self.datatype_tag} from #{self.yarrrmlfilename} "
+    write_ini()
+    
+    transform_template()
+    
     return self
 
   end
   
 
-  def write_ini(inifile = self.inifile, path = self.datafile_path, rdffolder = self.outputrdffolder, rmlfile = self.outputrmlfile, datatype = self.datatype_tag)
+
+  def transform_template()
+# transform appropriate template with this data
+
+    File.open(self.yarrrmltemplate, "r") {|f| @template = f.read}
+    @template.gsub!("|||DATA|||", self.datafile)
+    @template.gsub!("|||FORMULATION|||", self.formulation)
+    File.open(self.yarrrmlfilename_client, "w") {|f| f.puts @template}
+    $stderr.puts "Ready to yarrrml transform #{self.datatype_tag} from #{self.yarrrmlfilename_client} "
+
+  end
+  
+  
+
+
+  def write_ini(inifile = self.inifile_client,
+                path = self.data_path_server,
+                rdffolder = self.outputrdffolder,
+                rmlfile = self.outputrmlfile,
+                datatype = self.datatype_tag)
+
     configfilecontent = <<CONFIG
 [default]
 main_directory: #{path}
@@ -109,9 +135,12 @@ name: #{datatype}
 mapping: #{rmlfile}
 
 CONFIG
-    #$stderr.puts "inifile #{inifile} \nconfig #{configfilecontent}\n"
+
     File.open(inifile, "w"){|f| f.puts configfilecontent}
+
   end
+  
+  
   
 # Executes the yarrrml to rml transformation 
 #
@@ -121,24 +150,23 @@ CONFIG
   def yarrrml_transform
     $stderr.puts "running docker yarrrml-parser:ejp-latest"
     #parser_start_string = "docker run -e PARSERIN=#{self.yarrrmlfilename} -e PARSEROUT=#{self.outputrmlfile} --rm --name yarrrml-parser -v $PWD/data:/data markw/yarrrml-parser-ejp:latest"
-    $stderr.puts "parser start with: PARSERIN=#{self.yarrrmlfilename} -e PARSEROUT=#{self.outputrmlfile}"
-    resp = RestClient.get("http://yarrrml_transform:3000/?parserin=#{self.yarrrmlfilename}&parserout=#{self.outputrmlfile}")
-    #system(parser_start_string)
+    $stderr.puts "yarrrml to rml starting with: #{self.yarrrml_transform_base_url} PARSERIN=#{self.yarrrmlfilename_server} -e PARSEROUT=#{self.outputrmlfile}"
+    resp = RestClient.get("#{self.yarrrml_transform_base_url}/?parserin=#{self.yarrrmlfilename_server}&parserout=#{self.outputrmlfile}")
     $stderr.puts "#{resp}: rml file has been created in #{self.outputrmlfile} - ready to make FAIR data"
   end
+  
+  
   
 # Executes the CSV to RDF based on the RML
 #
 # no parameters
 #
 #executes the sdmrdfizer transformation using the .ini file created by the 'initialize' routine
-  
   def make_fair_data
-    $stderr.puts "making FAIR data with #{self.rdfizer_base_url + self.inifile_path}"  # this is sdmrdfizer
-    response = RestClient.get(self.rdfizer_base_url + self.inifile_path)
+    $stderr.puts "making FAIR data with #{self.rdfizer_base_url}/graph_creation/#{self.inifile_server}"  # this is sdmrdfizer
+    response = RestClient.get(self.rdfizer_base_url + "/graph_creation" + self.inifile_server)
     $stderr.puts response.code
-    $stderr.puts "FAIR data is avaialable in .#{self.outputrdffolder}" + "/" + self.datatype_tag + ".nt"
-    #return File.read(self.outputrdffolder + self.datatype_tag + ".nt")
+    $stderr.puts "FAIR data is avaialable in .#{self.outputrdffolder}/#{self.datatype_tag}.nt"
   end
   
   

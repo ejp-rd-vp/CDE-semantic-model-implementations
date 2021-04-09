@@ -1,0 +1,22 @@
+version: "2.0"
+services:
+
+
+    yarrrml_transform:
+        image: markw/yarrrml-parser-ejp:latest
+        container_name: yarrrml_transform
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./data:/data
+
+
+    rdfizer:
+        image: markw/sdmrdfizer_ejp:0.1.0
+        container_name: rdfizer
+        ports:
+            - "4000:4000"
+        volumes:
+            - ./data:/data
+            - ./config:/config
+
