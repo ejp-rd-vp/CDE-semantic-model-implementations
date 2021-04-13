@@ -1,0 +1,260 @@
+---
+prefixes:
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  ex: http://ejp-rd.eu/ids/
+  obo: http://purl.obolibrary.org/obo/
+  sio: http://semanticscience.org/resource/
+  vocab: http://ejp-rd.eu/vocab/
+  pico: http://data.cochrane.org/ontologies/pico/
+  ndfrt: http://purl.bioontology.org/ontology/NDFRT/
+  edam: http://purl.bioontology.org/ontology/EDAM/
+  this: http://marks.test/this/
+sources:
+  questionsSIO-source:
+    access: "|||DATA|||"
+    referenceFormulation: "|||FORMULATION|||"
+    iterator: "$"
+mappings:
+  identifier_has_value:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#ID
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(pid)"
+        datatype: xsd:string
+  identifier_denotes:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#ID
+    po:
+    - predicates: a
+      objects:
+        value: http://semanticscience.org/resource/identifier
+        type: iri
+    - predicates: a
+      objects:
+        value: http://semanticscience.org/resource/identifier
+        type: iri
+    - predicates: http://semanticscience.org/resource/denotes
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#patientRole
+        type: iri
+  person_has_role:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)#Person
+    po:
+    - predicates: a
+      objects:
+        value: http://semanticscience.org/resource/person
+        type: iri
+    - predicates: a
+      objects:
+        value: http://semanticscience.org/resource/person
+        type: iri
+    - predicates: http://semanticscience.org/resource/has-role
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#patientRole
+        type: iri
+  patientRole_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#patientRole
+    po:
+    - predicates: a
+      objects:
+        value: http://purl.obolibrary.org/obo/OBI_0000093
+        type: iri
+    - predicates: a
+      objects:
+        value: http://semanticscience.org/resource/role
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: Patient
+        datatype: xsd:string
+  patientRole_realized_questionnaire_test:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#patientRole
+    po:
+    - predicates: http://semanticscience.org/resource/is-realized-in
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#questionnaire_test
+        type: iri
+  questionnaire_test_process_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/process
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: "$(processURI)"
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: "$(processLabel)"
+        datatype: xsd:string
+  questionnaire_test_process_annotation_start:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test
+    po:
+    - predicates: http://semanticscience.org/resource/start-time
+      objects:
+        value: "$(startDate)"
+        datatype: xsd:dateTime
+  questionnaire_test_process_has_output:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test
+    po:
+    - predicates: http://semanticscience.org/resource/has-output
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+        type: iri
+  questionnaire_test_Output_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/information-content-entity
+        type: iri
+  questionnaire_test_Output_type_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: rdf:type
+      objects:
+        value: "$(measurementURI)"
+        type: iri
+  questionnaire_test_Output_type_label_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: "$(measurementLabel)"
+        datatype: xsd:string
+  questionnaire_test_Output_value_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(data)"
+        datatype: xsd:string
+  questionnaire_test_Output_value_comments:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: rdfs:comment
+      objects:
+        value: "$(comments)"
+        datatype: xsd:string
+  questionnaire_test_output_annotation_start:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: http://semanticscience.org/resource/start-time
+      objects:
+        value: "$(startDate)"
+        datatype: xsd:dateTime
+  questionnaire_test_has_input_thisQuestion:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test
+    po:
+    - predicates: http://semanticscience.org/resource/has-input
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#someQuestionAuthoringProcess_Output
+        type: iri
+  questionnaire_test_has_input_thisQuestion_annotation:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#someQuestionAuthoringProcess_Output
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/information-content-entity
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/SIO_000085
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: "$(promQuestion)"
+        datatype: xsd:string
+  input_thisQuestion_has_value:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#someQuestionAuthoringProcess_Output
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(promQuestion)"
+        datatype: xsd:string
+  inout_from_someQuestionAuthoringProcess_refers_to_concepts:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#someQuestionAuthoringProcess_Output
+    po:
+    - predicates: http://semanticscience.org/resource/refers-to
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#promURI_TypedAttributeNode
+        type: iri
+    - predicates: http://semanticscience.org/resource/refers-to
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#ontologyURI_TypedAttributeNode
+        type: iri
+  inout_from_someQuestionAuthoringProcess_refers_to_concept_promURI_type:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#promURI_TypedAttributeNode
+    po:
+    - predicates: rdf:type
+      objects:
+        value: "$(promURI)"
+        type: iri
+  inout_from_someQuestionAuthoringProcess_refers_to_concept_ontologyURI_type:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#ontologyURI_TypedAttributeNode
+    po:
+    - predicates: rdf:type
+      objects:
+        value: "$(ontologyURI)"
+        type: iri
+  inout_from_questionnaire_test_refers_to_concepts:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#questionnaire_test_Output
+    po:
+    - predicates: http://semanticscience.org/resource/refers-to
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#promURI_TypedAttributeNode
+        type: iri
+  inout_from_questionnaire_test_refers_to_concept_promURI_type:
+    sources:
+    - questionsSIO-source
+    s: this:individual_$(pid)_$(uniqid)#promURI_TypedAttributeNode
+    po:
+    - predicates: rdf:type
+      objects:
+        value: "$(promURI)"
+        type: iri
