@@ -115,7 +115,7 @@ mappings:
      
     s: this:individual_$(Identifier)#QualitySymptom
     po: 
-      - predicates: SIO_000642   #is-base-for
+      - predicates: sio:SIO_000642   #is-base-for
         objects: 
             value: this:individual_$(Identifier)#MVSymptom
             type: iri

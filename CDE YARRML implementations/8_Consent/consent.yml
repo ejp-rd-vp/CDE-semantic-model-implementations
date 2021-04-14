@@ -68,7 +68,7 @@ mappings:
     source:
      - ['source_1.csv~csv'] 
      
-    s: $(Consent_document)
+    s: this:$(Consent_document)
     po: 
       - predicates: a 
         objects: 
