@@ -515,7 +515,7 @@ mappings:
       objects:
         value: first confirmed visit
         datatype: xsd:string
-  1617968269956589_process_custom_annotation:
+  16185509626243196_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_first_contact_process
@@ -770,7 +770,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(ghvs_variant)"
+        value: "$(hgvs_variant)"
         datatype: xsd:string
   patientRole_phenotyping_process_process_has_output:
     sources:

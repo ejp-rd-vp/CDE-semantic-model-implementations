@@ -121,4 +121,4 @@ Note that this will output the template to STDOUT, so capture it to a file.  For
 XXXXXX_yarrrml_template.yaml, and should live in the ./config folder.   XXXXXX is the 'tag' of the data type (e.g. 'height')
 
 
-The "transform.rb" script will run as a demo - using the demo height data in the ./data folder, and the template that is created by the code above.  Output will appear in the ./data/triples folder.
+The "run_me_to_test.rb" script will run as a demo - using the demo height data in the ./data folder, and the template that is created by the code above.  Output will appear in the ./data/triples folder.

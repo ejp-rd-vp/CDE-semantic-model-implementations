@@ -804,14 +804,14 @@ class YARRRML_Template_Builder
           @mappings << mapping_clause(
             "inout_from_#{inout_process_tag}_refers_to_concepts",
             ["#{source_tag}-source"],
-            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
+            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
             
             references
             
           ) 
           
           position = 0
-          input_refers_to.each do |e|
+          inout_refers_to.each do |e|
             uniqtype = Digest::SHA2.hexdigest e
             @mappings << mapping_clause(
               "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_type",

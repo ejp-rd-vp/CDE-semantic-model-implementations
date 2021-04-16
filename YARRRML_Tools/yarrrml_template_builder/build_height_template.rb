@@ -12,8 +12,6 @@ b = YARRRML_Template_Builder.new({
 b.person_identifier_role_mappings({
                                     personid_column: "pid",
                                     uniqueid_column: "uniqid",
-                                    identifier_type: "https://ejp-rd.eu/vocab/identifier",
-                                    person_type: "https://ejp-rd.eu/vocab/Person",
                                     person_role: "patientRole",
                                     role_type: 'obo:OBI_0000093',
                                     role_label: "Patient"

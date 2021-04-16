@@ -1,6 +1,15 @@
 version: "2.0"
 services:
 
+  graphdb:
+    image: graph-db:9.7.0
+    restart: always
+    hostname: graphdb
+    ports:
+      - 7200:7200
+    volumes:
+      - graphdb-data:/opt/graphdb/home
+
 
     yarrrml_transform:
         image: markw/yarrrml-parser-ejp:latest
@@ -20,3 +29,8 @@ services:
             - ./data:/data
             - ./config:/config
 
+
+    
+volumes:
+  graphdb-data:
+    external: true

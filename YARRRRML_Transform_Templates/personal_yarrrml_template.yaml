@@ -276,7 +276,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(genderLabel)"
+        value: "$(sexLabel)"
         datatype: xsd:string
   inout_from_age_measuring_procedure_refers_to_concepts:
     sources:
@@ -285,17 +285,26 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#birthdateQualityURI_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#c6fc6dc0a4932993c0c03b7035a06d89b1f6fabde3e62dfaaf78f52c5b2caaeb_TypedAttributeNode
         type: iri
-  inout_from_age_measuring_procedure_refers_to_concept_birthdateQualityURI_type:
+  inout_from_age_measuring_procedure_refers_to_concept_c6fc6dc0a4932993c0c03b7035a06d89b1f6fabde3e62dfaaf78f52c5b2caaeb_type:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#birthdateQualityURI_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#c6fc6dc0a4932993c0c03b7035a06d89b1f6fabde3e62dfaaf78f52c5b2caaeb_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
-        value: "$(birthdateQualityURI)"
+        value: obo:NCIT_C6861
         type: iri
+  inout_from_age_measuring_procedure_refers_to_concept_c6fc6dc0a4932993c0c03b7035a06d89b1f6fabde3e62dfaaf78f52c5b2caaeb_label:
+    sources:
+    - cde_personal_information-source
+    s: this:individual_$(pid)_$(uniqid)#c6fc6dc0a4932993c0c03b7035a06d89b1f6fabde3e62dfaaf78f52c5b2caaeb_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: Birth Date
+        datatype: xsd:string
   inout_from_sex_measuring_procedure_refers_to_concepts:
     sources:
     - cde_personal_information-source
@@ -303,17 +312,26 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#genderURI_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#c09d19f7421a185842bfaf93e09d97571909f46bb66e7204995b28178f1aa6cb_TypedAttributeNode
         type: iri
-  inout_from_sex_measuring_procedure_refers_to_concept_genderURI_type:
+  inout_from_sex_measuring_procedure_refers_to_concept_c09d19f7421a185842bfaf93e09d97571909f46bb66e7204995b28178f1aa6cb_type:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#genderURI_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#c09d19f7421a185842bfaf93e09d97571909f46bb66e7204995b28178f1aa6cb_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
-        value: "$(genderURI)"
+        value: obo:NCIT_C28421
         type: iri
+  inout_from_sex_measuring_procedure_refers_to_concept_c09d19f7421a185842bfaf93e09d97571909f46bb66e7204995b28178f1aa6cb_label:
+    sources:
+    - cde_personal_information-source
+    s: this:individual_$(pid)_$(uniqid)#c09d19f7421a185842bfaf93e09d97571909f46bb66e7204995b28178f1aa6cb_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: Sex
+        datatype: xsd:string
   person_has_attribute_from_age_measuring_procedure:
     sources:
     - cde_personal_information-source
@@ -330,5 +348,5 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/SIO_000008
       objects:
-        value: this:individual_$(pid)_$(uniqid)#genderURI_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#sexURI_TypedAttributeNode
         type: iri
