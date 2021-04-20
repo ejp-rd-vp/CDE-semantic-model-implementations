@@ -559,7 +559,7 @@ class YARRRML_Template_Builder
     process_with_output_tag = params.fetch(:process_with_output_tag, "thisprocess")  # some one-word name
     output_value = params.fetch(:output_value, nil)
     output_value_column = params.fetch(:output_value_column, nil)
-    output_type = params.fetch(:output_type, SIO["realizable-entity"][self.sio_verbose])
+    output_type = params.fetch(:output_type, SIO["information-content-entity"][self.sio_verbose])
     output_type_column = params.fetch(:output_type_column, nil)
     output_type_label = params.fetch(:output_type_label, "measurement-value")
     output_type_label_column = params.fetch(:output_type_label_column, nil)
@@ -726,6 +726,8 @@ class YARRRML_Template_Builder
 #@option params  :inout_refers_to_columns [Array] ([]) an array of column headers for columns of ontologyURIs
 #@option params  :inout_refers_to_label  [Array]  ([]) am array of ontology term/labels
 #@option params  :inout_refers_to_label_columns  [Array]  ([])  an array of column headers for columns of ontology term/labels
+#@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of the patient?
+
 
   def input_output_refers_to(params)
     inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
@@ -733,18 +735,21 @@ class YARRRML_Template_Builder
     inout_refers_to_label = params.fetch(:inout_refers_to_label, [] ) 
     inout_refers_to_columns = params.fetch(:inout_refers_to_columns, [])  
     inout_refers_to_label_columns = params.fetch(:inout_refers_to_label_columns, [] ) 
+    is_attribute = params.fetch(:is_attribute, true ) 
     
     abort "must specify in_out_process_tag" unless inout_process_tag
     
     if !(inout_refers_to_columns.empty?)
       #$stderr.puts "checking inout columns"
           references = []
+          attributes = []
           types = []
           labels = Hash.new([])
           
           position = 0
           inout_refers_to_columns.each do |e|
             references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
+            attributes << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
             types << ["rdf:type", "$(#{e})", "iri"]
             labels[e] << ["rdfs:label", "$(#{inout_refers_to_label_columns[position]})" ] if !(inout_refers_to_label_columns.empty?)
             position += 1
@@ -758,6 +763,16 @@ class YARRRML_Template_Builder
               references
                 
           )
+          if is_attribute
+            @mappings << mapping_clause(
+            "has_attribute_of_inout_from_#{inout_process_tag}",
+            ["#{source_tag}-source"],
+            "this:individual_$(#{@personid_column})#Person",
+            
+            attributes
+            
+            )
+          end
 
           position = 0
           inout_refers_to_columns.each do |e|
@@ -790,12 +805,14 @@ class YARRRML_Template_Builder
 
     elsif !(inout_refers_to.empty?)
           references = []
+          attributes = []
           types = []
           labels = Hash.new([])
           position = 0
           inout_refers_to.each do |e|
             uniqtype = Digest::SHA2.hexdigest e
             references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
+            attributes << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
             types << ["rdf:type", "#{e}", "iri"]
             labels[e] << ["rdfs:label", inout_refers_to_label[position] ] if !(inout_refers_to_label.empty?)
             position += 1
@@ -809,7 +826,26 @@ class YARRRML_Template_Builder
             references
             
           ) 
+          if is_attribute
+            @mappings << mapping_clause(
+            "has_attribute_of_inout_from_#{inout_process_tag}",
+            ["#{source_tag}-source"],
+            "this:individual_$(#{@personid_column})#Person",
+            
+            attributes
+            
+            ) 
+          end
           
+          @mappings << mapping_clause(
+            "inout_from_#{inout_process_tag}_refers_to_concepts",
+            ["#{source_tag}-source"],
+            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
+            
+            references
+            
+          ) 
+
           position = 0
           inout_refers_to.each do |e|
             uniqtype = Digest::SHA2.hexdigest e
@@ -844,7 +880,7 @@ class YARRRML_Template_Builder
 
 
 
-# creates the person_has_attribute portion of the CDE
+# DEPRECATED  creates the person_has_attribute portion of the CDE
 #
 # Parameters passed as a hash.
 #
@@ -852,60 +888,62 @@ class YARRRML_Template_Builder
 #
 # the inout-refers-to portion requires an array of elements or column headers.  That must be the same here, to make the connection
 #
+# DEPRECATED
+#
 # @param  params [Hash]  a hash of options
 # @option params  :inout_process_tag [String]  ("unidentifiedProcess")
 # @option params  :inout_refers_to [Array]  ([])
 # @option params  :inout_refers_to_columns [Array] ([])
-  def person_has_attribute(params)
-    inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
-    inout_refers_to = params.fetch(:inout_refers_to, [] ) 
-    inout_refers_to_columns = params.fetch(:inout_refers_to_columns, [] ) 
-    
-    abort "must specify inout_process_tag" unless inout_process_tag
-    abort "must specify inout_refers_to or inout_refers_to_columns" unless (inout_refers_to.first or inout_refers_to_columns.first)
-    
-    
-    if !(inout_refers_to_columns.empty?)
-      #$stderr.puts "checking inout columns"
-          references = []
-          
-          position = 0
-          inout_refers_to_columns.each do |e|
-            references << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
-            position += 1
-          end   
-
-          @mappings << mapping_clause(
-              "person_has_attribute_from_#{inout_process_tag}",
-              ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})#Person",
-              
-              references
-                
-          )
-
-    elsif !(inout_refers_to.empty?)
-          references = []
-          position = 0
-          inout_refers_to.each do |e|
-            uniqtype = Digest::SHA2.hexdigest e
-            references << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
-            position += 1
-          end   
-
-          @mappings << mapping_clause(
-            "person_has_attribute_from_#{inout_process_tag}",
-            ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})#Person",
-            
-            references
-            
-          ) 
-          
- 
-    end
-
-  end
+  #def person_has_attribute(params)
+  #  inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
+  #  inout_refers_to = params.fetch(:inout_refers_to, [] ) 
+  #  inout_refers_to_columns = params.fetch(:inout_refers_to_columns, [] ) 
+  #  
+  #  abort "must specify inout_process_tag" unless inout_process_tag
+  #  abort "must specify inout_refers_to or inout_refers_to_columns" unless (inout_refers_to.first or inout_refers_to_columns.first)
+  #  
+  #  
+  #  if !(inout_refers_to_columns.empty?)
+  #    #$stderr.puts "checking inout columns"
+  #        references = []
+  #        
+  #        position = 0
+  #        inout_refers_to_columns.each do |e|
+  #          references << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
+  #          position += 1
+  #        end   
+  #
+  #        @mappings << mapping_clause(
+  #            "person_has_attribute_from_#{inout_process_tag}",
+  #            ["#{source_tag}-source"],
+  #            "this:individual_$(#{@personid_column})#Person",
+  #            
+  #            references
+  #              
+  #        )
+  #
+  #  elsif !(inout_refers_to.empty?)
+  #        references = []
+  #        position = 0
+  #        inout_refers_to.each do |e|
+  #          uniqtype = Digest::SHA2.hexdigest e
+  #          references << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
+  #          position += 1
+  #        end   
+  #
+  #        @mappings << mapping_clause(
+  #          "person_has_attribute_from_#{inout_process_tag}",
+  #          ["#{source_tag}-source"],
+  #            "this:individual_$(#{@personid_column})#Person",
+  #          
+  #          references
+  #          
+  #        ) 
+  #        
+  #
+  #  end
+  #
+  #end
   
 
 # creates the output_has_unit portion of the CDE
