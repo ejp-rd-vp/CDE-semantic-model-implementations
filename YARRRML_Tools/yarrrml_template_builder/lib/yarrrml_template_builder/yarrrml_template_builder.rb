@@ -738,7 +738,8 @@ class YARRRML_Template_Builder
     is_attribute = params.fetch(:is_attribute, true ) 
     
     abort "must specify in_out_process_tag" unless inout_process_tag
-    
+    $stderr.puts "is an attribute #{is_attribute}"
+
     if !(inout_refers_to_columns.empty?)
       #$stderr.puts "checking inout columns"
           references = []

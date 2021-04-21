@@ -33,5 +33,12 @@ def execute
   f.write concatenated
   f.close
   
-  `curl -v -L -X PUT -H "Content-type: application/n-triples" --data-binary @/data/triples/concatenated.nt http://graphdb:7200/repositories/cde/statements`
+  if ENV['GraphDB_User']
+    user = ENV['GraphDB_User']
+    pass = ENV['GraphDB_Pass']
+    `curl -v -L -X PUT -H "Content-type: application/n-triples" --data-binary @/data/triples/concatenated.nt http://#{user}:#{pass}@graphdb:7200/repositories/cde/statements`
+  else
+    `curl -v -L -X PUT -H "Content-type: application/n-triples" --data-binary @/data/triples/concatenated.nt http://graphdb:7200/repositories/cde/statements`
+  end
+
 end
