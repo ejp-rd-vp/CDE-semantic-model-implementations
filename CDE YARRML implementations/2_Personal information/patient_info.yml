@@ -1,5 +1,16 @@
 
 
+
+################################################################
+################## Required CSV column's names: ################
+
+# pid: person identifier
+# uniqid: unique identifier
+# birthdate: patient birthdate
+# sex_ncit_code: NCIT sex code as NCIT_XXXXXX that correspond to their biological sex
+
+###############################################################
+
 prefixes: 
 
   obo: http://purl.obolibrary.org/obo/ 
@@ -7,216 +18,196 @@ prefixes:
   sio: https://semanticscience.org/resource/ 
   dct: http://purl.org/dc/terms/
 
+sources:
+  cde_source: # cde_source: ["source_1.csv~csv"] For YARRRML Matey
+    access: "|||DATA|||"
+    referenceFormulation: "|||FORMULATION|||"
+    iterator: "$"
+
 mappings: 
 
 # Birthdate
            
-  person_role_birthdate: 
+  person_birthdate: 
 
-    sources: 
-      - ['source_1.csv~csv'] 
+    sources:
+    - cde_source
 
-    s: this:individual_$(Identifier)#Person 
+    s: this:individual_$(pid)#Person
     po: 
 
       - predicates: a 
         objects: 
-            value: obo:NCBITaxon_9606 
+            value: sio:SIO_000498 
             type: iri
 
-      - predicates: sio:SIO_000228 #has-role 
+      - predicates: sio:SIO_000228 
         objects: 
-            value: this:individual_$(Identifier)#RoleBirthdate
+            value: this:individual_$(pid)_$(uniqid)#BirthdateRole
             type: iri 
+
+      - predicates: sio:SIO_000217 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#BirthdateQuality
+            type: iri
             
-  role_process_birthdate:
+  role_birthdate:
   
-    source:
-     - ['source_1.csv~csv'] 
+    sources:
+    - cde_source 
      
-    s: this:individual_$(Identifier)#RoleBirthdate 
+    s: this:individual_$(pid)_$(uniqid)#BirthdateRole
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri
+
+      - predicates: sio:SIO_000356  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#BirthdateProcess
+            type: iri
+            
+  process_birthdate:
+  
+    sources:
+    - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#BirthdateProcess 
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000006  
+            type: iri 
+
+      - predicates: sio:SIO_000229  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#BirthdateOutput
+            type: iri
+
+            
+  quality_birthdate:
+   
+    sources:
+    - cde_source 
+     
+    s: this:individual_$(pid)_$(uniqid)#BirthdateQuality
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C68615 
+            type: iri 
+
+      - predicates: sio:SIO_000642  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#BirthdateQuality
+            type: iri
+            
+  output_birthdate:
+    sources:
+    - cde_source 
+     
+    s: this:individual_$(pid)_$(uniqid)#BirthdateQuality
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000340 
+            type: iri 
+
+      - predicates: sio:SIO_000300 
+        objects: 
+            value: $(birthdate)
+            datatype: xsd:date
+
+# Sex
+           
+  person_sex: 
+
+    sources:
+    - cde_source
+
+    s: this:individual_$(pid)#Person
+    po: 
+
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000498 
+            type: iri
+
+      - predicates: sio:SIO_000228 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#SexRole
+            type: iri 
+
+      - predicates: sio:SIO_000217 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#SexQuality
+            type: iri
+            
+  role_sex:
+  
+    sources:
+    - cde_source 
+     
+    s: this:individual_$(pid)_$(uniqid)#SexRole
     po: 
       - predicates: a 
         objects: 
             value: obo:OBI_0000093
             type: iri 
 
-      - predicates: sio:SIO_000356  #is-realized-in 
+      - predicates: sio:SIO_000356  
         objects: 
-            value: this:individual_$(Identifier)#ProcessBirthdate
+            value: this:individual_$(pid)_$(uniqid)#SexProcess
             type: iri
             
-  process_mv_birthdate:
+  process_sex:
   
-    source:
-     - ['source_1.csv~csv'] 
+    sources:
+    - cde_source
      
-    s: this:individual_$(Identifier)#Process 
+    s: this:individual_$(pid)_$(uniqid)#SexProcess 
     po: 
       - predicates: a 
         objects: 
-            value: sio:SIO_000006  #process
+            value: sio:SIO_000006  
             type: iri 
 
-      - predicates: sio:SIO_000229  #has-output 
+      - predicates: sio:SIO_000229  
         objects: 
-            value: this:individual_$(Identifier)#MVBirthdate
+            value: this:individual_$(pid)_$(uniqid)#SexOutput
             type: iri
             
-  person_quality_birthdate:
+  quality_sex:
    
-    source:
-     - ['source_1.csv~csv'] 
+    sources:
+    - cde_source 
      
-    s: this:individual_$(Identifier)#Person 
-    po: 
-      - predicates: sio:SIO_000217 #has-quality 
-        objects: 
-            value: this:individual_$(Identifier)#QualityBirthdate
-            type: iri
-            
-      
-            
-  quality_mv_birthdate:
-   
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#QualityBirthdate
+    s: this:individual_$(pid)_$(uniqid)#SexQuality
     po: 
       - predicates: a 
         objects: 
-            value: obo:NCIT_C68615 # Birth date
+            value: obo:NCIT_C28421 
             type: iri 
 
-      - predicates: sio:SIO_000642  #is-base-for 
+      - predicates: sio:SIO_000642  
         objects: 
-            value: this:individual_$(Identifier)#MVBirthdate
+            value: this:individual_$(pid)_$(uniqid)#SexQuality
             type: iri
             
-  mv_v_birthdate:
-    source:
-     - ['source_1.csv~csv'] 
+  output_sex:
+
+    sources:
+    - cde_source 
      
-    s: this:individual_$(Identifier)#MVBirthdate
+    s: this:individual_$(pid)_$(uniqid)#SexQuality
     po: 
       - predicates: a 
         objects: 
-            value: sio:SIO_000340 #realizable entity
+            value: sio:SIO_000340 
             type: iri 
 
-      - predicates: sio:SIO_000300 #has-value 
-        objects: 
-            value: $(Birthdate)
-            type: xsd:dateTime
-
-      - predicates: rdfs:label
-        objects: 
-            value: $(Birthdate)
-            type: xsd:dateTime
-
-# Gender
-
-  person_role_gender:
-    sources: 
-      - ['source_1.csv~csv'] 
-    s: this:individual_$(Identifier)#Person 
-    po:  
-      - predicates: sio:SIO_000228 #has-role 
-        objects: 
-            value: this:individual_$(Identifier)#RoleGender 
-            type: iri
-
-  identifier_role_gender:
-    sources: 
-      - ['source_1.csv~csv'] 
-    s: this:individual_$(Identifier)#ID 
-    po: 
-      - predicates: sio:SIO_000020 #denotes 
-        objects: 
-            value: this:individual_$(Identifier)#RoleGender
-            type: iri
-
-  role_process_gender:
-    sources: 
-      - ['source_1.csv~csv'] 
-    s: this:individual_$(Identifier)#RoleGender 
-    po: 
       - predicates: a 
         objects: 
-            value: obo:OBI_0000093
-            type: iri 
-
-      - predicates: sio:SIO_000356 #is-realized-in 
-        objects: 
-            value: this:individual_$(Identifier)#ProcessGender
-            type: iri 
-
-  process_mv_gender:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessGender
-    po: 
-      - predicates: a 
-        objects: 
-            value: sio:SIO_000006  #process
-            type: iri 
-
-      - predicates: sio:SIO_000229  #has-output 
-        objects: 
-            value: this:individual_$(Identifier)#MVGender
+            value: obo:$(sex_ncit_code)
             type: iri
-            
-  person_quality_gender:
-   
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#Person 
-    po: 
-      - predicates: sio:SIO_000217 #has-quality 
-        objects: 
-            value: this:individual_$(Identifier)#QualityBirthdate
-            type: iri
-            
-      
-            
-  quality_mv_gender:
-   
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#QualityGender
-    po: 
-      - predicates: a 
-        objects: 
-            value: obo:NCIT_C17357 #Gender
-            type: iri 
-
-      - predicates: sio:SIO_000642  #is-base-for 
-        objects: 
-            value: this:individual_$(Identifier)#MVGender
-            type: iri
-            
-  mv_value_gender:
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#MVGender
-    po: 
-      - predicates: a 
-        objects: 
-            value: sio:SIO_000340 #realizable entity
-            type: iri 
-
-      - predicates: a
-        objects: 
-            value: $(Gender_ncit)
-            type: iri
-
-      - predicates: rdfs:label
-        objects: 
-            value: $(Gender)
-            type: xsd:string
