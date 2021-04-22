@@ -9,6 +9,10 @@ services:
       - 7200:7200
     volumes:
       - graphdb-data:/opt/graphdb/home
+    networks:
+      - default
+      #- bootstrap_graphdb_net 
+
 
 #note that if you have not set-up specific security on graphdb,
 #you do not need to set the environment
@@ -28,6 +32,9 @@ services:
     volumes:
         - ./data:/data
         - ./config:/config
+    networks:
+      - default
+      #- bootstrap_graphdb_net 
         
         
   yarrrml_transform: 
@@ -37,6 +44,9 @@ services:
       - "3000:3000"
     volumes:
       - ./data:/data
+    networks:
+      - default
+      #- bootstrap_graphdb_net 
   
   
   rdfizer: 
@@ -47,9 +57,20 @@ services:
     volumes:
       - ./data:/data
       - ./config:/config
+    networks:
+      - default
+      #- bootstrap_graphdb_net 
 
     
 volumes:
   graphdb-data:
     external: true
 
+    networks:
+      - default
+      #- bootstrap_graphdb_net 
+        
+# Define networks here
+#networks:
+#  bootstrap_graphdb_net:
+#    external: true

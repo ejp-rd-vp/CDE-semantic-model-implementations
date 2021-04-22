@@ -33,12 +33,22 @@ def execute
   f.write concatenated
   f.close
   
-  if ENV['GraphDB_User']
-    user = ENV['GraphDB_User']
-    pass = ENV['GraphDB_Pass']
-    `curl -v -L -X PUT -H "Content-type: application/n-triples" --data-binary @/data/triples/concatenated.nt http://#{user}:#{pass}@graphdb:7200/repositories/cde/statements`
-  else
-    `curl -v -L -X PUT -H "Content-type: application/n-triples" --data-binary @/data/triples/concatenated.nt http://graphdb:7200/repositories/cde/statements`
-  end
+  user = ENV['GraphDB_User']
+  pass = ENV['GraphDB_Pass']
+  network = "graphdb"
+  network = ENV['networkname'] if ENV['networkname']
+  
+  put_data("http://#{network}:7200/repositories/cde/statements", user, pass)
 
+end
+
+def put_data(url = "http://graphdb:7200/repositories/cde/statements", user = "", pass = "")
+  response = RestClient::Request.new(
+    :method => :put,
+    :url => url,
+    :user => user,
+    :password => pass,
+    :headers => { :content_type => "application/n-triples" }
+  ).execute
+  $stderr.puts response.to_str
 end
