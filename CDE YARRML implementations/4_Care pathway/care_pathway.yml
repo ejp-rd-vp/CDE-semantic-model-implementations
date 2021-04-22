@@ -1,4 +1,14 @@
 
+###############################################################
+################## Required CSV column's names: ################
+
+# pid: person identifier
+# uniqid: unique identifier
+# first_confirm_date: date of the first confirmed visit
+
+################################################################
+
+
 prefixes: 
 
   
@@ -8,109 +18,67 @@ prefixes:
   dct: http://purl.org/dc/terms/
   prov: http://www.w3.org/ns/prov#
 
+sources:
+  cde_source: # cde_source: ["source_1.csv~csv"] For YARRRML Matey
+    access: "|||DATA|||"
+    referenceFormulation: "|||FORMULATION|||"
+    iterator: "$"
 
 mappings: 
             
-  person_role_pathway: 
-
-    sources: 
-      - ['source_1.csv~csv'] 
-
-    s: this:individual_$(Identifier)#Person 
+  person_pathway: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)#Person 
     po: 
       - predicates: a 
         objects: 
-            value: obo:NCBITaxon_9606 
+            value: sio:SIO_000498
+            type: iri
+
+      - predicates: sio:SIO_000228 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#PathwayRole
             type: iri 
 
-      - predicates: sio:SIO_000228 #has-role 
-        objects: 
-            value: this:individual_$(Identifier)#RolePathway
-            type: iri 
+      
             
-  role_p1_pathway:
-  
+  role_pathway:
     source:
-     - ['source_1.csv~csv'] 
+     - cde_source
      
-    s: this:individual_$(Identifier)#RoleBirthdate 
+    s: this:individual_$(pid)_$(uniqid)#PathwayRole
     po: 
       - predicates: a 
         objects: 
             value: obo:OBI_0000093
             type: iri 
 
-      - predicates: sio:SIO_000356  #is-realized-in 
+      - predicates: sio:SIO_000356  
         objects: 
-            value: this:individual_$(Identifier)#ProcessPathway1
+            value: this:individual_$(pid)_$(uniqid)#PathwayProcess
             type: iri
-            
-  p1_p2_pathway:
-  
+
+  process_pathway:
     source:
-     - ['source_1.csv~csv'] 
+     - cde_source
      
-    s: this:individual_$(Identifier)#ProcessPathway1 
+    s: this:individual_$(pid)_$(uniqid)#PathwayProcess
     po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000006
+            type: iri 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C142427
+            type: iri 
       - predicates: a 
         objects: 
             value: obo:NCIT_C159705
             type: iri 
-
-      - predicates: prov:informedBy 
+      - predicates: sio:SIO_000680 
         objects: 
-            value: this:individual_$(Identifier)#ProcessPathway2
-            type: iri
+            value: $(first_confirm_date)
+            type: xsd:date
 
-      - predicates: prov:informedBy 
-        objects: 
-            value: this:individual_$(Identifier)#ProcessPathway3
-            type: iri
-
-      - predicates: prov:informedBy 
-        objects: 
-            value: this:individual_$(Identifier)#ProcessPathway4
-            type: iri
-
-      - predicates: dct:date 
-        objects: 
-            value: $(datepath1)
-            type: iri
-
-  p2_pathway:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessPathway2 
-    po: 
-      - predicates: dct:date 
-        objects: 
-            value: $(datepath2)
-            type: iri
-
-  p3_pathway:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessPathway3 
-    po: 
-      - predicates: dct:date 
-        objects: 
-            value: $(datepath3)
-            type: iri
-            
-  p4_pathway:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessPathway4 
-    po: 
-      - predicates: dct:date 
-        objects: 
-            value: $(datepath4)
-            type: iri
-
-          

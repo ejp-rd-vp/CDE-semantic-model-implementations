@@ -1,3 +1,15 @@
+
+###############################################################
+################## Required CSV column's names: ################
+
+# pid: person identifier
+# uniqid: unique identifier
+# variant: variant code as HGVS nomenclature
+# HP_code: Human phenotype ontological term (code starts after HP_, so its not HP_XXXXXX, just XXXXXX)
+
+################################################################
+
+
 prefixes: 
 
   obo: http://purl.obolibrary.org/obo/ 
@@ -5,379 +17,119 @@ prefixes:
   sio: https://semanticscience.org/resource/ 
   dct: http://purl.org/dc/terms/
   ordo: http://www.orpha.net/ORDO/
-  rdc-meta: http://rdf.biosemantics.org/ontologies/rd-connect/
-  hgnc: http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#
-  dbsnp: https://www.ncbi.nlm.nih.gov/snp/
-  prov: http://www.w3.org/ns/prov#
-  snomedct: http://purl.bioontology.org/ontology/SNOMEDCT/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
 
-mappings:
+sources:
+  cde_source: # cde_source: ["source_1.csv~csv"] For YARRRML Matey
+    access: "|||DATA|||"
+    referenceFormulation: "|||FORMULATION|||"
+    iterator: "$"
 
-#Person
-
-  identifier_role_person:
-
-    source: 
-      - ['source_1.csv~csv'] 
-
-    s: this:individual_$(Identifier)#ID 
+mappings: 
+            
+  person_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)#Person 
     po: 
       - predicates: a 
         objects: 
-            value: obo:NCIT_C80244 # Pseudonym
-            type: iri 
-       
-      - predicates: sio:SIO_000020  #denotes 
-        objects: 
-            value: this:individual_$(Identifier)#RolePerson
+            value: sio:SIO_000498
             type: iri
 
-      - predicates: sio:SIO_000300  #has-value  
+      - predicates: sio:SIO_000228 
         objects: 
-            value: $(Identifier)
-            type: iri
-            
-  person_role_person: 
-
-    sources: 
-      - ['source_1.csv~csv'] 
-
-    s: this:individual_$(Identifier)#Entity 
-    po: 
-      - predicates: a 
-        objects: 
-            value: obo:NCBITaxon_9606 
+            value: this:individual_$(pid)_$(uniqid)#GeneticTestingRole
             type: iri 
 
-      - predicates: a 
+      - predicates: sio:SIO_000228 
         objects: 
-            value: obo:NCIT_C25190 # Person
+            value: this:individual_$(pid)_$(uniqid)#HealthCareRole
             type: iri
 
-      - predicates: sio:SIO_000228 #has-role 
-        objects: 
-            value: this:individual_$(Identifier)#Role
-            type: iri 
-            
-  role_process_person:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#Role 
+  genetic_testing_role_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)_$(uniqid)#GeneticTestingRole 
     po: 
       - predicates: a 
         objects: 
             value: obo:OBI_0000093
+            type: iri
+
+      - predicates: sio:SIO_000356
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#GeneticTestingProcess
+            type: iri
+
+  genetic_testing_process_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)_$(uniqid)#GeneticTestingProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C15709
+            type: iri
+
+      - predicates: sio:SIO_000229
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#Variant
             type: iri 
 
+  variant_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)_$(uniqid)#Variant
+    po:
       - predicates: a 
         objects: 
-            value: sio:SIO_000393  #patient
+            value: obo:VariO_0138
             type: iri
 
-      - predicates: sio:SIO_000356  #is-realized-in
+      - predicates: rdfs:label
         objects: 
-            value: this:individual_$(Identifier)#GeneticTestingProcess
-            type: iri
+            value: $(variant)
+            datatype: xsd:string
 
- # Gene
-
-  identifier_role_gene:
-
-    source: 
-      - ['source_1.csv~csv'] 
-
-    s: this:gene_$(Gene_ID)#ID 
+  health_care_role_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)_$(uniqid)#HealthCareRole 
     po: 
       - predicates: a 
         objects: 
-            value: obo:NCIT_C48664 # Gene Identifier
+            value: obo:OBI_0000093
+            type: iri
+
+      - predicates: sio:SIO_000356
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#HealthCareProcess
+            type: iri
+
+  health_care_process_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)_$(uniqid)#HealthCareProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C16205
+            type: iri
+
+      - predicates: sio:SIO_000229
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#Phenotype
             type: iri 
 
-      - predicates: sio:SIO_000020  #denotes  
-        objects: 
-            value: this:genel_$(Gene_ID)#GeneRole
-            type: iri
-
-      - predicates: sio:SIO_000300  #has-value 
-        objects: 
-            value: hgnc:$(Gene_ID) 
-            type: iri
-            
-      - predicates: rdfs:label 
-        objects: 
-            value: (Gene_name) 
-            type: xsd:string
-      
-        
-  entity_role_gene: 
-
-    sources: 
-      - ['source_1.csv~csv'] 
-
-    s: this:gene_$(Gene_ID)#Gene
-    po: 
+  phenotype_undiagnosed: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)_$(uniqid)#Phenotype
+    po:
       - predicates: a 
         objects: 
-            value: obo:NCIT_C16612 #Gene
-            type: iri 
-
-      - predicates: sio:SIO_000228 #has-role 
-        objects: 
-            value: this:gene_$(Gene_ID)#GeneRole
-            type: iri 
-            
-  role_process_gene:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:gene_$(Gene_ID)#GeneRole
-    po: 
-      - predicates: a 
-        objects: 
-            value: sio:SIO_000883 #subject-role
-            type: iri 
-
-      - predicates: sio:SIO_000356  #is-realized-in 
-        objects: 
-            value: this:individual_$(Identifier)#GeneticTestingProcess
-            type: iri
-
-  process_mv_gene:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#GeneticTestingProcess
-    po: 
-      - predicates: a 
-        objects: 
-            value: NCIT_C15709 # Genetic Testing
-            type: iri 
-
-      - predicates: sio:SIO_000229  #has-output 
-        objects: 
-            value: dbsnp:$(snp_rs)
-            type: iri
-
-  mv_v_gene:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: dbsnp:$(snp_rs)
-    po: 
-      - predicates: a 
-        objects: 
-            value: obo:SO_0000694 #SNP
-            type: iri 
-
-      - predicates: a 
-        objects: 
-            value: obo:VariO_0138 #Variant
-            type: iri
-
-      - predicates: a 
-        objects: 
-            value: sio:SIO_000015  #information-content-entity
-            type: iri
-
-      - predicates: rdfs:label 
-        objects: 
-            value: $(snp_rs)
-            type: iri
-
-#Phenotype
-
-  identifier_role_phenotype:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ID
-    po: 
-      - predicates: sio:SIO_000020  #denotes 
-        objects: 
-            value: this:individual_$(Identifier)#RolePhenotype
-            type: iri
-  
-  person_role_phenotype:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#Person
-    po: 
-      - predicates: sio:SIO_000228 #has-role 
-        objects: 
-            value: this:individual_$(Identifier)#RolePhenotype
-            type: iri
-
-  role_process_phenotype:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#RolePhenotype
-    po: 
-      - predicates: sio:SIO_000356  #is-realized-in
-        objects: 
-            value: this:individual_$(Identifier)#ProcessPhenotype
-            type: iri
-
-      - predicates: a 
-        objects: 
-            value: sio:patient #obo:OBI_0000093
-            type: iri
-
-  process_mv_phenotype:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessPhenotype
-    po: 
-      - predicates: sio:SIO_000229  #has-output 
-        objects: 
-            value: this:individual_$(Identifier)#MVPhenotype
-            type: iri
-            
-      - predicates: a 
-        objects: 
-            value: obo:SEPIO_0000186
-            type: iri
-
-      - predicates: dct:date 
-        objects: 
-            value: $(date_phenotype)
-            type: xsd:dateTime
-
-  mv_v_phenotype:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#MVPhenotype
-    po: 
-            
-      - predicates: a 
-        objects: 
-            value: ORDO:Orphanet_$(orphanet_code)
-            type: iri
-
-#Diagnosis
-
-  identifier_role_diagnosis:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ID
-    po: 
-      - predicates: sio:SIO_000020  #denotes 
-        objects: 
-            value: this:individual_$(Identifier)#RoleDiagnosis
-            type: iri
-  
-  person_role_diagnosis:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#Person
-    po: 
-      - predicates: sio:SIO_000228 #has-role  
-        objects: 
-            value: this:individual_$(Identifier)#RoleDiagnosis
-            type: iri
-
-  role_process_diagnosis:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#RoleDiagnosis
-    po: 
-      - predicates: sio:SIO_000356  #is-realized-in 
-        objects: 
-            value: this:individual_$(Identifier)#ProcessDiagnosis
-            type: iri
-
-      - predicates: a 
-        objects: 
-            value: sio:patient #obo:OBI_0000093
-            type: iri
-
-  process_mv_diagnosis:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#RoleDiagnosis
-    po: 
-      - predicates: sio:SIO_000229  #has-output 
-        objects: 
-            value: this:individual_$(Identifier)#MVPhenotype
-            type: iri
-            
-      - predicates: a 
-        objects: 
-            value: sio:SIO_001001  #medical-diagnosis
-            type: iri
-
-      - predicates: dct:date 
-        objects: 
-            value: $(date_diagnosis)
-            type: xsd:dateTime
-
-  mv_v_diagnosis:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#MVPhenotype
-    po: 
-            
-      - predicates: a 
-        objects: 
-            value: snomedct:282292002 # Uncertain diagnosis: Not updated 
-            type: iri
-
-  # Provenance:
-
-  diagnosis_person_prov:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessDiagnosis 
-    po: 
-
-      - predicates: prov:informedBy 
-        objects: 
-            value: this:individual_$(Identifier)#GeneticTestingProcess
-            type: iri
-  
-  diagnosis_phenotype_prov:
-  
-    source:
-     - ['source_1.csv~csv'] 
-     
-    s: this:individual_$(Identifier)#ProcessDiagnosis 
-    po: 
-
-      - predicates: prov:informedBy 
-        objects: 
-            value: this:individual_$(Identifier)#ProcessPhenotype
+            value: obo:HP_$(HP_code)
             type: iri
 
       
-
-      
-
-
-
-
-
