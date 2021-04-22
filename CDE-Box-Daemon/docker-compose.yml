@@ -1,16 +1,18 @@
 version: "3"
 services:
-  
-  graphdb:
-    image: graph-db:9.7.0
-    restart: always
-    hostname: graphdb
-    ports:
-      - 7200:7200
-    volumes:
-      - graphdb-data:/opt/graphdb/home
-    networks:
-      - default
+
+# if you are already running Rajaram's GraphDB image, then don't execute this portion
+# the other portions will connect to Rajaram's GraphDB network
+#  graphdb:
+#    image: graph-db:9.7.0
+#    restart: always
+#    hostname: graphdb
+#    ports:
+#      - 7200:7200
+#    volumes:
+#      - graphdb-data:/opt/graphdb/home
+#    networks:
+#      - default
       #- bootstrap_graphdb_net 
 
 
@@ -34,7 +36,7 @@ services:
         - ./config:/config
     networks:
       - default
-      #- bootstrap_graphdb_net 
+      - graphdb_net 
         
         
   yarrrml_transform: 
@@ -46,7 +48,7 @@ services:
       - ./data:/data
     networks:
       - default
-      #- bootstrap_graphdb_net 
+      - graphdb_net 
   
   
   rdfizer: 
@@ -59,7 +61,7 @@ services:
       - ./config:/config
     networks:
       - default
-      #- bootstrap_graphdb_net 
+      - graphdb_net 
 
     
 volumes:
@@ -68,9 +70,9 @@ volumes:
 
     networks:
       - default
-      #- bootstrap_graphdb_net 
+      - graphdb_net 
         
 # Define networks here (this is the name of rajaram's bootstrap network)
-#networks:
-#  bootstrap_graphdb_net:
-#    external: true
+networks:
+  graphdb_net:
+    external: true
