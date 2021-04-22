@@ -70,7 +70,7 @@ volumes:
       - default
       #- bootstrap_graphdb_net 
         
-# Define networks here
+# Define networks here (this is the name of rajaram's bootstrap network)
 #networks:
 #  bootstrap_graphdb_net:
 #    external: true
