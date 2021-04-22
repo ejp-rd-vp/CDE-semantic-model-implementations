@@ -1,15 +1,19 @@
 
 require './CDE_Transform'
 require 'sinatra'
+require 'rest-client'
+require './http_utils'
+
+include HTTPUtils
+
 
 get '/' do
   execute()
+  "Execution complete.  See docker log for errors (if any)"
+
 end
 
 def execute
-
-  puts "Content-type: text/plain\n\n"
-  puts "executing transformation"
   
   datatype_list = Dir["/data/*.csv"]
   
@@ -37,18 +41,9 @@ def execute
   pass = ENV['GraphDB_Pass']
   network = "graphdb"
   network = ENV['networkname'] if ENV['networkname']
-  
-  put_data("http://#{network}:7200/repositories/cde/statements", user, pass)
+  url = "http://#{network}:7200/repositories/cde/statements"
+  headers = { :content_type => "application/n-triples" }
 
-end
+  HTTPUtils.put(url, headers, concatenated, user, pass)
 
-def put_data(url = "http://graphdb:7200/repositories/cde/statements", user = "", pass = "")
-  response = RestClient::Request.new(
-    :method => :put,
-    :url => url,
-    :user => user,
-    :password => pass,
-    :headers => { :content_type => "application/n-triples" }
-  ).execute
-  $stderr.puts response.to_str
 end

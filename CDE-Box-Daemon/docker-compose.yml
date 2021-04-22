@@ -14,9 +14,9 @@ services:
       #- bootstrap_graphdb_net 
 
 
-#note that if you have not set-up specific security on graphdb,
-#you do not need to set the environment
-#We recommend using a .env file in this folder to set your environment
+# note that if you have not set-up specific security on graphdb,
+# you do not need to set the environment, but it also does no harm.
+# We recommend using a .env file in this folder to set your environment
   cde-box-daemon: 
     image: markw/cde-box-daemon:latest
     container_name: cde-box-daemon
