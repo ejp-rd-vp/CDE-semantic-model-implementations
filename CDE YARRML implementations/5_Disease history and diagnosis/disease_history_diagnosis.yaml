@@ -1,0 +1,320 @@
+
+
+###############################################################
+################## Required CSV column's names: ################
+
+# pid: person identifier
+# uniqid: unique identifier
+# date_diagnosis: date of the diagnosis opinion
+# ordo_code: ORDO ontological term for this disease (using ordo prefix, ex: Orphanet_XXXX)
+# disease_name: label with the name of the disease
+# onset_type: ontological term to determine the onset of the symptom (ex: any of these obo:HP_0030674 obo:HP_0003577 obo:NCIT_C124294)
+# (the whole IRI is required, without prefixes)
+# age_diagnosis: age where the diagnosis recording process begins
+
+################################################################
+
+
+
+prefixes: 
+
+  obo: http://purl.obolibrary.org/obo/ 
+  this: http://our-data.org/data/ 
+  sio: https://semanticscience.org/resource/ 
+  dct: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  ordo: http://www.orpha.net/ORDO/
+
+sources:
+  cde_source: # cde_source: ["source_1.csv~csv"] For YARRRML Matey
+    access: "|||DATA|||"
+    referenceFormulation: "|||FORMULATION|||"
+    iterator: "$"
+
+
+
+mappings: 
+            
+  person_diagnosis: 
+    sources:
+    - cde_source
+    s: this:individual_$(pid)#Person 
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000498
+            type: iri
+
+      - predicates: sio:SIO_000228 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#DiagnosisRole
+            type: iri 
+
+      - predicates: sio:SIO_000228 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#SymptomRole
+            type: iri
+
+
+      - predicates: sio:SIO_000228 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#AgeDiagnosisRole
+            type: iri
+
+      - predicates: sio:SIO_000217 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#AgeDiagnosisQuality
+            type: iri
+
+     
+  role_diagnosis:
+    source:
+     - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#DiagnosisRole
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#DiagnosisProcess
+            type: iri
+
+
+  process_diagnosis:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#DiagnosisProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_001001
+            type: iri 
+
+      - predicates: sio:SIO_000680 
+        objects: 
+            value: $(date_diagnosis)
+            datatype: xsd:date
+
+      - predicates: sio:SIO_000229  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#DiagnosisMedicalOutput
+            type: iri 
+
+  output_diagnosis:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#DiagnosisProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000340
+            type: iri 
+
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000015
+            type: iri
+
+      - predicates: sio:SIO_000628 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#Disease
+            type: xsd:dateTime
+
+      - predicates: sio:SIO_000300
+        objects: 
+            value: $(disease_name)
+            datatype: xsd:string
+
+  disease_diagnosis:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#Disease
+    po: 
+      - predicates: a 
+        objects: 
+            value: ordo:$(ordo_code)
+            type: iri 
+
+
+  role_symptom:
+    source:
+     - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#SymptomRole
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#SymptomProcess
+            type: iri
+  
+
+  process_symptom:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#SymptomProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C17747
+            type: iri 
+
+      - predicates: sio:SIO_000628
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#DiagnosisMedicalOutput
+            type: xsd:dateTime
+
+      - predicates: sio:SIO_000008  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#SymptomOutput
+            type: iri 
+
+  output_symptom:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#SymptomOutput
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C124353
+            type: iri 
+
+      - predicates: sio:SIO_000628 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#OutputOnsetType
+            type: iri
+
+  onset_symptom:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#OutputOnsetType
+    po: 
+      - predicates: a 
+        objects: 
+            value: $(onset_type)
+            type: iri
+
+  
+
+  role_:
+    source:
+     - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#AgeDiagnosisRole
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:OBI_0000093
+            type: iri 
+
+      - predicates: sio:SIO_000356  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#AgeDiagnosisProcess
+            type: iri
+
+
+  process_:
+    source:
+     - cde_source
+    s: this:individual_$(pid)_$(uniqid)#AgeDiagnosisProcess
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000006
+            type: iri 
+
+      - predicates: sio:SIO_000680 
+        objects: 
+            value: $(age_diagnosis)
+            datatype: xsd:date
+
+      - predicates: sio:SIO_000229  
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#AgeDiagnosisQualityOutput
+            type: iri
+
+      - predicates: sio:SIO_000628 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#DiagnosisMedicalOutput
+            type: iri
+
+
+  qualityoutput_:
+    source:
+     - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#AgeDiagnosisQualityOutput
+    po: 
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000070
+            type: iri 
+
+      - predicates: sio:SIO_000300 
+        objects: 
+            value: $(output_value)
+            type: xsd:integer
+
+      - predicates: sio:SIO_000221 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#Unit
+            type: iri
+
+  unit_:
+    source:
+     - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#Unit
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:UO_0000036
+            type: iri 
+
+  quality_:
+    source:
+     - cde_source
+     
+    s: this:individual_$(pid)_$(uniqid)#AgeDiagnosisQuality
+    po: 
+      - predicates: a 
+        objects: 
+            value: obo:NCIT_C156420
+            type: iri 
+
+      - predicates: a 
+        objects: 
+            value: sio:SIO_000005
+            type: iri
+
+      - predicates: sio:SIO_000216 
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#AgeDiagnosisQualityOutput
+            type: iri
+
+      - predicates: sio:SIO_000628
+        objects: 
+            value: this:individual_$(pid)_$(uniqid)#DiagnosisMedicalOutput
+            type: iri
+      
+
+      
+
+
+  
+
+
+
+
+  
+
+      
+
