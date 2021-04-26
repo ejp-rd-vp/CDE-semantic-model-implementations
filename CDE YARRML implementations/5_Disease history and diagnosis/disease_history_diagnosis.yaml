@@ -11,6 +11,7 @@
 # onset_type: ontological term to determine the onset of the symptom (ex: any of these obo:HP_0030674 obo:HP_0003577 obo:NCIT_C124294)
 # (the whole IRI is required, without prefixes)
 # age_diagnosis: age where the diagnosis recording process begins
+# age_years: years passed from the start recording diagnosis information
 
 ################################################################
 
