@@ -1,3 +1,7 @@
+# Personal Information CDE
+
+The CDE for personal information (birth date and sex)
+
 ## CSV Columns
 
 pid, uniqid, sexURI, sexLabel, birthdate
@@ -10,7 +14,7 @@ pid, uniqid, sexURI, sexLabel, birthdate
     * Female sex  obo:NCIT_C16576(female) ; 
     * Male sex obo:NCIT_C20197(male); 
     * Undetermined  obo:NCIT_C124294 (undetermined) ; 
-    * Unknown  obo:NCIT_C17998(unknown) 
+    * Unknown  obo:NCIT_C17998(unknown) (use this for foetal undetermined) 
   * sexLabel:  some human readable label that matches the sexURI column
   * birthdate:  ISO 8601 compliant date string
   

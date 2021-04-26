@@ -747,6 +747,8 @@ class YARRRML_Template_Builder
           types = []
           labels = Hash.new([])
           
+          types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
+          
           position = 0
           inout_refers_to_columns.each do |e|
             references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
@@ -809,6 +811,9 @@ class YARRRML_Template_Builder
           attributes = []
           types = []
           labels = Hash.new([])
+          
+          types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
+
           position = 0
           inout_refers_to.each do |e|
             uniqtype = Digest::SHA2.hexdigest e
