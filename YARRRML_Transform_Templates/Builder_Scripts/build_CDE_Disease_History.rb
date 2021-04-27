@@ -96,11 +96,13 @@ b.process_hasoutput_output({
 #obo:NCIT_C124353  (symptom onset)
 
 b.input_output_refers_to({
+  refers_to_tag: "age_at_onset",
   inout_process_tag:   "patientRole_symptom_onset_process",  # connect to the correct process
-  inout_refers_to: ["obo:NCIT_C124353"],
-  inout_refers_to_label: ["Age at onset"]
+  inout_refers_to: "obo:NCIT_C124353",
+  inout_refers_to_label: "Age at onset"
 })
 b.input_output_refers_to({
+  refers_to_tag: "disagnosis_date",
   inout_process_tag:   "patientRole_diagnosis_date_process",  # connect to the correct process
   inout_refers_to: ["obo:NCIT_C156420"],
   inout_refers_to_label: ["Age at diagnosis"]

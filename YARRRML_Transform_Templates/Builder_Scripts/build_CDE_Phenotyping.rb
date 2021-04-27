@@ -60,14 +60,11 @@ b.process_hasoutput_output({
     })
 
 b.input_output_refers_to({
+  refers_to_tag: "phenotyping_attribute",
   inout_process_tag:   "patientRole_phenotyping_process",  # connect to the correct process
-  inout_refers_to_columns: ["HP_IRI"],
-  inout_refers_to_label_columns: ["HP_Label"]
+  inout_refers_to_columns: "HP_IRI",
+  inout_refers_to_label_columns: "HP_Label",
+  base_types: ["http://semanticscience.org/resource/SIO_010056"]
 })
-b.input_output_refers_to({
-  inout_process_tag:   "patientRole_phenotyping_process",  # connect to the correct process
-  inout_refers_to: ["http://semanticscience.org/resource/SIO_010056"],  # phenotype
-})
-
 
 puts b.generate

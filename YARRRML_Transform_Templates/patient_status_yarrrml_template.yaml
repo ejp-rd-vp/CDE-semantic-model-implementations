@@ -163,25 +163,29 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#status_uri_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#status_attribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_patient_status:
     sources:
     - cde_patient_status-source
     s: this:individual_$(pid)#Person
     po:
-    - predicates: http://semanticscience.org/resource/SIO_000008
+    - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#status_uri_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#status_attribute_TypedAttributeNode
         type: iri
-  inout_from_patient_status_refers_to_concept_status_uri_type:
+  inout_from_patient_status_refers_to_concept_status_attribute_type:
     sources:
     - cde_patient_status-source
-    s: this:individual_$(pid)_$(uniqid)#status_uri_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#status_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
-        value: "$(status_uri)"
+        value: http://semanticscience.org/resource/attribute
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: 
         type: iri
   patient_death_information_process_has_output:
     sources:
@@ -244,22 +248,26 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#ea290ee3856296a47709eed188e63c06013e60ecdebbdd718df4f136eb9e7d4b_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#death_information_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_patient_death_information:
     sources:
     - cde_patient_status-source
     s: this:individual_$(pid)#Person
     po:
-    - predicates: http://semanticscience.org/resource/SIO_000008
+    - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#ea290ee3856296a47709eed188e63c06013e60ecdebbdd718df4f136eb9e7d4b_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#death_information_TypedAttributeNode
         type: iri
-  inout_from_patient_death_information_refers_to_concept_ea290ee3856296a47709eed188e63c06013e60ecdebbdd718df4f136eb9e7d4b_type:
+  inout_from_patient_death_information_refers_to_concept_death_information_type:
     sources:
     - cde_patient_status-source
-    s: this:individual_$(pid)_$(uniqid)#ea290ee3856296a47709eed188e63c06013e60ecdebbdd718df4f136eb9e7d4b_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#death_information_TypedAttributeNode
     po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/attribute
+        type: iri
     - predicates: rdf:type
       objects:
         value: obo:NCIT_C70810

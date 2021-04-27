@@ -11,14 +11,14 @@ prefixes:
   edam: http://purl.bioontology.org/ontology/EDAM/
   this: https://w3id.org/duchenne-fdp/data/
 sources:
-  cde_patient_disease_progression-source:
+  cde_patient_diagnosis-source:
     access: "|||DATA|||"
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
   identifier_has_value_for_patientRole_diagnosis:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
@@ -27,7 +27,7 @@ mappings:
         datatype: xsd:string
   identifier_denotes_role_patientRole_diagnosis:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#ID
     po:
     - predicates: a
@@ -44,7 +44,7 @@ mappings:
         type: iri
   person_has_role_patientRole_diagnosis:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)#Person
     po:
     - predicates: a
@@ -61,7 +61,7 @@ mappings:
         type: iri
   patientRole_diagnosis_annotation:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis
     po:
     - predicates: a
@@ -78,7 +78,7 @@ mappings:
         datatype: xsd:string
   patientRole_diagnosis_realized_medical_diagnosis:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
@@ -87,7 +87,7 @@ mappings:
         type: iri
   medical_diagnosis_process_annotation:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis
     po:
     - predicates: rdf:type
@@ -104,7 +104,7 @@ mappings:
         datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_medical_diagnosis:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_process#longitudinal_information_gathering_process_diseaseX
     po:
     - predicates: http://semanticscience.org/resource/has-part
@@ -113,7 +113,7 @@ mappings:
         type: iri
   medical_diagnosis_process_has_output:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis
     po:
     - predicates: http://semanticscience.org/resource/has-output
@@ -122,7 +122,7 @@ mappings:
         type: iri
   medical_diagnosis_Output_annotation:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
     - predicates: rdf:type
@@ -131,7 +131,7 @@ mappings:
         type: iri
   medical_diagnosis_Output_type_annotation:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
     - predicates: rdf:type
@@ -140,7 +140,7 @@ mappings:
         type: iri
   medical_diagnosis_Output_type_label_annotation:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
     - predicates: rdfs:label
@@ -149,7 +149,7 @@ mappings:
         datatype: xsd:string
   medical_diagnosis_Output_value_annotation:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
@@ -158,7 +158,7 @@ mappings:
         datatype: xsd:string
   medical_diagnosis_output_annotation_start:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
     - predicates: http://semanticscience.org/resource/start-time
@@ -167,35 +167,39 @@ mappings:
         datatype: xsd:dateTime
   inout_from_medical_diagnosis_refers_to_concepts:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#ordo_uri_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_medical_diagnosis:
     sources:
-    - cde_patient_disease_progression-source
+    - cde_patient_diagnosis-source
     s: this:individual_$(pid)#Person
     po:
-    - predicates: http://semanticscience.org/resource/SIO_000008
+    - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#ordo_uri_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
         type: iri
-  inout_from_medical_diagnosis_refers_to_concept_ordo_uri_type:
+  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_type:
     sources:
-    - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)#ordo_uri_TypedAttributeNode
+    - cde_patient_diagnosis-source
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
-        value: "$(ordo_uri)"
+        value: http://semanticscience.org/resource/attribute
         type: iri
-  inout_from_medical_diagnosis_refers_to_concept_ordo_uri_label:
+    - predicates: rdf:type
+      objects:
+        value: 
+        type: iri
+  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_label:
     sources:
-    - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)#ordo_uri_TypedAttributeNode
+    - cde_patient_diagnosis-source
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

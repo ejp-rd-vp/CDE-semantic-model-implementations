@@ -48,6 +48,7 @@ b.process_hasoutput_output({
     output_value_column: "status_label",
     })
 b.input_output_refers_to({
+  refers_to_tag: "status_attribute",
   inout_process_tag:   "patient_status",  # connect to the correct process
   inout_refers_to_columns: ["status_uri"]
 })
@@ -65,8 +66,9 @@ b.process_hasoutput_output({
     output_end_column: "death_date"
     })
 b.input_output_refers_to({
+  refers_to_tag: "death_information",
   inout_process_tag:   "patient_death_information",  # connect to the correct process
-  inout_refers_to: ["obo:NCIT_C70810"]
+  inout_refers_to: "obo:NCIT_C70810"
 })
 
 

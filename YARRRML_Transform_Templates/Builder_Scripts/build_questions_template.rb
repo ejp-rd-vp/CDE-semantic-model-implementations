@@ -80,15 +80,21 @@ b.process_has_input({
 
 
 b.input_output_refers_to(  {
+  refers_to_tag: "prom_tag",
   inout_process_tag: "someQuestionAuthoringProcess",                     
-  inout_refers_to_columns: ["promURI", "ontologyURI"],
-                           
+  inout_refers_to_column: "promURI",                        
 })
 
 b.input_output_refers_to(  {
+  refers_to_tag: "ontology_tag",
+  inout_process_tag: "someQuestionAuthoringProcess",                     
+  inout_refers_to_column: "ontologyURI",                     
+})
+
+b.input_output_refers_to(  {
+  refers_to_tag: "prom_tag2",
   inout_process_tag: "questionnaire_test",                     
-  inout_refers_to_columns: ["promURI"],
-                           
+  inout_refers_to_column: "promURI",       
 })
 
 

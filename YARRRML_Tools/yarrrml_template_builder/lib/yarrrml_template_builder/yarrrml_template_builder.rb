@@ -16,7 +16,7 @@ class YARRRML_Template_Builder
   attr_accessor :mappings  
 
   SIO = {
-"has-attribute" => ["http://semanticscience.org/resource/has-attribute", "http://semanticscience.org/resource/SIO_000008"], 
+"has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
 "has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
 "has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
 "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
@@ -129,6 +129,7 @@ class YARRRML_Template_Builder
     self.mappings.each {|m| clauses.merge!(m)}#; $stderr.puts m; $stderr.puts "CLAUSES: #{clauses}\n\n"}
     output["mappings"] = clauses
     
+    #$stderr.puts output.inspect
     return YAML::dump(output)
     
   end
@@ -167,7 +168,9 @@ class YARRRML_Template_Builder
   def mapping_clause(name, source, s, pots)
     pos = []
     pots.each do |pot|
+      #$stderr.puts pot.class
       (pred, obj, type) = pot
+      #$stderr.puts "#{pred} #{obj}  #{type}"
       typetag = "type"
       typetag = "datatype" unless type == 'iri'
       type = "xsd:string" unless type
@@ -722,162 +725,158 @@ class YARRRML_Template_Builder
 #
 #@param params [Hash]  a hash of options
 #@option params  :inout_process_tag [String]  ("unidentifiedProcess")
-#@option params  :inout_refers_to [Array]  ([])  an array of ontology URIs
-#@option params  :inout_refers_to_columns [Array] ([]) an array of column headers for columns of ontologyURIs
-#@option params  :inout_refers_to_label  [Array]  ([]) am array of ontology term/labels
-#@option params  :inout_refers_to_label_columns  [Array]  ([])  an array of column headers for columns of ontology term/labels
+#@option params  :refers_to_tag [String]  (nil) required unique one-word tag of an attribute
+#@option params  :inout_refers_to [String]  ([])  an ontology URI
+#@option params  :inout_refers_to_column [String] ([]) column headers for column of ontologyURIs
+#@option params  :inout_refers_to_label  [String]  ([]) an ontology term label
+#@option params  :inout_refers_to_label_column  [String]  ([])  column header for column of ontology term labels
 #@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of the patient?
-
+#@option params  :base_types [Array] ([])  an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
 
   def input_output_refers_to(params)
     inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
-    inout_refers_to = params.fetch(:inout_refers_to, [])  
-    inout_refers_to_label = params.fetch(:inout_refers_to_label, [] ) 
-    inout_refers_to_columns = params.fetch(:inout_refers_to_columns, [])  
-    inout_refers_to_label_columns = params.fetch(:inout_refers_to_label_columns, [] ) 
+    refers_to_tag = params.fetch(:refers_to_tag, nil)
+    inout_refers_to = params.fetch(:inout_refers_to, nil)  
+    inout_refers_to_label = params.fetch(:inout_refers_to_label, nil) 
+    inout_refers_to_column = params.fetch(:inout_refers_to_column, nil)  
+    inout_refers_to_label_column = params.fetch(:inout_refers_to_label_column, nil ) 
     is_attribute = params.fetch(:is_attribute, true ) 
+    base_types = params.fetch(:base_types, [] ) 
     
+    refers_to = inout_refers_to_column ? "$(#{inout_refers_to_column})":inout_refers_to
+    refers_to_label = inout_refers_to_label_column ? "$(#{inout_refers_to_label_column})":inout_refers_to_label
+
     abort "must specify in_out_process_tag" unless inout_process_tag
-    $stderr.puts "is an attribute #{is_attribute}"
+    abort "must specify refers_to_tag" unless refers_to_tag
+    #$stderr.puts "is an attribute #{is_attribute}"
 
-    if !(inout_refers_to_columns.empty?)
-      #$stderr.puts "checking inout columns"
-          references = []
-          attributes = []
-          types = []
-          labels = Hash.new([])
           
-          types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
-          
-          position = 0
-          inout_refers_to_columns.each do |e|
-            references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
-            attributes << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode", "iri"]
-            types << ["rdf:type", "$(#{e})", "iri"]
-            labels[e] << ["rdfs:label", "$(#{inout_refers_to_label_columns[position]})" ] if !(inout_refers_to_label_columns.empty?)
-            position += 1
-          end   
-
-          @mappings << mapping_clause(
-              "inout_from_#{inout_process_tag}_refers_to_concepts",
-              ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
-              
-              references
-                
-          )
-          if is_attribute
-            @mappings << mapping_clause(
-            "has_attribute_of_inout_from_#{inout_process_tag}",
-            ["#{source_tag}-source"],
-            "this:individual_$(#{@personid_column})#Person",
-            
-            attributes
-            
-            )
-          end
-
-          position = 0
-          inout_refers_to_columns.each do |e|
-            @mappings << mapping_clause(
-                "inout_from_#{inout_process_tag}_refers_to_concept_#{e}_type",
-                ["#{source_tag}-source"],
-                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode",
-                [
-                  types[position]
-                ]
-            )
-            if labels[e].first
-              #$stderr.puts "class" + labels[e].class.to_s
-              #$stderr.puts "first" + labels[e].first
-              #$stderr.puts "value" + labels[e].inspect
-              
-              @mappings << mapping_clause(
-                "inout_from_#{inout_process_tag}_refers_to_concept_#{e}_label",
-                  ["#{source_tag}-source"],
-                  "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{e}_TypedAttributeNode",
-                  [
-                    labels[e][position]
-                  ]
-                  
-                )
-            end
-            position += 1
-            
-          end
-
-    elsif !(inout_refers_to.empty?)
-          references = []
-          attributes = []
-          types = []
-          labels = Hash.new([])
-          
-          types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
-
-          position = 0
-          inout_refers_to.each do |e|
-            uniqtype = Digest::SHA2.hexdigest e
-            references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
-            attributes << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
-            types << ["rdf:type", "#{e}", "iri"]
-            labels[e] << ["rdfs:label", inout_refers_to_label[position] ] if !(inout_refers_to_label.empty?)
-            position += 1
-          end   
-
-          @mappings << mapping_clause(
-            "inout_from_#{inout_process_tag}_refers_to_concepts",
-            ["#{source_tag}-source"],
-            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
-            
-            references
-            
-          ) 
-          if is_attribute
-            @mappings << mapping_clause(
-            "has_attribute_of_inout_from_#{inout_process_tag}",
-            ["#{source_tag}-source"],
-            "this:individual_$(#{@personid_column})#Person",
-            
-            attributes
-            
-            ) 
-          end
-          
-          @mappings << mapping_clause(
-            "inout_from_#{inout_process_tag}_refers_to_concepts",
-            ["#{source_tag}-source"],
-            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
-            
-            references
-            
-          ) 
-
-          position = 0
-          inout_refers_to.each do |e|
-            uniqtype = Digest::SHA2.hexdigest e
-            @mappings << mapping_clause(
-              "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_type",
-              ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
-              [
-                types[position]
-              ]
-              )
-            if labels[e].first
-
-              @mappings << mapping_clause(
-                "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_label",
-                ["#{source_tag}-source"],
-                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
-                [
-                 labels[e][position]
-                ]
-              )
-            end
-            position += 1
-          end
- 
+    types = []
+    types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
+    types << ["rdf:type", refers_to, "iri"]
+    base_types.each do |b|
+      types << ["rdf:type", b, "iri"]
     end
+
+    @mappings << mapping_clause(
+        "inout_from_#{inout_process_tag}_refers_to_concepts",
+        ["#{source_tag}-source"],
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
+        [
+        [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode", "iri"]
+        ] 
+    )
+
+    if is_attribute
+      @mappings << mapping_clause(
+      "has_attribute_of_inout_from_#{inout_process_tag}",
+      ["#{source_tag}-source"],
+      "this:individual_$(#{@personid_column})#Person",            
+      [
+       [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode", "iri"]
+      ]
+      )
+    end
+
+#$stderr.puts types.inspect
+    @mappings << mapping_clause(
+      "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
+      ["#{source_tag}-source"],
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
+      
+        types
+      
+    )
+
+
+    if refers_to_label    
+      @mappings << mapping_clause(
+          "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_label",
+          ["#{source_tag}-source"],
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
+          [
+          ["rdfs:label", refers_to_label ] 
+          ]
+      )
+    end
+            
+    #      end
+    #
+    #elsif !(inout_refers_to.empty?)
+    #      references = []
+    #      attributes = []
+    #      types = Hash.new([])
+    #      labels = Hash.new([])
+    #      
+    #
+    #      position = 0
+    #      inout_refers_to.each do |e|
+    #        types[e] << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
+    #        uniqtype = Digest::SHA2.hexdigest e
+    #        references << [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
+    #        attributes << [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode", "iri"]
+    #        types[e] << ["rdf:type", "#{e}", "iri"]
+    #        base_types.each do |b|
+    #          types[e] << ["rdf:type", b, "iri"]
+    #        end
+    #        labels[e] << ["rdfs:label", inout_refers_to_label[position] ] if !(inout_refers_to_label.empty?)
+    #        position += 1
+    #      end   
+    #
+    #      @mappings << mapping_clause(
+    #        "inout_from_#{inout_process_tag}_refers_to_concepts",
+    #        ["#{source_tag}-source"],
+    #        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
+    #        
+    #        references
+    #        
+    #      ) 
+    #      if is_attribute
+    #        @mappings << mapping_clause(
+    #        "has_attribute_of_inout_from_#{inout_process_tag}",
+    #        ["#{source_tag}-source"],
+    #        "this:individual_$(#{@personid_column})#Person",
+    #        
+    #        attributes
+    #        
+    #        ) 
+    #      end
+    #      
+    #      @mappings << mapping_clause(
+    #        "inout_from_#{inout_process_tag}_refers_to_concepts",
+    #        ["#{source_tag}-source"],
+    #        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
+    #        
+    #        references
+    #        
+    #      ) 
+    #
+    #      position = 0
+    #      inout_refers_to.each do |e|
+    #        uniqtype = Digest::SHA2.hexdigest e
+    #        @mappings << mapping_clause(
+    #          "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_type",
+    #          ["#{source_tag}-source"],
+    #          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
+    #          [
+    #            types[e]
+    #          ]
+    #          )
+    #        if labels[e].first
+    #
+    #          @mappings << mapping_clause(
+    #            "inout_from_#{inout_process_tag}_refers_to_concept_#{uniqtype}_label",
+    #            ["#{source_tag}-source"],
+    #            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{uniqtype}_TypedAttributeNode",
+    #            [
+    #             labels[e]#[position]
+    #            ]
+    #          )
+    #        end
+    #        position += 1
+    #      end
+    #
+    #end
     
   end
   

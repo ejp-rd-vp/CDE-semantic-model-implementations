@@ -303,30 +303,34 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#2f0d108e4a45e7700fef4364a1474521d29dcbde539e4cfaac0b8006e52096e6_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_patientRole_symptom_onset_process:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)#Person
     po:
-    - predicates: http://semanticscience.org/resource/SIO_000008
+    - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#2f0d108e4a45e7700fef4364a1474521d29dcbde539e4cfaac0b8006e52096e6_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
         type: iri
-  ? inout_from_patientRole_symptom_onset_process_refers_to_concept_2f0d108e4a45e7700fef4364a1474521d29dcbde539e4cfaac0b8006e52096e6_type
-  : sources:
+  inout_from_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_type:
+    sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#2f0d108e4a45e7700fef4364a1474521d29dcbde539e4cfaac0b8006e52096e6_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/attribute
         type: iri
-  ? inout_from_patientRole_symptom_onset_process_refers_to_concept_2f0d108e4a45e7700fef4364a1474521d29dcbde539e4cfaac0b8006e52096e6_label
-  : sources:
+    - predicates: rdf:type
+      objects:
+        value: obo:NCIT_C124353
+        type: iri
+  inout_from_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_label:
+    sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#2f0d108e4a45e7700fef4364a1474521d29dcbde539e4cfaac0b8006e52096e6_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:
@@ -339,32 +343,38 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#873be4b8a2b0a048e4e7237f9d6ede357e98afa3c116f24d40ea65ff4b6798f8_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_patientRole_diagnosis_date_process:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)#Person
     po:
-    - predicates: http://semanticscience.org/resource/SIO_000008
+    - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#873be4b8a2b0a048e4e7237f9d6ede357e98afa3c116f24d40ea65ff4b6798f8_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
         type: iri
-  ? inout_from_patientRole_diagnosis_date_process_refers_to_concept_873be4b8a2b0a048e4e7237f9d6ede357e98afa3c116f24d40ea65ff4b6798f8_type
-  : sources:
+  inout_from_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_type:
+    sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#873be4b8a2b0a048e4e7237f9d6ede357e98afa3c116f24d40ea65ff4b6798f8_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/attribute
         type: iri
-  ? inout_from_patientRole_diagnosis_date_process_refers_to_concept_873be4b8a2b0a048e4e7237f9d6ede357e98afa3c116f24d40ea65ff4b6798f8_label
-  : sources:
+    - predicates: rdf:type
+      objects:
+        value:
+        - obo:NCIT_C156420
+        type: iri
+  inout_from_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_label:
+    sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#873be4b8a2b0a048e4e7237f9d6ede357e98afa3c116f24d40ea65ff4b6798f8_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:
-        value: Age at diagnosis
+        value:
+        - Age at diagnosis
         datatype: xsd:string

@@ -20,7 +20,8 @@ def update
   $stderr.puts "first open3 git pull"
   o, e, s = Open3.capture3("cd CDE-semantic-model-implementations && git pull")
   $stderr.puts "second open3 copy yarrrml #{o}  #{e}"
-  o, e, s = Open3.capture3("cp -rf ./CDE-semantic-model-implementations/YARRRRML_Transform_Templates/*.yaml  /config")
+  s = s
+  o, e, s = Open3.capture3("cp -rf ./CDE-semantic-model-implementations/YARRRML_Transform_Templates/*.yaml  /config")
   $stderr.puts "second open3 complete #{o} #{e}"
     
 end

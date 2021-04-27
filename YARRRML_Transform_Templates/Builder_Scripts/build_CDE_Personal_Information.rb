@@ -1,5 +1,5 @@
 require "yarrrml-template-builder"
-
+#require "../../YARRRML_Tools/yarrrml_template_builder/lib/yarrrml-template-builder.rb"
 
 # pid,uniqid,sexURI,sexLabel,birthdate
 
@@ -63,7 +63,7 @@ b.process_hasoutput_output({
     })
 b.process_hasoutput_output({
     process_with_output_tag: "sex_measuring_procedure",  # connect to the correct process
-    output_type_label: "Sex",
+    output_type_label_column: "sexLabel",
     output_value_column: "sexLabel",
     })
 
@@ -86,38 +86,22 @@ b.process_hasoutput_output({
 #"pid,uniqid,sexURI,sexLabel,birthdate
 
 b.input_output_refers_to(  {
-  inout_process_tag: "sex_measuring_procedure",                     
-  inout_refers_to_columns: ["sexURI"],
-  inout_refers_to_label_columns: ["sexLabel"],
+  inout_process_tag: "sex_measuring_procedure",
+  refers_to_tag: "sexAttribute",
+  inout_refers_to_column: "sexURI",
+  inout_refers_to_label_column: "sexLabel",
+  base_types: ["obo:NCIT_C28421"],
   is_attribute: true
 })
 
 b.input_output_refers_to(  {
   inout_process_tag: "age_measuring_procedure",                     
-  inout_refers_to: ["obo:NCIT_C6861"],  
-  inout_refers_to_label: ["Birth Date"],
+  refers_to_tag: "ageAttribute",
+  inout_refers_to: "obo:NCIT_C68615",  
+  inout_refers_to_label: "Birth Date",
   is_attribute: true
                            
 })
-
-
-
-#
-#b.person_has_attribute(  {
-#  inout_process_tag: "age_measuring_procedure",                     
-#  inout_refers_to_columns: ["birthdateQualityURI"],   # DOES THIS STILL EXIST??
-#  inout_refers_to_label: ["Birth Date"]
-#                           
-#})
-#
-#b.person_has_attribute(  {
-#  inout_process_tag: "sex_measuring_procedure",                     
-#  inout_refers_to_columns: ["sexURI"],
-#  inout_refers_to_label: ["Sex"]
-#                           
-#})
-
-
 
 
 
