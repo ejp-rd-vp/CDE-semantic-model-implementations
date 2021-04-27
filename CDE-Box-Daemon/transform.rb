@@ -3,14 +3,32 @@ require './CDE_Transform'
 require 'sinatra'
 require 'rest-client'
 require './http_utils'
+require 'open3'
 
 include HTTPUtils
 
 
 get '/' do
+  update()
   execute()
+  cleanup()
   "Execution complete.  See docker log for errors (if any)"
 
+end
+
+def update
+  $stderr.puts "first open3 git pull"
+  o, e, s = Open3.capture3("cd CDE-semantic-model-implementations && git pull")
+  $stderr.puts "second open3 copy yarrrml #{o}  #{e}"
+  o, e, s = Open3.capture3("cp -rf ./CDE-semantic-model-implementations/YARRRRML_Transform_Templates/*.yaml  /config")
+  $stderr.puts "second open3 complete #{o} #{e}"
+    
+end
+
+def cleanup
+  $stderr.puts "closing cleanup open3"
+      o, s = Open3.capture2("rm -rf /data/triplesstats.csv")
+      o = o; s = s
 end
 
 def execute
