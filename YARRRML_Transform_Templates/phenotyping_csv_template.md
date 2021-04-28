@@ -4,7 +4,7 @@ A record of the phenotypic observations for a patient
 
 ## CSV Columns
 
-# pid,uniqid, HP_IRI, HP_Label, date
+pid,uniqid, HP_IRI, HP_Label, date
 
 
 ## Notes:
