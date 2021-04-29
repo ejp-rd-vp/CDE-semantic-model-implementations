@@ -76,7 +76,7 @@ b.process_hasoutput_output({
     output_type_column: "onset_uri",  # symptom onset
     output_type_label: "'age' at onset",
     output_value_column: "onset_date",
-    output_value_datatype: "xsd:dateTime"
+    output_value_datatype: "xsd:date"
     })
 
 # =====================================DIAG DATE==============================================
@@ -87,7 +87,7 @@ b.process_hasoutput_output({
     output_type_column: "diagnosis_uri",  # symptom onset
     output_type_label: "'age' at diagnosis",
     output_value_column: "diagnosis_date",
-    output_value_datatype: "xsd:dateTime",
+    output_value_datatype: "xsd:date",
     
     })
 

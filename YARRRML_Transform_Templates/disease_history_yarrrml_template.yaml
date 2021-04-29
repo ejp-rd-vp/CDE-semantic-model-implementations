@@ -250,7 +250,7 @@ mappings:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(onset_date)"
-        datatype: xsd:dateTime
+        datatype: xsd:date
   patientRole_diagnosis_date_process_process_has_output:
     sources:
     - cde_patient_disease_history-source
@@ -295,7 +295,7 @@ mappings:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(diagnosis_date)"
-        datatype: xsd:dateTime
+        datatype: xsd:date
   inout_from_patientRole_symptom_onset_process_refers_to_concepts:
     sources:
     - cde_patient_disease_history-source
