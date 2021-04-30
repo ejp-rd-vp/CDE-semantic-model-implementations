@@ -9,6 +9,7 @@ prefixes:
   pico: https://data.cochrane.org/ontologies/pico/
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
+  ordo: http://www.orpha.net/ORDO/
   this: https://w3id.org/duchenne-fdp/data/
 sources:
   cde_genetic_diagnosis-source:
