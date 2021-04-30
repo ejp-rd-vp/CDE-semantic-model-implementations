@@ -25,6 +25,7 @@ services:
     environment:
       GraphDB_User: ${GraphDB_User}
       GraphDB_Pass: ${GraphDB_Pass}
+      baseURI: ${baseURI}
     depends_on:
       - yarrrml_transform
       - rdfizer
@@ -44,8 +45,6 @@ services:
     container_name: yarrrml_transform
     ports:
       - "3000:3000"
-    environment:
-      baseURI: ${baseURI}
     volumes:
       - ./data:/data
     networks:
