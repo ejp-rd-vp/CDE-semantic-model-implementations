@@ -60,7 +60,7 @@ class YARRRML_Template_Builder
 #
   def initialize(params = {}) # get a name from the "new" call, or set a default
     
-    @baseURI = params.fetch(:baseURI, nil)
+    @baseURI = params.fetch(:baseURI, "|||BASE|||")
     @sio_verbose = params.fetch(:sio_verbose, 0)
     abort "must have a baseURI parameter" unless self.baseURI
     @mappings = []
@@ -78,6 +78,7 @@ class YARRRML_Template_Builder
       "pico" => "https://data.cochrane.org/ontologies/pico/",
       "ndfrt" => "http://purl.bioontology.org/ontology/NDFRT/",
       "edam" => "http://purl.bioontology.org/ontology/EDAM/",
+      "ordo" => "ordo: http://www.orpha.net/ORDO/",
       }
     
     self.add_prefixes(prefixesHash: {"this" => self.baseURI})

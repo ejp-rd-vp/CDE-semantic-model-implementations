@@ -44,6 +44,8 @@ services:
     container_name: yarrrml_transform
     ports:
       - "3000:3000"
+    environment:
+      baseURI: ${baseURI}
     volumes:
       - ./data:/data
     networks:
