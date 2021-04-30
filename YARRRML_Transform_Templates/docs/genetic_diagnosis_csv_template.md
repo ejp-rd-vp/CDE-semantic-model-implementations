@@ -11,6 +11,10 @@ pid, uniqid, hgvs_variant
   * pid - patient unique identifier
   * iniqid:  some row unique identifier, over all sessions (a millisecond timestamp, numerical only, is a good idea)
   * hgvs_variant: the hgvs string (only one allowed at this time... complain to us if you need more than one!)
+
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/genetic_diagnosis_yarrrml_template.yaml)
   
 ##  TODO
 

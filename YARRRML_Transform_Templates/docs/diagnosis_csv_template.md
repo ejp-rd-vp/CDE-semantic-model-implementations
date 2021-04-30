@@ -14,6 +14,10 @@ pid, uniqid, ordo_uri, diagnostic_opinion, date
   * diagnostic_opinion: brief textual label of the diagnosic opinion.  Likely the label of the ORDO disease term, but may be richer.
   * date:  date of the diagnosis (leave blank if not available)
 
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/diagnosis_yarrrml_template.yaml)
+
 
 ##  TODO
 
