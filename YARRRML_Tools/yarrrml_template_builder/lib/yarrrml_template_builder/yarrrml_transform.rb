@@ -14,6 +14,7 @@ class YARRRML_Transform
   attr_accessor :yarrrml_transform_base_url
   attr_accessor :datatype_tag
   attr_accessor :datafile
+  attr_accessor :baseURI
   
   attr_accessor :yarrrmltemplate
   attr_accessor :yarrrmlfilename_client
@@ -77,9 +78,12 @@ class YARRRML_Transform
     @yarrrml_transform_base_url.gsub!('/$', "")
     
     
-    @outputrdffolder = params.fetch(:outputrdffolder, "#{self.data_path_server}/triples")
     @formulation = params.fetch(:formulation, "csv")
     @datafile = params.fetch(:datafile, "#{self.data_path_server}/#{self.datatype_tag}.csv")
+    @baseURI = params.fetch(:baseURI, ENV['baseURI'])
+    @baseURI = "http://example.org/data/" unless @baseURI
+
+    @outputrdffolder = params.fetch(:outputrdffolder, "#{self.data_path_server}/triples")
     @outputrmlfile = params.fetch(:outputrmlfile, "#{self.data_path_server}/#{self.datatype_tag}_rml.ttl")
     @yarrrmlfilename_client = params.fetch(:yarrrmlfilename, "#{self.data_path_client}/#{self.datatype_tag}_yarrrml.yaml")
     @yarrrmlfilename_server = params.fetch(:yarrrmlfilename, "#{self.data_path_server}/#{self.datatype_tag}_yarrrml.yaml")
@@ -104,6 +108,7 @@ class YARRRML_Transform
     File.open(self.yarrrmltemplate, "r") {|f| @template = f.read}
     @template.gsub!("|||DATA|||", self.datafile)
     @template.gsub!("|||FORMULATION|||", self.formulation)
+    @template.gsub!("|||BASE|||", self.baseURI)
     File.open(self.yarrrmlfilename_client, "w") {|f| f.puts @template}
     $stderr.puts "Ready to yarrrml transform #{self.datatype_tag} from #{self.yarrrmlfilename_client} "
 
