@@ -20,7 +20,7 @@ mappings:
   identifier_has_value_for_patientRole_phenotyping:
     sources:
     - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_phenotyping:
     sources:
     - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -146,17 +146,17 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HP_Label
+        value: "$(HP_Label)"
         datatype: xsd:string
   patientRole_phenotyping_process_output_annotation_start:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_phenotyping_process_Output
     po:
-    - predicates: http://semanticscience.org/resource/start-time
+    - predicates: http://semanticscience.org/resource/start-date
       objects:
         value: "$(date)"
-        datatype: xsd:dateTime
+        datatype: xsd:date
   inout_from_patientRole_phenotyping_process_refers_to_concepts:
     sources:
     - cde_patient_phenotyping-source
@@ -186,9 +186,18 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: 
+        value: "$(HP_IRI)"
         type: iri
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/SIO_010056
         type: iri
+  inout_from_patientRole_phenotyping_process_refers_to_concept_phenotyping_attribute_label:
+    sources:
+    - cde_patient_phenotyping-source
+    s: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: "$(HP_Label)"
+        datatype: xsd:string

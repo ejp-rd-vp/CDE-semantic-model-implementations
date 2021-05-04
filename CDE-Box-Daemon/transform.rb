@@ -21,7 +21,7 @@ def update
   o, e, s = Open3.capture3("cd CDE-semantic-model-implementations && git pull")
   $stderr.puts "second open3 copy yarrrml #{o}  #{e}"
   s = s
-  o, e, s = Open3.capture3("cp -rf ./CDE-semantic-model-implementations/YARRRML_Transform_Templates/*.yaml  /config")
+  o, e, s = Open3.capture3("cp -rf ./CDE-semantic-model-implementations/YARRRML_Transform_Templates/templates/*.yaml  /config")
   $stderr.puts "second open3 complete #{o} #{e}"
     
 end

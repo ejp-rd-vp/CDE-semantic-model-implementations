@@ -20,7 +20,7 @@ mappings:
   identifier_has_value_for_patientRole_diagnosis:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_diagnosis:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -162,10 +162,10 @@ mappings:
     - cde_patient_diagnosis-source
     s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
     po:
-    - predicates: http://semanticscience.org/resource/start-time
+    - predicates: http://semanticscience.org/resource/start-date
       objects:
         value: "$(date)"
-        datatype: xsd:dateTime
+        datatype: xsd:date
   inout_from_medical_diagnosis_refers_to_concepts:
     sources:
     - cde_patient_diagnosis-source

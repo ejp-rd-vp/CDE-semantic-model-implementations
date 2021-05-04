@@ -20,7 +20,7 @@ mappings:
   identifier_has_value_for_patientRole_status:
     sources:
     - cde_patient_status-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_status:
     sources:
     - cde_patient_status-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -238,10 +238,10 @@ mappings:
     - cde_patient_status-source
     s: this:individual_$(pid)_$(uniqid)#patient_death_information_Output
     po:
-    - predicates: http://semanticscience.org/resource/end-time
+    - predicates: http://semanticscience.org/resource/end-date
       objects:
         value: "$(death_date)"
-        datatype: xsd:dateTime
+        datatype: xsd:date
   inout_from_patient_death_information_refers_to_concepts:
     sources:
     - cde_patient_status-source

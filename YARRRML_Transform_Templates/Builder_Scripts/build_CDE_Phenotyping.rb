@@ -55,15 +55,15 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_phenotyping_process",  # connect to the correct process
     output_type: "http://purl.obolibrary.org/obo/NCIT_C102741", # classification of a clinical observation
-    output_type_label: "HP_Label",
+    output_type_label_column: "HP_Label",
     output_start_column: "date"
     })
 
 b.input_output_refers_to({
   refers_to_tag: "phenotyping_attribute",
   inout_process_tag:   "patientRole_phenotyping_process",  # connect to the correct process
-  inout_refers_to_columns: "HP_IRI",
-  inout_refers_to_label_columns: "HP_Label",
+  inout_refers_to_column: "HP_IRI",
+  inout_refers_to_label_column: "HP_Label",
   base_types: ["http://semanticscience.org/resource/SIO_010056"]
 })
 

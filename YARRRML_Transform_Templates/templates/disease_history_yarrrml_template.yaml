@@ -20,7 +20,7 @@ mappings:
   identifier_has_value_for_patientRole_symptom_onset:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_symptom_onset:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -80,7 +80,7 @@ mappings:
   identifier_has_value_for_patientRole_diagnosis_date:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -89,7 +89,7 @@ mappings:
   identifier_denotes_role_patientRole_diagnosis_date:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:

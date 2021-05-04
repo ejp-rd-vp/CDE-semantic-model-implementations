@@ -88,7 +88,7 @@ b.process_hasoutput_output({
   b.input_output_refers_to({
     refers_to_tag: "hgnc_reference",
     inout_process_tag: "patientRole_genetic_diagnosis_process_hgnc",
-    inout_refers_to: "https://identifiers.org/${hgnc_code}",
+    inout_refers_to: "https://identifiers.org/$(hgnc_code)",
     inout_refers_to_label_column: "hgnc_code",
     
   })
@@ -97,14 +97,9 @@ b.process_hasoutput_output({
   b.input_output_refers_to({
     refers_to_tag: "omim_reference",
     inout_process_tag: "patientRole_genetic_diagnosis_process_omim",
-    inout_refers_to: "https://www.omim.org/entry/${omim_number}",
+    inout_refers_to: "https://www.omim.org/entry/$(omim_number)",
     inout_refers_to_label_column: "omim_number",
-    
   })
-
-
-
-
 
 
 puts b.generate
