@@ -2,7 +2,12 @@
 
 The diagnostic opinion regarding the disease
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/diagnosis.csv)
+
+### Columns
 
 pid, uniqid, ordo_uri, diagnostic_opinion, date
 

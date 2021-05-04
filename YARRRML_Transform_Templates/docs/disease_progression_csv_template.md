@@ -2,7 +2,12 @@
 
 The longitudinal record of a patient's observations through the course of their disease
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/)
+
+### Columns
 
 pid, uniqid
 

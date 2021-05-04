@@ -2,7 +2,12 @@
 
 The CDE for genetic diagnosis
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/genetic_diagnosis.csv)
+
+### Columns
 
 pid, uniqid, hgvs_variant, hgnc_code, omim_number
 
