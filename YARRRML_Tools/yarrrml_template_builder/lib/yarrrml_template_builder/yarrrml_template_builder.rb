@@ -245,14 +245,16 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
                              "identifier_has_value_for_#{person_role_tag}",
                              ["#{source_tag}-source"],
-                             "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
+                             "this:individual_$(#{@personid_column})#ID",
+#                             "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
                              [[SIO["has-value"][self.sio_verbose], "$(#{@personid_column})", "xsd:string"]]
                              )
 
     @mappings << mapping_clause(
                                   "identifier_denotes_role_#{person_role_tag}",
                                   ["#{source_tag}-source"],
-                                  "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
+                                  "this:individual_$(#{@personid_column})#ID",
+#                                  "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
                                   [
                                    ["a", "#{identifier_type}", "iri"],
                                    ["a", SIO["identifier"][self.sio_verbose], "iri"],

@@ -55,7 +55,7 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_phenotyping_process",  # connect to the correct process
     output_type: "http://purl.obolibrary.org/obo/NCIT_C102741", # classification of a clinical observation
-    output_type_label: "HP_Label",
+    output_type_label_column: "HP_Label",
     output_start_column: "date"
     })
 

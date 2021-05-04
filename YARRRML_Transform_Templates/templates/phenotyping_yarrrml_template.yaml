@@ -20,7 +20,7 @@ mappings:
   identifier_has_value_for_patientRole_phenotyping:
     sources:
     - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_phenotyping:
     sources:
     - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -146,7 +146,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HP_Label
+        value: "$(HP_Label)"
         datatype: xsd:string
   patientRole_phenotyping_process_output_annotation_start:
     sources:
