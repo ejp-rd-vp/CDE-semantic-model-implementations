@@ -16,5 +16,9 @@ by other YARRRML templates.  by default, this is #longitudinal_information_gathe
 in your triplestore, then you need to create a Disease Progression node for each of these... do this by
 replacing "diseaseX" with some unique id for your disease.  If you are not tracking multiple diseases, then do nothing :-)
 
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/disease_progression_yarrrml_template.yaml)
+
 ##  TODO
 

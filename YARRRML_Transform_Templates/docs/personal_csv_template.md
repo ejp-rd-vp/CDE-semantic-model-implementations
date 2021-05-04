@@ -17,6 +17,10 @@ pid, uniqid, sexURI, sexLabel, birthdate
     * Unknown  obo:NCIT_C17998(unknown) (use this for foetal undetermined) 
   * sexLabel:  some human readable label that matches the sexURI column
   * birthdate:  ISO 8601 compliant date string
+
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/personal_yarrrml_template.yaml)
   
 ##  TODO
 
