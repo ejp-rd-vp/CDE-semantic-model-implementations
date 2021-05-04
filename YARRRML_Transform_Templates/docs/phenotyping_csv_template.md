@@ -2,7 +2,12 @@
 
 A record of the phenotypic observations for a patient
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/phenotyping.csv)
+
+### Columns
 
 pid,uniqid, HP_IRI, HP_Label, date
 

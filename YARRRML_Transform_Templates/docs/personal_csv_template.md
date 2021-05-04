@@ -2,7 +2,12 @@
 
 The CDE for personal information (birth date and sex)
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/personal.csv)
+
+### Columns
 
 pid, uniqid, sexURI, sexLabel, birthdate
 

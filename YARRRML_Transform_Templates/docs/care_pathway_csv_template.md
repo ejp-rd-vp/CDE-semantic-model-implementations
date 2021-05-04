@@ -2,7 +2,12 @@
 
 The care pathway (currently limited to first-contact information)
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/care_pathway.csv)
+
+### Columns
 
 pid, uniqid, first_contact_date
 

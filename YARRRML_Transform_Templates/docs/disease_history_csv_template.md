@@ -2,7 +2,12 @@
 
 The CDE for disease history ("age" at onset, "age" at diagnosis)
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/disease_history.csv)
+
+### Columns
 
 pid, uniqid, onset_uri, onset_date, diagnosis_uri, diagnosis_date
 

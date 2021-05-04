@@ -2,7 +2,12 @@
 
 The CDE for patient status
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/patient_status.csv)
+
+### Columns
 
 pid, uniqid, date, status_uri, status_label, death_date
 
