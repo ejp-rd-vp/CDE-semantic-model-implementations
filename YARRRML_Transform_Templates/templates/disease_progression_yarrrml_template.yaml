@@ -20,7 +20,7 @@ mappings:
   identifier_has_value_for_longitudinal_information_gathering_role:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_longitudinal_information_gathering_role:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)#ID
+    s: this:individual_$(pid)#ID
     po:
     - predicates: a
       objects:
