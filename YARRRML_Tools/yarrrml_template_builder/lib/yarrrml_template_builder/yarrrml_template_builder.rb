@@ -29,6 +29,8 @@ class YARRRML_Template_Builder
 "is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
 "start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
 "end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
+"start-date" => ["http://semanticscience.org/resource/SIO_000031", "http://semanticscience.org/resource/start-date"],
+"end-date" => ["http://semanticscience.org/resource/SIO_000032", "http://semanticscience.org/resource/end-date"],
 "is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
 "drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
 "is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
@@ -78,7 +80,7 @@ class YARRRML_Template_Builder
       "pico" => "https://data.cochrane.org/ontologies/pico/",
       "ndfrt" => "http://purl.bioontology.org/ontology/NDFRT/",
       "edam" => "http://purl.bioontology.org/ontology/EDAM/",
-      "ordo" => "ordo: http://www.orpha.net/ORDO/",
+      "ordo" => "http://www.orpha.net/ORDO/",
       }
     
     self.add_prefixes(prefixesHash: {"this" => self.baseURI})
@@ -294,8 +296,8 @@ class YARRRML_Template_Builder
 # @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
 # @option params :process_label  [String] the label associated with the process type in that row (defaults to "thisprocess")
 # @option params :process_label_column  [String] the column header for the label associated with the process type in that row
-# @option params :process_start_column  [String] (optional) the column header for the timestamp when that process started
-# @option params :process_end_column  [String]  (optional) the column header for the timestamp when that process ended
+# @option params :process_start_column  [String] (optional) the column header for the datestamp when that process started
+# @option params :process_end_column  [String]  (optional) the column header for the datestamp when that process ended
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def role_in_process(params)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
@@ -339,7 +341,7 @@ class YARRRML_Template_Builder
         "#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
-           [[SIO["start-time"][self.sio_verbose], "$(#{process_start_column})", "xsd:dateTime"]]
+           [[SIO["start-date"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"]]
            )
     end
     
@@ -348,7 +350,7 @@ class YARRRML_Template_Builder
           "#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
-          [[SIO["end-time"][self.sio_verbose], "$(#{process_end_column})", "xsd:dateTime"]]
+          [[SIO["end-date"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"]]
           )
     end
       
@@ -554,8 +556,8 @@ class YARRRML_Template_Builder
 # @option params :output_value_datatype  [xsd:type]  the xsd:type for that kind of measurement (defaults to xsd:string)
 # @option params :output_value_datatype_column  [String]  the column header for the xsd:type for that kind of measurement (overrides output_value_datatype)
 # @option params :output_comments_column  [String]  the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
-# @option params :output_start_column  [xsd:datetime] the column header for start date
-# @option params :output_end_column  [xsd:datetime]   the column header for end date
+# @option params :output_start_column  [xsd:date] the column header for start date
+# @option params :output_end_column  [xsd:date]   the column header for end date
 # @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)
 # @option params :output_annotations_columns  [Array]   Array of Arrays of [[predicate, value, datatype]...] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
@@ -643,7 +645,7 @@ class YARRRML_Template_Builder
         "#{process_with_output_tag}_output_annotation_start",
           ["#{source_tag}-source"],
            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-           [[SIO["start-time"][self.sio_verbose], "$(#{output_start_column})", "xsd:dateTime"]]
+           [[SIO["start-date"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"]]
            )
     end
     
@@ -652,7 +654,7 @@ class YARRRML_Template_Builder
           "#{process_with_output_tag}_output_annotation_end",
           ["#{source_tag}-source"],
            "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-          [[SIO["end-time"][self.sio_verbose], "$(#{output_end_column})", "xsd:dateTime"]]
+          [[SIO["end-date"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"]]
           )
     end
     

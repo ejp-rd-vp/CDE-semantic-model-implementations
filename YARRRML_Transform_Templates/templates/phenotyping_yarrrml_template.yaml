@@ -153,10 +153,10 @@ mappings:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_phenotyping_process_Output
     po:
-    - predicates: http://semanticscience.org/resource/start-time
+    - predicates: http://semanticscience.org/resource/start-date
       objects:
         value: "$(date)"
-        datatype: xsd:dateTime
+        datatype: xsd:date
   inout_from_patientRole_phenotyping_process_refers_to_concepts:
     sources:
     - cde_patient_phenotyping-source

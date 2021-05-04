@@ -2,7 +2,12 @@
 
 The longitudinal record of a patient's observations through the course of their disease
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/)
+
+### Columns
 
 pid, uniqid
 
@@ -15,6 +20,10 @@ This creates a 'container' process node that will have-part all of the other eve
 by other YARRRML templates.  by default, this is #longitudinal_information_gathering_process_diseaseX.  If you need to follow multiple diseases
 in your triplestore, then you need to create a Disease Progression node for each of these... do this by
 replacing "diseaseX" with some unique id for your disease.  If you are not tracking multiple diseases, then do nothing :-)
+
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/disease_progression_yarrrml_template.yaml)
 
 ##  TODO
 

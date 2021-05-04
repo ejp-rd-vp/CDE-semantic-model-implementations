@@ -1,8 +1,13 @@
-# Patient Status CDE
+# Patient Consent CDE
 
 The CDE for patient status
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/patient_consent.csv)
+
+### Columns
 
 pid, uniqid, url, result_uri, result_label, date
 
@@ -15,6 +20,10 @@ pid, uniqid, url, result_uri, result_label, date
   * result_uri:  some child of http://purl.obolibrary.org/obo/DUO_0000001 (ICO/DUI Data Use Permission)
   * result_label:  some label describing the meaning of the result_uri
   * date:  the date this consent was captured
+  
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/patient_consent_yarrrml_template.yaml)
 
   
 ##  TODO

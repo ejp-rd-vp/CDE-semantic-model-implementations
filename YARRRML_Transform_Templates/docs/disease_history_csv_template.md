@@ -2,7 +2,12 @@
 
 The CDE for disease history ("age" at onset, "age" at diagnosis)
 
-## CSV Columns
+## CSV file 
+
+### Example CSV file
+Please find example CSV file [here](../csv/disease_history.csv)
+
+### Columns
 
 pid, uniqid, onset_uri, onset_date, diagnosis_uri, diagnosis_date
 
@@ -27,6 +32,10 @@ pid, uniqid, onset_uri, onset_date, diagnosis_uri, diagnosis_date
 SPARQL NOTES:  When querying, the patient attribute will be one of: 
   * obo:NCIT_C156420 (Age at Diagnosis) 
   * obo:NCIT_C124353  (symptom onset)
+
+## YARRRML
+
+Please find the YARRRML template for this module [here](../templates/disease_history_yarrrml_template.yaml)
   
 ##  TODO
 
