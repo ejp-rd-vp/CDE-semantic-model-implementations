@@ -186,9 +186,18 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: 
+        value: "$(HP_IRI)"
         type: iri
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/SIO_010056
         type: iri
+  inout_from_patientRole_phenotyping_process_refers_to_concept_phenotyping_attribute_label:
+    sources:
+    - cde_patient_phenotyping-source
+    s: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: "$(HP_Label)"
+        datatype: xsd:string
