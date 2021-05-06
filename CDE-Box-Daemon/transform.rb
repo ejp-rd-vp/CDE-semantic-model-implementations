@@ -12,7 +12,7 @@ get '/' do
   update()
   execute()
   cleanup()
-  "Execution complete.  See docker log for errors (if any)"
+  "Execution complete.  See docker log for errors (if any)\n\n"
 
 end
 
@@ -44,15 +44,20 @@ def execute
     d =~ /.+\/([^\.]+)\.csv/
     datatype = $1
     next unless datatype
-#    d.gsub!(/\/data\//, "")  # remove /data/ path
-#    d.gsub!(/\.csv/, "")  # remove trailing file format
     cde.transform(datatype)
+  end
+
+
+  begin
+    File.delete("/data/triples/concatenated.nt") if File.exists?("/data/triples/concatenated.nt")
+  ensure
+    $stderr.puts "concatenated file could not be deleted or didn't exist"
   end
   
   files = Dir["/data/triples/*.nt"]
   concatenated = ""
   files.each {|f| content = File.open(f, "r").read; concatenated += content}
-  f =File.open("/data/triples/concatenated.nt", "w")  # overwrite
+  f =File.open("/data/triples/concatenated.nt", "w") 
   f.write concatenated
   f.close
   
