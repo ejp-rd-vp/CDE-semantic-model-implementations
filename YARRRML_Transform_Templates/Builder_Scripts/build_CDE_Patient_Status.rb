@@ -1,10 +1,11 @@
 require "yarrrml-template-builder"
 
-#"pid,uniqid,  date, status_label, status_uri, death_date
+#"pid,uniqid,url
+#http://purl.obolibrary.org/obo/ICO_0000196
 
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
+#  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_status",
   sio_verbose: 1,
   }
@@ -23,24 +24,12 @@ b.person_identifier_role_mappings({
 b.role_in_process({
     person_role_tag: "patientRole_status",
     process_tag:  "patient_status",
-    process_label: "patient status", 
-    process_type: "http://semanticscience.org/resource/SIO_001052", # data collection
+    process_label: "status process", 
     })
 
-# ===================================================================================
-# ===================================================================================
-# ===================================================================================
 
-b.process_has_part({
-  parent_process_tag: "longitudinal_information_gathering_process_diseaseX",
-  part_process_tag: "patient_status",
-  parent_unique_process: false,
-})
 
-# ===================================================================================
-# ========================================Status===========================================
-# pid,uniqid,date,status_uri,status_label,death_date
-
+#======================================
 
 b.process_hasoutput_output({
     process_with_output_tag: "patient_status",  # connect to the correct process

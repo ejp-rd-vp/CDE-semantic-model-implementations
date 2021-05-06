@@ -10,7 +10,7 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: https://w3id.org/duchenne-fdp/data/
+  this: "|||BASE|||"
 sources:
   cde_patient_care_pathway-source:
     access: "|||DATA|||"
@@ -112,7 +112,7 @@ mappings:
       objects:
         value: "$(first_contact_date)"
         datatype: xsd:date
-  16201291262235343_process_custom_annotation:
+  16202900787759852_process_custom_annotation:
     sources:
     - cde_patient_care_pathway-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process

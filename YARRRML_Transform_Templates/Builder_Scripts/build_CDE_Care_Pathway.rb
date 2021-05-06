@@ -5,7 +5,7 @@ require "yarrrml-template-builder"
 #longitudinal_information_gathering_process_diseaseX
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
+#  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_care_pathway",
   sio_verbose: 1,
   }

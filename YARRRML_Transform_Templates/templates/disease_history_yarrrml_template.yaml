@@ -10,7 +10,7 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: https://w3id.org/duchenne-fdp/data/
+  this: "|||BASE|||"
 sources:
   cde_patient_disease_history-source:
     access: "|||DATA|||"
