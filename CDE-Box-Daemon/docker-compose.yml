@@ -47,8 +47,6 @@ services:
       - "3000:3000"
     volumes:
       - ./data:/data
-    environment:
-      baseURI: ${baseURI}
     networks:
       - default
       - graphdb_net 
