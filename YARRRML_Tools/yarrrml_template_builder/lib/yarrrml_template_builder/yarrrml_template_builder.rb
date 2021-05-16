@@ -672,13 +672,11 @@ class YARRRML_Template_Builder
           
           if pred and pred =~ /\S+\:\S+/  # URI or qname
             predicate = pred
-          elsif pred
-            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
           else
-            abort "didn't define a predicate for the output annotations"
+            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
           end
       #$stderr.puts "found output annotations #{predicate}, #{value}"
-                    
+
           next unless predicate and value
           uniqid = get_uniq_id
           
@@ -701,10 +699,8 @@ class YARRRML_Template_Builder
           
           if pred and pred =~ /\S+\:\S+/  # URI or qname
             predicate = pred
-          elsif pred
-            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
           else
-            abort "didn't define a predicate for the output annotations"
+            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
           end
           
           next unless predicate and value
