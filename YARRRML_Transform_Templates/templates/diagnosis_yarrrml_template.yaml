@@ -146,7 +146,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: diagnostic_opinion
+        value: "$(diagnostic_opinion)"
         datatype: xsd:string
   medical_diagnosis_Output_value_annotation:
     sources:
@@ -173,7 +173,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_medical_diagnosis:
     sources:
@@ -182,12 +182,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
         type: iri
-  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_type:
+  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_type:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -195,12 +195,12 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: 
+        value: "$(ordo_uri)"
         type: iri
-  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_label:
+  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_label:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

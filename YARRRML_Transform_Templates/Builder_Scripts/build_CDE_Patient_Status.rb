@@ -39,7 +39,9 @@ b.process_hasoutput_output({
 b.input_output_refers_to({
   refers_to_tag: "status_attribute",
   inout_process_tag:   "patient_status",  # connect to the correct process
-  inout_refers_to_columns: ["status_uri"]
+  inout_refers_to_column: "status_uri",
+  inout_refers_to_label: "Patient status",
+  is_attribute: true
 })
 
 

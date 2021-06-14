@@ -53,9 +53,10 @@ b.process_hasoutput_output({
 
 b.input_output_refers_to({
   inout_process_tag:   "medical_diagnosis",  # connect to the correct process
-  refers_to_tag: "medical_diagnosis",
-  inout_refers_to_columns: "ordo_uri",
-  inout_refers_to_label_column: "diagnostic_opinion"
+  refers_to_tag: "medical_diagnosis_attribute",
+  inout_refers_to_column: "ordo_uri",
+  inout_refers_to_label_column: "diagnostic_opinion",
+  is_attribute: true,
 })
 
 puts b.generate
