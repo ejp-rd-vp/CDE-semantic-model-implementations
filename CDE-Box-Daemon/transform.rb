@@ -49,18 +49,18 @@ def execute
 
 
   begin
-    File.delete("/data/triples/concatenated.nt") if File.exists?("/data/triples/concatenated.nt")
+    File.delete("/data/triples/*.nt")
   ensure
-    $stderr.puts "concatenated file could not be deleted or didn't exist"
+    $stderr.puts "looks like it is already clean in here!"
   end
   
   files = Dir["/data/triples/*.nt"]
   concatenated = ""
   files.each {|f| content = File.open(f, "r").read; concatenated += content}
-  f =File.open("/data/triples/concatenated.nt", "w") 
-  f.write concatenated
-  f.close
-  
+  #f =File.open("/data/triples/concatenated.nt", "w") 
+  #f.write concatenated
+  #f.close
+  #
   user = ENV['GraphDB_User']
   pass = ENV['GraphDB_Pass']
   network = "graphdb"

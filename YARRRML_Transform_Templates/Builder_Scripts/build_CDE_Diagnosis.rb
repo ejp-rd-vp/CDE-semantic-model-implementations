@@ -46,7 +46,7 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "medical_diagnosis",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001003",  # diagnostic_opinion
-    output_type_label: "diagnostic_opinion",
+    output_type_label_column: "diagnostic_opinion",
     output_start_column: "date",
     output_value_column: "diagnostic_opinion"
     })
