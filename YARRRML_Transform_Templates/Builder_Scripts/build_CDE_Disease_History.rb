@@ -74,7 +74,7 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_symptom_onset_process",  # connect to the correct process
     output_type_column: "onset_uri",  # symptom onset
-    output_type_label: "'age' at onset",
+    output_type_label: "date of onset (in official CDE this is age of onset)",
     output_value_column: "onset_date",
     output_value_datatype: "xsd:date"
     })

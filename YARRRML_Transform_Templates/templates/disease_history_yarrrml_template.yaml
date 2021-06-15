@@ -241,7 +241,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "'age' at onset"
+        value: date of onset (in official CDE this is age of onset)
         datatype: xsd:string
   patientRole_symptom_onset_process_Output_value_annotation:
     sources:
