@@ -50,6 +50,8 @@ def execute
 
   begin
     File.delete("/data/triples/*.nt")
+  rescue
+    $stderr.puts ""
   ensure
     $stderr.puts "looks like it is already clean in here!"
   end
