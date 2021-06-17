@@ -19,9 +19,9 @@ pid,uniqid, HP_IRI, HP_Label, date
   * HP_Label:  the associated HPO label
   * date:  ISO 8601 formatted date of the observation
   
-Note that it is optional to have all HP observations attached to the same uniqid (i.e. multiple rows with the same uniqid) or to
-have them as separate paths through the linked data.  When querying, you should always assume that they are independent, and organize them
-by date if there were multiple phenotyping sessions over time.
+Note: When querying, you should always assume that every phenotypic observation is independent - that is, 
+they will all come from **independent Process nodes** in the graph! This is because phenotypes can change over time, and there may be
+multiple phenotype entries at different times.  Heads-up!
 
 ## YARRRML
 
