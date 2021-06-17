@@ -3,11 +3,11 @@ prefixes:
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   ex: http://ejp-rd.eu/ids/
   obo: http://purl.obolibrary.org/obo/
-  this: http://duchenne.nl/dpp/participants/ 
   sio: https://semanticscience.org/resource/
   vocab: https://ejp-rd.eu/vocab/
   pico: http://data.cochrane.org/ontologies/pico/
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
+  this: |||BASE|||
   
 sources:
   weight-source:
