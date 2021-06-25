@@ -34,7 +34,10 @@ b.role_in_process({
     })
 b.process_has_annotations({
     process_tag:  "patientRole_phenotyping_process",
-    process_annotations: [["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C16205", "iri"]]  # healthcare activity
+    process_annotations: [
+                           ["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C16205", "iri"],# healthcare activity
+                           ["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C18020", "iri"],# diagnostic procedure
+                           ]  
     })
 
 
