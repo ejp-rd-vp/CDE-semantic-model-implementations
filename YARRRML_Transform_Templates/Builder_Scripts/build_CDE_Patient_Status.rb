@@ -5,7 +5,6 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-#  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_status",
   sio_verbose: 1,
   }
@@ -24,7 +23,7 @@ b.person_identifier_role_mappings({
 b.role_in_process({
     person_role_tag: "patientRole_status",
     process_tag:  "patient_status",
-    process_label: "status process", 
+    process_label: "status recording process", 
     })
 
 
@@ -67,6 +66,7 @@ b.input_output_refers_to({
   refers_to_tag: "death_information",
   inout_process_tag:   "patient_death_information",  # connect to the correct process
   inout_refers_to: "obo:NCIT_C70810",
+  inout_refers_to_label: "Date of death",
   is_attribute: true
 })
 

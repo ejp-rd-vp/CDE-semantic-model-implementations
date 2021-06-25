@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: status process
+        value: status recording process
         datatype: xsd:string
   patientRole_status_realized_patient_death_information:
     sources:
@@ -299,3 +299,12 @@ mappings:
       objects:
         value: obo:NCIT_C70810
         type: iri
+  inout_from_patient_death_information_refers_to_concept_death_information_label:
+    sources:
+    - cde_patient_status-source
+    s: this:individual_$(pid)_$(uniqid)#death_information_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: Date of death
+        datatype: xsd:string

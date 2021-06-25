@@ -32,10 +32,10 @@ b.process_has_annotations({
     process_tag:  "patientRole_care_pathway_first_contact_process",
     process_annotations: [["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C16205", "iri"]], # healthcare activity
 })
-b.process_has_annotations({
-    process_tag:  "patientRole_care_pathway_first_contact_process",
-    process_annotations_columns: [["http://semanticscience.org/resource/SIO_000669", "first_contact_date", "xsd:date"]], # healthcare activity
-})
+#b.process_has_annotations({
+#    process_tag:  "patientRole_care_pathway_first_contact_process",
+#    process_annotations_columns: [["http://semanticscience.org/resource/SIO_000669", "first_contact_date", "xsd:date"]], # healthcare activity
+#})
 
 
 # ===================================================================================
