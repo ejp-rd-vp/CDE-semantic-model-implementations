@@ -232,3 +232,12 @@ mappings:
       objects:
         value: "$(result_uri)"
         type: iri
+  inout_from_patient_consenting_refers_to_concept_consent_attribute_label:
+    sources:
+    - cde_patient_consent-source
+    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: "$(result_label)"
+        datatype: xsd:string

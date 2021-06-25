@@ -64,7 +64,8 @@ b.process_hasoutput_output({
 b.input_output_refers_to({
   refers_to_tag: "consent_attribute",
   inout_process_tag:   "patient_consenting",  # connect to the correct process
-  inout_refers_to_column: "result_uri"  # the URI of the type of consent obtained (e.g, http://purl.obolibrary.org/obo/OBIB_0000488 (willingness to be contacted))
+  inout_refers_to_column: "result_uri",  # the URI of the type of consent obtained (e.g, http://purl.obolibrary.org/obo/OBIB_0000488 (willingness to be contacted))
+  inout_refers_to_label_column: "result_label"  # the URI of the type of consent obtained (e.g, http://purl.obolibrary.org/obo/OBIB_0000488 (willingness to be contacted))
 })
 
 
