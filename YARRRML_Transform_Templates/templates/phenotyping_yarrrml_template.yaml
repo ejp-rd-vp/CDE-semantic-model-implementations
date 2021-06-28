@@ -103,6 +103,24 @@ mappings:
       objects:
         value: comparative phenotypic assessment
         datatype: xsd:string
+  162487877254454_process_custom_annotation:
+    sources:
+    - cde_patient_phenotyping-source
+    s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://purl.obolibrary.org/obo/NCIT_C16205
+        type: iri
+  16248787725445554_process_custom_annotation:
+    sources:
+    - cde_patient_phenotyping-source
+    s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://purl.obolibrary.org/obo/NCIT_C18020
+        type: iri
   longitudinal_information_gathering_process_has_part_patientRole_phenotyping_process:
     sources:
     - cde_patient_phenotyping-source

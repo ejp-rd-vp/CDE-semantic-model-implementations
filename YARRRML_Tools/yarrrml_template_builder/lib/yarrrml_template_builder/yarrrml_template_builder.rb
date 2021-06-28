@@ -372,7 +372,7 @@ class YARRRML_Template_Builder
   def process_has_annotations(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
     process_annotations_columns = params.fetch(:process_annotations_columns, [])  
-    process_annotations = params.fetch(:output_annotations, [])  
+    process_annotations = params.fetch(:process_annotations, [])  
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
