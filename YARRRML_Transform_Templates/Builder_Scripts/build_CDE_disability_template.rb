@@ -2,7 +2,7 @@ require "yarrrml-template-builder"
 
 # THIS IS FOR PROM-STYLE QUESTIONNAIRES
 
-#pid,uniqid,processLabel,processURI,startDate,comments,measurementURI,measurementLabel,data,prom,ontologyuri
+#pid,uniqid,test_uri,test_name,test_date,score
 
 b = YARRRML_Template_Builder.new({
   source_tag: "questions",
@@ -20,10 +20,16 @@ b.person_identifier_role_mappings({
 
 b.role_in_process({
     person_role_tag: "patientRole",
-    process_type_column: "processURI",  
-    process_tag:  "questionnaire_test",
-    process_label_column: "processLabel", 
-    process_start_column: "startDate", 
+    process_type_column: "test_uri",
+    process_tag:  "disability_assessment_test",
+    process_label_column: "test_name", 
+    process_start_column: "test_date", 
+    })
+b.process_has_annotations({
+    process_tag:  "disability_assessment_test",
+    process_annotations: [
+                           ["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C20993", "iri"],# Research or Clinical Assessment Tool
+                           ]  
     })
 
 
@@ -41,13 +47,9 @@ b.role_in_process({
 # @param [:output_end_column] (xsd:datetime)  (optional) the column header for end date
 
 b.process_hasoutput_output({
-    process_with_output_tag: "questionnaire_test",  # connect to the correct process
-    output_type_label: "question response",
-    output_value_column: "data",
-    output_type_column: "measurementURI",
-    output_type_label_column: "measurementLabel",
-    output_comments_column: "comments",
-    output_start_column: "startDate",
+    process_with_output_tag: "disability_assessment_test",  # connect to the correct process
+    output_type_label: "disability score",
+    output_value_column: "score",
     })
 
 
@@ -68,33 +70,12 @@ b.process_hasoutput_output({
 #pid,uniqid,processLabel,processURI,startDate,comments,measurementURI,measurementLabel,promURI,data,promQuestion,ontologyURI
 
 b.process_has_input({
-  process_with_input_tag: "questionnaire_test",
-  input_is_output_of_process_tag: "someQuestionAuthoringProcess",
-  input_type: "http://semanticscience.org/resource/SIO_000085",
-  input_type_tag: "thisQuestion",
-  input_type_label_column: "promQuestion",
-  input_has_value_column: "promQuestion",
+  process_with_input_tag: "disability_assessment_test",
+  input_is_output_of_process_tag: "question_answering_process",
+  input_type: "http://purl.obolibrary.org/obo/NCIT_C17048",  # questionnaire
+  input_type_tag: "Questionnaire",
 }
 )
-
-
-b.input_output_refers_to(  {
-  refers_to_tag: "prom_tag",
-  inout_process_tag: "someQuestionAuthoringProcess",                     
-  inout_refers_to_column: "promURI",                        
-})
-
-b.input_output_refers_to(  {
-  refers_to_tag: "ontology_tag",
-  inout_process_tag: "someQuestionAuthoringProcess",                     
-  inout_refers_to_column: "ontologyURI",                     
-})
-
-b.input_output_refers_to(  {
-  refers_to_tag: "prom_tag2",
-  inout_process_tag: "questionnaire_test",                     
-  inout_refers_to_column: "promURI",       
-})
 
 
 
