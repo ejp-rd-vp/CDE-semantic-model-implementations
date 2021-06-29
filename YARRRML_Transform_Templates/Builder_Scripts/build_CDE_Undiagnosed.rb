@@ -2,10 +2,10 @@ require "yarrrml-template-builder"
 
 # THIS IS FOR PROM-STYLE QUESTIONNAIRES
 
-#pid,uniqid,test_uri,test_name,test_date,score
+#pid,uniqid,hp_uri,hp_label,hgvs_uri,hgvs_string,date
 
 b = YARRRML_Template_Builder.new({
-  source_tag: "questions",
+  source_tag: "undiagnosed",
   sio_verbose: 1,
   }
   )
@@ -19,17 +19,11 @@ b.person_identifier_role_mappings({
                                     })
 
 b.role_in_process({
-    person_role_tag: "patientRole",
-    process_type_column: "test_uri",
-    process_tag:  "disability_assessment_test",
-    process_label_column: "test_name", 
-    process_start_column: "test_date", 
-    })
-b.process_has_annotations({
-    process_tag:  "disability_assessment_test",
-    process_annotations: [
-                           ["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C20993", "iri"],# Research or Clinical Assessment Tool
-                           ]  
+    person_role_tag: "patientRole_diagnosis",
+    process_tag:  "medical_diagnosis",
+    process_label: "medical diagnosis", 
+    process_type: "http://semanticscience.org/resource/SIO_001001",  # medical diagnosis
+    process_start_column: "date", 
     })
 
 
@@ -47,11 +41,18 @@ b.process_has_annotations({
 # @param [:output_end_column] (xsd:datetime)  (optional) the column header for end date
 
 b.process_hasoutput_output({
-    process_with_output_tag: "disability_assessment_test",  # connect to the correct process
-    output_type_label: "disability score",
-    output_value_column: "score",
+    process_with_output_tag: "medical_diagnosis",  # connect to the correct process
+    output_type: "Undiagnosed",
+    output_type_label: "Undiagnosed",
     })
 
+b.input_output_refers_to({
+  inout_process_tag:   "medical_diagnosis",  # connect to the correct process
+  refers_to_tag: "undiagnosed_attribute",
+  inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C113725",
+  inout_refers_to_label: "Undiagnosed",
+  is_attribute: true,
+})
 
 
 # @param [:process_with_input_tag] (string) (required) the same process tag that is used in the "role in process" for which this is the input
@@ -70,13 +71,21 @@ b.process_hasoutput_output({
 #pid,uniqid,processLabel,processURI,startDate,comments,measurementURI,measurementLabel,promURI,data,promQuestion,ontologyURI
 
 b.process_has_input({
-  process_with_input_tag: "disability_assessment_test",
-  input_is_output_of_process_tag: "question_answering_process",
-  input_type: "http://purl.obolibrary.org/obo/NCIT_C17048",  # questionnaire
-  input_type_tag: "Questionnaire",
+  process_with_input_tag: "medical_diagnosis",
+  input_is_output_of_process_tag: "phenotyping_input",
+  input_type_column: "hp_uri", 
+  input_type_label_column: "hp_label", 
+  input_type_tag: "HP_Phenotype",
 }
 )
 
+b.process_has_input({
+  process_with_input_tag: "medical_diagnosis",  # connect to the correct process
+  input_is_output_of_process_tag: "genotyping_input",
+  input_type_column: "clinvar_uri",  # genomic sequence variant
+  input_type_label_column: "hgvs_string",
+  input_type_tag: "HGVS_Genotype",
+})
 
 
 
