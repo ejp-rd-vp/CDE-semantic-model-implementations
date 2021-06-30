@@ -1,6 +1,6 @@
-# Body Measurement DCDE
+# Lab Measurement DCDE
 
-The DCDE to capture any physical measurement of the body
+The DCDE to capture any laboratory measurement (e.g. a blood chemistry test)
 
 ## CSV file 
 
