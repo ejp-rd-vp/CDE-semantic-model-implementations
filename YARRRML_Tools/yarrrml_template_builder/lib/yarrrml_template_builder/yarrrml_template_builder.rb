@@ -22,6 +22,7 @@ class YARRRML_Template_Builder
 "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
 "has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
 "has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
+"has-target" => ["http://semanticscience.org/resource/SIO_000291", "http://semanticscience.org/resource/has-target"],
 "is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
 "is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
 "has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
@@ -467,6 +468,59 @@ class YARRRML_Template_Builder
 
 
 
+# creates the process has target portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_target_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :target_type_tag  [String] a tag to differentiate this input from other inputs
+# @option params :target_type  [String] the ontological type for the target  (e.g. process is targetted at creatinine - http://purl.obolibrary.org/obo/CHEBI_16737)
+# @option params :target_type_column  [String] the column header specifying the ontological type for the input node (overrides input_type).  Ignored if using output from another process (specify it there!)
+# @option params :target_type_label  [String] the label for all inputs
+# @option params :target_type_label_column  [String] the label column for each input
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+  def process_has_target(params)
+    process_with_target_tag  = params.fetch(:process_with_target_tag, "thisprocess")  # some one-word name
+    target_type_tag  = params.fetch(:input_type_tag, "thisTarget")  # some one-word name
+    target_type  = params.fetch(:input_type, SIO["information-content-entity"][self.sio_verbose])  # some one-word name
+    target_type_column  = params.fetch(:input_type_column, nil)  # some one-word name
+    target_type_label  = params.fetch(:input_type_label, "information content entity")  # some one-word name
+    target_type_label_column  = params.fetch(:input_type_label_column, nil)  # some one-word name
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+    
+    
+    abort "must specify the process_with_target_tag
+    (the identifier of the process that has the input)
+    before you can use the process_has_target function" unless process_with_target_tag
+
+    target_type = target_type_column ? "$(#{target_type_column})":target_type
+    target_label = target_type_label_column ? "$(#{target_type_label_column})":target_type_label
+
+    @mappings << mapping_clause(
+        "#{process_with_target_tag}_has_target_#{target_type_tag}",
+        ["#{source_tag}-source"],
+        root_url + "##{process_with_target_tag}",
+        [[SIO["has-target"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_target_tag}_Target", "iri"]]
+        )
+    
+    @mappings << mapping_clause(
+        "#{process_with_target_tag}_has_target_#{target_type_tag}_annotation",
+        ["#{source_tag}-source"],
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_target_tag}_Target",
+        [
+          ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
+          ["rdf:type","#{target_type}", "iri"],
+          ["rdfs:label","#{target_label}", "xsd:string"],
+          ]
+        )
+    
+  end
+  
+
+
 # creates the process has input portion of the CDE
 #
 # Parameters passed as a hash
@@ -540,6 +594,11 @@ class YARRRML_Template_Builder
       # TODO:   need to allow units here too!  ...one day...
   end
   
+
+
+
+
+
 
 # creates the process_hasoutput_output portion of the CDE
 #

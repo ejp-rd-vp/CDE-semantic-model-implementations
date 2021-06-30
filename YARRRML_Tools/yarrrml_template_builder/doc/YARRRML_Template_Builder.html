@@ -619,6 +619,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#process_has_target-instance_method" title="#process_has_target (instance method)">#<strong>process_has_target</strong>(params)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>creates the process has target portion of the CDE.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#process_hasoutput_output-instance_method" title="#process_hasoutput_output (instance method)">#<strong>process_hasoutput_output</strong>(params)  &#x21d2; Object </a>
     
 
@@ -1368,13 +1392,13 @@
       <pre class="lines">
 
 
-873
-874
-875
-876</pre>
+929
+930
+931
+932</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 873</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 929</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       <span class='kw'>return</span>  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
@@ -1566,62 +1590,6 @@
       <pre class="lines">
 
 
-737
-738
-739
-740
-741
-742
-743
-744
-745
-746
-747
-748
-749
-750
-751
-752
-753
-754
-755
-756
-757
-758
-759
-760
-761
-762
-763
-764
-765
-766
-767
-768
-769
-770
-771
-772
-773
-774
-775
-776
-777
-778
-779
-780
-781
-782
-783
-784
-785
-786
-787
-788
-789
-790
-791
-792
 793
 794
 795
@@ -1634,10 +1602,66 @@
 802
 803
 804
-805</pre>
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 737</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 793</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_input_output_refers_to'>input_output_refers_to</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inout_process_tag'>inout_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2012,56 +2036,56 @@
       <pre class="lines">
 
 
-822
-823
-824
-825
-826
-827
-828
-829
-830
-831
-832
-833
-834
-835
-836
-837
-838
-839
-840
-841
-842
-843
-844
-845
-846
-847
-848
-849
-850
-851
-852
-853
-854
-855
-856
-857
-858
-859
-860
-861
-862
-863
-864
-865
-866
-867
-868</pre>
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 822</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 878</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2925,64 +2949,64 @@
       <pre class="lines">
 
 
-487
-488
-489
-490
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503
-504
-505
-506
-507
-508
-509
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
-537
 538
 539
 540
-541</pre>
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 487</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 538</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_input'>process_has_input</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_input_tag'>process_with_input_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_input_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -3208,6 +3232,241 @@
       <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
       <span class='id identifier rubyid_parent_root_url'>parent_root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_parent_process_tag'>parent_process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
       <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-part</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_part_root_url'>part_root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_part_process_tag'>part_process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='rparen'>)</span>
+  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="process_has_target-instance_method">
+  
+    #<strong>process_has_target</strong>(params)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>creates the process has target portion of the CDE</p>
+
+<p>Parameters passed as a hash</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a hash of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>params</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:process_with_target_tag</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>required</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>the same process tag that is used in the “role in process” for which this is the input</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:target_type_tag</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>a tag to differentiate this input from other inputs</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:target_type</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>the ontological type for the target  (e.g. process is targetted at creatinine - <a href="http://purl.obolibrary.org/obo/CHEBI_16737">purl.obolibrary.org/obo/CHEBI_16737</a>)</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:target_type_column</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>the column header specifying the ontological type for the input node (overrides input_type).  Ignored if using output from another process (specify it there!)</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:target_type_label</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>the label for all inputs</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:target_type_label_column</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>the label column for each input</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:make_unique_process</span>
+          <span class="type">(<tt>boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>true</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>(optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 482</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_process_has_target'>process_has_target</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_target_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
+</span>  <span class='id identifier rubyid_target_type_tag'>target_type_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:input_type_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisTarget</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
+</span>  <span class='id identifier rubyid_target_type'>target_type</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:input_type</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='comment'># some one-word name
+</span>  <span class='id identifier rubyid_target_type_column'>target_type_column</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:input_type_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># some one-word name
+</span>  <span class='id identifier rubyid_target_type_label'>target_type_label</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:input_type_label</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information content entity</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
+</span>  <span class='id identifier rubyid_target_type_label_column'>target_type_label_column</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:input_type_label_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># some one-word name
+</span>  <span class='id identifier rubyid_make_unique_process'>make_unique_process</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:make_unique_process</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_root_url'>get_root_url</span><span class='lparen'>(</span><span class='id identifier rubyid_make_unique_process'>make_unique_process</span><span class='rparen'>)</span>
+  
+  
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>must specify the process_with_target_tag (the identifier of the process that has the input) before you can use the process_has_target function</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_process_with_input_tag'>process_with_input_tag</span>
+
+  <span class='id identifier rubyid_target_type'>target_type</span> <span class='op'>=</span> <span class='id identifier rubyid_target_type_column'>target_type_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_type_column'>target_type_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_target_type'>target_type</span>
+  <span class='id identifier rubyid_target_label'>target_label</span> <span class='op'>=</span> <span class='id identifier rubyid_target_type_label_column'>target_type_label_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_type_label_column'>target_type_label_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_target_type_label'>target_type_label</span>
+
+  <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_has_target_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_type_tag'>target_type_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-target</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Target</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='rparen'>)</span>
+  
+  <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_has_target_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_type_tag'>target_type_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_annotation</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Target</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='lbracket'>[</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_type'>target_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_label'>target_label</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='rbracket'>]</span>
       <span class='rparen'>)</span>
   
 <span class='kw'>end</span></pre>
@@ -3473,62 +3732,6 @@
       <pre class="lines">
 
 
-566
-567
-568
-569
-570
-571
-572
-573
-574
-575
-576
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593
-594
-595
-596
-597
-598
-599
-600
-601
-602
-603
-604
-605
-606
-607
-608
-609
-610
-611
-612
-613
-614
-615
-616
-617
-618
-619
-620
-621
 622
 623
 624
@@ -3627,10 +3830,66 @@
 717
 718
 719
-720</pre>
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 566</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 622</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_hasoutput_output'>process_hasoutput_output</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_output_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -4101,7 +4360,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 30 12:25:56 2021 by
+  Generated on Wed Jun 30 13:26:00 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>
