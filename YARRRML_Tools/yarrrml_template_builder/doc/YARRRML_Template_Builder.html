@@ -140,7 +140,7 @@
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>identifier</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000115</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/identifier</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>role</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000016</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/role</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000006</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/process</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attribute</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000614]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/attribute</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attribute</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000614</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/attribute</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
              
 <span class='rbrace'>}</span></pre></dd>
       
@@ -1368,13 +1368,13 @@
       <pre class="lines">
 
 
-872
 873
 874
-875</pre>
+875
+876</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 872</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 873</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       <span class='kw'>return</span>  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
@@ -1939,6 +1939,18 @@
     <ul class="option">
       
         <li>
+          <span class="name">:inout_process_tag</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>&quot;unidentifiedProcess&quot;</tt>
+            
+          </span>
+          
+        </li>
+      
+        <li>
           <span class="name">:output_unit</span>
           <span class="type">(<tt>URL</tt>)</span>
           <span class="default">
@@ -2045,12 +2057,14 @@
 864
 865
 866
-867</pre>
+867
+868</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 822</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_output_unit'>output_unit</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># URI
 </span>  <span class='id identifier rubyid_output_unit_column'>output_unit_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># URI
@@ -4087,7 +4101,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 30 09:50:35 2021 by
+  Generated on Wed Jun 30 12:25:56 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>
