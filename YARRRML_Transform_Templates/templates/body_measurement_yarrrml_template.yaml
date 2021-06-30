@@ -10,16 +10,16 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: http://marks.test/this/
+  this: "|||BASE|||"
 sources:
-  patient_height_experimental-source:
+  body_measurement-source:
     access: "|||DATA|||"
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
   identifier_has_value_for_thisRole:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
@@ -28,7 +28,7 @@ mappings:
         datatype: xsd:string
   identifier_denotes_role_thisRole:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)#ID
     po:
     - predicates: a
@@ -45,7 +45,7 @@ mappings:
         type: iri
   person_has_role_thisRole:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)#Person
     po:
     - predicates: a
@@ -62,7 +62,7 @@ mappings:
         type: iri
   thisRole_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisRole
     po:
     - predicates: a
@@ -79,7 +79,7 @@ mappings:
         datatype: xsd:string
   thisRole_realized_some_body_quality_measuring_process:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisRole
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
@@ -88,7 +88,7 @@ mappings:
         type: iri
   some_body_quality_measuring_process_process_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)_process#some_body_quality_measuring_process
     po:
     - predicates: rdf:type
@@ -105,7 +105,7 @@ mappings:
         datatype: xsd:string
   some_body_quality_measuring_process_process_annotation_start:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)_process#some_body_quality_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/start-date
@@ -114,7 +114,7 @@ mappings:
         datatype: xsd:date
   thisprocess_process_has_output:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)_process#thisprocess
     po:
     - predicates: http://semanticscience.org/resource/has-output
@@ -123,7 +123,7 @@ mappings:
         type: iri
   thisprocess_Output_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
     po:
     - predicates: rdf:type
@@ -132,7 +132,7 @@ mappings:
         type: iri
   thisprocess_Output_type_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
     po:
     - predicates: rdf:type
@@ -141,7 +141,7 @@ mappings:
         type: iri
   thisprocess_Output_type_label_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
     po:
     - predicates: rdfs:label
@@ -150,7 +150,7 @@ mappings:
         datatype: xsd:string
   thisprocess_Output_value_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
@@ -159,7 +159,7 @@ mappings:
         datatype: "$(valueDatatype)"
   thisprocess_Output_value_comments:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
     po:
     - predicates: rdfs:comment
@@ -168,7 +168,7 @@ mappings:
         datatype: xsd:string
   unidentifiedProcess_Output_hasunit_unit:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
     po:
     - predicates: http://semanticscience.org/resource/has-unit
@@ -177,7 +177,7 @@ mappings:
         type: iri
   unidentifiedProcess_Output_unit_annotation:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output_unit
     po:
     - predicates: rdfs:label
@@ -186,7 +186,7 @@ mappings:
         datatype: xsd:string
   inout_from_some_body_quality_measuring_process_refers_to_concepts:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
@@ -195,7 +195,7 @@ mappings:
         type: iri
   has_attribute_of_inout_from_some_body_quality_measuring_process:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)#Person
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
@@ -204,7 +204,7 @@ mappings:
         type: iri
   inout_from_some_body_quality_measuring_process_refers_to_concept_measured_attribute_type:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#measured_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
@@ -221,7 +221,7 @@ mappings:
         type: iri
   inout_from_some_body_quality_measuring_process_refers_to_concept_measured_attribute_label:
     sources:
-    - patient_height_experimental-source
+    - body_measurement-source
     s: this:individual_$(pid)_$(uniqid)#measured_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
