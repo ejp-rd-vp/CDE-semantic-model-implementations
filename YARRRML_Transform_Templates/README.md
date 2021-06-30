@@ -11,3 +11,5 @@ In this repository we are providing yarrrml for different CDE modules and associ
 * [Patient status](docs/patient_status_csv_template.md)
 * [Patient personal info](docs/personal_csv_template.md)
 * [Phenotyping](docs/phenotyping_csv_template.md)
+* [Disability](docs/disability_csv_template.md)
+* [Undiagnosed](docs/undiagnosed_csv_template.md)
