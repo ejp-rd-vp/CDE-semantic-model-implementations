@@ -3,8 +3,7 @@ require "yarrrml-template-builder"
 # pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,valueDatatype,unitURI,unitLabel,date,comments
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "http://marks.test/this/",
-  source_tag: "patient_height_experimental",
+  source_tag: "body_measurement",
   sio_verbose: 1,
   }
   )
