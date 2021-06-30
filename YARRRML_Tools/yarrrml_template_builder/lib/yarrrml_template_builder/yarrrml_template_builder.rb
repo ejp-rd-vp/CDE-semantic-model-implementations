@@ -813,13 +813,14 @@ class YARRRML_Template_Builder
 # creates the output_has_unit portion of the CDE
 #
 # Parameters passed as a hash
-#
+# @option params  :inout_process_tag [String]  ("unidentifiedProcess")
 # @option params  :output_unit [URL] the ontological type of that unit (default nil)
 # @option params  :output_unit_column [String]column containing the ontological type of that unit (overrides output_unit)
 # @option params  :output_unit_label [string] the string label for that unit (e.g. "centimeters" for the ontological type "cm" ) (default nil)
 # @option params  :output_unit_label_column [string] column header containing the string label for that unit (e.g. "centimeters" for the ontological type "cm" )
   
   def output_has_unit(params)
+    process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
 
     output_unit = params.fetch(:output_unit_column, nil)  # URI
     output_unit_column = params.fetch(:output_unit_column, nil)  # URI

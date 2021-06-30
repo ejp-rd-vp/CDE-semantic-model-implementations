@@ -1,0 +1,2 @@
+pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,unitURI,unitLabel,date,comments
+12345,abcde,http://purl.obolibrary.org/obo/NCIT_C174376,Ulnar Length,http://purl.obolibrary.org/obo/NCIT_C48937,Quantitation,23,http://purl.obolibrary.org/obo/UO_0000015,cm,2019-02-28,"some comments here"

@@ -1,7 +1,6 @@
-require "./yarrrml_template_builder.rb"
+require "yarrrml-template-builder"
 
-# "pid,uniqid,qualityURI,qualityLabel,measurementURI,measurementLabel,processURI,processLabel,height,datatype,unitURI,unitLabel,date,comments"
-# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,unitLabel,date,comments
+# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,valueDatatype,unitURI,unitLabel,date,comments
 
 b = YARRRML_Template_Builder.new({
   baseURI: "http://marks.test/this/",
@@ -32,13 +31,13 @@ b.role_in_process({
 
 b.process_hasoutput_output({
     output_value_column: "value",
-    output_value_datatype_column: "datatype",
+    output_value_datatype_column: "valueDatatype",
     output_comments_column: "comments",
     })
 
 b.output_has_unit({
     output_unit_column: "unitURI",
-    output_unit_label: "unitLabel"  
+    output_unit_label_column: "unitLabel"  
 })
 
 
@@ -65,7 +64,7 @@ b.output_has_unit({
     #
     #an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
 
-# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,unitLabel,date,comments
+# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,valueDatatype,unitURI, unitLabel,date,comments
 
 b.input_output_refers_to({
  inout_process_tag: "some_body_quality_measuring_process",
