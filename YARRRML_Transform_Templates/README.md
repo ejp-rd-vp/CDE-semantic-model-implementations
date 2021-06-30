@@ -18,5 +18,5 @@ In this repository we are providing yarrrml for different CDE and DCDE modules a
 
 ## DCDEs
 
-* [Body measurements](docs/body_measurements_csv_template.md)
-* [Lab measurements](docs/lab_measurements_csv_template.md)
+* [Body measurement](docs/body_measurement_csv_template.md)
+* [Lab measurement](docs/lab_measurement_csv_template.md)
