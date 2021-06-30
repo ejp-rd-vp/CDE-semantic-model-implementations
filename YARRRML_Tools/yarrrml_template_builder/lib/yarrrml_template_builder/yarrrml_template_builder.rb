@@ -44,7 +44,7 @@ class YARRRML_Template_Builder
 "identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
 "role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
 "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
-"attribute" => ["http://semanticscience.org/resource/SIO_000614]", "http://semanticscience.org/resource/attribute"]
+"attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"]
              
 }
 
