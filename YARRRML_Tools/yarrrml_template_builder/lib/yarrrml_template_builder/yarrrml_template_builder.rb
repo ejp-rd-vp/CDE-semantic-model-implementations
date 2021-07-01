@@ -482,11 +482,11 @@ class YARRRML_Template_Builder
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_has_target(params)
     process_with_target_tag  = params.fetch(:process_with_target_tag, "thisprocess")  # some one-word name
-    target_type_tag  = params.fetch(:input_type_tag, "thisTarget")  # some one-word name
-    target_type  = params.fetch(:input_type, SIO["information-content-entity"][self.sio_verbose])  # some one-word name
-    target_type_column  = params.fetch(:input_type_column, nil)  # some one-word name
-    target_type_label  = params.fetch(:input_type_label, "information content entity")  # some one-word name
-    target_type_label_column  = params.fetch(:input_type_label_column, nil)  # some one-word name
+    target_type_tag  = params.fetch(:target_type_tag, "thisTarget")  # some one-word name
+    target_type  = params.fetch(:target_type, SIO["information-content-entity"][self.sio_verbose])  # some one-word name
+    target_type_column  = params.fetch(:target_type_column, nil)  # some one-word name
+    target_type_label  = params.fetch(:target_type_label, "information content entity")  # some one-word name
+    target_type_label_column  = params.fetch(:target_type_label_column, nil)  # some one-word name
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
