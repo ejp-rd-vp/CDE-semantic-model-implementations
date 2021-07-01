@@ -22,11 +22,20 @@ b.role_in_process({
     process_start_column: "date", 
     })
 
-#b.person_has_quality({
-#    quality_type_column: "qualityURI",  
-#    quality_tag:  "height_quality",
-#    quality_label_column: "qualityLabel", 
-#    })
+
+# @param params [Hash]  a hash of options
+# @option params :process_with_protocol_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :protocol_type_tag  [String] a tag to differentiate this input from other inputs
+# @option params :protocol_type  [String] ("http://purl.obolibrary.org/obo/NCIT_C42651" - protocol)
+# @option params :protocol_type_label  [String] ("protocol")
+# @option params :protocol_uri  [String] uri of the process protocol for all inputs
+# @option params :protocol_uri_column  [String] column header for the protocol uri column
+b.process_conforms_to({
+    process_with_target_tag:  "some_body_quality_measuring_process",
+    protocol_type_tag: "process_protocol",
+    protocol_uri_column: "protocolURI",  # informed consent form (input)
+})
+
 
 b.process_hasoutput_output({
     output_value_column: "value",
