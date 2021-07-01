@@ -63,6 +63,19 @@ b.process_has_target({
     target_type_label_column: "target_label",
 })
 
+# @param params [Hash]  a hash of options
+# @option params :process_with_protocol_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :protocol_type_tag  [String] a tag to differentiate this input from other inputs
+# @option params :protocol_type  [String] ("http://purl.obolibrary.org/obo/NCIT_C42651" - protocol)
+# @option params :protocol_type_label  [String] ("protocol")
+# @option params :protocol_uri  [String] uri of the process protocol for all inputs
+# @option params :protocol_uri_column  [String] column header for the protocol uri column
+b.process_conforms_to({
+    process_with_target_tag:  "some_laboratory_measuring_process",
+    protocol_type_tag: "process_protocol",
+    protocol_uri_column: "protocolURI",  # informed consent form (input)
+})
+
 
 b.process_hasoutput_output({
     process_with_output_tag: "some_laboratory_measuring_process",

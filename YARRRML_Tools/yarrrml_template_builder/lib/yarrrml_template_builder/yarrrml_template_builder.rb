@@ -45,7 +45,8 @@ class YARRRML_Template_Builder
 "identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
 "role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
 "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
-"attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"]
+"attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
+"conforms-to" => ["http://semanticscience.org/resource/conforms-to", "http://semanticscience.org/resource/conforms-to"],
              
 }
 
@@ -519,6 +520,65 @@ class YARRRML_Template_Builder
     
   end
   
+
+
+
+
+
+# creates the process conforms to portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_protocol_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :protocol_type_tag  [String] a tag to differentiate this input from other inputs
+# @option params :protocol_type  [String] ("http://purl.obolibrary.org/obo/NCIT_C42651" - protocol)
+# @option params :protocol_type_label  [String] ("protocol")
+# @option params :protocol_uri  [String] uri of the process protocol for all inputs
+# @option params :protocol_uri_column  [String] column header for the protocol uri column
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+  def process_conforms_to(params)
+    process_with_target_tag  = params.fetch(:process_with_target_tag, "thisprocess")  # some one-word name
+    protocol_type_tag  = params.fetch(:protocol_type_tag, "thisTarget")  # some one-word name
+    protocol_type  = params.fetch(:protocol_type, "http://purl.obolibrary.org/obo/NCIT_C42651")  # Protocol
+    protocol_type_label  = params.fetch(:protocol_type_label, "Protocol")  # some one-word name
+    protocol_uri  = params.fetch(:protocol_uri, nil)  # Protocol
+    protocol_uri_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+    
+    
+    abort "must specify the process_with_target_tag
+    (the identifier of the process that has the input)
+    before you can use the process_has_target function" unless process_with_target_tag
+
+    protocol_uri = protocol_uri_column ? "$(#{protocol_uri_column})":protocol_uri
+
+    abort "must specify either a default protocol URI, or a column of protocol URIs" unless process_with_target_tag
+
+    @mappings << mapping_clause(
+        "#{process_with_target_tag}_has_target_#{protocol_type_tag}",
+        ["#{source_tag}-source"],
+        root_url + "##{process_with_target_tag}",
+        [[SIO["conforms-to"][self.sio_verbose], protocol_uri, "iri"]]
+        )
+    
+    @mappings << mapping_clause(
+        "#{process_with_target_tag}_has_target_#{protocol_type_tag}_annotation",
+        ["#{source_tag}-source"],
+        protocol_uri,
+        [
+          ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
+          ["rdf:type","#{protocol_type}", "iri"],
+          ["rdfs:label","#{protocol_type_label}", "xsd:string"],
+          ]
+        )
+    
+  end
+  
+
+
 
 
 # creates the process has input portion of the CDE

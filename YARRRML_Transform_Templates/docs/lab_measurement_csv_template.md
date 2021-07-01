@@ -14,10 +14,11 @@ Please find example CSV file [here](../csv/lab_measurement.csv)
 ## Notes:
   * pid - patient unique identifier
   * uniqid:  some row unique identifier, over all sessions (a millisecond timestamp, numerical only, is a good idea)
-  * processURI:  child of http://purl.obolibrary.org/obo/NCIT_C25404, or a DOI URL reference to a https://protocols.io deposit.
+  * processURI:  child of http://purl.obolibrary.org/obo/NCIT_C25404
     * Suggestions:
       * Quantitation (please use this by default) http://purl.obolibrary.org/obo/NCIT_C48937
       * Estimation (http://purl.obolibrary.org/obo/NCIT_C25498)
+  * protocolURI:  a DOI URL reference to a https://protocols.io deposit. e.g. "https://dx.doi.org/10.17504/protocols.io.x6nfrde"
   * processLabel:  the human readable label for the process
   * material_tested:  material inut to the test - child of http://purl.obolibrary.org/obo/NCIT_C12219 (Anatomic Structure, System, or Substance) such as http://purl.obolibrary.org/obo/NCIT_C13283 ("urine")
   * material_tested_label: label for the material tested (e.g. "urine")
