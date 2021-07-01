@@ -898,12 +898,6 @@ class YARRRML_Template_Builder
                 )
 
       @mappings << mapping_clause(
-              "#{process_tag}_Output_hasunit_unit",
-                ["#{source_tag}-source"],
-                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output",
-                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit", "iri"]]
-                )
-      @mappings << mapping_clause(
               "#{process_tag}_Output_unit_annotation",
               ["#{source_tag}-source"],
               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
@@ -912,10 +906,10 @@ class YARRRML_Template_Builder
 
     end
 
-    if output_unit_label
+    if output_unit and output_unit_label
     
       @mappings << mapping_clause(
-              "#{process_tag}_Output_unit_annotation",
+              "#{process_tag}_Output_unit_label_annotation",
               ["#{source_tag}-source"],
               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
               [["rdfs:label",output_unit_label,"xsd:string"]
