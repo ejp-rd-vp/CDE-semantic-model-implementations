@@ -59,7 +59,7 @@ b.process_hasoutput_output({
     process_with_output_tag: "patient_death_information",  # connect to the correct process
     output_type_label: "patient death information",
     output_value_column: "death_date",
-    output_end_column: "death_date"
+    output_timeinstant_column: "death_date"
     })
 
 b.input_output_refers_to({

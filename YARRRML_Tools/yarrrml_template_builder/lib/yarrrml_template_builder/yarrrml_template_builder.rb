@@ -28,10 +28,20 @@ class YARRRML_Template_Builder
 "has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
 "denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
 "is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
+# predicates
+"has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
+"has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
+"has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
+# objects
 "start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
 "end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
 "start-date" => ["http://semanticscience.org/resource/SIO_000031", "http://semanticscience.org/resource/start-date"],
 "end-date" => ["http://semanticscience.org/resource/SIO_000032", "http://semanticscience.org/resource/end-date"],
+"time-instant" => ["http://semanticscience.org/resource/SIO_000418", "http://semanticscience.org/resource/time-instant"],
+#
+
+
+
 "is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
 "drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
 "is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
@@ -300,8 +310,8 @@ class YARRRML_Template_Builder
 # @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
 # @option params :process_label  [String] the label associated with the process type in that row (defaults to "thisprocess")
 # @option params :process_label_column  [String] the column header for the label associated with the process type in that row
-# @option params :process_start_column  [String] (optional) the column header for the datestamp when that process started
-# @option params :process_end_column  [String]  (optional) the column header for the datestamp when that process ended
+# @option params :process_start_column  [ISO 8601 date (only date)] (optional) the column header for the datestamp when that process started
+# @option params :process_end_column  [ISO 8601 date (only date)]  (optional) the column header for the datestamp when that process ended
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def role_in_process(params)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
@@ -345,17 +355,35 @@ class YARRRML_Template_Builder
         "#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
-           [[SIO["start-date"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"]]
+           [[SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate", "iri"]]
+           )
+      @mappings << mapping_clause(
+        "#{process_tag}_process_annotation_start_value",
+          ["#{source_tag}-source"],
+           root_url + "##{process_tag}_startdate",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
+             ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
+             ]
            )
     end
     
     if process_end_column
       @mappings << mapping_clause(
-          "#{process_tag}_process_annotation_end",
+        "#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
-          [[SIO["end-date"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"]]
-          )
+           [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate", "iri"]]
+           )
+      @mappings << mapping_clause(
+        "#{process_tag}_process_annotation_end_value",
+          ["#{source_tag}-source"],
+           root_url + "##{process_tag}_enddate",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
+             ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
+             ]
+           )
     end
       
   end
@@ -679,6 +707,7 @@ class YARRRML_Template_Builder
 # @option params :output_comments_column  [String]  the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
 # @option params :output_start_column  [xsd:date] the column header for start date
 # @option params :output_end_column  [xsd:date]   the column header for end date
+# @option params :output_timeinstant_column  [xsd:date]   the column header for a time-instant date
 # @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)
 # @option params :output_annotations_columns  [Array]   Array of Arrays of [[predicate, value, datatype]...] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
@@ -695,6 +724,7 @@ class YARRRML_Template_Builder
     output_comments_column = params.fetch(:output_comments_column, nil)
     output_start_column = params.fetch(:output_start_column, nil)
     output_end_column = params.fetch(:output_end_column, nil)
+    output_timeinstant_column = params.fetch(:output_timeinstant_column, nil)
     output_annotations = params.fetch(:output_annotations, [])
     output_annotations_columns = params.fetch(:output_annotations_columns, [])
     make_unique_process = params.fetch(:make_unique_process, true)
@@ -761,23 +791,69 @@ class YARRRML_Template_Builder
     end
     
     
+
+
+
+
     if output_start_column
       @mappings << mapping_clause(
         "#{process_with_output_tag}_output_annotation_start",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-           [[SIO["start-date"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"]]
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+           [[SIO["has-start-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate", "iri"]]
            )
+      @mappings << mapping_clause(
+        "#{process_with_output_tag}_output_annotation_start_value",
+          ["#{source_tag}-source"],
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
+             ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
+             ]
+           )      
     end
     
+
     if output_end_column
+      
       @mappings << mapping_clause(
-          "#{process_with_output_tag}_output_annotation_end",
+        "#{process_with_output_tag}_output_annotation_end",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-          [[SIO["end-date"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"]]
-          )
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+           [[SIO["has-end-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate", "iri"]]
+           )
+      @mappings << mapping_clause(
+        "#{process_with_output_tag}_output_annotation_end_value",
+          ["#{source_tag}-source"],
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
+             ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
+             ]
+           )      
     end
+
+    if output_timeinstant_column
+      
+      @mappings << mapping_clause(
+        "#{process_with_output_tag}_output_annotation_end",
+          ["#{source_tag}-source"],
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+           [[SIO["has-time-boundary"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary", "iri"]]
+           )
+      @mappings << mapping_clause(
+        "#{process_with_output_tag}_output_annotation_time_value",
+          ["#{source_tag}-source"],
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
+             ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],             
+             ]
+           )      
+    end
+
+
+
     
     if !output_annotations_columns.empty?
       #$stderr.puts "found output annotations"
