@@ -258,7 +258,7 @@ mappings:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(death_date)"
-        datatype: xsd:string
+        datatype: xsd:date
   patient_death_information_output_annotation_end:
     sources:
     - cde_patient_status-source

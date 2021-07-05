@@ -59,8 +59,10 @@ b.process_hasoutput_output({
     process_with_output_tag: "age_measuring_procedure",  # connect to the correct process
     output_type_label: "Birth Date",
     output_value_column: "birthdate",
-    output_value_datatype: "xsd:dateTime"
+    output_value_datatype: "xsd:date",
+    output_timeinstant_column: "birthdate"
     })
+
 b.process_hasoutput_output({
     process_with_output_tag: "sex_measuring_procedure",  # connect to the correct process
     output_type_label_column: "sexLabel",
