@@ -151,82 +151,82 @@ mappings:
       objects:
         value: Protocol
         datatype: xsd:string
-  thisprocess_process_has_output:
+  some_body_quality_measuring_process_process_has_output:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#thisprocess
+    s: this:individual_$(pid)_$(uniqid)_process#some_body_quality_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#thisprocess_Output
+        value: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
         type: iri
-  thisprocess_Output_annotation:
+  some_body_quality_measuring_process_Output_annotation:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  thisprocess_Output_type_annotation:
+  some_body_quality_measuring_process_Output_type_annotation:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  thisprocess_Output_type_label_annotation:
+  some_body_quality_measuring_process_Output_type_label_annotation:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: rdfs:label
       objects:
         value: measurement-value
         datatype: xsd:string
-  thisprocess_Output_value_annotation:
+  some_body_quality_measuring_process_Output_value_annotation:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(value)"
         datatype: "$(valueDatatype)"
-  thisprocess_Output_value_comments:
+  some_body_quality_measuring_process_Output_value_comments:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#thisprocess_Output
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: rdfs:comment
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  unidentifiedProcess_Output_hasunit_unit:
+  some_body_quality_measuring_process_Output_hasunit_unit:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output
     po:
     - predicates: http://semanticscience.org/resource/has-unit
       objects:
-        value: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output_unit
+        value: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output_unit
         type: iri
-  unidentifiedProcess_Output_unit_annotation:
+  some_body_quality_measuring_process_Output_unit_annotation:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output_unit
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output_unit
     po:
     - predicates: rdf:type
       objects:
         value: "$(unitURI)"
         type: iri
-  unidentifiedProcess_Output_unit_label_annotation:
+  some_body_quality_measuring_process_Output_unit_label_annotation:
     sources:
     - body_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output_unit
+    s: this:individual_$(pid)_$(uniqid)#some_body_quality_measuring_process_Output_unit
     po:
     - predicates: rdfs:label
       objects:

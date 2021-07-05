@@ -38,12 +38,14 @@ b.process_conforms_to({
 
 
 b.process_hasoutput_output({
+    process_with_output_tag: "some_body_quality_measuring_process",
     output_value_column: "value",
     output_value_datatype_column: "valueDatatype",
     output_comments_column: "comments",
     })
 
 b.output_has_unit({
+    inout_process_tag: "some_body_quality_measuring_process",
     output_unit_column: "unitURI",
     output_unit_label_column: "unitLabel"  
 })
