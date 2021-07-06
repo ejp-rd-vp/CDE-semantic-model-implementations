@@ -35,6 +35,7 @@ b.role_in_process({
 b.process_has_part({
   parent_process_tag: "longitudinal_information_gathering_process_diseaseX",
   part_process_tag: "medical_diagnosis",
+  process_start_column: "date",
   parent_unique_process: false,
 })
 
@@ -47,7 +48,6 @@ b.process_hasoutput_output({
     process_with_output_tag: "medical_diagnosis",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001003",  # diagnostic_opinion
     output_type_label_column: "diagnostic_opinion",
-    output_start_column: "date",
     output_value_column: "diagnostic_opinion"
     })
 

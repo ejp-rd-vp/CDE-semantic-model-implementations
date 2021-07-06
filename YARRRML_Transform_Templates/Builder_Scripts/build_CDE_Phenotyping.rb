@@ -48,6 +48,7 @@ b.process_has_annotations({
 b.process_has_part({
   parent_process_tag: "longitudinal_information_gathering_process",
   part_process_tag: "patientRole_phenotyping_process",
+  output_start_column: "date",
   parent_unique_process: false,
 })
 
@@ -59,7 +60,6 @@ b.process_hasoutput_output({
     process_with_output_tag: "patientRole_phenotyping_process",  # connect to the correct process
     output_type: "http://purl.obolibrary.org/obo/NCIT_C102741", # classification of a clinical observation
     output_type_label_column: "HP_Label",
-    output_start_column: "date"
     })
 
 b.input_output_refers_to({

@@ -705,8 +705,8 @@ class YARRRML_Template_Builder
 # @option params :output_value_datatype  [xsd:type]  the xsd:type for that kind of measurement (defaults to xsd:string)
 # @option params :output_value_datatype_column  [String]  the column header for the xsd:type for that kind of measurement (overrides output_value_datatype)
 # @option params :output_comments_column  [String]  the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
-# @option params :output_start_column  [xsd:date] the column header for start date
-# @option params :output_end_column  [xsd:date]   the column header for end date
+# @option params :output_start_column  DEPRECATED [xsd:date] the column header for start date
+# @option params :output_end_column  DEPRECATED [xsd:date]   the column header for end date
 # @option params :output_timeinstant_column  [xsd:date]   the column header for a time-instant date
 # @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)
 # @option params :output_annotations_columns  [Array]   Array of Arrays of [[predicate, value, datatype]...] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)
@@ -722,8 +722,8 @@ class YARRRML_Template_Builder
     output_value_datatype = params.fetch(:output_value_datatype, "xsd:string")
     output_value_datatype_column = params.fetch(:output_value_datatype_column, nil)
     output_comments_column = params.fetch(:output_comments_column, nil)
-    output_start_column = params.fetch(:output_start_column, nil)
-    output_end_column = params.fetch(:output_end_column, nil)
+    #output_start_column = params.fetch(:output_start_column, nil)
+    #output_end_column = params.fetch(:output_end_column, nil)
     output_timeinstant_column = params.fetch(:output_timeinstant_column, nil)
     output_annotations = params.fetch(:output_annotations, [])
     output_annotations_columns = params.fetch(:output_annotations_columns, [])
@@ -794,44 +794,44 @@ class YARRRML_Template_Builder
 
 
 
-
-    if output_start_column
-      @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_annotation_start",
-          ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-           [[SIO["has-start-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate", "iri"]]
-           )
-      @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_annotation_start_value",
-          ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate",
-           [
-             [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
-             ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
-             ]
-           )      
-    end
-    
-
-    if output_end_column
-      
-      @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_annotation_end",
-          ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-           [[SIO["has-end-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate", "iri"]]
-           )
-      @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_annotation_end_value",
-          ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate",
-           [
-             [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
-             ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
-             ]
-           )      
-    end
+    #
+    #if output_start_column
+    #  @mappings << mapping_clause(
+    #    "#{process_with_output_tag}_output_annotation_start",
+    #      ["#{source_tag}-source"],
+    #      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+    #       [[SIO["has-start-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate", "iri"]]
+    #       )
+    #  @mappings << mapping_clause(
+    #    "#{process_with_output_tag}_output_annotation_start_value",
+    #      ["#{source_tag}-source"],
+    #       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate",
+    #       [
+    #         [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
+    #         ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
+    #         ]
+    #       )      
+    #end
+    #
+    #
+    #if output_end_column
+    #  
+    #  @mappings << mapping_clause(
+    #    "#{process_with_output_tag}_output_annotation_end",
+    #      ["#{source_tag}-source"],
+    #      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+    #       [[SIO["has-end-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate", "iri"]]
+    #       )
+    #  @mappings << mapping_clause(
+    #    "#{process_with_output_tag}_output_annotation_end_value",
+    #      ["#{source_tag}-source"],
+    #       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate",
+    #       [
+    #         [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
+    #         ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
+    #         ]
+    #       )      
+    #end
 
     if output_timeinstant_column
       
@@ -839,17 +839,20 @@ class YARRRML_Template_Builder
         "#{process_with_output_tag}_output_annotation_end",
           ["#{source_tag}-source"],
           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-           [[SIO["has-time-boundary"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary", "iri"]]
-           )
-      @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_annotation_time_value",
-          ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
              ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],             
              ]
-           )      
+           )
+      #@mappings << mapping_clause(
+      #  "#{process_with_output_tag}_output_annotation_time_value",
+      #    ["#{source_tag}-source"],
+      #     "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary",
+      #     [
+      #       [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
+      #       ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],             
+      #       ]
+      #     )      
     end
 
 

@@ -59,7 +59,6 @@ b.process_hasoutput_output({
     process_with_output_tag: "patient_consenting",  # connect to the correct process
     output_type_label: "Patient Consent Record",
     output_value_column: "result_label",
-    output_start_column: "date"
     })
 b.input_output_refers_to({
   refers_to_tag: "consent_attribute",

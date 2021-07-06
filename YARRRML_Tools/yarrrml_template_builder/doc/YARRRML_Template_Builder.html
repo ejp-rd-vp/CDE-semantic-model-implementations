@@ -1428,13 +1428,13 @@
       <pre class="lines">
 
 
-1062
-1063
-1064
-1065</pre>
+1065
+1066
+1067
+1068</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1062</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1065</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       <span class='kw'>return</span>  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
@@ -1626,9 +1626,6 @@
       <pre class="lines">
 
 
-932
-933
-934
 935
 936
 937
@@ -1694,10 +1691,13 @@
 997
 998
 999
-1000</pre>
+1000
+1001
+1002
+1003</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 932</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 935</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_input_output_refers_to'>input_output_refers_to</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inout_process_tag'>inout_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2072,9 +2072,6 @@
       <pre class="lines">
 
 
-1017
-1018
-1019
 1020
 1021
 1022
@@ -2112,10 +2109,13 @@
 1054
 1055
 1056
-1057</pre>
+1057
+1058
+1059
+1060</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1017</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1020</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -3923,26 +3923,26 @@
       
         <li>
           <span class="name">:output_start_column</span>
-          <span class="type">(<tt>xsd:date</tt>)</span>
+          <span class="type">(<tt>Object</tt>)</span>
           <span class="default">
             
           </span>
           
             &mdash; <div class='inline'>
-<p>the column header for start date</p>
+<p>DEPRECATED [xsd:date] the column header for start date</p>
 </div>
           
         </li>
       
         <li>
           <span class="name">:output_end_column</span>
-          <span class="type">(<tt>xsd:date</tt>)</span>
+          <span class="type">(<tt>Object</tt>)</span>
           <span class="default">
             
           </span>
           
             &mdash; <div class='inline'>
-<p>the column header for end date</p>
+<p>DEPRECATED [xsd:date]   the column header for end date</p>
 </div>
           
         </li>
@@ -4213,7 +4213,10 @@
 912
 913
 914
-915</pre>
+915
+916
+917
+918</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 714</span>
@@ -4229,9 +4232,9 @@
   <span class='id identifier rubyid_output_value_datatype'>output_value_datatype</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_value_datatype</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_value_datatype_column'>output_value_datatype_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_value_datatype_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_comments_column'>output_comments_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_comments_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_output_start_column'>output_start_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_start_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_output_end_column'>output_end_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_end_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_output_timeinstant_column'>output_timeinstant_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_timeinstant_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='comment'>#output_start_column = params.fetch(:output_start_column, nil)
+</span>  <span class='comment'>#output_end_column = params.fetch(:output_end_column, nil)
+</span>  <span class='id identifier rubyid_output_timeinstant_column'>output_timeinstant_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_timeinstant_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_annotations'>output_annotations</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_annotations</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_annotations_columns'>output_annotations_columns</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_annotations_columns</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_make_unique_process'>make_unique_process</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:make_unique_process</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -4301,63 +4304,66 @@
 
 
 
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_output_start_column'>output_start_column</span>
-    <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_start</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-start-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_startdate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-         <span class='rparen'>)</span>
-    <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_start_value</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_startdate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span>
-           <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_output_start_column'>output_start_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>start-date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
-           <span class='rbracket'>]</span>
-         <span class='rparen'>)</span>      
-  <span class='kw'>end</span>
-  
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_output_end_column'>output_end_column</span>
-    
-    <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_end</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-         <span class='rparen'>)</span>
-    <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_end_value</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span>
-           <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_output_end_column'>output_end_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>end-date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
-           <span class='rbracket'>]</span>
-         <span class='rparen'>)</span>      
-  <span class='kw'>end</span>
-
+  <span class='comment'>#
+</span>  <span class='comment'>#if output_start_column
+</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
+</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_start&quot;,
+</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
+</span>  <span class='comment'>#      &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output&quot;,
+</span>  <span class='comment'>#       [[SIO[&quot;has-start-time&quot;][self.sio_verbose], &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate&quot;, &quot;iri&quot;]]
+</span>  <span class='comment'>#       )
+</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
+</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_start_value&quot;,
+</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
+</span>  <span class='comment'>#       &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate&quot;,
+</span>  <span class='comment'>#       [
+</span>  <span class='comment'>#         [SIO[&quot;has-value&quot;][self.sio_verbose], &quot;$(#{output_start_column})&quot;, &quot;xsd:date&quot;],
+</span>  <span class='comment'>#         [&quot;rdf:type&quot;, SIO[&quot;start-date&quot;][self.sio_verbose], &quot;iri&quot;],             
+</span>  <span class='comment'>#         ]
+</span>  <span class='comment'>#       )      
+</span>  <span class='comment'>#end
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#if output_end_column
+</span>  <span class='comment'>#  
+</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
+</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_end&quot;,
+</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
+</span>  <span class='comment'>#      &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output&quot;,
+</span>  <span class='comment'>#       [[SIO[&quot;has-end-time&quot;][self.sio_verbose], &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate&quot;, &quot;iri&quot;]]
+</span>  <span class='comment'>#       )
+</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
+</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_end_value&quot;,
+</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
+</span>  <span class='comment'>#       &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate&quot;,
+</span>  <span class='comment'>#       [
+</span>  <span class='comment'>#         [SIO[&quot;has-value&quot;][self.sio_verbose], &quot;$(#{output_end_column})&quot;, &quot;xsd:date&quot;],
+</span>  <span class='comment'>#         [&quot;rdf:type&quot;, SIO[&quot;end-date&quot;][self.sio_verbose], &quot;iri&quot;],             
+</span>  <span class='comment'>#         ]
+</span>  <span class='comment'>#       )      
+</span>  <span class='comment'>#end
+</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_output_timeinstant_column'>output_timeinstant_column</span>
     
     <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_end</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-time-boundary</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_timeboundary</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-         <span class='rparen'>)</span>
-    <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_time_value</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_timeboundary</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
          <span class='lbracket'>[</span>
            <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_output_timeinstant_column'>output_timeinstant_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time-instant</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
            <span class='rbracket'>]</span>
-         <span class='rparen'>)</span>      
-  <span class='kw'>end</span>
+         <span class='rparen'>)</span>
+    <span class='comment'>#@mappings &lt;&lt; mapping_clause(
+</span>    <span class='comment'>#  &quot;#{process_with_output_tag}_output_annotation_time_value&quot;,
+</span>    <span class='comment'>#    [&quot;#{source_tag}-source&quot;],
+</span>    <span class='comment'>#     &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary&quot;,
+</span>    <span class='comment'>#     [
+</span>    <span class='comment'>#       [SIO[&quot;has-value&quot;][self.sio_verbose], &quot;$(#{output_timeinstant_column})&quot;, &quot;xsd:date&quot;],
+</span>    <span class='comment'>#       [&quot;rdf:type&quot;, SIO[&quot;time-instant&quot;][self.sio_verbose], &quot;iri&quot;],             
+</span>    <span class='comment'>#       ]
+</span>    <span class='comment'>#     )      
+</span>  <span class='kw'>end</span>
 
 
 
@@ -4770,7 +4776,7 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jul  5 10:28:59 2021 by
+  Generated on Tue Jul  6 13:56:57 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>

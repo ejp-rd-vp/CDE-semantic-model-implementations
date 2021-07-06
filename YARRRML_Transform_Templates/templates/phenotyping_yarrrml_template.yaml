@@ -103,7 +103,7 @@ mappings:
       objects:
         value: comparative phenotypic assessment
         datatype: xsd:string
-  16254732289691463_process_custom_annotation:
+  16255726488462617_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -112,7 +112,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C16205
         type: iri
-  16254732289691617_process_custom_annotation:
+  16255726488462791_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -166,28 +166,6 @@ mappings:
       objects:
         value: "$(HP_Label)"
         datatype: xsd:string
-  patientRole_phenotyping_process_output_annotation_start:
-    sources:
-    - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_phenotyping_process_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-start-time
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_phenotyping_process_startdate
-        type: iri
-  patientRole_phenotyping_process_output_annotation_start_value:
-    sources:
-    - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_phenotyping_process_startdate
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(date)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/start-date
-        type: iri
   inout_from_patientRole_phenotyping_process_refers_to_concepts:
     sources:
     - cde_patient_phenotyping-source

@@ -410,8 +410,7 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value:
-        - obo:NCIT_C156420
+        value: obo:NCIT_C156420
         type: iri
   inout_from_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_label:
     sources:
@@ -420,6 +419,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value:
-        - Age at diagnosis
+        value: Age at diagnosis
         datatype: xsd:string

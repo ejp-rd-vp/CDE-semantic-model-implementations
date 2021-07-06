@@ -105,8 +105,8 @@ b.input_output_refers_to({
 b.input_output_refers_to({
   refers_to_tag: "disagnosis_date",
   inout_process_tag:   "patientRole_diagnosis_date_process",  # connect to the correct process
-  inout_refers_to: ["obo:NCIT_C156420"],
-  inout_refers_to_label: ["Age at diagnosis"]
+  inout_refers_to: "obo:NCIT_C156420",
+  inout_refers_to_label: "Age at diagnosis"
 })
 
 
