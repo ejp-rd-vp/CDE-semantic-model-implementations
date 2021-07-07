@@ -4,7 +4,6 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-#  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_diagnosis",
   sio_verbose: 1,
   }
@@ -25,6 +24,8 @@ b.role_in_process({
     process_tag:  "medical_diagnosis",
     process_label: "medical diagnosis", 
     process_type: "http://semanticscience.org/resource/SIO_001001",  # medical diagnosis
+    process_start_column: "date",
+
     })
 
 # ===================================================================================
@@ -35,7 +36,6 @@ b.role_in_process({
 b.process_has_part({
   parent_process_tag: "longitudinal_information_gathering_process_diseaseX",
   part_process_tag: "medical_diagnosis",
-  process_start_column: "date",
   parent_unique_process: false,
 })
 

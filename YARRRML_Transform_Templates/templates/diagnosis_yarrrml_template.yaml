@@ -103,6 +103,28 @@ mappings:
       objects:
         value: medical diagnosis
         datatype: xsd:string
+  medical_diagnosis_process_annotation_start:
+    sources:
+    - cde_patient_diagnosis-source
+    s: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis
+    po:
+    - predicates: http://semanticscience.org/resource/has-start-time
+      objects:
+        value: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis_startdate
+        type: iri
+  medical_diagnosis_process_annotation_start_value:
+    sources:
+    - cde_patient_diagnosis-source
+    s: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis_startdate
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(date)"
+        datatype: xsd:date
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/start-date
+        type: iri
   longitudinal_information_gathering_process_diseaseX_has_part_medical_diagnosis:
     sources:
     - cde_patient_diagnosis-source
