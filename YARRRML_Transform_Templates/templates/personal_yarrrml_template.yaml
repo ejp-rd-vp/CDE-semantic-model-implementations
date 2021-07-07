@@ -234,19 +234,10 @@ mappings:
       objects:
         value: "$(birthdate)"
         datatype: xsd:date
-  age_measuring_procedure_output_annotation_end:
+  age_measuring_procedure_output_annotation_timeinstant:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-time-boundary
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_timeboundary
-        type: iri
-  age_measuring_procedure_output_annotation_time_value:
-    sources:
-    - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_timeboundary
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:

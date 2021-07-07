@@ -259,19 +259,10 @@ mappings:
       objects:
         value: "$(death_date)"
         datatype: xsd:date
-  patient_death_information_output_annotation_end:
+  patient_death_information_output_annotation_timeinstant:
     sources:
     - cde_patient_status-source
     s: this:individual_$(pid)_$(uniqid)#patient_death_information_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-time-boundary
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#patient_death_information_timeboundary
-        type: iri
-  patient_death_information_output_annotation_time_value:
-    sources:
-    - cde_patient_status-source
-    s: this:individual_$(pid)_$(uniqid)#patient_death_information_timeboundary
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:

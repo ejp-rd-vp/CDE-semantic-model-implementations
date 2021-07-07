@@ -836,7 +836,7 @@ class YARRRML_Template_Builder
     if output_timeinstant_column
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_annotation_end",
+        "#{process_with_output_tag}_output_annotation_timeinstant",
           ["#{source_tag}-source"],
           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
            [

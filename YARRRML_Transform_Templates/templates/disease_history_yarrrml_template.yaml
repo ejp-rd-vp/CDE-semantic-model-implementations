@@ -252,19 +252,10 @@ mappings:
       objects:
         value: "$(onset_date)"
         datatype: xsd:date
-  patientRole_symptom_onset_process_output_annotation_end:
+  patientRole_symptom_onset_process_output_annotation_timeinstant:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-time-boundary
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_timeboundary
-        type: iri
-  patientRole_symptom_onset_process_output_annotation_time_value:
-    sources:
-    - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_timeboundary
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -319,19 +310,10 @@ mappings:
       objects:
         value: "$(diagnosis_date)"
         datatype: xsd:date
-  patientRole_diagnosis_date_process_output_annotation_end:
+  patientRole_diagnosis_date_process_output_annotation_timeinstant:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-time-boundary
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_timeboundary
-        type: iri
-  patientRole_diagnosis_date_process_output_annotation_time_value:
-    sources:
-    - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_timeboundary
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
