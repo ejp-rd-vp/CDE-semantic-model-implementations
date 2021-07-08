@@ -708,8 +708,7 @@ class YARRRML_Template_Builder
 # @option params :output_start_column  DEPRECATED [xsd:date] the column header for start date
 # @option params :output_end_column  DEPRECATED [xsd:date]   the column header for end date
 # @option params :output_timeinstant_column  [xsd:date]   the column header for a time-instant date
-# @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)
-# @option params :output_annotations_columns  [Array]   Array of Arrays of [[predicate, value, datatype]...] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)
+# @option params :output_annotations  [Array] Array of Arrays of [[predicate, value, datatype]...] that will be applied as annotations to the output of the tagged process.  predicate may be a full URI or a column reference; value MUST be a column-reference; datatype is options, default xsd:string
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_hasoutput_output(params)
     process_with_output_tag = params.fetch(:process_with_output_tag, "thisprocess")  # some one-word name
@@ -726,7 +725,7 @@ class YARRRML_Template_Builder
     #output_end_column = params.fetch(:output_end_column, nil)
     output_timeinstant_column = params.fetch(:output_timeinstant_column, nil)
     output_annotations = params.fetch(:output_annotations, [])
-    output_annotations_columns = params.fetch(:output_annotations_columns, [])
+    #output_annotations_columns = params.fetch(:output_annotations_columns, [])
     make_unique_process = params.fetch(:make_unique_process, true)
 
     output_value = output_value_column ? "$(#{output_value_column})":output_value
@@ -790,49 +789,7 @@ class YARRRML_Template_Builder
               )
     end
     
-    
-
-
-
-    #
-    #if output_start_column
-    #  @mappings << mapping_clause(
-    #    "#{process_with_output_tag}_output_annotation_start",
-    #      ["#{source_tag}-source"],
-    #      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-    #       [[SIO["has-start-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate", "iri"]]
-    #       )
-    #  @mappings << mapping_clause(
-    #    "#{process_with_output_tag}_output_annotation_start_value",
-    #      ["#{source_tag}-source"],
-    #       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate",
-    #       [
-    #         [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
-    #         ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
-    #         ]
-    #       )      
-    #end
-    #
-    #
-    #if output_end_column
-    #  
-    #  @mappings << mapping_clause(
-    #    "#{process_with_output_tag}_output_annotation_end",
-    #      ["#{source_tag}-source"],
-    #      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-    #       [[SIO["has-end-time"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate", "iri"]]
-    #       )
-    #  @mappings << mapping_clause(
-    #    "#{process_with_output_tag}_output_annotation_end_value",
-    #      ["#{source_tag}-source"],
-    #       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate",
-    #       [
-    #         [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
-    #         ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
-    #         ]
-    #       )      
-    #end
-
+  
     if output_timeinstant_column
       
       @mappings << mapping_clause(
@@ -844,77 +801,35 @@ class YARRRML_Template_Builder
              ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],             
              ]
            )
-      #@mappings << mapping_clause(
-      #  "#{process_with_output_tag}_output_annotation_time_value",
-      #    ["#{source_tag}-source"],
-      #     "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary",
-      #     [
-      #       [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
-      #       ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],             
-      #       ]
-      #     )      
     end
 
-
-
-    
-    if !output_annotations_columns.empty?
-      #$stderr.puts "found output annotations"
-        output_annotations_columns.each do |pred, value, dtype|
-          datatype = "xsd:string"
-          if dtype and dtype =~ /\S+\:\S+/  # URI or qname
-            datatype = dtype
-          elsif dtype
-            datatype = "$(#{datatype})" # make it the column reference if it exists, but isn't a uri
-          end
-          
-          if pred and pred =~ /\S+\:\S+/  # URI or qname
-            predicate = pred
-          else
-            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
-          end
-      #$stderr.puts "found output annotations #{predicate}, #{value}"
-
-          next unless predicate and value
-          uniqid = get_uniq_id
-          
-          @mappings << mapping_clause(
-              "#{uniqid}_output_custom_annotation",
-              ["#{source_tag}-source"],
-               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-              [["$(#{predicate})", "$(#{value})", datatype]]
-              )
-          
-        end
-    elsif !output_annotations.empty?
-        output_annotations_columns.each do |pred, value, dtype|
-          datatype = "xsd:string"
-          if dtype and dtype =~ /\S+\:\S+/  # URI or qname
-            datatype = dtype
-          elsif dtype
-            datatype = "$(#{datatype})" # make it the column reference if it exists, but isn't a uri
-          end
-          
-          if pred and pred =~ /\S+\:\S+/  # URI or qname
-            predicate = pred
-          else
-            predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
-          end
-          
-          next unless predicate and value
-          uniqid = get_uniq_id
-          
-          @mappings << mapping_clause(
-              "#{uniqid}_output_custom_annotation",
-              ["#{source_tag}-source"],
-               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-              [[predicate, value, datatype]]
-              )
-          
-        end
+    output_annotations.each do |pred, value, dtype|
+      datatype = "xsd:string"
+      predicate = ""
+      if dtype and dtype =~ /\S+\:\S+/  # URI or qname
+        datatype = dtype
+      elsif dtype
+        datatype = "$(#{datatype})" # make it the column reference if it exists, but isn't a uri
+      end
       
+      if pred and pred =~ /\S+\:\S+/  # URI or qname
+        predicate = pred
+      else
+        predicate = "$(#{pred})" # make it the column reference if it exists, but isn't a uri
+      end
+  
+      next unless predicate and value
+      uniqid = get_uniq_id
+      
+      @mappings << mapping_clause(
+          "#{uniqid}_output_custom_annotation",
+          ["#{source_tag}-source"],
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          [["$(#{predicate})", "$(#{value})", datatype]]
+          )
+          
     end
-
+      
   end
 
 

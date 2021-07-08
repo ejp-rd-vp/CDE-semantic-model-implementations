@@ -1428,13 +1428,13 @@
       <pre class="lines">
 
 
-1065
-1066
-1067
-1068</pre>
+980
+981
+982
+983</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1065</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 980</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       <span class='kw'>return</span>  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
@@ -1626,78 +1626,78 @@
       <pre class="lines">
 
 
-935
-936
-937
-938
-939
-940
-941
-942
-943
-944
-945
-946
-947
-948
-949
-950
-951
-952
-953
-954
-955
-956
-957
-958
-959
-960
-961
-962
-963
-964
-965
-966
-967
-968
-969
-970
-971
-972
-973
-974
-975
-976
-977
-978
-979
-980
-981
-982
-983
-984
-985
-986
-987
-988
-989
-990
-991
-992
-993
-994
-995
-996
-997
-998
-999
-1000
-1001
-1002
-1003</pre>
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 935</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 850</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_input_output_refers_to'>input_output_refers_to</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inout_process_tag'>inout_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2072,50 +2072,50 @@
       <pre class="lines">
 
 
-1020
-1021
-1022
-1023
-1024
-1025
-1026
-1027
-1028
-1029
-1030
-1031
-1032
-1033
-1034
-1035
-1036
-1037
-1038
-1039
-1040
-1041
-1042
-1043
-1044
-1045
-1046
-1047
-1048
-1049
-1050
-1051
-1052
-1053
-1054
-1055
-1056
-1057
-1058
-1059
-1060</pre>
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1020</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 935</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -3968,20 +3968,7 @@
           </span>
           
             &mdash; <div class='inline'>
-<p>Array of Arrays of [[predicate, value, datatype]…] that wiill be applied as annotations to the output of the tagged process (datatype is options, default xsd:string)</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:output_annotations_columns</span>
-          <span class="type">(<tt>Array</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Array of Arrays of [[predicate, value, datatype]…] column headers that will be applied as annotations to the output of the tagged process (datatype is optional, default xsd:string)</p>
+<p>Array of Arrays of [[predicate, value, datatype]…] that will be applied as annotations to the output of the tagged process.  predicate may be a full URI or a column reference; value MUST be a column-reference; datatype is options, default xsd:string</p>
 </div>
           
         </li>
@@ -4012,6 +3999,7 @@
       <pre class="lines">
 
 
+713
 714
 715
 716
@@ -4131,95 +4119,10 @@
 830
 831
 832
-833
-834
-835
-836
-837
-838
-839
-840
-841
-842
-843
-844
-845
-846
-847
-848
-849
-850
-851
-852
-853
-854
-855
-856
-857
-858
-859
-860
-861
-862
-863
-864
-865
-866
-867
-868
-869
-870
-871
-872
-873
-874
-875
-876
-877
-878
-879
-880
-881
-882
-883
-884
-885
-886
-887
-888
-889
-890
-891
-892
-893
-894
-895
-896
-897
-898
-899
-900
-901
-902
-903
-904
-905
-906
-907
-908
-909
-910
-911
-912
-913
-914
-915
-916
-917
-918</pre>
+833</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 714</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 713</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_hasoutput_output'>process_hasoutput_output</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_output_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -4236,8 +4139,8 @@
 </span>  <span class='comment'>#output_end_column = params.fetch(:output_end_column, nil)
 </span>  <span class='id identifier rubyid_output_timeinstant_column'>output_timeinstant_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_timeinstant_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_annotations'>output_annotations</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_annotations</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_output_annotations_columns'>output_annotations_columns</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_annotations_columns</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_make_unique_process'>make_unique_process</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:make_unique_process</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='comment'>#output_annotations_columns = params.fetch(:output_annotations_columns, [])
+</span>  <span class='id identifier rubyid_make_unique_process'>make_unique_process</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:make_unique_process</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_output_value'>output_value</span> <span class='op'>=</span> <span class='id identifier rubyid_output_value_column'>output_value_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_output_value_column'>output_value_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_output_value'>output_value</span>
   <span class='id identifier rubyid_output_type'>output_type</span> <span class='op'>=</span> <span class='id identifier rubyid_output_type_column'>output_type_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_output_type_column'>output_type_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_output_type'>output_type</span>
@@ -4300,53 +4203,11 @@
             <span class='rparen'>)</span>
   <span class='kw'>end</span>
   
-  
 
-
-
-  <span class='comment'>#
-</span>  <span class='comment'>#if output_start_column
-</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
-</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_start&quot;,
-</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
-</span>  <span class='comment'>#      &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output&quot;,
-</span>  <span class='comment'>#       [[SIO[&quot;has-start-time&quot;][self.sio_verbose], &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate&quot;, &quot;iri&quot;]]
-</span>  <span class='comment'>#       )
-</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
-</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_start_value&quot;,
-</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
-</span>  <span class='comment'>#       &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_startdate&quot;,
-</span>  <span class='comment'>#       [
-</span>  <span class='comment'>#         [SIO[&quot;has-value&quot;][self.sio_verbose], &quot;$(#{output_start_column})&quot;, &quot;xsd:date&quot;],
-</span>  <span class='comment'>#         [&quot;rdf:type&quot;, SIO[&quot;start-date&quot;][self.sio_verbose], &quot;iri&quot;],             
-</span>  <span class='comment'>#         ]
-</span>  <span class='comment'>#       )      
-</span>  <span class='comment'>#end
-</span>  <span class='comment'>#
-</span>  <span class='comment'>#
-</span>  <span class='comment'>#if output_end_column
-</span>  <span class='comment'>#  
-</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
-</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_end&quot;,
-</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
-</span>  <span class='comment'>#      &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output&quot;,
-</span>  <span class='comment'>#       [[SIO[&quot;has-end-time&quot;][self.sio_verbose], &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate&quot;, &quot;iri&quot;]]
-</span>  <span class='comment'>#       )
-</span>  <span class='comment'>#  @mappings &lt;&lt; mapping_clause(
-</span>  <span class='comment'>#    &quot;#{process_with_output_tag}_output_annotation_end_value&quot;,
-</span>  <span class='comment'>#      [&quot;#{source_tag}-source&quot;],
-</span>  <span class='comment'>#       &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_enddate&quot;,
-</span>  <span class='comment'>#       [
-</span>  <span class='comment'>#         [SIO[&quot;has-value&quot;][self.sio_verbose], &quot;$(#{output_end_column})&quot;, &quot;xsd:date&quot;],
-</span>  <span class='comment'>#         [&quot;rdf:type&quot;, SIO[&quot;end-date&quot;][self.sio_verbose], &quot;iri&quot;],             
-</span>  <span class='comment'>#         ]
-</span>  <span class='comment'>#       )      
-</span>  <span class='comment'>#end
-</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_output_timeinstant_column'>output_timeinstant_column</span>
     
     <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_end</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_annotation_timeinstant</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
          <span class='lbracket'>[</span>
@@ -4354,77 +4215,35 @@
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time-instant</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
            <span class='rbracket'>]</span>
          <span class='rparen'>)</span>
-    <span class='comment'>#@mappings &lt;&lt; mapping_clause(
-</span>    <span class='comment'>#  &quot;#{process_with_output_tag}_output_annotation_time_value&quot;,
-</span>    <span class='comment'>#    [&quot;#{source_tag}-source&quot;],
-</span>    <span class='comment'>#     &quot;this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_timeboundary&quot;,
-</span>    <span class='comment'>#     [
-</span>    <span class='comment'>#       [SIO[&quot;has-value&quot;][self.sio_verbose], &quot;$(#{output_timeinstant_column})&quot;, &quot;xsd:date&quot;],
-</span>    <span class='comment'>#       [&quot;rdf:type&quot;, SIO[&quot;time-instant&quot;][self.sio_verbose], &quot;iri&quot;],             
-</span>    <span class='comment'>#       ]
-</span>    <span class='comment'>#     )      
-</span>  <span class='kw'>end</span>
-
-
-
-  
-  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_output_annotations_columns'>output_annotations_columns</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='comment'>#$stderr.puts &quot;found output annotations&quot;
-</span>      <span class='id identifier rubyid_output_annotations_columns'>output_annotations_columns</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pred'>pred</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_dtype'>dtype</span><span class='op'>|</span>
-        <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_dtype'>dtype</span> <span class='kw'>and</span> <span class='id identifier rubyid_dtype'>dtype</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+\:\S+</span><span class='regexp_end'>/</span></span>  <span class='comment'># URI or qname
-</span>          <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='id identifier rubyid_dtype'>dtype</span>
-        <span class='kw'>elsif</span> <span class='id identifier rubyid_dtype'>dtype</span>
-          <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_datatype'>datatype</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># make it the column reference if it exists, but isn&#39;t a uri
-</span>        <span class='kw'>end</span>
-        
-        <span class='kw'>if</span> <span class='id identifier rubyid_pred'>pred</span> <span class='kw'>and</span> <span class='id identifier rubyid_pred'>pred</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+\:\S+</span><span class='regexp_end'>/</span></span>  <span class='comment'># URI or qname
-</span>          <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='id identifier rubyid_pred'>pred</span>
-        <span class='kw'>else</span>
-          <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pred'>pred</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># make it the column reference if it exists, but isn&#39;t a uri
-</span>        <span class='kw'>end</span>
-    <span class='comment'>#$stderr.puts &quot;found output annotations #{predicate}, #{value}&quot;
-</span>
-        <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_predicate'>predicate</span> <span class='kw'>and</span> <span class='id identifier rubyid_value'>value</span>
-        <span class='id identifier rubyid_uniqid'>uniqid</span> <span class='op'>=</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
-        
-        <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uniqid'>uniqid</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_custom_annotation</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-             <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-            <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_predicate'>predicate</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_datatype'>datatype</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-            <span class='rparen'>)</span>
-        
-      <span class='kw'>end</span>
-  <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_output_annotations'>output_annotations</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-      <span class='id identifier rubyid_output_annotations_columns'>output_annotations_columns</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pred'>pred</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_dtype'>dtype</span><span class='op'>|</span>
-        <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_dtype'>dtype</span> <span class='kw'>and</span> <span class='id identifier rubyid_dtype'>dtype</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+\:\S+</span><span class='regexp_end'>/</span></span>  <span class='comment'># URI or qname
-</span>          <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='id identifier rubyid_dtype'>dtype</span>
-        <span class='kw'>elsif</span> <span class='id identifier rubyid_dtype'>dtype</span>
-          <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_datatype'>datatype</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># make it the column reference if it exists, but isn&#39;t a uri
-</span>        <span class='kw'>end</span>
-        
-        <span class='kw'>if</span> <span class='id identifier rubyid_pred'>pred</span> <span class='kw'>and</span> <span class='id identifier rubyid_pred'>pred</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+\:\S+</span><span class='regexp_end'>/</span></span>  <span class='comment'># URI or qname
-</span>          <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='id identifier rubyid_pred'>pred</span>
-        <span class='kw'>else</span>
-          <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pred'>pred</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># make it the column reference if it exists, but isn&#39;t a uri
-</span>        <span class='kw'>end</span>
-        
-        <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_predicate'>predicate</span> <span class='kw'>and</span> <span class='id identifier rubyid_value'>value</span>
-        <span class='id identifier rubyid_uniqid'>uniqid</span> <span class='op'>=</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
-        
-        <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
-            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uniqid'>uniqid</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_custom_annotation</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-             <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-            <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_predicate'>predicate</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_datatype'>datatype</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-            <span class='rparen'>)</span>
-        
-      <span class='kw'>end</span>
-    
   <span class='kw'>end</span>
 
+  <span class='id identifier rubyid_output_annotations'>output_annotations</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pred'>pred</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_dtype'>dtype</span><span class='op'>|</span>
+    <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_dtype'>dtype</span> <span class='kw'>and</span> <span class='id identifier rubyid_dtype'>dtype</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+\:\S+</span><span class='regexp_end'>/</span></span>  <span class='comment'># URI or qname
+</span>      <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='id identifier rubyid_dtype'>dtype</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_dtype'>dtype</span>
+      <span class='id identifier rubyid_datatype'>datatype</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_datatype'>datatype</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># make it the column reference if it exists, but isn&#39;t a uri
+</span>    <span class='kw'>end</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_pred'>pred</span> <span class='kw'>and</span> <span class='id identifier rubyid_pred'>pred</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+\:\S+</span><span class='regexp_end'>/</span></span>  <span class='comment'># URI or qname
+</span>      <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='id identifier rubyid_pred'>pred</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_predicate'>predicate</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pred'>pred</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># make it the column reference if it exists, but isn&#39;t a uri
+</span>    <span class='kw'>end</span>
+
+    <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_predicate'>predicate</span> <span class='kw'>and</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='id identifier rubyid_uniqid'>uniqid</span> <span class='op'>=</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
+    
+    <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uniqid'>uniqid</span><span class='embexpr_end'>}</span><span class='tstring_content'>_output_custom_annotation</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_predicate'>predicate</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_datatype'>datatype</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+        <span class='rparen'>)</span>
+        
+  <span class='kw'>end</span>
+    
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4776,7 +4595,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul  6 13:56:57 2021 by
+  Generated on Thu Jul  8 09:48:46 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>

@@ -222,3 +222,12 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
+  1625730495883985_output_custom_annotation:
+    sources:
+    - imaging-source
+    s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output
+    po:
+    - predicates: "$(http://semanticscience.org/resource/SIO_000205)"
+      objects:
+        value: "$(imageID)"
+        datatype: xsd:anyURI
