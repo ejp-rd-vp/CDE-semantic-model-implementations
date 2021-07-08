@@ -30,7 +30,8 @@ b.role_in_process({
 b.role_in_process({
     person_role_tag: "patientRole_status",
     process_tag:  "patient_death_information",
-    process_label: "death information recording process", 
+    process_label: "death information recording process",
+    process_start_column: "date"
     })
 
 
