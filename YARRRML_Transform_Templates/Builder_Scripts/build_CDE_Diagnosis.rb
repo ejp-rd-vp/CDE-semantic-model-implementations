@@ -4,6 +4,7 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
+  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_diagnosis",
   sio_verbose: 1,
   }
@@ -24,8 +25,6 @@ b.role_in_process({
     process_tag:  "medical_diagnosis",
     process_label: "medical diagnosis", 
     process_type: "http://semanticscience.org/resource/SIO_001001",  # medical diagnosis
-    process_start_column: "date",
-
     })
 
 # ===================================================================================
@@ -47,16 +46,16 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "medical_diagnosis",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001003",  # diagnostic_opinion
-    output_type_label_column: "diagnostic_opinion",
+    output_type_label: "diagnostic_opinion",
+    output_start_column: "date",
     output_value_column: "diagnostic_opinion"
     })
 
 b.input_output_refers_to({
   inout_process_tag:   "medical_diagnosis",  # connect to the correct process
-  refers_to_tag: "medical_diagnosis_attribute",
-  inout_refers_to_column: "ordo_uri",
-  inout_refers_to_label_column: "diagnostic_opinion",
-  is_attribute: true,
+  refers_to_tag: "medical_diagnosis",
+  inout_refers_to_columns: "ordo_uri",
+  inout_refers_to_label_column: "diagnostic_opinion"
 })
 
 puts b.generate

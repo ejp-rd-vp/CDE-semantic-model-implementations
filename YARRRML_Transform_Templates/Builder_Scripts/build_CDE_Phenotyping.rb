@@ -4,6 +4,7 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
+  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_phenotyping",
   sio_verbose: 1,
   }
@@ -29,15 +30,11 @@ b.role_in_process({
     person_role_tag: "patientRole_phenotyping",
     process_tag:  "patientRole_phenotyping_process",
     process_label: "comparative phenotypic assessment",
-    process_start_column: "date",
     process_type: "http://purl.obolibrary.org/obo/OBI_0001546", # comparative phenotypic assessment
     })
 b.process_has_annotations({
     process_tag:  "patientRole_phenotyping_process",
-    process_annotations: [
-                           ["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C16205", "iri"],# healthcare activity
-                           ["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C18020", "iri"],# diagnostic procedure
-                           ]  
+    process_annotations: [["rdf:type", "http://purl.obolibrary.org/obo/NCIT_C16205", "iri"]]  # healthcare activity
     })
 
 
@@ -46,7 +43,7 @@ b.process_has_annotations({
 # ===================================================================================
 
 b.process_has_part({
-  parent_process_tag: "longitudinal_information_gathering_process_diseaseX",
+  parent_process_tag: "longitudinal_information_gathering_process",
   part_process_tag: "patientRole_phenotyping_process",
   parent_unique_process: false,
 })
@@ -59,6 +56,7 @@ b.process_hasoutput_output({
     process_with_output_tag: "patientRole_phenotyping_process",  # connect to the correct process
     output_type: "http://purl.obolibrary.org/obo/NCIT_C102741", # classification of a clinical observation
     output_type_label_column: "HP_Label",
+    output_start_column: "date"
     })
 
 b.input_output_refers_to({

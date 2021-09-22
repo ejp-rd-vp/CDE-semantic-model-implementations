@@ -4,7 +4,7 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-#  baseURI: "https://w3id.org/duchenne-fdp/data/",
+  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_genetic_diagnosis",
   sio_verbose: 1,
   }
@@ -67,20 +67,20 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_genetic_diagnosis_process_hgvs",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001381",  # genomic sequence variant
-    output_type_label: "HGVS genome sequence variant",
+    output_type_label: "genome sequence variant",
     output_value_column: "hgvs_variant",
     })
 
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_genetic_diagnosis_process_omim",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001381",  # genomic sequence variant
-    output_type_label: "OMIM genome sequence variant",
+    output_type_label: "genome sequence variant",
     output_value_column: "omim_number",
     })
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_genetic_diagnosis_process_hgnc",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001381",  # genomic sequence variant
-    output_type_label: "HGNC genome sequence variant",
+    output_type_label: "genome sequence variant",
     output_value_column: "hgnc_code",
     })
 
@@ -93,13 +93,6 @@ b.process_hasoutput_output({
     
   })
 
-  b.input_output_refers_to({
-    refers_to_tag: "hgvs_reference",
-    inout_process_tag: "patientRole_genetic_diagnosis_process_hgvs",
-    inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C172243",  # HGVS Variation
-    inout_refers_to_label_column: "hgvs_code",
-    
-  })
 
   b.input_output_refers_to({
     refers_to_tag: "omim_reference",
