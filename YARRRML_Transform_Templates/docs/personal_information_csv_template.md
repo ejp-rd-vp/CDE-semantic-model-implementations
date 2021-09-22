@@ -5,7 +5,7 @@ The CDE for personal information (birth date and sex)
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/personal.csv)
+Please find example CSV file [here](../csv/personal_information.csv)
 
 ### Columns
 
@@ -25,7 +25,7 @@ pid, uniqid, sexURI, sexLabel, birthdate
 
 ## YARRRML
 
-Please find the YARRRML template for this module [here](../templates/personal_yarrrml_template.yaml)
+Please find the YARRRML template for this module [here](../templates/personal_information_yarrrml_template.yaml)
   
 ##  TODO
 
