@@ -48,6 +48,7 @@ b.process_has_annotations({
 b.process_has_part({
   parent_process_tag: "longitudinal_information_gathering_process_diseaseX",
   part_process_tag: "patientRole_phenotyping_process",
+  output_start_column: "date",
   parent_unique_process: false,
 })
 
