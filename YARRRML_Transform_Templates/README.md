@@ -11,7 +11,7 @@ In this repository we are providing yarrrml for different CDE and DCDE modules a
 * [Genetic diagnosis](docs/genetic_diagnosis_csv_template.md)
 * [Patient consent](docs/patient_consent_csv_template.md)
 * [Patient status](docs/patient_status_csv_template.md)
-* [Patient personal info](docs/personal_csv_template.md)
+* [Patient personal info](docs/personal_information_csv_template.md)
 * [Phenotyping](docs/phenotyping_csv_template.md)
 * [Disability](docs/disability_csv_template.md)
 * [Undiagnosed](docs/undiagnosed_csv_template.md)
