@@ -1,6 +1,6 @@
 ,pid,uniqid,onset_uri,onset_date,diagnosis_uri,diagnosis_date
 0,uid_000001,2.02109231047221E+019,http://purl.obolibrary.org/obo/HP_0003577,,http://purl.obolibrary.org/obo/HP_0003577,
-1,uid_000002,2.02109231047221E+019,http://purl.obolibrary.org/obo/NCIT_C251654,1995-06-23,http://purl.obolibrary.org/obo/HP_0003674,1996-06-23
+1,uid_000002,2.02109231047221E+019,http://purl.obolibrary.org/obo/NCIT_C251654,1995-06-23,http://purl.obolibrary.org/obo/C251654,1996-06-23
 2,uid_000003,2.02109231047221E+019,http://purl.obolibrary.org/obo/HP_0003577,,http://purl.obolibrary.org/obo/HP_0003577,
 3,uid_000004,2.02109231047221E+019,http://purl.obolibrary.org/obo/HP_0003577,,http://purl.obolibrary.org/obo/HP_0003577,
 4,uid_000005,2.02109231047221E+019,http://purl.obolibrary.org/obo/HP_0003577,,http://purl.obolibrary.org/obo/HP_0003577,
