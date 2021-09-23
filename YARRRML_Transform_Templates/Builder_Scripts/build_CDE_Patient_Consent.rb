@@ -5,7 +5,6 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_consent",
   sio_verbose: 1,
   }
@@ -48,7 +47,7 @@ b.role_in_process({
 
 b.process_has_input({
     process_with_input_tag:  "patient_consenting",
-    input_type: "http://purl.obolibrary.org/obo/ICO_0000001",
+    input_type: "http://purl.obolibrary.org/obo/ICO_0000001",  # informed consent form (input)
     input_type_tag: "consent_document",
     input_has_value_column: "url" 
 })
@@ -60,12 +59,12 @@ b.process_hasoutput_output({
     process_with_output_tag: "patient_consenting",  # connect to the correct process
     output_type_label: "Patient Consent Record",
     output_value_column: "result_label",
-    output_start_column: "date"
     })
 b.input_output_refers_to({
   refers_to_tag: "consent_attribute",
   inout_process_tag:   "patient_consenting",  # connect to the correct process
-  inout_refers_to_column: "result_uri"
+  inout_refers_to_column: "result_uri",  # the URI of the type of consent obtained (e.g, http://purl.obolibrary.org/obo/OBIB_0000488 (willingness to be contacted))
+  inout_refers_to_label_column: "result_label"  # the URI of the type of consent obtained (e.g, http://purl.obolibrary.org/obo/OBIB_0000488 (willingness to be contacted))
 })
 
 

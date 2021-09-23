@@ -5,7 +5,6 @@ require "yarrrml-template-builder"
 #pid,uniqid,processLabel,processURI,startDate,comments,measurementURI,measurementLabel,data,prom,ontologyuri
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "questions",
   sio_verbose: 1,
   }

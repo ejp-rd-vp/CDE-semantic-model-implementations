@@ -4,7 +4,6 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_patient_disease_progression",
   sio_verbose: 1,
   }

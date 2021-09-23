@@ -5,7 +5,6 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
   source_tag: "cde_personal_information",
   sio_verbose: 1,
   }
@@ -59,8 +58,10 @@ b.process_hasoutput_output({
     process_with_output_tag: "age_measuring_procedure",  # connect to the correct process
     output_type_label: "Birth Date",
     output_value_column: "birthdate",
-    output_value_datatype: "xsd:dateTime"
+    output_value_datatype: "xsd:date",
+    output_timeinstant_column: "birthdate"
     })
+
 b.process_hasoutput_output({
     process_with_output_tag: "sex_measuring_procedure",  # connect to the correct process
     output_type_label_column: "sexLabel",
@@ -90,14 +91,14 @@ b.input_output_refers_to(  {
   refers_to_tag: "sexAttribute",
   inout_refers_to_column: "sexURI",
   inout_refers_to_label_column: "sexLabel",
-  base_types: ["obo:NCIT_C28421"],
+  base_types: ["http://purl.obolibrary.org/obo/NCIT_C28421"],
   is_attribute: true
 })
 
 b.input_output_refers_to(  {
   inout_process_tag: "age_measuring_procedure",                     
   refers_to_tag: "ageAttribute",
-  inout_refers_to: "obo:NCIT_C68615",  
+  inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C68615",  
   inout_refers_to_label: "Birth Date",
   is_attribute: true
                            

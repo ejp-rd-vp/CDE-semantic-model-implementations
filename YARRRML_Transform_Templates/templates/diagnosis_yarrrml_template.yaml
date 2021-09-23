@@ -10,7 +10,7 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: https://w3id.org/duchenne-fdp/data/
+  this: "|||BASE|||"
 sources:
   cde_patient_diagnosis-source:
     access: "|||DATA|||"
@@ -103,6 +103,28 @@ mappings:
       objects:
         value: medical diagnosis
         datatype: xsd:string
+  medical_diagnosis_process_annotation_start:
+    sources:
+    - cde_patient_diagnosis-source
+    s: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis
+    po:
+    - predicates: http://semanticscience.org/resource/has-start-time
+      objects:
+        value: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis_startdate
+        type: iri
+  medical_diagnosis_process_annotation_start_value:
+    sources:
+    - cde_patient_diagnosis-source
+    s: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis_startdate
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(date)"
+        datatype: xsd:date
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/start-date
+        type: iri
   longitudinal_information_gathering_process_diseaseX_has_part_medical_diagnosis:
     sources:
     - cde_patient_diagnosis-source
@@ -146,7 +168,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: diagnostic_opinion
+        value: "$(diagnostic_opinion)"
         datatype: xsd:string
   medical_diagnosis_Output_value_annotation:
     sources:
@@ -157,15 +179,6 @@ mappings:
       objects:
         value: "$(diagnostic_opinion)"
         datatype: xsd:string
-  medical_diagnosis_output_annotation_start:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_Output
-    po:
-    - predicates: http://semanticscience.org/resource/start-date
-      objects:
-        value: "$(date)"
-        datatype: xsd:date
   inout_from_medical_diagnosis_refers_to_concepts:
     sources:
     - cde_patient_diagnosis-source
@@ -173,7 +186,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_medical_diagnosis:
     sources:
@@ -182,12 +195,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
         type: iri
-  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_type:
+  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_type:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -195,12 +208,12 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: 
+        value: "$(ordo_uri)"
         type: iri
-  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_label:
+  inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_label:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_TypedAttributeNode
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

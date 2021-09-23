@@ -13,10 +13,6 @@ require "yarrrml-template-builder"
 
 
 b = YARRRML_Template_Builder.new({
-<<<<<<< refs/remotes/ejp-rd-vp/master
-=======
-  baseURI: "https://w3id.org/duchenne-fdp/data/",
->>>>>>> moving individual changes from develop to master
   source_tag: "cde_patient_disease_history",
   sio_verbose: 1,
   }
@@ -77,9 +73,10 @@ b.process_has_part({
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_symptom_onset_process",  # connect to the correct process
     output_type_column: "onset_uri",  # symptom onset
-    output_type_label: "'age' at onset",
+    output_type_label: "date of onset (in official CDE this is age of onset)",
     output_value_column: "onset_date",
-    output_value_datatype: "xsd:date"
+    output_value_datatype: "xsd:date",
+    output_timeinstant_column: "onset_date"
     })
 
 # =====================================DIAG DATE==============================================
@@ -91,8 +88,9 @@ b.process_hasoutput_output({
     output_type_label: "'age' at diagnosis",
     output_value_column: "diagnosis_date",
     output_value_datatype: "xsd:date",
-    
+    output_timeinstant_column: "diagnosis_date"
     })
+
 
   #* http://purl.obolibrary.org/obo/NCIT_C156420 (Age at Diagnosis) 
   #* http://purl.obolibrary.org/obo/HP_0003674  (symptom onset)
@@ -107,15 +105,10 @@ b.input_output_refers_to({
 b.input_output_refers_to({
   refers_to_tag: "disagnosis_date",
   inout_process_tag:   "patientRole_diagnosis_date_process",  # connect to the correct process
-<<<<<<< refs/remotes/ejp-rd-vp/master
   inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C156420",   # age at diagnosis
   inout_refers_to_label: "Stage/date of diagnosis",
   is_attribute: true
 
-=======
-  inout_refers_to: ["obo:NCIT_C156420"],
-  inout_refers_to_label: ["Age at diagnosis"]
->>>>>>> moving individual changes from develop to master
 })
 
 
