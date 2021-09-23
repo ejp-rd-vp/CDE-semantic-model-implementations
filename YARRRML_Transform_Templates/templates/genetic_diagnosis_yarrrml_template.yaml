@@ -10,7 +10,7 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: "|||BASE|||"
+  this: https://w3id.org/duchenne-fdp/data/
 sources:
   cde_genetic_diagnosis-source:
     access: "|||DATA|||"
@@ -216,7 +216,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HGVS genome sequence variant
+        value: genome sequence variant
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgvs_Output_value_annotation:
     sources:
@@ -261,7 +261,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: OMIM genome sequence variant
+        value: genome sequence variant
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_omim_Output_value_annotation:
     sources:
@@ -306,7 +306,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HGNC genome sequence variant
+        value: genome sequence variant
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgnc_Output_value_annotation:
     sources:
@@ -356,46 +356,6 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: "$(hgnc_code)"
-        datatype: xsd:string
-  inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concepts:
-    sources:
-    - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis_process_hgvs_Output
-    po:
-    - predicates: http://semanticscience.org/resource/refers-to
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
-        type: iri
-  has_attribute_of_inout_from_patientRole_genetic_diagnosis_process_hgvs:
-    sources:
-    - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#Person
-    po:
-    - predicates: http://semanticscience.org/resource/has-attribute
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
-        type: iri
-  inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concept_hgvs_reference_type:
-    sources:
-    - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/attribute
-        type: iri
-    - predicates: rdf:type
-      objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C172243
-        type: iri
-  inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concept_hgvs_reference_label:
-    sources:
-    - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
-    po:
-    - predicates: rdfs:label
-      objects:
-        value: "$(hgvs_code)"
         datatype: xsd:string
   inout_from_patientRole_genetic_diagnosis_process_omim_refers_to_concepts:
     sources:

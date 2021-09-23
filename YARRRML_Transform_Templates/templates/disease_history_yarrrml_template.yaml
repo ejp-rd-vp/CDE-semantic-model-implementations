@@ -10,7 +10,7 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: "|||BASE|||"
+  this: https://w3id.org/duchenne-fdp/data/
 sources:
   cde_patient_disease_history-source:
     access: "|||DATA|||"
@@ -366,7 +366,12 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
+<<<<<<< refs/remotes/ejp-rd-vp/master
         value: http://purl.obolibrary.org/obo/NCIT_C156420
+=======
+        value:
+        - obo:NCIT_C156420
+>>>>>>> moving individual changes from develop to master
         type: iri
   inout_from_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_label:
     sources:
@@ -375,5 +380,10 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
+<<<<<<< refs/remotes/ejp-rd-vp/master
         value: Stage/date of diagnosis
+=======
+        value:
+        - Age at diagnosis
+>>>>>>> moving individual changes from develop to master
         datatype: xsd:string

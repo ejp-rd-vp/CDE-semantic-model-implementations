@@ -10,7 +10,7 @@ prefixes:
   ndfrt: http://purl.bioontology.org/ontology/NDFRT/
   edam: http://purl.bioontology.org/ontology/EDAM/
   ordo: http://www.orpha.net/ORDO/
-  this: "|||BASE|||"
+  this: https://w3id.org/duchenne-fdp/data/
 sources:
   cde_patient_disease_progression-source:
     access: "|||DATA|||"
@@ -102,22 +102,4 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: patient longitudinal data collection
-        datatype: xsd:string
-  1625659581198205_process_custom_annotation:
-    sources:
-    - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX
-    po:
-    - predicates: sio:refers-to
-      objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C17747
-        type: iri
-  16256595811982198_process_custom_annotation:
-    sources:
-    - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX
-    po:
-    - predicates: rdfs:label
-      objects:
-        value: Longitudinal record of patient disease progression and events
         datatype: xsd:string
