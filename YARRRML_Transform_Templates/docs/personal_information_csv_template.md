@@ -16,10 +16,10 @@ pid, uniqid, sexURI, sexLabel, birthdate
   * pid - patient unique identifier
   * iniqid:  some row unique identifier, over all sessions (a millisecond timestamp, numerical only, is a good idea)
   * sexURI: one of 
-    * Female sex  http://purl.obolibrary.org/obo/NCIT_C16576(female) ; 
-    * Male sex http://purl.obolibrary.org/obo/NCIT_C20197(male); 
-    * Undetermined  http://purl.obolibrary.org/obo/NCIT_C124294 (undetermined) ; 
-    * Unknown  http://purl.obolibrary.org/obo/NCIT_C17998(unknown) (use this for foetal undetermined) 
+    * http://purl.obolibrary.org/obo/NCIT_C16576 (Female) ; 
+    * http://purl.obolibrary.org/obo/NCIT_C20197 (Male); 
+    * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) ; 
+    * http://purl.obolibrary.org/obo/NCIT_C17998 (Unknown, use this for foetal undetermined) 
   * sexLabel:  some human readable label that matches the sexURI column
   * birthdate:  ISO 8601 compliant date string
 
