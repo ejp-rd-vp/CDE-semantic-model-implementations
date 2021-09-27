@@ -51,7 +51,7 @@ VERSION is some version that will appear in the filename of the gem.
 
 4) Identify the "tag" of the YARRML template you want to use (e.g. 'height' for "height_yarrrml_template.yaml" ).  This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the "tag" portion of the template name.
 
-5) Execute the transformation: You can use ```run_me_to_test.rb``` changing the tag as datatype_tag parameter at YARRRML _Transform:
+5) Execute the transformation: You can use [run_me_to_test.rb](run_me_to_test.rb) by changing the tag described as datatype_tag parameter at YARRRML_Transform:
 
     ```ruby
         y = YARRRML_Transform.new(datafile: "./data/myHeightData.csv", datatype_tag: "height")
