@@ -20,3 +20,8 @@ In this repository we are providing yarrrml for different CDE and DCDE modules a
 
 * [Body measurement](docs/body_measurement_csv_template.md)
 * [Lab measurement](docs/lab_measurement_csv_template.md)
+
+<hr>
+
+## Documentation:
+To know more about how implement this templates, you will find YARRRML Transformation documentation [here](../YARRRML_Tools/yarrrml_template_builder/README.md)
