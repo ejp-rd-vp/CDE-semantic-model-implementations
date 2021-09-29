@@ -45,11 +45,11 @@ VERSION is some version that will appear in the filename of the gem.
                 - ./config:/config
     ```
 
-2) Create by running build_xxx_template to build the appropriate templates or select the appropriate YARRRML template (in the ./config folder, e.g. "height_yarrrml_template.yaml").  See "example of creating a template" below if you need to create one from-scratch.
+2) Create your template by running build_xxx_template or select the appropriate YARRRML template (in the ./config folder, e.g. "height_yarrrml_template.yaml"). See "example of creating a template" below if you need to create one from-scratch.
 
-3) In the ./data folder, create a csv file with the necessary headings for your desired transform.
+3) In the ./data folder, create a CSV file with the necessary headings for your desired transform.
 
-4) Identify the "tag" of the YARRML template you want to use (e.g. 'height' for "height_yarrrml_template.yaml" ).  This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the "tag" portion of the template name.
+4) Identify the "tag" of the YARRML template you want to use (e.g. 'height' for "height_yarrrml_template.yaml"). This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the "tag" portion of the template name.
 
 5) Execute the transformation: You can use [run_me_to_test.rb](run_me_to_test.rb) by changing the tag described as datatype_tag parameter at YARRRML_Transform:
 
