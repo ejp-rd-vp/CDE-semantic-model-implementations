@@ -1,0 +1,21 @@
+,pid,uniqid,url,result_uri,result_label,date
+0,uid_000001,20211001110703660067,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1974-12-07
+1,uid_000002,20211001110703660132,http://example.org/my_consent_document_type3,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1996-06-23
+2,uid_000003,20211001110703660149,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1980-05-09
+3,uid_000004,20211001110703660161,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1994-05-08
+4,uid_000005,20211001110703660172,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1998-06-07
+5,uid_000006,20211001110703660183,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1991-03-05
+6,uid_000007,20211001110703660194,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1996-02-12
+7,uid_000008,20211001110703660204,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1999-06-08
+8,uid_000009,20211001110703660215,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,2001-05-30
+9,uid_000010,20211001110703660225,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1996-08-08
+10,uid_000011,20211001110703660235,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1992-04-06
+11,uid_000012,20211001110703660245,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1996-05-03
+12,uid_000013,20211001110703660255,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1998-05-09
+13,uid_000014,20211001110703660265,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,2002-05-07
+14,uid_000015,20211001110703660275,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,1996-12-12
+15,uid_000016,20211001110703660286,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,2002-02-18
+16,uid_000017,20211001110703660296,http://example.org/my_consent_document_type3,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,1999-04-17
+17,uid_000018,20211001110703660306,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,2002-06-29
+18,uid_000019,20211001110703660316,http://example.org/my_consent_document_type2,http://purl.obolibrary.org/obo/DUO_0000007,disease specific research,2003-05-17
+19,uid_000020,20211001110703660326,http://example.org/my_consent_document,http://purl.obolibrary.org/obo/DUO_0000042 ,general research use,2001-05-05
