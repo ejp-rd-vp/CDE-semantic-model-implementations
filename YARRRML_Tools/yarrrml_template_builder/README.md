@@ -19,30 +19,45 @@ VERSION is some version that will appear in the filename of the gem.
         ./config/
         ./config/***_yarrrml_template.yaml (*** is a one-word tag of the "type" of data, e.g. "height")
 
-1) Need to have sdmrdfizer running on port 4000 with a folder ./data mounted as /data
+1) Need to have sdmrdfizer and yarrrml-parser services running ./data mounted as /data and ./config as /config. You can use docker-compose to run both services:
 
-     docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data   markw/sdmrdfizer_ejp:0.1.0
-
-2a) Run build_xxx_template to build the appropriate templates (see "Example of creating a template", below).  Remember the names of the CSV columns
-
-2b) Generate CSV with headers sufficient to fill the template
-
-3) Run YARRRML_Transform to genereate nTriples
+    ```yaml
+    version: "2.0"
+    services:
 
 
-## More specifically
+        yarrrml_transform:
+            image: markw/yarrrml-parser-ejp:latest
+            container_name: yarrrml_transform
+            ports:
+                - "3000:3000"
+            volumes:
+                - ./data:/data
 
-1) in the ./data folder, create a csv file with the necessary headings for your desired transform.
 
-2) create (or select) the appropriate YARRRML template (in the ./config folder, e.g. "height_yarrrml_template.yaml").  See "example of creating a template" below if you need to create one from-scratch.
+        rdfizer:
+            image: markw/sdmrdfizer_ejp:0.3.0
+            container_name: rdfizer
+            ports:
+                - "4000:4000"
+            volumes:
+                - ./data:/data
+                - ./config:/config
+    ```
 
-3) Identify the "tag" of the YARRML template you want to use (e.g. 'height' for "height_yarrrml_template.yaml" ).  This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the "tag" portion of the template name.
+2) Create your template by running build_xxx_template or select the appropriate YARRRML template (in the ./config folder, e.g. "height_yarrrml_template.yaml"). See "example of creating a template" below if you need to create one from-scratch.
 
-4) execute the transformation:
+3) In the ./data folder, create a CSV file with the necessary headings for your desired transform.
 
+4) Identify the "tag" of the YARRML template you want to use (e.g. 'height' for "height_yarrrml_template.yaml"). This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the "tag" portion of the template name.
+
+5) Execute the transformation: You can use [run_me_to_test.rb](run_me_to_test.rb) by changing the tag described as datatype_tag parameter at YARRRML_Transform:
+
+    ```ruby
         y = YARRRML_Transform.new(datafile: "./data/myHeightData.csv", datatype_tag: "height")
         y.yarrrml_transform
         y.make_fair_data   # output goes to ./data/triples
+    ```
 
 
 
