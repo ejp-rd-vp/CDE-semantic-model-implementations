@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for age assessment
+        value: Patient for age assessment Role
         datatype: xsd:string
   identifier_has_value_for_patientRole_sex:
     sources:
@@ -135,7 +135,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient For Gender Assessment
+        value: Patient For Gender Assessment Role
         datatype: xsd:string
   patientRole_age_realized_age_measuring_procedure:
     sources:
@@ -161,7 +161,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: age measuring process
+        value: age measuring process Process
         datatype: xsd:string
   patientRole_sex_realized_sex_measuring_procedure:
     sources:
@@ -187,7 +187,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: sex measuring process
+        value: sex measuring process Process
         datatype: xsd:string
   age_measuring_procedure_process_has_output:
     sources:
@@ -223,7 +223,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Birth Date
+        value: Birth Date Output Type
         datatype: xsd:string
   age_measuring_procedure_Output_value_annotation:
     sources:
@@ -234,19 +234,6 @@ mappings:
       objects:
         value: "$(birthdate)"
         datatype: xsd:date
-  age_measuring_procedure_output_annotation_timeinstant:
-    sources:
-    - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(birthdate)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/time-instant
-        type: iri
   sex_measuring_procedure_process_has_output:
     sources:
     - cde_personal_information-source
@@ -281,7 +268,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(sexLabel)"
+        value: "$(sexLabel) Output Type"
         datatype: xsd:string
   sex_measuring_procedure_Output_value_annotation:
     sources:
@@ -334,7 +321,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(sexLabel)"
+        value: "$(sexLabel) Attribute"
         datatype: xsd:string
   inout_from_age_measuring_procedure_refers_to_concepts:
     sources:
@@ -374,5 +361,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Birth Date
+        value: Birth Date Attribute
         datatype: xsd:string

@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: First Contact Patient
+        value: First Contact Patient Role
         datatype: xsd:string
   patientRole_care_pathway_first_contact_realized_patientRole_care_pathway_first_contact_process:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: first contact with specialized center
+        value: first contact with specialized center Process
         datatype: xsd:string
   patientRole_care_pathway_first_contact_process_process_annotation_start:
     sources:
@@ -110,12 +110,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-start-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process_startdate
+        value: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process_startdate_$(first_contact_date)
         type: iri
   patientRole_care_pathway_first_contact_process_process_annotation_start_value:
     sources:
     - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process_startdate
+    s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process_startdate_$(first_contact_date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -125,7 +125,29 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
-  1632390761178519_process_custom_annotation:
+  patientRole_care_pathway_first_contact_process_process_annotation_end:
+    sources:
+    - cde_patient_care_pathway-source
+    s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process
+    po:
+    - predicates: http://semanticscience.org/resource/has-end-time
+      objects:
+        value: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process_enddate__$(first_contact_date)
+        type: iri
+  patientRole_care_pathway_first_contact_process_process_annotation_end_value:
+    sources:
+    - cde_patient_care_pathway-source
+    s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process_enddate_$(first_contact_date)
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(first_contact_date)"
+        datatype: xsd:date
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/end-date
+        type: iri
+  16335109327609096_process_custom_annotation:
     sources:
     - cde_patient_care_pathway-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process

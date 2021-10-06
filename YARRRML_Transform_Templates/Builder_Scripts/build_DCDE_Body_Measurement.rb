@@ -51,29 +51,6 @@ b.output_has_unit({
 })
 
 
-    #:inout_process_tag (String) — default: "unidentifiedProcess"
-    #:refers_to_tag (String) — default: nil —
-    #
-    #required unique one-word tag of an attribute
-    #:inout_refers_to (String) — default: [] —
-    #
-    #an ontology URI
-    #:inout_refers_to_column (String) — default: [] —
-    #
-    #column headers for column of ontologyURIs
-    #:inout_refers_to_label (String) — default: [] —
-    #
-    #an ontology term label
-    #:inout_refers_to_label_column (String) — default: [] —
-    #
-    #column header for column of ontology term labels
-    #:is_attribute (Boolean) — default: true —
-    #
-    #is this output an attribute of the patient?
-    #:base_types (Array) — default: [] —
-    #
-    #an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
-
 # pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,valueDatatype,unitURI, unitLabel,date,comments
 
 b.input_output_refers_to({

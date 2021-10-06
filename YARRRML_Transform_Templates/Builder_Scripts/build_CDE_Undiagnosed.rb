@@ -43,7 +43,7 @@ b.role_in_process({
 b.process_hasoutput_output({
     process_with_output_tag: "medical_diagnosis",  # connect to the correct process
     #output_type: "Undiagnosed",
-    output_type_label: "Undiagnosed",
+    output_type_label: "Undiagnosed Label",
     })
 
 b.input_output_refers_to({

@@ -59,7 +59,6 @@ b.process_hasoutput_output({
     output_type_label: "Birth Date",
     output_value_column: "birthdate",
     output_value_datatype: "xsd:date",
-    output_timeinstant_column: "birthdate"
     })
 
 b.process_hasoutput_output({

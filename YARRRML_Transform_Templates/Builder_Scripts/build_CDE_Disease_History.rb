@@ -76,7 +76,6 @@ b.process_hasoutput_output({
     output_type_label: "date of onset (in official CDE this is age of onset)",
     output_value_column: "onset_date",
     output_value_datatype: "xsd:date",
-    output_timeinstant_column: "onset_date"
     })
 
 # =====================================DIAG DATE==============================================
@@ -88,7 +87,6 @@ b.process_hasoutput_output({
     output_type_label: "'age' at diagnosis",
     output_value_column: "diagnosis_date",
     output_value_datatype: "xsd:date",
-    output_timeinstant_column: "diagnosis_date"
     })
 
 

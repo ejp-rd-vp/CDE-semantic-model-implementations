@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient
+        value: Patient Role
         datatype: xsd:string
   thisRole_realized_some_laboratory_measuring_process:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(processLabel)"
+        value: "$(processLabel) Process"
         datatype: xsd:string
   some_laboratory_measuring_process_process_annotation_start:
     sources:
@@ -110,12 +110,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-start-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_startdate
+        value: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_startdate_$(date)
         type: iri
   some_laboratory_measuring_process_process_annotation_start_value:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_startdate
+    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_startdate_$(date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -124,6 +124,28 @@ mappings:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/start-date
+        type: iri
+  some_laboratory_measuring_process_process_annotation_end:
+    sources:
+    - laboratory_measurement-source
+    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    po:
+    - predicates: http://semanticscience.org/resource/has-end-time
+      objects:
+        value: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_enddate__$(date)
+        type: iri
+  some_laboratory_measuring_process_process_annotation_end_value:
+    sources:
+    - laboratory_measurement-source
+    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_enddate_$(date)
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(date)"
+        datatype: xsd:date
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/end-date
         type: iri
   some_laboratory_measuring_process_has_input_material_tested:
     sources:
@@ -149,7 +171,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(material_tested_label)"
+        value: "$(material_tested_label) Process Input"
         datatype: xsd:string
   some_laboratory_measuring_process_has_target_target_entity:
     sources:
@@ -175,7 +197,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(target_label)"
+        value: "$(target_label) Process Target"
         datatype: xsd:string
   some_laboratory_measuring_process_has_target_process_protocol:
     sources:
@@ -201,7 +223,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Protocol
+        value: Protocol Protocol
         datatype: xsd:string
   some_laboratory_measuring_process_process_has_output:
     sources:
@@ -237,7 +259,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: measurement-value
+        value: measurement-value Output Type
         datatype: xsd:string
   some_laboratory_measuring_process_Output_value_annotation:
     sources:

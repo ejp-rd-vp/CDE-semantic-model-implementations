@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Genetic Diagnosis Patient
+        value: Genetic Diagnosis Patient Role
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_omim:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing
+        value: genetic testing Process
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_hgnc:
     sources:
@@ -127,7 +127,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing
+        value: genetic testing Process
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_hgvs:
     sources:
@@ -153,7 +153,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing
+        value: genetic testing Process
         datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_patientRole_genetic_diagnosis_process_omim:
     sources:
@@ -216,7 +216,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HGVS genome sequence variant
+        value: HGVS genome sequence variant Output Type
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgvs_Output_value_annotation:
     sources:
@@ -261,7 +261,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: OMIM genome sequence variant
+        value: OMIM genome sequence variant Output Type
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_omim_Output_value_annotation:
     sources:
@@ -306,7 +306,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HGNC genome sequence variant
+        value: HGNC genome sequence variant Output Type
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgnc_Output_value_annotation:
     sources:
@@ -355,7 +355,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(hgnc_code)"
+        value: "$(hgnc_code) Attribute"
         datatype: xsd:string
   inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concepts:
     sources:
@@ -395,7 +395,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(hgvs_code)"
+        value: "$(hgvs_code) Attribute"
         datatype: xsd:string
   inout_from_patientRole_genetic_diagnosis_process_omim_refers_to_concepts:
     sources:
@@ -435,5 +435,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(omim_number)"
+        value: "$(omim_number) Attribute"
         datatype: xsd:string

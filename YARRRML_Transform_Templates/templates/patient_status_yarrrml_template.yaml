@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for status recording
+        value: Patient for status recording Role
         datatype: xsd:string
   patientRole_status_realized_patient_status:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: status recording process
+        value: status recording process Process
         datatype: xsd:string
   patientRole_status_realized_patient_death_information:
     sources:
@@ -127,7 +127,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: death information recording process
+        value: death information recording process Process
         datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_patient_status:
     sources:
@@ -172,7 +172,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(status_label)"
+        value: "$(status_label) Output Type"
         datatype: xsd:string
   patient_status_Output_value_annotation:
     sources:
@@ -221,7 +221,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Patient status
+        value: Patient status Attribute
         datatype: xsd:string
   patient_death_information_process_has_output:
     sources:
@@ -257,7 +257,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: patient death information
+        value: patient death information Output Type
         datatype: xsd:string
   patient_death_information_Output_value_annotation:
     sources:
@@ -268,19 +268,6 @@ mappings:
       objects:
         value: "$(death_date)"
         datatype: xsd:date
-  patient_death_information_output_annotation_timeinstant:
-    sources:
-    - cde_patient_status-source
-    s: this:individual_$(pid)_$(uniqid)#patient_death_information_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(death_date)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/time-instant
-        type: iri
   inout_from_patient_death_information_refers_to_concepts:
     sources:
     - cde_patient_status-source
@@ -319,5 +306,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Date of death
+        value: Date of death Attribute
         datatype: xsd:string

@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for status recording
+        value: Patient for status recording Role
         datatype: xsd:string
   patientRole_consent_realized_patient_consenting:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: consenting process
+        value: consenting process Process
         datatype: xsd:string
   patient_consenting_process_annotation_start:
     sources:
@@ -110,12 +110,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-start-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_startdate
+        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_startdate_$(date)
         type: iri
   patient_consenting_process_annotation_start_value:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting_startdate
+    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting_startdate_$(date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -124,6 +124,28 @@ mappings:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/start-date
+        type: iri
+  patient_consenting_process_annotation_end:
+    sources:
+    - cde_patient_consent-source
+    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+    po:
+    - predicates: http://semanticscience.org/resource/has-end-time
+      objects:
+        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_enddate__$(date)
+        type: iri
+  patient_consenting_process_annotation_end_value:
+    sources:
+    - cde_patient_consent-source
+    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting_enddate_$(date)
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(date)"
+        datatype: xsd:date
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/end-date
         type: iri
   patient_consenting_has_input_consent_document:
     sources:
@@ -149,7 +171,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity
+        value: information content entity Process Input
         datatype: xsd:string
   input_consent_document_has_value:
     sources:
@@ -194,7 +216,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Patient Consent Record
+        value: Patient Consent Record Output Type
         datatype: xsd:string
   patient_consenting_Output_value_annotation:
     sources:
@@ -243,5 +265,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(result_label)"
+        value: "$(result_label) Attribute"
         datatype: xsd:string

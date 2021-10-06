@@ -1,11 +1,11 @@
 require "yarrrml-template-builder"
 
-# THIS IS FOR PROM-STYLE QUESTIONNAIRES
 
-#pid,uniqid,processLabel,processURI,startDate,comments,measurementURI,measurementLabel,data,prom,ontologyuri
+#pid,uniqid,processLabel,processURI,comments,measurementURI,measurementLabel,promURI,
+#data,promQuestion,ontologyURI,eventDate,startDate,endDate
 
 b = YARRRML_Template_Builder.new({
-  source_tag: "questions",
+  source_tag: "questionsSIO",
   sio_verbose: 1,
   }
   )
@@ -18,13 +18,26 @@ b.person_identifier_role_mappings({
                                     role_label: "Patient"
                                     })
 
+
+# @param params [Hash]  a hash of options
+# @option params :person_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see person_role_tag above, synchronize these tags!
+# @option params :process_type  [String] the URL for the ontological type of the process (defaults to http://semanticscience.org/resource/process)
+# @option params :process_type_column  [String] the column header that contains the URL for the ontological type of the process - overrides process_type
+# @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
+# @option params :process_label  [String] the label associated with the process type in that row (defaults to "thisprocess")
+# @option params :process_label_column  [String] the column header for the label associated with the process type in that row
+# @option params :process_start_column  [ISO 8601 date (only date)] (optional) the column header for the datestamp when that process started
+# @option params :process_end_column  [ISO 8601 date (only date)]  (optional) the column header for the datestamp when that process ended
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+
 b.role_in_process({
     person_role_tag: "patientRole",
     process_type_column: "processURI",  
     process_tag:  "questionnaire_test",
-    process_label_column: "processLabel", 
-    process_start_column: "startDate", 
+    process_label_column: "processLabel",
+    process_start_column: "eventDate"
     })
+
 
 
 # @param [:process_with_output_tag] (string) (required) the same process tag that is used in the "role in process" for which this is the output
@@ -40,6 +53,9 @@ b.role_in_process({
 # @param [:output_start_column] (xsd:datetime)  (optional) the column header for start date
 # @param [:output_end_column] (xsd:datetime)  (optional) the column header for end date
 
+
+#pid,uniqid,processLabel,processURI,comments,measurementURI,measurementLabel,promURI,
+#data,promQuestion,ontologyURI,eventDate,startDate,endDate
 b.process_hasoutput_output({
     process_with_output_tag: "questionnaire_test",  # connect to the correct process
     output_type_label: "question response",
@@ -48,6 +64,7 @@ b.process_hasoutput_output({
     output_type_label_column: "measurementLabel",
     output_comments_column: "comments",
     output_start_column: "startDate",
+    output_end_column: "endDate"
     })
 
 
@@ -65,7 +82,7 @@ b.process_hasoutput_output({
 # @param [:input_has_value_datatype] (string) datatype of the value (default xsd:string)
 # @param [:input_has_value_datatype_column] (string) the column containing the datatype of the value of the input )(overrides input_has_value_datatype)
 
-#pid,uniqid,processLabel,processURI,startDate,comments,measurementURI,measurementLabel,promURI,data,promQuestion,ontologyURI
+#pid,uniqid,processLabel,processURI,comments,measurementURI,measurementLabel,promURI,data,promQuestion,ontologyURI"
 
 b.process_has_input({
   process_with_input_tag: "questionnaire_test",
@@ -79,21 +96,23 @@ b.process_has_input({
 
 
 b.input_output_refers_to(  {
-  refers_to_tag: "prom_tag",
+                           refers_to_tag: "prom_question",
   inout_process_tag: "someQuestionAuthoringProcess",                     
-  inout_refers_to_column: "promURI",                        
+  inout_refers_to_column: "promURI",
+                           
+})
+b.input_output_refers_to(  {
+                           refers_to_tag: "ontology_trait",
+  inout_process_tag: "someQuestionAuthoringProcess",                     
+  inout_refers_to_column: "ontologyURI",
+                           
 })
 
 b.input_output_refers_to(  {
-  refers_to_tag: "ontology_tag",
-  inout_process_tag: "someQuestionAuthoringProcess",                     
-  inout_refers_to_column: "ontologyURI",                     
-})
-
-b.input_output_refers_to(  {
-  refers_to_tag: "prom_tag2",
+                           refers_to_tag: "prom_question",
   inout_process_tag: "questionnaire_test",                     
-  inout_refers_to_column: "promURI",       
+  inout_refers_to_column: "promURI",
+                           
 })
 
 
