@@ -269,6 +269,10 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
+        value: http://purl.obolibrary.org/obo/NCIT_C172243
+        type: iri
+    - predicates: http://semanticscience.org/resource/SIO_000001
+      objects:
         value: "$(clinvar_uri)"
         type: iri
     - predicates: rdfs:label
