@@ -375,7 +375,7 @@ class YARRRML_Template_Builder
           "#{process_tag}_process_annotation_end",
             ["#{source_tag}-source"],
              root_url + "##{process_tag}",
-             [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate__$(#{process_start_column})", "iri"]]
+             [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_start_column})", "iri"]]
         )
         @mappings << mapping_clause(
           "#{process_tag}_process_annotation_end_value",
