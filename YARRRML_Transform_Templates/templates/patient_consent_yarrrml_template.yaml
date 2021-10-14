@@ -132,7 +132,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_enddate__$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_enddate_$(date)
         type: iri
   patient_consenting_process_annotation_end_value:
     sources:

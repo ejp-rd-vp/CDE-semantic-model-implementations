@@ -132,7 +132,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis_enddate__$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#medical_diagnosis_enddate_$(date)
         type: iri
   medical_diagnosis_process_annotation_end_value:
     sources:
@@ -268,10 +268,6 @@ mappings:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
     - predicates: rdf:type
-      objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C172243
-        type: iri
-    - predicates: http://semanticscience.org/resource/SIO_000001
       objects:
         value: "$(clinvar_uri)"
         type: iri

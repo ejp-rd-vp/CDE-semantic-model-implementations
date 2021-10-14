@@ -132,7 +132,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process_enddate__$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process_enddate_$(date)
         type: iri
   patientRole_phenotyping_process_process_annotation_end_value:
     sources:
@@ -147,7 +147,7 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16342098585786073_process_custom_annotation:
+  16342121764402382_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -156,7 +156,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C16205
         type: iri
-  16342098585786233_process_custom_annotation:
+  16342121764402587_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process

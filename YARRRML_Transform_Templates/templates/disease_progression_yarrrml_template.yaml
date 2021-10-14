@@ -103,7 +103,7 @@ mappings:
       objects:
         value: patient longitudinal data collection Process
         datatype: xsd:string
-  16342098633966558_process_custom_annotation:
+  16342121808563542_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX
@@ -112,7 +112,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C17747
         type: iri
-  16342098633966782_process_custom_annotation:
+  163421218085637_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX

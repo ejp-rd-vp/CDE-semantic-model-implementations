@@ -132,7 +132,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#some_imaging_process_enddate__$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#some_imaging_process_enddate_$(date)
         type: iri
   some_imaging_process_process_annotation_end_value:
     sources:
@@ -244,7 +244,7 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  16342098592581124_output_custom_annotation:
+  16342121770345502_output_custom_annotation:
     sources:
     - imaging-source
     s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output
