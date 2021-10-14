@@ -22,19 +22,19 @@ b.person_identifier_role_mappings({
 b.role_in_process({
     person_role_tag: "patientRole_genetic_diagnosis",
     process_tag:  "patientRole_genetic_diagnosis_process_omim",
-    process_label: "genetic testing",
+    process_label: "genetic testing OMIM",
     process_type: "http://purl.obolibrary.org/obo/NCIT_C15709",  # genetic testing
     })
 b.role_in_process({
     person_role_tag: "patientRole_genetic_diagnosis",
     process_tag:  "patientRole_genetic_diagnosis_process_hgnc",
-    process_label: "genetic testing",
+    process_label: "genetic testing HGNC",
     process_type: "http://purl.obolibrary.org/obo/NCIT_C15709",  # genetic testing
     })
 b.role_in_process({
     person_role_tag: "patientRole_genetic_diagnosis",
     process_tag:  "patientRole_genetic_diagnosis_process_hgvs",
-    process_label: "genetic testing",
+    process_label: "genetic testing HGVS",
     process_type: "http://purl.obolibrary.org/obo/NCIT_C15709",  # genetic testing
     })
 

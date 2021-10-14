@@ -84,7 +84,7 @@ b.process_hasoutput_output({
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_diagnosis_date_process",  # connect to the correct process
     output_type_column: "diagnosis_uri",  # symptom onset
-    output_type_label: "'age' at diagnosis",
+    output_type_label: "age at diagnosis",
     output_value_column: "diagnosis_date",
     output_value_datatype: "xsd:date",
     })
@@ -97,14 +97,14 @@ b.input_output_refers_to({
   refers_to_tag: "age_at_onset",
   inout_process_tag:   "patientRole_symptom_onset_process",  # connect to the correct process
   inout_refers_to: "http://purl.obolibrary.org/obo/HP_0003674",  # symptom onset
-  inout_refers_to_label: "Stage/date of onset",
+  inout_refers_to_label: "Stage or date of onset",
   is_attribute: true
 })
 b.input_output_refers_to({
   refers_to_tag: "disagnosis_date",
   inout_process_tag:   "patientRole_diagnosis_date_process",  # connect to the correct process
   inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C156420",   # age at diagnosis
-  inout_refers_to_label: "Stage/date of diagnosis",
+  inout_refers_to_label: "Stage or date of diagnosis",
   is_attribute: true
 
 })

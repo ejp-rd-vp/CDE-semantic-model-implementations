@@ -147,7 +147,7 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16342096480436459_process_custom_annotation:
+  16342098585786073_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -156,7 +156,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C16205
         type: iri
-  16342096480436628_process_custom_annotation:
+  16342098585786233_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process

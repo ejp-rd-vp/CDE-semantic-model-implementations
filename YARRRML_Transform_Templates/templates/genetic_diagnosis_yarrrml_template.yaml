@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing Process
+        value: genetic testing OMIM Process
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_hgnc:
     sources:
@@ -127,7 +127,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing Process
+        value: genetic testing HGNC Process
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_hgvs:
     sources:
@@ -153,7 +153,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing Process
+        value: genetic testing HGVS Process
         datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_patientRole_genetic_diagnosis_process_omim:
     sources:
