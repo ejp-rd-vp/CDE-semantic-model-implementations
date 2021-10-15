@@ -243,11 +243,20 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: "$(hp_uri)"
+        value: http://semanticscience.org/resource/information-content-entity
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(hp_label) Process Input"
+        value: information content entity Process Input
+        datatype: xsd:string
+  input_HP_Phenotype_has_value:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#phenotyping_input_Output
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(hp_label)"
         datatype: xsd:string
   medical_diagnosis_has_input_HGVS_Genotype:
     sources:
@@ -269,9 +278,98 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: "$(clinvar_uri)"
+        value: http://semanticscience.org/resource/information-content-entity
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(hgvs_string) Process Input"
+        value: information content entity Process Input
+        datatype: xsd:string
+  input_HGVS_Genotype_has_value:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#genotyping_input_Output
+    po:
+    - predicates: http://semanticscience.org/resource/has-value
+      objects:
+        value: "$(hgvs_string)"
+        datatype: xsd:string
+  inout_from_phenotyping_input_refers_to_concepts:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#phenotyping_input_Output
+    po:
+    - predicates: http://semanticscience.org/resource/refers-to
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#phenotype_uri_TypedAttributeNode
+        type: iri
+  has_attribute_of_inout_from_phenotyping_input:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)#Person
+    po:
+    - predicates: http://semanticscience.org/resource/has-attribute
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#phenotype_uri_TypedAttributeNode
+        type: iri
+  inout_from_phenotyping_input_refers_to_concept_phenotype_uri_type:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#phenotype_uri_TypedAttributeNode
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/attribute
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: "$(hp_uri)"
+        type: iri
+  inout_from_phenotyping_input_refers_to_concept_phenotype_uri_label:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#phenotype_uri_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: "$(hp_label) Attribute"
+        datatype: xsd:string
+  inout_from_genotyping_input_refers_to_concepts:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#genotyping_input_Output
+    po:
+    - predicates: http://semanticscience.org/resource/refers-to
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#clinicalvariant_uri_TypedAttributeNode
+        type: iri
+  has_attribute_of_inout_from_genotyping_input:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)#Person
+    po:
+    - predicates: http://semanticscience.org/resource/has-attribute
+      objects:
+        value: this:individual_$(pid)_$(uniqid)#clinicalvariant_uri_TypedAttributeNode
+        type: iri
+  inout_from_genotyping_input_refers_to_concept_clinicalvariant_uri_type:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#clinicalvariant_uri_TypedAttributeNode
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/attribute
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: "$(clinvar_uri)"
+        type: iri
+  inout_from_genotyping_input_refers_to_concept_clinicalvariant_uri_label:
+    sources:
+    - undiagnosed-source
+    s: this:individual_$(pid)_$(uniqid)#clinicalvariant_uri_TypedAttributeNode
+    po:
+    - predicates: rdfs:label
+      objects:
+        value: "$(hgvs_string) Attribute"
         datatype: xsd:string

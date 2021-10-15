@@ -648,6 +648,10 @@ class YARRRML_Template_Builder
 # @option params :input_has_value_datatype  [String] datatype of the value (default xsd:string)
 # @option params :input_has_value_datatype_column  [String] the column containing the datatype of the value of the input )(overrides input_has_value_datatype)
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
+
+
+#  NEED AN INPUT REFERS TO HERE>>>>>>
+
   def process_has_input(params)
     process_with_input_tag  = params.fetch(:process_with_input_tag, "thisprocess")  # some one-word name
     input_is_output_of_process_tag  = params.fetch(:input_is_output_of_process_tag, 'unidentifiedProcess')  # some one-word name
