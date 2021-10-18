@@ -690,7 +690,7 @@ class YARRRML_Template_Builder
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{input_type}", "iri"],
-          ["rdfs:label","#{input_label} Process Input", "xsd:string"],
+          ["rdfs:label","#{input_label} Process Input #{input_type_tag}", "xsd:string"],
           ]
         )
     

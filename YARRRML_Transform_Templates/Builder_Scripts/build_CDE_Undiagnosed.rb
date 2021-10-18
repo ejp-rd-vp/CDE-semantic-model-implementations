@@ -13,7 +13,7 @@ b = YARRRML_Template_Builder.new({
 b.person_identifier_role_mappings({
                                     personid_column: "pid",
                                     uniqueid_column: "uniqid",
-                                    person_role_tag: "patientRole",
+                                    person_role_tag: "patientRole_diagnosis",
                                     role_type: 'http://purl.obolibrary.org/obo/OBI_0000093',
                                     role_label: "Patient"
                                     })

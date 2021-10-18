@@ -17,7 +17,7 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole:
+  identifier_has_value_for_patientRole_diagnosis:
     sources:
     - undiagnosed-source
     s: this:individual_$(pid)#ID
@@ -26,7 +26,7 @@ mappings:
       objects:
         value: "$(pid)"
         datatype: xsd:string
-  identifier_denotes_role_patientRole:
+  identifier_denotes_role_patientRole_diagnosis:
     sources:
     - undiagnosed-source
     s: this:individual_$(pid)#ID
@@ -41,9 +41,9 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole
+        value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis
         type: iri
-  person_has_role_patientRole:
+  person_has_role_patientRole_diagnosis:
     sources:
     - undiagnosed-source
     s: this:individual_$(pid)#Person
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole
+        value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis
         type: iri
-  patientRole_annotation:
+  patientRole_diagnosis_annotation:
     sources:
     - undiagnosed-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole
+    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis
     po:
     - predicates: a
       objects:
@@ -247,7 +247,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity Process Input
+        value: information content entity Process Input HP_Phenotype
         datatype: xsd:string
   input_HP_Phenotype_has_value:
     sources:
@@ -282,7 +282,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity Process Input
+        value: information content entity Process Input HGVS_Genotype
         datatype: xsd:string
   input_HGVS_Genotype_has_value:
     sources:
