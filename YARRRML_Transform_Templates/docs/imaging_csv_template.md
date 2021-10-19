@@ -5,7 +5,7 @@ The DCDE to capture any imaging data
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/imaging.csv)
+Please find example CSV file [here](../exemplar_csv/imaging.csv)
 
 ### Columns
 

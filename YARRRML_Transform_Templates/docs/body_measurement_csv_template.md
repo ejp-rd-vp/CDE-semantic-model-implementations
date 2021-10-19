@@ -5,7 +5,7 @@ The DCDE to capture any physical measurement of the body
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/body_measurement.csv)
+Please find example CSV file [here](../exemplar_csv/body_measurement.csv)
 
 ### Columns
 

@@ -5,7 +5,7 @@ The CDE for genetic diagnosis
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/genetic_diagnosis.csv)
+Please find example CSV file [here](../exemplar_csv/genetic_diagnosis.csv)
 
 ### Columns
 

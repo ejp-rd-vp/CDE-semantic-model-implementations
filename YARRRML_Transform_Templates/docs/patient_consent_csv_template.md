@@ -5,7 +5,7 @@ The CDE for patient status
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/patient_consent.csv)
+Please find example CSV file [here](../exemplar_csv/patient_consent.csv)
 
 ### Columns
 

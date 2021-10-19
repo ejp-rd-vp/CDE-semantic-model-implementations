@@ -5,7 +5,7 @@ The diagnostic opinion regarding the disease
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/diagnosis.csv)
+Please find example CSV file [here](../exemplar_csv/diagnosis.csv)
 
 ### Columns
 
