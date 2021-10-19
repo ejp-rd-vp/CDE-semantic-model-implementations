@@ -5,7 +5,7 @@ Measurement of disability using some standardized assessment test
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/phenotyping.csv)
+Please find example CSV file [here](../exemplar_csv/phenotyping.csv)
 
 ### Columns
 

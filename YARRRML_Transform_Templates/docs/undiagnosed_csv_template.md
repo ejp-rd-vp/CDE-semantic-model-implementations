@@ -5,7 +5,7 @@ A combination of a variant and a phenotype that cannot be definitively diagnosed
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/undiagnosed.csv)
+Please find example CSV file [here](../exemplar_csv/undiagnosed.csv)
 
 ### Columns
 

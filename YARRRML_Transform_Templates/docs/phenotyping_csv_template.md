@@ -5,7 +5,7 @@ A record of the phenotypic observations for a patient
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/phenotyping.csv)
+Please find example CSV file [here](../exemplar_csv/phenotyping.csv)
 
 ### Columns
 

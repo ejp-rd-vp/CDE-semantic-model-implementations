@@ -5,7 +5,7 @@ The longitudinal record of a patient's observations through the course of their 
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/disease_progression.csv)
+Please find example CSV file [here](../exemplar_csv/disease_progression.csv)
 
 ### Columns
 

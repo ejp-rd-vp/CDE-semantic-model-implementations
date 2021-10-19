@@ -5,7 +5,7 @@ The DCDE to capture any laboratory measurement (e.g. a blood chemistry test)
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/lab_measurement.csv)
+Please find example CSV file [here](../exemplar_csv/lab_measurement.csv)
 
 ### Columns
 

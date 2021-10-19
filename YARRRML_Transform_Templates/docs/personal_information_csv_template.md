@@ -5,7 +5,7 @@ The CDE for personal information (birth date and sex)
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/personal.csv)
+Please find example CSV file [here](../exemplar_csv/personal.csv)
 
 ### Columns
 
