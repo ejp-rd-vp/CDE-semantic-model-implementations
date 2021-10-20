@@ -33,6 +33,7 @@ class YARRRML_Template_Builder
 "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
 "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
 "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
+
 # for information artifact
 "measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
 # objects
@@ -60,6 +61,7 @@ class YARRRML_Template_Builder
 "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
 "attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
 "conforms-to" => ["https://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
+
              
 }
 
@@ -294,7 +296,7 @@ class YARRRML_Template_Builder
                                 [
                                   ["a", "#{role_type}", "iri"],
                                   ["a", SIO["role"][self.sio_verbose], "iri"],
-                                  ["rdfs:label", "#{role_label} Role", "xsd:string"],
+                                  ["rdfs:label", " Role: #{role_label}", "xsd:string"],
                                 ]
                                )    
   
@@ -348,7 +350,7 @@ class YARRRML_Template_Builder
            [
              ["rdf:type",SIO["process"][self.sio_verbose], "iri"],
              ["rdf:type","#{process_type}", "iri"],
-             ["rdfs:label","#{process_label} Process", "xsd:string"],
+             ["rdfs:label","Process: #{process_label}", "xsd:string"],
            ]
            )      
       
@@ -564,7 +566,7 @@ class YARRRML_Template_Builder
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{target_type}", "iri"],
-          ["rdfs:label","#{target_label} Process Target", "xsd:string"],
+          ["rdfs:label","Process Target: #{target_label}", "xsd:string"],
           ]
         )
     
@@ -621,7 +623,7 @@ class YARRRML_Template_Builder
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{protocol_type}", "iri"],
-          ["rdfs:label","#{protocol_type_label} Protocol", "xsd:string"],
+          ["rdfs:label","Protocol: #{protocol_type_label}", "xsd:string"],
           ]
         )
     
@@ -690,7 +692,7 @@ class YARRRML_Template_Builder
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{input_type}", "iri"],
-          ["rdfs:label","#{input_label} Process Input #{input_type_tag}", "xsd:string"],
+          ["rdfs:label","Process Input: #{input_label} - Type: #{input_type_tag}", "xsd:string"],
           ]
         )
     
@@ -792,7 +794,7 @@ class YARRRML_Template_Builder
               "#{process_with_output_tag}_Output_type_label_annotation",
               ["#{source_tag}-source"],
               "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-              [["rdfs:label","#{output_type_label} Output Type", "xsd:string"]]
+              [["rdfs:label","Output Type: #{output_type_label}", "xsd:string"]]
               )
     end
     
@@ -1001,7 +1003,7 @@ class YARRRML_Template_Builder
           ["#{source_tag}-source"],
           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
           [
-          ["rdfs:label", "#{refers_to_label} Attribute" ] 
+          ["rdfs:label", "Attribute Type: #{refers_to_label}" ] 
           ]
       )
     end
