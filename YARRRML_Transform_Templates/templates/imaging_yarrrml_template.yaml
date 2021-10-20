@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient Role
+        value: " Role: Patient"
         datatype: xsd:string
   thisRole_realized_some_imaging_process:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(processLabel) Process"
+        value: 'Process: $(processLabel)'
         datatype: xsd:string
   some_imaging_process_process_annotation_start:
     sources:
@@ -171,7 +171,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Protocol Protocol
+        value: 'Protocol: Protocol'
         datatype: xsd:string
   some_imaging_process_has_target_target_entity:
     sources:
@@ -197,7 +197,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(target_label) Process Target"
+        value: 'Process Target: $(target_label)'
         datatype: xsd:string
   some_imaging_process_process_has_output:
     sources:
@@ -233,7 +233,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: measurement-value Output Type
+        value: 'Output Type: measurement-value'
         datatype: xsd:string
   some_imaging_process_Output_value_comments:
     sources:
@@ -244,7 +244,7 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  16342121770345502_output_custom_annotation:
+  1634725001821279_output_custom_annotation:
     sources:
     - imaging-source
     s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output

@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for status recording Role
+        value: " Role: Patient for status recording"
         datatype: xsd:string
   patientRole_status_realized_patient_status:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: status recording process Process
+        value: 'Process: status recording process'
         datatype: xsd:string
   patientRole_status_realized_patient_death_information:
     sources:
@@ -127,7 +127,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: death information recording process Process
+        value: 'Process: death information recording process'
         datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_patient_status:
     sources:
@@ -172,7 +172,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(status_label) Output Type"
+        value: 'Output Type: $(status_label)'
         datatype: xsd:string
   patient_status_Output_value_annotation:
     sources:
@@ -221,7 +221,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Patient status Attribute
+        value: 'Attribute Type: Patient status'
         datatype: xsd:string
   patient_death_information_process_has_output:
     sources:
@@ -257,7 +257,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: patient death information Output Type
+        value: 'Output Type: patient death information'
         datatype: xsd:string
   patient_death_information_Output_value_annotation:
     sources:
@@ -306,5 +306,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Date of death Attribute
+        value: 'Attribute Type: Date of death'
         datatype: xsd:string

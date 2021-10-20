@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient Role
+        value: " Role: Patient"
         datatype: xsd:string
   patientRole_diagnosis_realized_medical_diagnosis:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: medical diagnosis Process
+        value: 'Process: medical diagnosis'
         datatype: xsd:string
   medical_diagnosis_process_annotation_start:
     sources:
@@ -181,7 +181,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Undiagnosed Label Output Type
+        value: 'Output Type: Undiagnosed Label'
         datatype: xsd:string
   inout_from_medical_diagnosis_refers_to_concepts:
     sources:
@@ -221,7 +221,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Undiagnosed Attribute
+        value: 'Attribute Type: Undiagnosed'
         datatype: xsd:string
   medical_diagnosis_has_input_HP_Phenotype:
     sources:
@@ -247,7 +247,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity Process Input HP_Phenotype
+        value: 'Process Input: information content entity - Type: HP_Phenotype'
         datatype: xsd:string
   input_HP_Phenotype_has_value:
     sources:
@@ -282,7 +282,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity Process Input HGVS_Genotype
+        value: 'Process Input: information content entity - Type: HGVS_Genotype'
         datatype: xsd:string
   input_HGVS_Genotype_has_value:
     sources:
@@ -331,7 +331,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(hp_label) Attribute"
+        value: 'Attribute Type: $(hp_label)'
         datatype: xsd:string
   inout_from_genotyping_input_refers_to_concepts:
     sources:
@@ -371,5 +371,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(hgvs_string) Attribute"
+        value: 'Attribute Type: $(hgvs_string)'
         datatype: xsd:string

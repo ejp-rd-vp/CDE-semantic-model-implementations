@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for age assessment Role
+        value: " Role: Patient for age assessment"
         datatype: xsd:string
   identifier_has_value_for_patientRole_sex:
     sources:
@@ -135,7 +135,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient For Gender Assessment Role
+        value: " Role: Patient For Gender Assessment"
         datatype: xsd:string
   patientRole_age_realized_age_measuring_procedure:
     sources:
@@ -161,7 +161,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: age measuring process Process
+        value: 'Process: age measuring process'
         datatype: xsd:string
   patientRole_sex_realized_sex_measuring_procedure:
     sources:
@@ -187,7 +187,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: sex measuring process Process
+        value: 'Process: sex measuring process'
         datatype: xsd:string
   age_measuring_procedure_process_has_output:
     sources:
@@ -223,7 +223,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Birth Date Output Type
+        value: 'Output Type: Birth Date'
         datatype: xsd:string
   age_measuring_procedure_Output_value_annotation:
     sources:
@@ -268,7 +268,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(sexLabel) Output Type"
+        value: 'Output Type: $(sexLabel)'
         datatype: xsd:string
   sex_measuring_procedure_Output_value_annotation:
     sources:
@@ -321,7 +321,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(sexLabel) Attribute"
+        value: 'Attribute Type: $(sexLabel)'
         datatype: xsd:string
   inout_from_age_measuring_procedure_refers_to_concepts:
     sources:
@@ -361,5 +361,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Birth Date Attribute
+        value: 'Attribute Type: Birth Date'
         datatype: xsd:string

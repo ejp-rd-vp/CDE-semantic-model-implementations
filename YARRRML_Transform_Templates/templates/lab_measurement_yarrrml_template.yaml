@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient Role
+        value: " Role: Patient"
         datatype: xsd:string
   thisRole_realized_some_laboratory_measuring_process:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(processLabel) Process"
+        value: 'Process: $(processLabel)'
         datatype: xsd:string
   some_laboratory_measuring_process_process_annotation_start:
     sources:
@@ -171,7 +171,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(material_tested_label) Process Input"
+        value: 'Process Input: $(material_tested_label) - Type: material_tested'
         datatype: xsd:string
   some_laboratory_measuring_process_has_target_target_entity:
     sources:
@@ -197,7 +197,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(target_label) Process Target"
+        value: 'Process Target: $(target_label)'
         datatype: xsd:string
   some_laboratory_measuring_process_has_target_process_protocol:
     sources:
@@ -223,7 +223,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Protocol Protocol
+        value: 'Protocol: Protocol'
         datatype: xsd:string
   some_laboratory_measuring_process_process_has_output:
     sources:
@@ -259,7 +259,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: measurement-value Output Type
+        value: 'Output Type: measurement-value'
         datatype: xsd:string
   some_laboratory_measuring_process_Output_value_annotation:
     sources:
