@@ -9,7 +9,7 @@ Please find example CSV file [here](../exemplar_csv/body_measurement.csv)
 
 ### Columns
 
- pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,protocolURI,value,valueDatatype,unitURI,unitLabel,date,comments
+ pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,protocolURI,protocolLabel,value,valueDatatype,unitURI,unitLabel,date,comments
 
 
 ## Notes:
@@ -23,6 +23,7 @@ Please find example CSV file [here](../exemplar_csv/body_measurement.csv)
       * Estimation (http://purl.obolibrary.org/obo/NCIT_C25498)
   * processLabel:  the human readable label for the process
   * protocolURI: a DOI URL reference to a https://protocols.io deposit.
+  * protocolLabel: a brief human readable description of the protocol (e.g. "wingspan arms technique")
   * value:  the value of the measurement
   * valueDatatype: select one of:  xsd:string, xsd:int, xsd:float  or if you know a more specific type, use that (be aware that xsd:integer may not be cross-platform compatible)
   * unitURI: select a Unit of Measure Ontology URI e.g. http://purl.obolibrary.org/obo/UO_0000015 (centimeter)
