@@ -600,14 +600,14 @@ class YARRRML_Template_Builder
     protocol_type_tag  = params.fetch(:protocol_type_tag, "thisProtocoltype")  # some one-word name
     process_type  = params.fetch(:processs_type, SIO["process"][self.sio_verbose])  # 
     process_type_column  = params.fetch(:protocol_type_column, nil) # 
-    process_type_label  = params.fetch(:protocol_type_label, "Process")  # some one-word name
-    process_type_label_column  = params.fetch(:protocol_type_label_column, nil)  # some one-word name
+    process_type_label  = params.fetch(:protocol_type_label, "Process") 
+    process_type_label_column  = params.fetch(:protocol_type_label_column, nil) 
     protocol_uri  = params.fetch(:protocol_uri, nil)  # Protocol
-    protocol_uri_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
+    protocol_uri_column  = params.fetch(:protocol_uri_column, nil)  
     protocol_label  = params.fetch(:protocol_uri, nil)  # Protocol
-    protocol_label_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
-    protocol_type  = params.fetch(:protocol_type, nil)  # some one-word name
-    protocol_type_column  = params.fetch(:protocol_type_column, nil)  # some one-word name
+    protocol_label_column  = params.fetch(:protocol_uri_column, nil)  
+    protocol_type  = params.fetch(:protocol_type, "http://purl.obolibrary.org/obo/NCIT_C42651")   # Protocol
+    protocol_type_column  = params.fetch(:protocol_type_column, nil)   
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
@@ -648,6 +648,7 @@ class YARRRML_Template_Builder
         protocol_uri,
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
+          ["rdf:type","http://purl.obolibrary.org/obo/NCIT_C42651", "iri"],  # Protocol
           ["rdf:type","#{protocol_type}", "iri"],
           ["rdfs:label","Protocol: #{protocol_label}", "xsd:string"],
           ]

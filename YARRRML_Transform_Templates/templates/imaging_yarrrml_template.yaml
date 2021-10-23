@@ -180,7 +180,11 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: ''
+        value: http://purl.obolibrary.org/obo/NCIT_C42651
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: http://purl.obolibrary.org/obo/NCIT_C42651
         type: iri
     - predicates: rdfs:label
       objects:
@@ -257,7 +261,7 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  16349828005629811_output_custom_annotation:
+  16349832305977862_output_custom_annotation:
     sources:
     - imaging-source
     s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output
