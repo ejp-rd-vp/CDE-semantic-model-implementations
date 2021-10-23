@@ -147,16 +147,29 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  some_imaging_process_has_target_process_protocol:
+  thisprocess_specified_by_process_protocol_specifictype_annotation:
     sources:
     - imaging-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_imaging_process
+    s: this:individual_$(pid)_$(uniqid)_process#thisprocess
     po:
-    - predicates: http://semanticscience.org/resource/conforms-to
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/process
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Protocol: Process'
+        datatype: xsd:string
+  thisprocess_specified_by_process_protocol:
+    sources:
+    - imaging-source
+    s: this:individual_$(pid)_$(uniqid)_process#thisprocess
+    po:
+    - predicates: http://semanticscience.org/resource/is_specified_by
       objects:
         value: "$(protocolURI)"
         type: iri
-  some_imaging_process_has_target_process_protocol_annotation:
+  thisprocess_specified_by_process_protocol_annotation:
     sources:
     - imaging-source
     s: "$(protocolURI)"
@@ -167,11 +180,11 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C42651
+        value: ''
         type: iri
     - predicates: rdfs:label
       objects:
-        value: 'Protocol: Protocol'
+        value: 'Protocol: $(protocolURI)'
         datatype: xsd:string
   some_imaging_process_has_target_target_entity:
     sources:
@@ -244,7 +257,7 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  1634725001821279_output_custom_annotation:
+  16349828005629811_output_custom_annotation:
     sources:
     - imaging-source
     s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output

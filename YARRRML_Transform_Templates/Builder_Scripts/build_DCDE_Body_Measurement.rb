@@ -33,13 +33,13 @@ b.role_in_process({
 # @option params :protocol_uri_column  [String] column header for the protocol uri column
 # @option params :protocol_label  [String] label of the process protocol for all inputs
 # @option params :protocol_label_column  [String] column header for the label for the protocol uri
-# @option params :make_unique_process [boolean] (true)  (optional) if you want the 
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to b
 
 # pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,protocolURI,protocolLabel,value,valueDatatype,unitURI,unitLabel,date,comments
 
 b.process_is_specified_by({
     process_with_target_tag:  "some_body_quality_measuring_process",
-    protocol_type_tag: "process_protocol",
+    protocol_type_tag: "body_measuring_process_protocol",
     process_type_column: "processURI",
     process_type_label_column: "processLabel",
     protocol_uri_column: "protocolURI", 

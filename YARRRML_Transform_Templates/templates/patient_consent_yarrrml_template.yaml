@@ -180,7 +180,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(url)"
+        value: "$(consent_template)"
         datatype: xsd:string
   patient_consenting_process_has_output:
     sources:
@@ -234,7 +234,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+        value: "$(result_label)"
         type: iri
   has_attribute_of_inout_from_patient_consenting:
     sources:
@@ -243,12 +243,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+        value: "$(result_label)"
         type: iri
   inout_from_patient_consenting_refers_to_concept_consent_attribute_type:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    s: "$(result_label)"
     po:
     - predicates: rdf:type
       objects:
@@ -261,7 +261,7 @@ mappings:
   inout_from_patient_consenting_refers_to_concept_consent_attribute_label:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    s: "$(result_label)"
     po:
     - predicates: rdfs:label
       objects:

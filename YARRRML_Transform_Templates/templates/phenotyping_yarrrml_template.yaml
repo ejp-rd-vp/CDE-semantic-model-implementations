@@ -147,7 +147,7 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16347250021825016_process_custom_annotation:
+  1634982801120572_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -156,7 +156,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C16205
         type: iri
-  16347250021845877_process_custom_annotation:
+  1634982801120589_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -217,7 +217,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
+        value: "$(HP_Label)"
         type: iri
   has_attribute_of_inout_from_patientRole_phenotyping_process:
     sources:
@@ -226,12 +226,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
+        value: "$(HP_Label)"
         type: iri
   inout_from_patientRole_phenotyping_process_refers_to_concept_phenotyping_attribute_type:
     sources:
     - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
+    s: "$(HP_Label)"
     po:
     - predicates: rdf:type
       objects:
@@ -248,7 +248,7 @@ mappings:
   inout_from_patientRole_phenotyping_process_refers_to_concept_phenotyping_attribute_label:
     sources:
     - cde_patient_phenotyping-source
-    s: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
+    s: "$(HP_Label)"
     po:
     - predicates: rdfs:label
       objects:

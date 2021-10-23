@@ -596,38 +596,39 @@ class YARRRML_Template_Builder
 # @option params :protocol_label_column  [String] column header for the label for the protocol uri
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_is_specified_by(params)
-    process_with_target_tag  = params.fetch(:process_with_target_tag, "thisprocess")  # some one-word name
+    process_with_protocol_tag  = params.fetch(:process_with_protocol_tag, "thisprocess")  # some one-word name
     protocol_type_tag  = params.fetch(:protocol_type_tag, "thisProtocoltype")  # some one-word name
-    process_type  = params.fetch(:processs_type, SIO["process"][self.sio_verbose]  # 
-    process_type_column  = params.fetch(:protocol_type, SIO["process"][self.sio_verbose]  # 
+    process_type  = params.fetch(:processs_type, SIO["process"][self.sio_verbose])  # 
+    process_type_column  = params.fetch(:protocol_type_column, nil) # 
     process_type_label  = params.fetch(:protocol_type_label, "Process")  # some one-word name
-    process_type_label_column  = params.fetch(:protocol_type_label, "Process")  # some one-word name
+    process_type_label_column  = params.fetch(:protocol_type_label_column, nil)  # some one-word name
     protocol_uri  = params.fetch(:protocol_uri, nil)  # Protocol
     protocol_uri_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
     protocol_label  = params.fetch(:protocol_uri, nil)  # Protocol
     protocol_label_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
+    protocol_type  = params.fetch(:protocol_type, nil)  # some one-word name
+    protocol_type_column  = params.fetch(:protocol_type_column, nil)  # some one-word name
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
     
     
-    abort "must specify the process_with_target_tag
+    abort "must specify the process_with_target_tag and the protocol type tag
     (the identifier of the process that has the input)
-    before you can use the process_has_target function" unless process_with_target_tag
+    before you can use the process_has_target function" unless (process_with_protocol_tag and protocol_type_tag)
 
-    process_uri = process_uri_column ? "$(#{process_uri_column})":process_uri
-    process_label = process_label_column ? "$(#{process_label_column})":process_label
+    process_type = process_type_column ? "$(#{process_type_column})":process_type
+    process_type_label = process_type_label_column ? "$(#{process_type_label_column})":process_type_label
     protocol_uri = protocol_uri_column ? "$(#{protocol_uri_column})":protocol_uri
     protocol_label = protocol_label_column ? "$(#{protocol_label_column})":protocol_label
     protocol_type = protocol_type_column ? "$(#{protocol_type_column})":protocol_type
-    protocol_type_label = protocol_type_label_column ? "$(#{protocol_type_label_column})":protocol_type_label
 
     abort "must specify either a default protocol URI, or a column of protocol URIs" unless protocol_uri
 
     @mappings << mapping_clause(
-      "#{process_with_target_tag}_has_target_#{process_type_tag}_specifictype_annotation",
+      "#{process_with_protocol_tag}_specified_by_#{protocol_type_tag}_specifictype_annotation",
       ["#{source_tag}-source"],
-      root_url + "##{process_with_target_tag}",
+      root_url + "##{process_with_protocol_tag}",
       [
         ["rdf:type","#{process_type}", "iri"],
         ["rdfs:label","Protocol: #{process_type_label}", "xsd:string"],
@@ -635,20 +636,20 @@ class YARRRML_Template_Builder
       )
 
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{protocol_type_tag}",
+        "#{process_with_protocol_tag}_specified_by_#{protocol_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_target_tag}",
+        root_url + "##{process_with_protocol_tag}",
         [[SIO["is-specified-by"][self.sio_verbose], protocol_uri, "iri"]]
         )
     
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{protocol_type_tag}_annotation",
+        "#{process_with_protocol_tag}_specified_by_#{protocol_type_tag}_annotation",
         ["#{source_tag}-source"],
         protocol_uri,
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{protocol_type}", "iri"],
-          ["rdfs:label","Protocol: #{protocol_type_label}", "xsd:string"],
+          ["rdfs:label","Protocol: #{protocol_label}", "xsd:string"],
           ]
         )
     

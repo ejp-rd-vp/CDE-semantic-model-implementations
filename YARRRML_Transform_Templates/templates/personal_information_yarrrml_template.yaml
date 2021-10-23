@@ -286,7 +286,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+        value: "$(sexLabel)"
         type: iri
   has_attribute_of_inout_from_sex_measuring_procedure:
     sources:
@@ -295,12 +295,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+        value: "$(sexLabel)"
         type: iri
   inout_from_sex_measuring_procedure_refers_to_concept_sexAttribute_type:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+    s: "$(sexLabel)"
     po:
     - predicates: rdf:type
       objects:
@@ -317,7 +317,7 @@ mappings:
   inout_from_sex_measuring_procedure_refers_to_concept_sexAttribute_label:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+    s: "$(sexLabel)"
     po:
     - predicates: rdfs:label
       objects:

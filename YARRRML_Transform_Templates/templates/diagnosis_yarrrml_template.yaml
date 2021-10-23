@@ -208,7 +208,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
+        value: "$(diagnostic_opinion)"
         type: iri
   has_attribute_of_inout_from_medical_diagnosis:
     sources:
@@ -217,12 +217,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
+        value: "$(diagnostic_opinion)"
         type: iri
   inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_type:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
+    s: "$(diagnostic_opinion)"
     po:
     - predicates: rdf:type
       objects:
@@ -235,7 +235,7 @@ mappings:
   inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_label:
     sources:
     - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
+    s: "$(diagnostic_opinion)"
     po:
     - predicates: rdfs:label
       objects:
