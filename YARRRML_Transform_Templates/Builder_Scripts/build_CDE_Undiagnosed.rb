@@ -2,7 +2,7 @@ require "yarrrml-template-builder"
 
 # THIS IS FOR PROM-STYLE QUESTIONNAIRES
 
-#pid,uniqid,hp_uri,hp_label,hgvs_uri,hgvs_string,date
+#pid,uniqid,hp_uri,hp_label,clinvar_uri,hgvs_string,date
 
 b = YARRRML_Template_Builder.new({
   source_tag: "undiagnosed",
@@ -44,7 +44,9 @@ b.process_hasoutput_output({
     process_with_output_tag: "medical_diagnosis",  # connect to the correct process
     #output_type: "Undiagnosed",
     output_type_label: "Undiagnosed Label",
+    output_value: "Undiagnosed"
     })
+
 
 b.input_output_refers_to({
   inout_process_tag:   "medical_diagnosis",  # connect to the correct process
@@ -71,7 +73,6 @@ b.input_output_refers_to({
 b.process_has_input({
   process_with_input_tag: "medical_diagnosis",
   input_is_output_of_process_tag: "phenotyping_input",
-  #input_type_column: "hp_uri", 
   input_has_value_column: "hp_label", 
   input_type_tag: "HP_Phenotype",
 }
@@ -79,16 +80,12 @@ b.process_has_input({
 
 b.process_has_input({
   process_with_input_tag: "medical_diagnosis",  # connect to the correct process
+  input_type: "https://semanticscience.org/resource/SIO_001388",  # variation notation
   input_is_output_of_process_tag: "genotyping_input",
-  #input_type_column: "clinvar_uri",  # genomic sequence variant
   input_has_value_column: "hgvs_string",
   input_type_tag: "HGVS_Genotype",
 })
 
-# creates the input output refers to portion of the CDE
-#
-# Parameters passed as a hash
-#
 #@param params [Hash]  a hash of options
 #@option params  :inout_process_tag [String]  ("unidentifiedProcess")
 #@option params  :refers_to_tag [String]  (nil) required unique one-word tag of an attribute
@@ -96,8 +93,21 @@ b.process_has_input({
 #@option params  :inout_refers_to_column [String] ([]) column headers for column of ontologyURIs
 #@option params  :inout_refers_to_label  [String]  ([]) an ontology term label
 #@option params  :inout_refers_to_label_column  [String]  ([])  column header for column of ontology term labels
+#@option params  :inout_refers_to_uri_column  [String]  ([])  column header for column containing the URIs of the in/out node (e.g. a specific clinical variant identifier)
 #@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of the patient?
 #@option params  :base_types [Array] ([])  an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
+
+
+b.input_output_refers_to({
+  inout_process_tag: "genotyping_input",
+  refers_to_tag: "clinicalvariant_uri",
+  inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C171178",  # sequence variant report
+  inout_refers_to_uri_column: "clinvar_uri",
+  inout_refers_to_label_column: "hgvs_string",
+  base_types: ["http://semanticscience.org/resource/SIO_000015"]  # info content entity
+
+})
+
 
 b.input_output_refers_to({
   inout_process_tag: "phenotyping_input",
@@ -105,10 +115,6 @@ b.input_output_refers_to({
   inout_refers_to_column: "hp_uri",
   inout_refers_to_label_column: "hp_label",
 })
-b.input_output_refers_to({
-  inout_process_tag: "genotyping_input",
-  refers_to_tag: "clinicalvariant_uri",
-  inout_refers_to_column: "clinvar_uri",
-  inout_refers_to_label_column: "hgvs_string",
-})
+
+
 puts b.generate

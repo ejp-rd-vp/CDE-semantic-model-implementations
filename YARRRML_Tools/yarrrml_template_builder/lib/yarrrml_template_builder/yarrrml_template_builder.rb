@@ -33,6 +33,7 @@ class YARRRML_Template_Builder
 "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
 "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
 "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
+"is-specified-by" => ["https://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
 
 # for information artifact
 "measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
@@ -48,6 +49,7 @@ class YARRRML_Template_Builder
 
 "is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
 "drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
+"sequence-variation-notation" => ["http://semanticscience.org/resource/SIO_001388", "http://semanticscience.org/resource/sequence_variation_notation"],
 "is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
 "has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
 "realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],
@@ -76,7 +78,7 @@ class YARRRML_Template_Builder
 # @option params [Integer] :sio_verbose (0)  "1" means to use http://semanticscience.org/resource/has-value instead of http://semanticscience.org/resource/SIO_000300 for all sio.  Default is 0
 #
 # @return [YARRRML_Template_BuilderII]
-#
+# 
   def initialize(params = {}) # get a name from the "new" call, or set a default
     
     @baseURI = params.fetch(:baseURI, "|||BASE|||")
@@ -577,25 +579,33 @@ class YARRRML_Template_Builder
 
 
 
-# creates the process conforms to portion of the CDE
+# creates the process is specified by portion of the CDE
 #
 # Parameters passed as a hash
 #
 # @param params [Hash]  a hash of options
 # @option params :process_with_protocol_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
 # @option params :protocol_type_tag  [String] a tag to differentiate this input from other inputs
-# @option params :protocol_type  [String] ("http://purl.obolibrary.org/obo/NCIT_C42651" - protocol)
-# @option params :protocol_type_label  [String] ("protocol")
+# @option params :process_type  [String] ("sio:process" - process) usually you want to be more specific, like "measuring" or "estimating"
+# @option params :process_type_column  [String] ("sio:process" - process)
+# @option params :process_type_label  [String] ("protocol")
+# @option params :process_type_label_column [String] ("protocol")
 # @option params :protocol_uri  [String] uri of the process protocol for all inputs
 # @option params :protocol_uri_column  [String] column header for the protocol uri column
+# @option params :protocol_label  [String] label of the process protocol for all inputs
+# @option params :protocol_label_column  [String] column header for the label for the protocol uri
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
-  def process_conforms_to(params)
+  def process_is_specified_by(params)
     process_with_target_tag  = params.fetch(:process_with_target_tag, "thisprocess")  # some one-word name
-    protocol_type_tag  = params.fetch(:protocol_type_tag, "thisTarget")  # some one-word name
-    protocol_type  = params.fetch(:protocol_type, "http://purl.obolibrary.org/obo/NCIT_C42651")  # Protocol
-    protocol_type_label  = params.fetch(:protocol_type_label, "Protocol")  # some one-word name
+    protocol_type_tag  = params.fetch(:protocol_type_tag, "thisProtocoltype")  # some one-word name
+    process_type  = params.fetch(:processs_type, SIO["process"][self.sio_verbose]  # 
+    process_type_column  = params.fetch(:protocol_type, SIO["process"][self.sio_verbose]  # 
+    process_type_label  = params.fetch(:protocol_type_label, "Process")  # some one-word name
+    process_type_label_column  = params.fetch(:protocol_type_label, "Process")  # some one-word name
     protocol_uri  = params.fetch(:protocol_uri, nil)  # Protocol
     protocol_uri_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
+    protocol_label  = params.fetch(:protocol_uri, nil)  # Protocol
+    protocol_label_column  = params.fetch(:protocol_uri_column, nil)  # some one-word name
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
@@ -605,15 +615,30 @@ class YARRRML_Template_Builder
     (the identifier of the process that has the input)
     before you can use the process_has_target function" unless process_with_target_tag
 
+    process_uri = process_uri_column ? "$(#{process_uri_column})":process_uri
+    process_label = process_label_column ? "$(#{process_label_column})":process_label
     protocol_uri = protocol_uri_column ? "$(#{protocol_uri_column})":protocol_uri
+    protocol_label = protocol_label_column ? "$(#{protocol_label_column})":protocol_label
+    protocol_type = protocol_type_column ? "$(#{protocol_type_column})":protocol_type
+    protocol_type_label = protocol_type_label_column ? "$(#{protocol_type_label_column})":protocol_type_label
 
-    abort "must specify either a default protocol URI, or a column of protocol URIs" unless process_with_target_tag
+    abort "must specify either a default protocol URI, or a column of protocol URIs" unless protocol_uri
+
+    @mappings << mapping_clause(
+      "#{process_with_target_tag}_has_target_#{process_type_tag}_specifictype_annotation",
+      ["#{source_tag}-source"],
+      root_url + "##{process_with_target_tag}",
+      [
+        ["rdf:type","#{process_type}", "iri"],
+        ["rdfs:label","Protocol: #{process_type_label}", "xsd:string"],
+      ]
+      )
 
     @mappings << mapping_clause(
         "#{process_with_target_tag}_has_target_#{protocol_type_tag}",
         ["#{source_tag}-source"],
         root_url + "##{process_with_target_tag}",
-        [[SIO["conforms-to"][self.sio_verbose], protocol_uri, "iri"]]
+        [[SIO["is-specified-by"][self.sio_verbose], protocol_uri, "iri"]]
         )
     
     @mappings << mapping_clause(
@@ -938,6 +963,7 @@ class YARRRML_Template_Builder
 #@option params  :inout_refers_to_column [String] ([]) column headers for column of ontologyURIs
 #@option params  :inout_refers_to_label  [String]  ([]) an ontology term label
 #@option params  :inout_refers_to_label_column  [String]  ([])  column header for column of ontology term labels
+#@option params  :inout_refers_to_uri_column  [String]  ([])  column header for column containing the URIs of the in/out node (e.g. a specific clinical variant identifier)
 #@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of the patient?
 #@option params  :base_types [Array] ([])  an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
 
@@ -948,6 +974,7 @@ class YARRRML_Template_Builder
     inout_refers_to_label = params.fetch(:inout_refers_to_label, nil) 
     inout_refers_to_column = params.fetch(:inout_refers_to_column, nil)  
     inout_refers_to_label_column = params.fetch(:inout_refers_to_label_column, nil ) 
+    inout_refers_to_uri_column = params.fetch(:inout_refers_to_label_column, nil ) 
     is_attribute = params.fetch(:is_attribute, true ) 
     base_types = params.fetch(:base_types, [] ) 
     
@@ -958,7 +985,8 @@ class YARRRML_Template_Builder
     abort "must specify refers_to_tag" unless refers_to_tag
     #$stderr.puts "is an attribute #{is_attribute}"
 
-          
+    attribute_node_uri = inout_refers_to_uri_column ? "$(#{inout_refers_to_uri_column})":"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode"
+    
     types = []
     types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
     types << ["rdf:type", refers_to, "iri"]
@@ -971,7 +999,7 @@ class YARRRML_Template_Builder
         ["#{source_tag}-source"],
         "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
         [
-        [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode", "iri"]
+        [SIO["refers-to"][self.sio_verbose], attribute_node_uri, "iri"]
         ] 
     )
 
@@ -981,7 +1009,7 @@ class YARRRML_Template_Builder
       ["#{source_tag}-source"],
       "this:individual_$(#{@personid_column})#Person",            
       [
-       [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode", "iri"]
+       [SIO["has-attribute"][self.sio_verbose], attribute_node_uri, "iri"]
       ]
       )
     end
@@ -990,7 +1018,7 @@ class YARRRML_Template_Builder
     @mappings << mapping_clause(
       "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
       ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
+      attribute_node_uri,
       
         types
       
@@ -1001,7 +1029,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
           "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_label",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
+          attribute_node_uri,
           [
           ["rdfs:label", "Attribute Type: #{refers_to_label}" ] 
           ]
