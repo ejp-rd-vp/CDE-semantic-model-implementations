@@ -128,7 +128,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'Start Date: $(date)'
-        type: iri
+        datatype: xsd:string
   patientRole_phenotyping_process_process_annotation_end:
     sources:
     - cde_patient_phenotyping-source
@@ -154,8 +154,8 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'End Date: $(date)'
-        type: iri
-  1635151484838317_process_custom_annotation:
+        datatype: xsd:string
+  16351539480426767_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -164,7 +164,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C16205
         type: iri
-  1635151484838329_process_custom_annotation:
+  16351539480426877_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process

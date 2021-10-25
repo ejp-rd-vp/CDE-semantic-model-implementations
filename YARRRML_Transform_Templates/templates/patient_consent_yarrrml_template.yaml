@@ -128,7 +128,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'Start Date: $(date)'
-        type: iri
+        datatype: xsd:string
   patient_consenting_process_annotation_end:
     sources:
     - cde_patient_consent-source
@@ -154,7 +154,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'End Date: $(date)'
-        type: iri
+        datatype: xsd:string
   patient_consenting_has_input_consent_document:
     sources:
     - cde_patient_consent-source

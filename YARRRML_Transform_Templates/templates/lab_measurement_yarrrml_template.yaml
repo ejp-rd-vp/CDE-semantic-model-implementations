@@ -128,7 +128,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'Start Date: $(date)'
-        type: iri
+        datatype: xsd:string
   some_laboratory_measuring_process_process_annotation_end:
     sources:
     - laboratory_measurement-source
@@ -154,7 +154,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'End Date: $(date)'
-        type: iri
+        datatype: xsd:string
   some_laboratory_measuring_process_has_input_material_tested:
     sources:
     - laboratory_measurement-source

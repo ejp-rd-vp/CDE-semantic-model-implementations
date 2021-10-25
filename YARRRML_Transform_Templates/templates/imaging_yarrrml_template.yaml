@@ -128,7 +128,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'Start Date: $(date)'
-        type: iri
+        datatype: xsd:string
   some_imaging_process_process_annotation_end:
     sources:
     - imaging-source
@@ -154,7 +154,7 @@ mappings:
     - predicates: rdfs:label
       objects:
         value: 'End Date: $(date)'
-        type: iri
+        datatype: xsd:string
   thisprocess_specified_by_process_protocol_specifictype_annotation:
     sources:
     - imaging-source
@@ -269,7 +269,7 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  16351514844344504_output_custom_annotation:
+  16351539476522803_output_custom_annotation:
     sources:
     - imaging-source
     s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output

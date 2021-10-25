@@ -82,31 +82,47 @@
     ./config/***_yarrrml_template.yaml (*** is a one-word tag of the &quot;type&quot; of data, e.g. &quot;height&quot;)
 </code></pre>
 
-<p>1) Need to have sdmrdfizer running on port 4000 with a folder ./data mounted as /data</p>
+<p>1) Need to have sdmrdfizer and yarrrml-parser services running ./data mounted as /data and ./config as /config. You can use docker-compose to run both services:</p>
 
-<pre class="code ruby"><code class="ruby"> docker run --name rdfizer --rm -d -p 4000:4000 -v $PWD/data:/data   markw/sdmrdfizer_ejp:0.1.0
+<pre class="code ruby"><code class="ruby">```yaml
+version: &quot;2.0&quot;
+services:
+
+
+    yarrrml_transform:
+        image: markw/yarrrml-parser-ejp:latest
+        container_name: yarrrml_transform
+        ports:
+            - &quot;3000:3000&quot;
+        volumes:
+            - ./data:/data
+
+
+    rdfizer:
+        image: markw/sdmrdfizer_ejp:0.3.0
+        container_name: rdfizer
+        ports:
+            - &quot;4000:4000&quot;
+        volumes:
+            - ./data:/data
+            - ./config:/config
+```
 </code></pre>
 
-<p>2a) Run build_xxx_template to build the appropriate templates (see “Example of creating a template”, below). Remember the names of the CSV columns</p>
+<p>2) Create your template by running build_xxx_template or select the appropriate YARRRML template (in the ./config folder, e.g. “height_yarrrml_template.yaml”). See “example of creating a template” below if you need to create one from-scratch.</p>
 
-<p>2b) Generate CSV with headers sufficient to fill the template</p>
+<p>3) In the ./data folder, create a CSV file with the necessary headings for your desired transform.</p>
 
-<p>3) Run YARRRML_Transform to genereate nTriples</p>
+<p>4) Identify the “tag” of the YARRML template you want to use (e.g. &#39;height&#39; for “height_yarrrml_template.yaml”). This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the “tag” portion of the template name.</p>
 
-<h2 id="label-More+specifically">More specifically</h2>
+<p>5) Execute the transformation: You can use <a href="run_me_to_test_rb.html">run_me_to_test.rb</a> by changing the tag described as datatype_tag parameter at YARRRML_Transform:</p>
 
-<p>1) in the ./data folder, create a csv file with the necessary headings for your desired transform.</p>
-
-<p>2) create (or select) the appropriate YARRRML template (in the ./config folder, e.g. “height_yarrrml_template.yaml”). See “example of creating a template” below if you need to create one from-scratch.</p>
-
-<p>3) Identify the “tag” of the YARRML template you want to use (e.g. &#39;height&#39; for “height_yarrrml_template.yaml” ). This tag is used to coordinate between many of the components during the automation steps, so it must match exactly with the “tag” portion of the template name.</p>
-
-<p>4) execute the transformation:</p>
-
-<pre class="code ruby"><code class="ruby">    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YARRRML_Transform.html" title="YARRRML_Transform (class)">YARRRML_Transform</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YARRRML_Transform.html#initialize-instance_method" title="YARRRML_Transform#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>datafile:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./data/myHeightData.csv</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>datatype_tag:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>height</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_yarrrml_transform'>yarrrml_transform</span>
-    <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_make_fair_data'>make_fair_data</span>   <span class='comment'># output goes to ./data/triples
-</span></code></pre>
+<pre class="code ruby"><code class="ruby">```ruby
+    y = YARRRML_Transform.new(datafile: &quot;./data/myHeightData.csv&quot;, datatype_tag: &quot;height&quot;)
+    y.yarrrml_transform
+    y.make_fair_data   # output goes to ./data/triples
+```
+</code></pre>
 
 <h2 id="label-Example+of+creating+a+template-3A">Example of creating a template:</h2>
 
@@ -188,9 +204,9 @@ puts b.generate
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jul  8 09:48:46 2021 by
+  Generated on Mon Oct 25 11:25:21 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.26 (ruby-2.7.2).
+  0.9.26 (ruby-3.0.0).
 </div>
 
     </div>

@@ -373,7 +373,7 @@ class YARRRML_Template_Builder
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
-             ["rdfs:label", "Start Date: $(#{process_start_column})", "iri"],             
+             ["rdfs:label", "Start Date: $(#{process_start_column})"],             
              ]
            )
       # now create the MIRROR  (!!!!) end time, if one is not provided
@@ -391,7 +391,7 @@ class YARRRML_Template_Builder
              [
                [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
                ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
-               ["rdfs:label", "End Date: $(#{process_start_column})", "iri"],             
+               ["rdfs:label", "End Date: $(#{process_start_column})"],             
                ]
         )
       end
@@ -412,7 +412,7 @@ class YARRRML_Template_Builder
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
-             ["rdfs:label", "End Date: $(#{process_end_column})", "iri"],             
+             ["rdfs:label", "End Date: $(#{process_end_column})"],             
              ]
            )
     end
