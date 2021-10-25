@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(test_date)'
+        type: iri
   disability_assessment_test_process_annotation_end:
     sources:
     - questions-source
@@ -147,7 +151,11 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16349832294774258_process_custom_annotation:
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(test_date)'
+        type: iri
+  16351514836335623_process_custom_annotation:
     sources:
     - questions-source
     s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test

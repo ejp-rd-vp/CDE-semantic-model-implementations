@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        type: iri
   medical_diagnosis_process_annotation_end:
     sources:
     - cde_patient_diagnosis-source
@@ -146,6 +150,10 @@ mappings:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/end-date
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
         type: iri
   longitudinal_information_gathering_process_diseaseX_has_part_medical_diagnosis:
     sources:
@@ -208,7 +216,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: "$(diagnostic_opinion)"
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_medical_diagnosis:
     sources:
@@ -217,12 +225,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: "$(diagnostic_opinion)"
+        value: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
         type: iri
   inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_type:
     sources:
     - cde_patient_diagnosis-source
-    s: "$(diagnostic_opinion)"
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -235,7 +243,7 @@ mappings:
   inout_from_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_label:
     sources:
     - cde_patient_diagnosis-source
-    s: "$(diagnostic_opinion)"
+    s: this:individual_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

@@ -362,7 +362,9 @@ class YARRRML_Template_Builder
         "#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
-           [[SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate_$(#{process_start_column})", "iri"]]
+           [
+             [SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate_$(#{process_start_column})", "iri"]
+            ]
            )
       @mappings << mapping_clause(
         "#{process_tag}_process_annotation_start_value",
@@ -371,9 +373,10 @@ class YARRRML_Template_Builder
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
+             ["rdfs:label", "Start Date: $(#{process_start_column})", "iri"],             
              ]
            )
-      # now create the mirror end time, if one is not provided
+      # now create the MIRROR  (!!!!) end time, if one is not provided
       unless process_end_column
         @mappings << mapping_clause(
           "#{process_tag}_process_annotation_end",
@@ -388,6 +391,7 @@ class YARRRML_Template_Builder
              [
                [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
                ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
+               ["rdfs:label", "End Date: $(#{process_start_column})", "iri"],             
                ]
         )
       end
@@ -408,6 +412,7 @@ class YARRRML_Template_Builder
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
+             ["rdfs:label", "End Date: $(#{process_end_column})", "iri"],             
              ]
            )
     end
@@ -976,7 +981,7 @@ class YARRRML_Template_Builder
     inout_refers_to_label = params.fetch(:inout_refers_to_label, nil) 
     inout_refers_to_column = params.fetch(:inout_refers_to_column, nil)  
     inout_refers_to_label_column = params.fetch(:inout_refers_to_label_column, nil ) 
-    inout_refers_to_uri_column = params.fetch(:inout_refers_to_label_column, nil ) 
+    inout_refers_to_uri_column = params.fetch(:inout_refers_to_uri_column, nil ) 
     is_attribute = params.fetch(:is_attribute, true ) 
     base_types = params.fetch(:base_types, [] ) 
     

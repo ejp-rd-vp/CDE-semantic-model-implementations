@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        type: iri
   some_imaging_process_process_annotation_end:
     sources:
     - imaging-source
@@ -146,6 +150,10 @@ mappings:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/end-date
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
         type: iri
   thisprocess_specified_by_process_protocol_specifictype_annotation:
     sources:
@@ -261,7 +269,7 @@ mappings:
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  16349832305977862_output_custom_annotation:
+  16351514844344504_output_custom_annotation:
     sources:
     - imaging-source
     s: this:individual_$(pid)_$(uniqid)#some_imaging_process_Output

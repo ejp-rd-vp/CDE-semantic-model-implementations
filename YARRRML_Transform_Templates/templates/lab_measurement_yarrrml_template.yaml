@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        type: iri
   some_laboratory_measuring_process_process_annotation_end:
     sources:
     - laboratory_measurement-source
@@ -146,6 +150,10 @@ mappings:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/end-date
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
         type: iri
   some_laboratory_measuring_process_has_input_material_tested:
     sources:

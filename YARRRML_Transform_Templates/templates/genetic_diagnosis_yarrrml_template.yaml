@@ -368,7 +368,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: "$(hgvs_string)"
+        value: "$(clinvar_uri)"
         type: iri
   has_attribute_of_inout_from_patientRole_genetic_diagnosis_process_hgvs:
     sources:
@@ -377,12 +377,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: "$(hgvs_string)"
+        value: "$(clinvar_uri)"
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concept_hgvs_reference_type:
     sources:
     - cde_genetic_diagnosis-source
-    s: "$(hgvs_string)"
+    s: "$(clinvar_uri)"
     po:
     - predicates: rdf:type
       objects:
@@ -399,7 +399,7 @@ mappings:
   inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concept_hgvs_reference_label:
     sources:
     - cde_genetic_diagnosis-source
-    s: "$(hgvs_string)"
+    s: "$(clinvar_uri)"
     po:
     - predicates: rdfs:label
       objects:

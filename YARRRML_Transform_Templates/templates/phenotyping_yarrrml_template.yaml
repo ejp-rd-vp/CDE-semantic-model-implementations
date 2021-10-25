@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        type: iri
   patientRole_phenotyping_process_process_annotation_end:
     sources:
     - cde_patient_phenotyping-source
@@ -147,7 +151,11 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16349832311471567_process_custom_annotation:
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
+        type: iri
+  1635151484838317_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -156,7 +164,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C16205
         type: iri
-  16349832311471732_process_custom_annotation:
+  1635151484838329_process_custom_annotation:
     sources:
     - cde_patient_phenotyping-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_phenotyping_process
@@ -217,7 +225,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: "$(HP_Label)"
+        value: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_patientRole_phenotyping_process:
     sources:
@@ -226,12 +234,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: "$(HP_Label)"
+        value: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
         type: iri
   inout_from_patientRole_phenotyping_process_refers_to_concept_phenotyping_attribute_type:
     sources:
     - cde_patient_phenotyping-source
-    s: "$(HP_Label)"
+    s: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -248,7 +256,7 @@ mappings:
   inout_from_patientRole_phenotyping_process_refers_to_concept_phenotyping_attribute_label:
     sources:
     - cde_patient_phenotyping-source
-    s: "$(HP_Label)"
+    s: this:individual_$(pid)_$(uniqid)#phenotyping_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:
