@@ -68,6 +68,7 @@ b.process_hasoutput_output({
     process_with_output_tag: "patientRole_genetic_diagnosis_process_hgvs",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001388",  # genomic sequence variant
     output_value_column: "hgvs_string",
+    output_value_datatype: "xsd:string"
     })
 
 b.process_hasoutput_output({
@@ -75,12 +76,14 @@ b.process_hasoutput_output({
     output_type: "http://semanticscience.org/resource/SIO_001381",  # genomic sequence variant
     output_type_label: "OMIM genome sequence variant",
     output_value_column: "omim_uri",
+    output_value_datatype: "xsd:string"
     })
 b.process_hasoutput_output({
     process_with_output_tag: "patientRole_genetic_diagnosis_process_hgnc",  # connect to the correct process
     output_type: "http://semanticscience.org/resource/SIO_001381",  # genomic sequence variant
     output_type_label: "HGNC genome sequence variant",
     output_value_column: "hgnc_uri",
+    output_value_datatype: "xsd:string"
     })
 
 #@param params [Hash]  a hash of options
