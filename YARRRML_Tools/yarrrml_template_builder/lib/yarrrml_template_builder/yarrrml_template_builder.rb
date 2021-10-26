@@ -33,7 +33,7 @@ class YARRRML_Template_Builder
 "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
 "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
 "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
-"is-specified-by" => ["https://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
+"is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
 
 # for information artifact
 "measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
@@ -62,7 +62,7 @@ class YARRRML_Template_Builder
 "role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
 "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
 "attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
-"conforms-to" => ["https://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
+"conforms-to" => ["http://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
 
              
 }
