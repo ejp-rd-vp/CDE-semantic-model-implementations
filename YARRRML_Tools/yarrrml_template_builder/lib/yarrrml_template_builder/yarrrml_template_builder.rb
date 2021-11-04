@@ -64,7 +64,8 @@ class YARRRML_Template_Builder
 "attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
 "conforms-to" => ["http://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
 
-             
+ "specialized-object" => ['http://semanticscience.org/resource/SIO_001353', "http://semanticscience.org/resource/specialized-object"],
+
 }
 
 
@@ -224,30 +225,116 @@ class YARRRML_Template_Builder
     end
   end
 
-# creates the person/identifier/role portion of the CDE
+# creates an entity/identifier/role set of clauses
 #
 # Parameters passed as a hash
 #
 # @param params [Hash]  a hash of options
+# @option params :entityid_column [String] (required) the column header that contains the identifier of the entity
+# @option params :uniqueid_column [String] (required) the column header that contains unique ID for that row (over ALL datasets! e.g. a hash of a timestamp); defaults to "uniqid"
+# @option params :identifier_type [String]  the URL of the ontological type of that identifier; defaults to  'sio:identifier'
+# @option params :identifier_type_column [String] the column header for the ontological type of that identifier.  Overrides identifier_type.
+# @option params :entity_type [String]  the URL of the ontological type defining a "entity"; defaults to 'sio:specialized-object'
+# @option params :entity_type_column [String] the column header for the ontological type of the "entity".  Overrides entity_type
+# @option params :entity_tag [String] a single-word unique tag for the entity within this model (defaults to "thisEntity").  Does not appear in the output RDF
+# @option params :entity_role_tag [String] a single-word tag for therole (e.g. "patient", "clinician", "drug") the entity plays in this dataset; defaults to "thisRole".  This does not appear in the output RDF
+# @option params :role_type [String] the URL for the ontological type of that role; defaults to "obo:OBI_0000093" ("patient")
+# @option params :role_type_column [String] the column header that contains the ontological type of that role.  Overrides role_type
+# @option params :role_label [String] the label for that kind of role; defaults to "Some Role"
+# @option params :role_label_column [String] the column header that has the label for that kind of role (overrides role_label)
+
+def entity_identifier_role_mappings(params = {})
+  @entityid_column = params.fetch(:entityid_column, 'pid')
+  @uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
+  
+  identifier_type = params.fetch(:identifier_type,  SIO["identifier"][self.sio_verbose])
+  identifier_type_column = params.fetch(:identifier_type_column, nil)
+  entity_tag = params.fetch(:entity_tag, 'thisEntity')
+  entity_type = params.fetch(:entity_type, SIO["specialized-object"][self.sio_verbose])
+  entity_type_column = params.fetch(:entity_type_column, nil)
+  entity_role_tag = params.fetch(:entity_role_tag, 'thisRole')
+  role_type = params.fetch(:role_type, 'obo:OBI_0000093')  # patient
+  role_type_column = params.fetch(:role_type_column, nil)  # 
+  role_label = params.fetch(:role_label, 'Some Role')  # patient
+  role_label_column = params.fetch(:role_label_column, nil)  # 
+
+  identifier_type = identifier_type_column ? "$(#{identifier_type_column})":identifier_type
+  entity_type = entity_type_column ? "$(#{entity_type_column})":entity_type
+  role_type = role_type_column ? "$(#{role_type_column})":role_type
+  role_label = role_label_column ? "$(#{role_label_column})":role_label
+
+  abort "You MUST have a @entityid_column and a @uniqueid_column to use this library.  Sorry!" unless @entityid_column and @uniqueid_column
+  @mappings << mapping_clause(
+                           "identifier_has_value_for_#{entity_role_tag}",
+                           ["#{source_tag}-source"],
+                           "this:individual_$(#{@entityid_column})#ID",
+#                             "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})#ID",
+                           [[SIO["has-value"][self.sio_verbose], "$(#{@entityid_column})", "xsd:string"]]
+                           )
+
+  @mappings << mapping_clause(
+                                "identifier_denotes_role_#{entity_role_tag}",
+                                ["#{source_tag}-source"],
+                                "this:individual_$(#{@entityid_column})#ID",
+#                                  "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})#ID",
+                                [
+                                 ["a", "#{identifier_type}", "iri"],
+                                 ["a", SIO["identifier"][self.sio_verbose], "iri"],
+                                 [SIO["denotes"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
+                                ]
+                               )
+  @mappings << mapping_clause(
+                              "entity_has_role_#{entity_role_tag}",
+                              ["#{source_tag}-source"],
+                              "this:individual_$(#{@entityid_column})#Entity",
+                              [
+                               ["a", "#{entity_type}", "iri"],
+                               ["a", SIO["entity"][self.sio_verbose], "iri"],
+                               [SIO["has-role"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
+                              ]
+                             )
+
+  @mappings << mapping_clause(
+                              "#{entity_role_tag}_annotation",
+                              ["#{source_tag}-source"],
+                              "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}",
+                              [
+                                ["a", "#{role_type}", "iri"],
+                                ["a", SIO["role"][self.sio_verbose], "iri"],
+                                ["rdfs:label", " Role: #{role_label}", "xsd:string"],
+                              ]
+                             ) 
+
+
+
+end
+
+# creates the person/identifier/role portion of the CDE
+#
+# Parameters passed as a hash.  this is a specification of the entity-identifier-role method, with Patient defaults
+#
+# @param params [Hash]  a hash of options
 # @option params :personid_column [String] (required) the column header that contains the anonymous identifier of the person; defaults to "pid"
 # @option params :uniqueid_column [String] (required) the column header that contains unique ID for that row (over ALL datasets! e.g. a hash of a timestamp); defaults to "uniqid"
-# @option params :identifier_type [String]  the URL of the ontological type of that identifier; defaults to  'https://ejp-rd.eu/vocab/identifier'
+# @option params :identifier_type [String]  the URL of the ontological type of that identifier; defaults to  'sio:identifier'
 # @option params :identifier_type_column [String] the column header for the ontological type of that identifier.  Overrides identifier_type.
-# @option params :person_type [String]  the URL of the ontological type defining a "person"; defaults to 'https://ejp-rd.eu/vocab/Person'
+# @option params :person_type [String]  the URL of the ontological type defining a "person"; defaults to 'sio:person'
 # @option params :person_type_column [String] the column header for the ontological type of the "individual".  Overrides person_type
 # @option params :person_role_tag [String] a single-word label for the kind of role (e.g. "patient", "clinician") the person plays in this dataset; defaults to "thisRole"
 # @option params :role_type [String] the URL for the ontological type of that role; defaults to "obo:OBI_0000093" ("patient")
+# @option params :person_tag [String] a single-word unique tag for the person within this model (defaults to "thisPerson").  Does not appear in the output RDF
 # @option params :role_type_column [String] the column header that contains the ontological type of that role.  Overrides role_type
 # @option params :role_label [String] the label for that kind of role; defaults to "Patient"
 # @option params :role_label_column [String] the column header that has the label for that kind of role (overrides role_label)
 #
   def person_identifier_role_mappings(params = {})
-    @personid_column = params.fetch(:personid_column, 'pid')
-    @uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
+    personid_column = params.fetch(:personid_column, 'pid')
+    uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
     
     identifier_type = params.fetch(:identifier_type,  SIO["identifier"][self.sio_verbose])
     identifier_type_column = params.fetch(:identifier_type_column, nil)
     person_type = params.fetch(:person_type, SIO["person"][self.sio_verbose])
+    person_tag = params.fetch(:person_tag, 'thisPerson')
     person_type_column = params.fetch(:person_type_column, nil)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
     role_type = params.fetch(:role_type, 'obo:OBI_0000093')  # patient
@@ -255,56 +342,28 @@ class YARRRML_Template_Builder
     role_label = params.fetch(:role_label, 'Patient Role')  # patient
     role_label_column = params.fetch(:role_label_column, nil)  # 
 
-    identifier_type = identifier_type_column ? "$(#{identifier_type_column})":identifier_type
-    person_type = person_type_column ? "$(#{person_type_column})":person_type
-    role_type = role_type_column ? "$(#{role_type_column})":role_type
-    role_label = role_label_column ? "$(#{role_label_column})":role_label
+    self.entity_identifier_role_mappings({
+      entityid_column: personid_column,
+      uniqueid_column: uniqueid_column,
+      identifier_type: identifier_type,
+      identifier_type_column: identifier_type_column
+      entity_tag: person_tag,
+      entity_type: person_type,
+      entity_type_column: person_type_column,
+      entity_role_tag: person_role_tag,
+      role_type: role_type,
+      role_type_column: role_type_column,
+      role_label: role_label,
+      role_label_column: role_label_column,
+    }
 
-    abort "You MUST have a @personid_column and a @uniqueid_column to use this library.  Sorry!" unless @personid_column and @uniqueid_column
-    @mappings << mapping_clause(
-                             "identifier_has_value_for_#{person_role_tag}",
-                             ["#{source_tag}-source"],
-                             "this:individual_$(#{@personid_column})#ID",
-#                             "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
-                             [[SIO["has-value"][self.sio_verbose], "$(#{@personid_column})", "xsd:string"]]
-                             )
-
-    @mappings << mapping_clause(
-                                  "identifier_denotes_role_#{person_role_tag}",
-                                  ["#{source_tag}-source"],
-                                  "this:individual_$(#{@personid_column})#ID",
-#                                  "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#ID",
-                                  [
-                                   ["a", "#{identifier_type}", "iri"],
-                                   ["a", SIO["identifier"][self.sio_verbose], "iri"],
-                                   [SIO["denotes"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}", "iri"],
-                                  ]
-                                 )
-    @mappings << mapping_clause(
-                                "person_has_role_#{person_role_tag}",
-                                ["#{source_tag}-source"],
-                                "this:individual_$(#{@personid_column})#Person",
-                                [
-                                 ["a", "#{person_type}", "iri"],
-                                 ["a", SIO["person"][self.sio_verbose], "iri"],
-                                 [SIO["has-role"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}", "iri"],
-                                ]
-                               )
-
-    @mappings << mapping_clause(
-                                "#{person_role_tag}_annotation",
-                                ["#{source_tag}-source"],
-                                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
-                                [
-                                  ["a", "#{role_type}", "iri"],
-                                  ["a", SIO["role"][self.sio_verbose], "iri"],
-                                  ["rdfs:label", " Role: #{role_label}", "xsd:string"],
-                                ]
-                               )    
-  
   end
   
+
   
+
+
+
 
 # creates the role_in_process portion of the CDE
 #
@@ -533,12 +592,12 @@ class YARRRML_Template_Builder
 # Parameters passed as a hash
 #
 # @param params [Hash]  a hash of options
-# @option params :process_with_target_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
-# @option params :target_type_tag  [String] a tag to differentiate this input from other inputs
+# @option params :process_with_target_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the target
+# @option params :target_type_tag  [String] a tag to differentiate this target from other targets
 # @option params :target_type  [String] the ontological type for the target  (e.g. process is targetted at creatinine - http://purl.obolibrary.org/obo/CHEBI_16737)
-# @option params :target_type_column  [String] the column header specifying the ontological type for the input node (overrides input_type).  Ignored if using output from another process (specify it there!)
-# @option params :target_type_label  [String] the label for all inputs
-# @option params :target_type_label_column  [String] the label column for each input
+# @option params :target_type_column  [String] the column header specifying the ontological type for the target node (overrides target_type).  
+# @option params :target_type_label  [String] the label for all targets
+# @option params :target_type_label_column  [String] the label column for each target
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_has_target(params)
     process_with_target_tag  = params.fetch(:process_with_target_tag, "thisprocess")  # some one-word name
@@ -579,6 +638,58 @@ class YARRRML_Template_Builder
     
   end
   
+
+
+# creates the process has agent portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_agent_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the agent
+# @option params :agent_type_tag  [String] a tag to differentiate this agent from other agents
+# @option params :agent_type  [String] the ontological type for the agent  
+# @option params :agent_type_column  [String] the column header specifying the ontological type for the agent node (overrides agent_type)
+# @option params :agent_type_label  [String] the label for all agents
+# @option params :agent_type_label_column  [String] the label column for each agent
+def process_has_agent(params)
+  process_with_agent_tag  = params.fetch(:process_with_agent_tag, "thisprocess")  # some one-word name
+  agent_type_tag  = params.fetch(:agent_type_tag, "thisAgent")  # some one-word name
+  agent_type  = params.fetch(:agent_type, SIO["specialized-object"][self.sio_verbose])  # some one-word name
+  agent_type_column  = params.fetch(:agent_type_column, nil)  # some one-word name
+  agent_type_label  = params.fetch(:agent_type_label, "Specialized Object")  # some one-word name
+  agent_type_label_column  = params.fetch(:agent_type_label_column, nil)  # some one-word name
+  make_unique_process = params.fetch(:make_unique_process, true)
+
+  root_url = get_root_url(make_unique_process)
+  
+  
+  abort "must specify the process_with_agent_tag
+  (the identifier of the process that has the input)
+  before you can use the process_has_agent function" unless process_with_agent_tag
+
+  agent_type = agent_type_column ? "$(#{agent_type_column})":agent_type
+  agent_label = agent_type_label_column ? "$(#{agent_type_label_column})":agent_type_label
+
+  @mappings << mapping_clause(
+      "#{process_with_agent_tag}_has_agent_#{agent_type_tag}",
+      ["#{source_tag}-source"],
+      root_url + "##{process_with_agent_tag}",
+      [[SIO["has-agent"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent", "iri"]]
+      )
+  
+  @mappings << mapping_clause(
+      "#{process_with_agent_tag}_has_agent_#{agent_type_tag}_annotation",
+      ["#{source_tag}-source"],
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent",
+      [
+        ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
+        ["rdf:type","#{agent_type}", "iri"],
+        ["rdfs:label","Process Agent: #{target_label}", "xsd:string"],
+        ]
+      )
+  
+end
+
 
 
 
