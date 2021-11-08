@@ -236,6 +236,8 @@ class YARRRML_Template_Builder
 # @option params :identifier_type_column [String] the column header for the ontological type of that identifier.  Overrides identifier_type.
 # @option params :entity_type [String]  the URL of the ontological type defining a "entity"; defaults to 'sio:specialized-object'
 # @option params :entity_type_column [String] the column header for the ontological type of the "entity".  Overrides entity_type
+# @option params :entity_label [String]  the label for an "entity"; defaults to 'some entity'
+# @option params :entity_label_column [String] column for the label
 # @option params :entity_tag [String] a single-word unique tag for the entity within this model (defaults to "thisEntity").  Does not appear in the output RDF
 # @option params :entity_role_tag [String] a single-word tag for therole (e.g. "patient", "clinician", "drug") the entity plays in this dataset; defaults to "thisRole".  This does not appear in the output RDF
 # @option params :role_type [String] the URL for the ontological type of that role; defaults to "obo:OBI_0000093" ("patient")
@@ -252,6 +254,8 @@ def entity_identifier_role_mappings(params = {})
   entity_tag = params.fetch(:entity_tag, 'thisEntity')
   entity_type = params.fetch(:entity_type, SIO["specialized-object"][self.sio_verbose])
   entity_type_column = params.fetch(:entity_type_column, nil)
+  entity_label = params.fetch(:entity_label, nil)
+  entity_label_column = params.fetch(:entity_label_column, nil)
   entity_role_tag = params.fetch(:entity_role_tag, 'thisRole')
   role_type = params.fetch(:role_type, 'obo:OBI_0000093')  # patient
   role_type_column = params.fetch(:role_type_column, nil)  # 
@@ -262,6 +266,7 @@ def entity_identifier_role_mappings(params = {})
   entity_type = entity_type_column ? "$(#{entity_type_column})":entity_type
   role_type = role_type_column ? "$(#{role_type_column})":role_type
   role_label = role_label_column ? "$(#{role_label_column})":role_label
+  entity_label = entity_label_column ? "$(#{entity_label_column})":entity_label
 
   abort "You MUST have a @entityid_column and a @uniqueid_column to use this library.  Sorry!" unless @entityid_column and @uniqueid_column
   @mappings << mapping_clause(
@@ -302,6 +307,16 @@ def entity_identifier_role_mappings(params = {})
                                 ["rdfs:label", " Role: #{role_label}", "xsd:string"],
                               ]
                              ) 
+  if entity_label
+    @mappings << mapping_clause(
+                                "#{entity_role_tag}_entity_label_annotation",
+                                ["#{source_tag}-source"],
+                                "this:individual_$(#{@entityid_column})#Entity",
+                                [
+                                  ["rdfs:label", " Role: #{entity_label}", "xsd:string"],
+                                ]
+                              ) 
+  end
 
 
 
