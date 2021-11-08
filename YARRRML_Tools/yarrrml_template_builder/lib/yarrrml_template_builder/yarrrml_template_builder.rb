@@ -159,7 +159,7 @@ class YARRRML_Template_Builder
   
   
   
-  
+
   def sources_module
     
     @sources_module =  {
@@ -369,6 +369,7 @@ end
 #
 # @param params [Hash]  a hash of options
 # @option params :person_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see person_role_tag above, synchronize these tags!
+# @option params :entity_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see entity_role_tag above, synchronize these tags!
 # @option params :process_type  [String] the URL for the ontological type of the process (defaults to http://semanticscience.org/resource/process)
 # @option params :process_type_column  [String] the column header that contains the URL for the ontological type of the process - overrides process_type
 # @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
@@ -379,6 +380,7 @@ end
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def role_in_process(params)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
+    entity_role_tag = params.fetch(:person_role_tag, nil)
     process_type = params.fetch(:process_type, SIO["process"][self.sio_verbose])  
     process_type_column = params.fetch(:process_type_column, nil)  
     process_tag  = params.fetch(:process_tag, 'thisprocess')  # some one-word name
@@ -390,6 +392,8 @@ end
 
     process_type = process_type_column ? "$(#{process_type_column})":process_type
     process_label = process_label_column ? "$(#{process_label_column})":process_label
+
+    person_role_tag = entity_role_tag if entity_role_tag
 
     root_url = get_root_url(make_unique_process)
 
@@ -667,58 +671,6 @@ end
   
 
 
-# creates the process has agent portion of the CDE
-#
-# Parameters passed as a hash
-#
-# @param params [Hash]  a hash of options
-# @option params :process_with_agent_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the agent
-# @option params :agent_type_tag  [String] a tag to differentiate this agent from other agents
-# @option params :agent_type  [String] the ontological type for the agent  
-# @option params :agent_type_column  [String] the column header specifying the ontological type for the agent node (overrides agent_type)
-# @option params :agent_type_label  [String] the label for all agents
-# @option params :agent_type_label_column  [String] the label column for each agent
-# def process_has_agent(params)
-#   process_with_agent_tag  = params.fetch(:process_with_agent_tag, "thisprocess")  # some one-word name
-#   agent_type_tag  = params.fetch(:agent_type_tag, "thisAgent")  # some one-word name
-#   agent_type  = params.fetch(:agent_type, SIO["specialized-object"][self.sio_verbose])  # some one-word name
-#   agent_type_column  = params.fetch(:agent_type_column, nil)  # some one-word name
-#   agent_type_label  = params.fetch(:agent_type_label, "Specialized Object")  # some one-word name
-#   agent_type_label_column  = params.fetch(:agent_type_label_column, nil)  # some one-word name
-#   make_unique_process = params.fetch(:make_unique_process, true)
-
-#   root_url = get_root_url(make_unique_process)
-  
-  
-#   abort "must specify the process_with_agent_tag
-#   (the identifier of the process that has the input)
-#   before you can use the process_has_agent function" unless process_with_agent_tag
-
-#   agent_type = agent_type_column ? "$(#{agent_type_column})":agent_type
-#   agent_label = agent_type_label_column ? "$(#{agent_type_label_column})":agent_type_label
-
-#   @mappings << mapping_clause(
-#       "#{process_with_agent_tag}_has_agent_#{agent_type_tag}",
-#       ["#{source_tag}-source"],
-#       root_url + "##{process_with_agent_tag}",
-#       [[SIO["has-agent"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent", "iri"]]
-#       )
-  
-#   @mappings << mapping_clause(
-#       "#{process_with_agent_tag}_has_agent_#{agent_type_tag}_annotation",
-#       ["#{source_tag}-source"],
-#       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent",
-#       [
-#         ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
-#         ["rdf:type","#{agent_type}", "iri"],
-#         ["rdfs:label","Process Agent: #{target_label}", "xsd:string"],
-#         ]
-#       )
-  
-# end
-
-
-
 
 
 
@@ -987,19 +939,6 @@ end
     end
     
   
-    #if output_timeinstant_column
-    #  
-    #  @mappings << mapping_clause(
-    #    "#{process_with_output_tag}_output_annotation_timeinstant",
-    #      ["#{source_tag}-source"],
-    #      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
-    #       [
-    #         [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
-    #         ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],             
-    #         ]
-    #       )
-    #end
-
     if output_measured_at_column
       
       @mappings << mapping_clause(
