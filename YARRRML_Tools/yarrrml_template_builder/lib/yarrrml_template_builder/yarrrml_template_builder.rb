@@ -339,6 +339,8 @@ end
 # @option params :role_type_column [String] the column header that contains the ontological type of that role.  Overrides role_type
 # @option params :role_label [String] the label for that kind of role; defaults to "Patient"
 # @option params :role_label_column [String] the column header that has the label for that kind of role (overrides role_label)
+# @option params :person_label [String] the label for that person (no default)
+# @option params :person_label_column [String] the column header that has the label for that person (no default)
 #
   def person_identifier_role_mappings(params = {})
     @personid_column = params.fetch(:personid_column, 'pid')
@@ -354,6 +356,8 @@ end
     role_type_column = params.fetch(:role_type_column, nil)  # 
     role_label = params.fetch(:role_label, 'Patient Role')  # patient
     role_label_column = params.fetch(:role_label_column, nil)  # 
+    person_label = params.fetch(:person_label, nil)  # patient
+    person_label_column = params.fetch(:person_label_column, nil)  # 
 
     self.entity_identifier_role_mappings({
       entityid_column: @personid_column,
@@ -368,6 +372,8 @@ end
       role_type_column: role_type_column,
       role_label: role_label,
       role_label_column: role_label_column,
+      entity_label: person_label,
+      entity_label_column: person_label_column,
     })
 
   end
