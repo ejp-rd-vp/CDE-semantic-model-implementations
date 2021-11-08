@@ -1223,14 +1223,14 @@ end
     #uniqid = get_uniq_id
     
     @mappings << mapping_clause(
-        "#{parent_entity_tag}_has_part_#{part_entity_tag}",
+        "parent_entity_has_part_#{part_entity_tag}",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@entityid_column})#Entity",
+        "this:individual_$(#{parent_entityid_column})#Entity",
         [[SIO["has-component-part"][self.sio_verbose], "this:individual_#{part_entity_tag}#comopnentEntity" , "iri"]]
         )
 
     @mappings << mapping_clause(
-      "#{parent_entity_tag}_has_part_#{part_entity_tag}",
+      "parent_entity_has_part_#{part_entity_tag}",
       ["#{source_tag}-source"],
       "this:individual_#{part_entity_tag}#comopnentEntity",
       [['rdf:type', part_type , "iri"]]
