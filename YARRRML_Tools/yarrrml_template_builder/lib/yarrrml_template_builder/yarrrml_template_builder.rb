@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'version'
 require 'tempfile'
 require 'rest-client'
@@ -16,57 +14,60 @@ class YARRRML_Template_Builder
   attr_accessor :mappings  
 
   SIO = {
-"has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
-"has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
-"has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
-"has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
-"has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
-"has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
-"has-target" => ["http://semanticscience.org/resource/SIO_000291", "http://semanticscience.org/resource/has-target"],
-"is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
-"is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
-"has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
-"denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
-"is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
-# predicates
-# for processs
-"has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
-"has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
-"has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
-"is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
+    "has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
+    "has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
+    "has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
+    "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
+    "has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
+    "has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
+    "has-target" => ["http://semanticscience.org/resource/SIO_000291", "http://semanticscience.org/resource/has-target"],
+    "has-agent" => ["http://semanticscience.org/resource/SIO_000139", "http://semanticscience.org/resource/has-agent"],
+    "has-component-part" => ["http://semanticscience.org/resource/SIO_000369", "http://semanticscience.org/resource/has-component-part"],
+    "is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
+    "is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
+    "has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
+    "denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
+    "is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
+    # predicates
+    # for processs
+    "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
+    "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
+    "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
+    "is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
 
-# for information artifact
-"measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
-# objects
-"start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
-"end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
-"start-date" => ["http://semanticscience.org/resource/SIO_000031", "http://semanticscience.org/resource/start-date"],
-"end-date" => ["http://semanticscience.org/resource/SIO_000032", "http://semanticscience.org/resource/end-date"],
-"time-instant" => ["http://semanticscience.org/resource/SIO_000418", "http://semanticscience.org/resource/time-instant"],
-#
+    # for information artifact
+    "measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
+    # objects
+    "start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
+    "end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
+    "start-date" => ["http://semanticscience.org/resource/SIO_000031", "http://semanticscience.org/resource/start-date"],
+    "end-date" => ["http://semanticscience.org/resource/SIO_000032", "http://semanticscience.org/resource/end-date"],
+    "time-instant" => ["http://semanticscience.org/resource/SIO_000418", "http://semanticscience.org/resource/time-instant"],
+    #
 
 
 
-"is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
-"drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
-"sequence-variation-notation" => ["http://semanticscience.org/resource/SIO_001388", "http://semanticscience.org/resource/sequence_variation_notation"],
-"is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
-"has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
-"realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],
-"information-content-entity" =>  ["http://semanticscience.org/resource/SIO_000015", "http://semanticscience.org/resource/information-content-entity"],
-"measurement-value" => ["http://semanticscience.org/resource/SIO_000070", "http://semanticscience.org/resource/measurement-value"],
-"refers-to" => ["http://semanticscience.org/resource/SIO_000628", "http://semanticscience.org/resource/refers-to"],
-"has-input" => ["http://semanticscience.org/resource/SIO_000230", "http://semanticscience.org/resource/has-input"],
-"person" => ["http://semanticscience.org/resource/SIO_000498", "http://semanticscience.org/resource/person"],
-"identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
-"role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
-"process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
-"attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
-"conforms-to" => ["http://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
+    "is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
+    "drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
+    "sequence-variation-notation" => ["http://semanticscience.org/resource/SIO_001388", "http://semanticscience.org/resource/sequence_variation_notation"],
+    "is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
+    "has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
+    "realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],
+    "information-content-entity" =>  ["http://semanticscience.org/resource/SIO_000015", "http://semanticscience.org/resource/information-content-entity"],
+    "measurement-value" => ["http://semanticscience.org/resource/SIO_000070", "http://semanticscience.org/resource/measurement-value"],
+    "refers-to" => ["http://semanticscience.org/resource/SIO_000628", "http://semanticscience.org/resource/refers-to"],
+    "has-input" => ["http://semanticscience.org/resource/SIO_000230", "http://semanticscience.org/resource/has-input"],
+    "person" => ["http://semanticscience.org/resource/SIO_000498", "http://semanticscience.org/resource/person"],
+    "object" => ["http://semanticscience.org/resource/SIO_000776", "http://semanticscience.org/resource/object"],
+    "identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
+    "role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
+    "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
+    "attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
+    "conforms-to" => ["http://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
 
- "specialized-object" => ['http://semanticscience.org/resource/SIO_001353', "http://semanticscience.org/resource/specialized-object"],
+    "specialized-object" => ['http://semanticscience.org/resource/SIO_001353', "http://semanticscience.org/resource/specialized-object"],
 
-}
+  }
 
 
 
@@ -79,7 +80,6 @@ class YARRRML_Template_Builder
 # @option params [Integer] :sio_verbose (0)  "1" means to use http://semanticscience.org/resource/has-value instead of http://semanticscience.org/resource/SIO_000300 for all sio.  Default is 0
 #
 # @return [YARRRML_Template_BuilderII]
-# 
   def initialize(params = {}) # get a name from the "new" call, or set a default
     
     @baseURI = params.fetch(:baseURI, "|||BASE|||")
@@ -268,7 +268,6 @@ def entity_identifier_role_mappings(params = {})
                            "identifier_has_value_for_#{entity_role_tag}",
                            ["#{source_tag}-source"],
                            "this:individual_$(#{@entityid_column})#ID",
-#                             "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})#ID",
                            [[SIO["has-value"][self.sio_verbose], "$(#{@entityid_column})", "xsd:string"]]
                            )
 
@@ -276,7 +275,6 @@ def entity_identifier_role_mappings(params = {})
                                 "identifier_denotes_role_#{entity_role_tag}",
                                 ["#{source_tag}-source"],
                                 "this:individual_$(#{@entityid_column})#ID",
-#                                  "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})#ID",
                                 [
                                  ["a", "#{identifier_type}", "iri"],
                                  ["a", SIO["identifier"][self.sio_verbose], "iri"],
@@ -289,7 +287,7 @@ def entity_identifier_role_mappings(params = {})
                               "this:individual_$(#{@entityid_column})#Entity",
                               [
                                ["a", "#{entity_type}", "iri"],
-                               ["a", SIO["entity"][self.sio_verbose], "iri"],
+                               ["a", SIO["object"][self.sio_verbose], "iri"],
                                [SIO["has-role"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
                               ]
                              )
@@ -328,7 +326,7 @@ end
 # @option params :role_label_column [String] the column header that has the label for that kind of role (overrides role_label)
 #
   def person_identifier_role_mappings(params = {})
-    personid_column = params.fetch(:personid_column, 'pid')
+    @personid_column = params.fetch(:personid_column, 'pid')
     uniqueid_column = params.fetch(:uniqueid_column, 'uniqid')
     
     identifier_type = params.fetch(:identifier_type,  SIO["identifier"][self.sio_verbose])
@@ -343,10 +341,10 @@ end
     role_label_column = params.fetch(:role_label_column, nil)  # 
 
     self.entity_identifier_role_mappings({
-      entityid_column: personid_column,
+      entityid_column: @personid_column,
       uniqueid_column: uniqueid_column,
       identifier_type: identifier_type,
-      identifier_type_column: identifier_type_column
+      identifier_type_column: identifier_type_column,
       entity_tag: person_tag,
       entity_type: person_type,
       entity_type_column: person_type_column,
@@ -355,7 +353,7 @@ end
       role_type_column: role_type_column,
       role_label: role_label,
       role_label_column: role_label_column,
-    }
+    })
 
   end
   
@@ -551,6 +549,35 @@ end
   end
   
 
+  # creates the process has agent portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param params [Hash]  a hash of options
+# @option params :process_tag  [String] (required) the same process tag that is used in the "role in process" 
+# @option params :entityid_column [String] (required) default "pid"
+# @option params :entity_tag [String] (required) default "thisEntity".   The entity-tag that you used for the entity in the entity/identifier/role clauses
+  def process_has_agent(params)
+    process_tag = params.fetch(:process_tag, "thisprocess")  
+    entityid_column = params.fetch(:entityid_column, "pid")
+    entity_tag = params.fetch(:entityid_column, "thisEntity")
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+
+    @mappings << mapping_clause(
+        "process_has_agent_#{entity_tag}",
+        ["#{source_tag}-source"],
+        root_url + "##{process_tag}",
+        [[SIO['has-agent'][self.sio_verbose], "this:individual_$(#{@entityid_column})#Entity" , 'iri']]
+        )
+      
+      
+  end
+
+
+
 
 # creates the process_has_part portion of the CDE
 #
@@ -651,44 +678,44 @@ end
 # @option params :agent_type_column  [String] the column header specifying the ontological type for the agent node (overrides agent_type)
 # @option params :agent_type_label  [String] the label for all agents
 # @option params :agent_type_label_column  [String] the label column for each agent
-def process_has_agent(params)
-  process_with_agent_tag  = params.fetch(:process_with_agent_tag, "thisprocess")  # some one-word name
-  agent_type_tag  = params.fetch(:agent_type_tag, "thisAgent")  # some one-word name
-  agent_type  = params.fetch(:agent_type, SIO["specialized-object"][self.sio_verbose])  # some one-word name
-  agent_type_column  = params.fetch(:agent_type_column, nil)  # some one-word name
-  agent_type_label  = params.fetch(:agent_type_label, "Specialized Object")  # some one-word name
-  agent_type_label_column  = params.fetch(:agent_type_label_column, nil)  # some one-word name
-  make_unique_process = params.fetch(:make_unique_process, true)
+# def process_has_agent(params)
+#   process_with_agent_tag  = params.fetch(:process_with_agent_tag, "thisprocess")  # some one-word name
+#   agent_type_tag  = params.fetch(:agent_type_tag, "thisAgent")  # some one-word name
+#   agent_type  = params.fetch(:agent_type, SIO["specialized-object"][self.sio_verbose])  # some one-word name
+#   agent_type_column  = params.fetch(:agent_type_column, nil)  # some one-word name
+#   agent_type_label  = params.fetch(:agent_type_label, "Specialized Object")  # some one-word name
+#   agent_type_label_column  = params.fetch(:agent_type_label_column, nil)  # some one-word name
+#   make_unique_process = params.fetch(:make_unique_process, true)
 
-  root_url = get_root_url(make_unique_process)
+#   root_url = get_root_url(make_unique_process)
   
   
-  abort "must specify the process_with_agent_tag
-  (the identifier of the process that has the input)
-  before you can use the process_has_agent function" unless process_with_agent_tag
+#   abort "must specify the process_with_agent_tag
+#   (the identifier of the process that has the input)
+#   before you can use the process_has_agent function" unless process_with_agent_tag
 
-  agent_type = agent_type_column ? "$(#{agent_type_column})":agent_type
-  agent_label = agent_type_label_column ? "$(#{agent_type_label_column})":agent_type_label
+#   agent_type = agent_type_column ? "$(#{agent_type_column})":agent_type
+#   agent_label = agent_type_label_column ? "$(#{agent_type_label_column})":agent_type_label
 
-  @mappings << mapping_clause(
-      "#{process_with_agent_tag}_has_agent_#{agent_type_tag}",
-      ["#{source_tag}-source"],
-      root_url + "##{process_with_agent_tag}",
-      [[SIO["has-agent"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent", "iri"]]
-      )
+#   @mappings << mapping_clause(
+#       "#{process_with_agent_tag}_has_agent_#{agent_type_tag}",
+#       ["#{source_tag}-source"],
+#       root_url + "##{process_with_agent_tag}",
+#       [[SIO["has-agent"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent", "iri"]]
+#       )
   
-  @mappings << mapping_clause(
-      "#{process_with_agent_tag}_has_agent_#{agent_type_tag}_annotation",
-      ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent",
-      [
-        ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
-        ["rdf:type","#{agent_type}", "iri"],
-        ["rdfs:label","Process Agent: #{target_label}", "xsd:string"],
-        ]
-      )
+#   @mappings << mapping_clause(
+#       "#{process_with_agent_tag}_has_agent_#{agent_type_tag}_annotation",
+#       ["#{source_tag}-source"],
+#       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_agent_tag}_Agent",
+#       [
+#         ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
+#         ["rdf:type","#{agent_type}", "iri"],
+#         ["rdfs:label","Process Agent: #{target_label}", "xsd:string"],
+#         ]
+#       )
   
-end
+# end
 
 
 
@@ -1132,7 +1159,6 @@ end
       )
     end
 
-#$stderr.puts types.inspect
     @mappings << mapping_clause(
       "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
       ["#{source_tag}-source"],
@@ -1213,7 +1239,46 @@ end
     
 
   end
+
   
+
+# creates the entity has component entity portion of the CDE
+#
+# Parameters passed as a hash
+#
+# @param params [Hash]  a hash of options
+# @option params :parent_entityid_column  [String] (required) the column that contains the parent entity id
+# @option params :part_entity_tag  [String] (required) the tag of the part
+# @option params :part_type_column  [String] (required) the column that contains the parent entity id
+  def entity_has_component(params)
+    parent_entityid_column = params.fetch(:parent_entityid_column, 'pid')  
+    part_entity_tag = params.fetch(:part_entity_tag, nil)  
+    part_type = params.fetch(:part_type, nil)  
+    part_type_column = params.fetch(:part_type_column, nil)  
+
+    part_type = part_type_column ? "$(#{part_type_column})":part_type
+
+    abort "cannot create entity has component without both a part type and part tag" unless (part_type && part_entity_tag)
+
+    #uniqid = get_uniq_id
+    
+    @mappings << mapping_clause(
+        "#{parent_entity_tag}_has_part_#{part_entity_tag}",
+        ["#{source_tag}-source"],
+        "this:individual_$(#{@entityid_column})#Entity",
+        [[SIO["has-component-part"][self.sio_verbose], "this:individual_#{part_entity_tag}#comopnentEntity" , "iri"]]
+        )
+
+    @mappings << mapping_clause(
+      "#{parent_entity_tag}_has_part_#{part_entity_tag}",
+      ["#{source_tag}-source"],
+      "this:individual_#{part_entity_tag}#comopnentEntity",
+      [['rdf:type', part_type , "iri"]]
+      )
+    
+  end
+
+
 
 # creates a time-based locally-unique identifier
 
@@ -1221,6 +1286,7 @@ end
         return  Time.now.to_f.to_s.gsub("\.", "") 
       
   end
-
-
 end
+
+
+
