@@ -33,6 +33,7 @@ class YARRRML_Template_Builder
     "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
     "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
     "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
+    "exists-at" => ["http://semanticscience.org/resource/SIO_000687", "http://semanticscience.org/resource/exists-at"],
     "is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
 
     # for information artifact
@@ -62,6 +63,7 @@ class YARRRML_Template_Builder
     "identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
     "role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
     "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
+    "day" => ["http://semanticscience.org/resource/SIO_000430", "http://semanticscience.org/resource/day"],
     "attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
     "conforms-to" => ["http://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
 
@@ -398,6 +400,7 @@ end
 # @option params :process_label_column  [String] the column header for the label associated with the process type in that row
 # @option params :process_start_column  [ISO 8601 date (only date)] (optional) the column header for the datestamp when that process started. NOTE:  For instantaneous processes, create ONLY the start date column, and an identical end date will be automatically generated
 # @option params :process_end_column  [ISO 8601 date (only date)]  (optional) the column header for the datestamp when that process ended
+# @option params :process_duration_column  [xsd:int]  (optional) the column header for the duration of the event measured in integer numbers of days
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def role_in_process(params)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
@@ -409,6 +412,7 @@ end
     process_label_column = params.fetch(:process_label_column, nil) 
     process_start_column = params.fetch(:process_start_column, nil) 
     process_end_column = params.fetch(:process_end_column, nil)
+    process_duration_column = params.fetch(:process_end_column, nil)
     make_unique_process = params.fetch(:make_unique_process, true)
 
     process_type = process_type_column ? "$(#{process_type_column})":process_type
@@ -445,13 +449,13 @@ end
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
            [
-             [SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate_$(#{process_start_column})", "iri"]
+             [SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate_#{process_start_column}", "iri"]
             ]
            )
       @mappings << mapping_clause(
         "#{process_tag}_process_annotation_start_value",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}_startdate_$(#{process_start_column})",
+           root_url + "##{process_tag}_startdate_#{process_start_column}",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
@@ -464,12 +468,12 @@ end
           "#{process_tag}_process_annotation_end",
             ["#{source_tag}-source"],
              root_url + "##{process_tag}",
-             [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_start_column})", "iri"]]
+             [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_#{process_start_column}", "iri"]]
         )
         @mappings << mapping_clause(
           "#{process_tag}_process_annotation_end_value",
             ["#{source_tag}-source"],
-             root_url + "##{process_tag}_enddate_$(#{process_start_column})",
+             root_url + "##{process_tag}_enddate_#{process_start_column}",
              [
                [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
                ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -485,12 +489,12 @@ end
         "#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
            root_url + "##{process_tag}",
-           [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_end_column})", "iri"]]
+           [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_#{process_end_column}", "iri"]]
            )
       @mappings << mapping_clause(
         "#{process_tag}_process_annotation_end_value",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}_enddate_$(#{process_end_column})",
+           root_url + "##{process_tag}_enddate_#{process_end_column}",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -498,7 +502,26 @@ end
              ]
            )
     end
-      
+
+    if process_duration_column
+      @mappings << mapping_clause(
+        "#{process_tag}_process_annotation_duration",
+          ["#{source_tag}-source"],
+           root_url + "##{process_tag}",
+           [[SIO["exists-at"][self.sio_verbose], root_url + "##{process_tag}_exists_at_#{process_duration_column}", "iri"]]
+           )
+      @mappings << mapping_clause(
+        "#{process_tag}_process_annotation_duration_value",
+          ["#{source_tag}-source"],
+          root_url + "##{process_tag}_exists_at_#{process_duration_column}",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{process_duration_column})", "xsd:int"],
+             ["rdf:type", SIO["day"][self.sio_verbose], "iri"],             
+             ["rdfs:label", "Duration: $(#{process_end_column}) days"],             
+             ]
+           )
+    end
+
   end
   
   
