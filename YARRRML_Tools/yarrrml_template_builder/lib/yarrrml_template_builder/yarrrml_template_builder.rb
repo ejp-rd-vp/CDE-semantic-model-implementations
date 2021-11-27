@@ -16,7 +16,9 @@ class YARRRML_Template_Builder
   attr_accessor :mappings  
 
   SIO = {
+"entity" => ["http://semanticscience.org/resource/SIO_000000", "http://semanticscience.org/resource/entity"], 
 "has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
+"has-measurement-value" => ["http://semanticscience.org/resource/SIO_000216", "http://semanticscience.org/resource/has-measurement-value"], 
 "has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
 "has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
 "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
@@ -28,6 +30,8 @@ class YARRRML_Template_Builder
 "has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
 "denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
 "is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
+"is-causally-related-to" => ["http://semanticscience.org/resource/SIO_000294", "http://semanticscience.org/resource/is-causally-related-to"],
+"is-causally-related-from" => ["http://semanticscience.org/resource/SIO_000352", "http://semanticscience.org/resource/is-causally-related-from"],
 # predicates
 # for processs
 "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
@@ -337,14 +341,14 @@ class YARRRML_Template_Builder
       ["#{source_tag}-source"],
       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
       [
-            [SIO["is-realized-in"][self.sio_verbose], root_url + "##{process_tag}","iri"]
+            [SIO["is-realized-in"][self.sio_verbose], root_url + "#process_#{process_tag}","iri"]
       ]
       )
     
     @mappings << mapping_clause(
-          "#{process_tag}_process_annotation",
+          "process_#{process_tag}_process_annotation",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
+           root_url + "#process_#{process_tag}",
            [
              ["rdf:type",SIO["process"][self.sio_verbose], "iri"],
              ["rdf:type","#{process_type}", "iri"],
@@ -355,15 +359,15 @@ class YARRRML_Template_Builder
       
     if process_start_column
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_start",
+        "process_#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
-           [[SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate_$(#{process_start_column})", "iri"]]
+           root_url + "#process_#{process_tag}",
+           [[SIO["has-start-time"][self.sio_verbose], root_url + "#process_#{process_tag}_startdate_$(#{process_start_column})", "iri"]]
            )
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_start_value",
+        "process_#{process_tag}_process_annotation_start_value",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}_startdate_$(#{process_start_column})",
+           root_url + "#process_#{process_tag}_startdate_$(#{process_start_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
@@ -372,15 +376,15 @@ class YARRRML_Template_Builder
       # now create the mirror end time, if one is not provided
       unless process_end_column
         @mappings << mapping_clause(
-          "#{process_tag}_process_annotation_end",
+          "process_#{process_tag}_process_annotation_end",
             ["#{source_tag}-source"],
-             root_url + "##{process_tag}",
-             [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_start_column})", "iri"]]
+             root_url + "#process_#{process_tag}",
+             [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_$(#{process_start_column})", "iri"]]
         )
         @mappings << mapping_clause(
-          "#{process_tag}_process_annotation_end_value",
+          "process_#{process_tag}_process_annotation_end_value",
             ["#{source_tag}-source"],
-             root_url + "##{process_tag}_enddate_$(#{process_start_column})",
+             root_url + "#process_#{process_tag}_enddate_$(#{process_start_column})",
              [
                [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
                ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -392,15 +396,15 @@ class YARRRML_Template_Builder
     
     if process_end_column
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_end",
+        "process_#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
-           [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_end_column})", "iri"]]
+           root_url + "#process_#{process_tag}",
+           [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_$(#{process_end_column})", "iri"]]
            )
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_end_value",
+        "process_#{process_tag}_process_annotation_end_value",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}_enddate_$(#{process_end_column})",
+           root_url + "#process_#{process_tag}_enddate_$(#{process_end_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -456,7 +460,7 @@ class YARRRML_Template_Builder
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-            root_url + "##{process_tag}",
+            root_url + "#process_#{process_tag}",
             [[predicate, "$(#{value})", datatype]]
             )
         
@@ -471,7 +475,7 @@ class YARRRML_Template_Builder
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
+           root_url + "#process_#{process_tag}",
             [[predicate, value, datatype]]
             )
         
@@ -491,27 +495,53 @@ class YARRRML_Template_Builder
 # @param params [Hash]  a hash of options
 # @option params :parent_process_tag  [String] (required) the same process tag that is used in the "role in process"  for the parent process
 # @option params :part_process_tag  [String] (required) the same process tag that is used in the "role in process" for the process that is a part of the parent
+# @option params :part_process_type  [String] (optional) the rdf:type of the child process
+# @option params :part_process_type_column  [String] (optional) the rdf:type of the child process
 # @option params :parent_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
 # @option params :part_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_has_part(params)
     parent_process_tag = params.fetch(:parent_process_tag, nil)  
     part_process_tag = params.fetch(:part_process_tag, nil)  
+    part_process_type = params.fetch(:part_process_type, nil)  
+    part_process_type_column = params.fetch(:part_process_type_column, nil)  
     parent_unique_process = params.fetch(:parent_unique_process, true)
     part_unique_process = params.fetch(:part_unique_process, true)
 
     parent_root_url = get_root_url(parent_unique_process)
     part_root_url = get_root_url(part_unique_process)
 
+    part_process_type = part_process_type_column ? "$(#{part_process_type_column})":part_process_type
+
     abort "cannot create part relationship unless both parent and child processes have a tag" unless (parent_process_tag && part_process_tag)
       
     #uniqid = get_uniq_id
     
     @mappings << mapping_clause(
-        "#{parent_process_tag}_has_part_#{part_process_tag}",
+        "process_#{parent_process_tag}_has_part_#{part_process_tag}",
         ["#{source_tag}-source"],
-        parent_root_url + "##{parent_process_tag}",
-        [[SIO["has-part"][self.sio_verbose], part_root_url + "##{part_process_tag}" , "iri"]]
+        parent_root_url + "#process_#{parent_process_tag}",
+        [
+          [SIO["has-part"][self.sio_verbose], part_root_url + "#process_#{part_process_tag}" , "iri"],
+         ]
         )
+    @mappings << mapping_clause(
+        "process_#{part_process_tag}_process_has_type",
+        ["#{source_tag}-source"],
+        parent_root_url + "#process_#{part_process_tag}",
+        [
+          ["rdf:type", SIO["process"][self.sio_verbose], "iri"],
+         ]
+        )
+    if part_process_type
+      @mappings << mapping_clause(
+          "process_#{part_process_tag}_process_has_specific_type",
+          ["#{source_tag}-source"],
+          parent_root_url + "#process_#{part_process_tag}",
+          [
+            ["rdf:type", part_process_type, "iri"],
+           ]
+          )
+    end
     
   end
 
@@ -551,16 +581,16 @@ class YARRRML_Template_Builder
     target_label = target_type_label_column ? "$(#{target_type_label_column})":target_type_label
 
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{target_type_tag}",
+        "process_#{process_with_target_tag}_has_target_#{target_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_target_tag}",
-        [[SIO["has-target"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_target_tag}_Target", "iri"]]
+        root_url + "#process_#{process_with_target_tag}",
+        [[SIO["has-target"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_target_tag}_Target", "iri"]]
         )
     
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{target_type_tag}_annotation",
+        "process_#{process_with_target_tag}_has_target_#{target_type_tag}_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_target_tag}_Target",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_target_tag}_Target",
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{target_type}", "iri"],
@@ -608,14 +638,14 @@ class YARRRML_Template_Builder
     abort "must specify either a default protocol URI, or a column of protocol URIs" unless process_with_target_tag
 
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{protocol_type_tag}",
+        "process_#{process_with_target_tag}_has_target_#{protocol_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_target_tag}",
+        root_url + "#process_#{process_with_target_tag}",
         [[SIO["conforms-to"][self.sio_verbose], protocol_uri, "iri"]]
         )
     
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{protocol_type_tag}_annotation",
+        "process_#{process_with_target_tag}_has_target_#{protocol_type_tag}_annotation",
         ["#{source_tag}-source"],
         protocol_uri,
         [
@@ -627,6 +657,169 @@ class YARRRML_Template_Builder
     
   end
   
+
+
+
+
+# creates the process caused by
+#
+# Parameters passed as a hash.  there can be only one cause!
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_cause_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :cause_type  [URI] an ontological type for the cause (process or event or entity are all fine)
+# @option params :cause_type_column  [string] column header for cause URIs
+# TODO:  Allow any existing node to be a cause...
+  def process_caused_by(params)
+    process_with_cause_tag  = params.fetch(:process_with_cause_tag, nil)  # some one-word name
+    cause_type  = params.fetch(:cause_type, nil)  
+    cause_type_column  = params.fetch(:cause_type_column, nil)  
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+    cause_type = cause_type_column ? "$(#{cause_type_column})":cause_type
+
+    abort "must specify the process_with_cause_tag" unless process_with_cause_tag
+    abort "must specify the cause type" unless (cause_type or cause_type_column)
+        
+    @mappings << mapping_clause(
+        "process_#{process_with_cause_tag}_has_cause",
+        ["#{source_tag}-source"],
+        root_url + "#process_#{process_with_cause_tag}",
+        [[SIO["is-causally-related-from"][self.sio_verbose], root_url + "#cause_of_process_#{process_with_cause_tag}", "iri"]]
+        )
+    
+    @mappings << mapping_clause(
+        "process_#{process_with_cause_tag}_has_cause_annotation",
+        ["#{source_tag}-source"],
+        root_url + "#cause_of_process_#{process_with_cause_tag}",
+        [
+          ["rdf:type",SIO["entity"][self.sio_verbose], "iri"],
+          ["rdf:type",cause_type, "iri"],
+          ]
+        )
+    
+  end
+  
+
+# creates the process has_attribute
+#
+# Parameters passed as a hash.  there can be only one cause!
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_attribute_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :attribute_tag  [string] the tag of the attribute 
+  def process_has_attribute(params)
+    process_with_attribute_tag  = params.fetch(:process_with_attribute_tag, nil)  # some one-word name
+    attribute_tag  = params.fetch(:attribute_tag, nil)  # some one-word name
+
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+    abort "must specify the process_with_attribute_tag" unless process_with_attribute_tag
+    abort "must specify the attribute_tag" unless (attribute_tag)
+        
+    @mappings << mapping_clause(
+        "process_#{process_with_attribute_tag}_has_attribute_#{attribute_tag}",
+        ["#{source_tag}-source"],
+        root_url + "#process_#{process_with_attribute_tag}",
+        [[SIO["has-attribute"][self.sio_verbose], root_url + "#attribute_#{attribute_tag}", "iri"]]
+        )
+  end
+  
+
+
+
+# creates the build attribute clauses
+#
+# Parameters passed as a hash.  
+#
+# @param params [Hash]  a hash of options
+# @option params :attribute_tag  [String] (required) a unique tag for the attribute
+# @option params :attribute_type  [URI] an ontological type for the attribute
+# @option params :attribute_type_column  [string] column header for attribute URIs
+# @option params :attribute_value_column  [string] column header for attribute URIs
+# @option params :attribute_value_unit_column  [string] column header for attribute unit URIs
+# @option params :attribute_value_unit_label_column  [string] column header for attribute unit labels
+# 
+# TODO:  Allow any existing node to be a cause...
+  def build_attribute(params)
+    attribute_tag  = params.fetch(:attribute_tag, nil)  # some one-word name
+    attribute_type  = params.fetch(:attribute_type, nil)  
+    attribute_type_column  = params.fetch(:attribute_type_column, nil)  
+    attribute_value_column  = params.fetch(:attribute_value_column, nil)  
+    attribute_value_unit_column  = params.fetch(:attribute_value_unit_column, nil)  
+    attribute_value_unit_label_column  = params.fetch(:attribute_value_unit_label_column, nil)  
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+    attribute_type = attribute_type_column ? "$(#{attribute_type_column})":attribute_type
+    attribute_value_unit_column = "$(#{attribute_value_unit_column})"
+    attribute_value_unit_label_column = "$(#{attribute_value_unit_label_column})"
+
+    abort "must specify the attribute_tag" unless attribute_tag
+    abort "must specify the attribute_type" unless (attribute_type or attribute_type_column)
+    abort "must specify both a unit column and a unit label column" if (attribute_value_unit_column and !(attribute_value_unit_label_column))
+    
+    @mappings << mapping_clause(
+        "attribute_#{attribute_tag}_annotation",
+        ["#{source_tag}-source"],
+        root_url + "#attribute_#{attribute_tag}",
+        [
+          ["rdf:type",SIO["attribute"][self.sio_verbose], "iri"],
+          ["rdf:type",attribute_type, "iri"],
+          ]
+        )
+    
+    if attribute_value_column
+      @mappings << mapping_clause(
+          "attribute_#{attribute_tag}_measurement",
+          ["#{source_tag}-source"],
+          root_url + "#attribute_#{attribute_tag}",
+          [[SIO["has-measurement-value"][self.sio_verbose], root_url + "#measurement_of_attribute_#{attribute_tag}", "iri"]]
+          )
+
+    
+      @mappings << mapping_clause(
+          "attribute_#{attribute_tag}_measurement_value",
+          ["#{source_tag}-source"],
+          root_url + "#measurement_of_attribute_#{attribute_tag}",
+          [[SIO["has-measurement-value"][self.sio_verbose], root_url + "#measurementvalue_of_attribute_#{attribute_tag}", "iri"]]
+          )
+      @mappings << mapping_clause(
+          "attribute_#{attribute_tag}_measurement_value_value",
+          ["#{source_tag}-source"],
+          root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
+          [[SIO["has-value"][self.sio_verbose], "$(#{attribute_value_column})", "iri"]]
+          )
+      if attribute_value_unit_column
+        @mappings << mapping_clause(
+            "attribute_#{attribute_tag}_measurement_value_unit_node",
+            ["#{source_tag}-source"],
+            root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
+            [
+              [SIO["has-unit"][self.sio_verbose], root_url + "#measurementvalue_unit_of_attribute_#{attribute_tag}", "iri"],             
+              ]
+            )
+        @mappings << mapping_clause(
+            "attribute_#{attribute_tag}_measurement_value_unit_node_type",
+            ["#{source_tag}-source"],
+            root_url + "#measurementvalue_unit_of_attribute_#{attribute_tag}",
+            [
+              ["rdf:type", "#{attribute_value_unit_column}", "iri"],
+              ["rdfs:label", "#{attribute_value_unit_label_column}", "iri"],
+              ]
+            )
+      end
+      
+
+    end
+
+    
+  end
 
 
 
@@ -677,16 +870,16 @@ class YARRRML_Template_Builder
     input_value_datatype = input_has_value_datatype_column ? "$(#{input_has_value_datatype_column})":input_has_value_datatype
 
     @mappings << mapping_clause(
-        "#{process_with_input_tag}_has_input_#{input_type_tag}",
+        "process_#{process_with_input_tag}_has_input_#{input_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_input_tag}",
-        [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output", "iri"]]
+        root_url + "#process_#{process_with_input_tag}",
+        [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output", "iri"]]
         )
     
     @mappings << mapping_clause(
-        "#{process_with_input_tag}_has_input_#{input_type_tag}_annotation",
+        "process_#{process_with_input_tag}_has_input_#{input_type_tag}_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output",
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{input_type}", "iri"],
@@ -700,7 +893,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
       "input_#{input_type_tag}_has_value",
       ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output",
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output",
       [[SIO["has-value"][self.sio_verbose],"#{input_value}", "#{input_value_datatype}"]]
       )
     end
@@ -766,50 +959,50 @@ class YARRRML_Template_Builder
    #return unless output_value
    
     @mappings << mapping_clause(
-        "#{process_with_output_tag}_process_has_output",
+        "process_#{process_with_output_tag}_process_has_output",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_output_tag}",
-        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output", "iri"]]
+        root_url + "#process_#{process_with_output_tag}",
+        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output", "iri"]]
         )
     @mappings << mapping_clause(
-        "#{process_with_output_tag}_Output_annotation",
+        "process_#{process_with_output_tag}_Output_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
         [["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"]]
         )      
     
     if output_type
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_type_annotation",
+              "process_#{process_with_output_tag}_Output_type_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdf:type",output_type, "iri"]]
               )
     end
     
     if output_type_label
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_type_label_annotation",
+              "process_#{process_with_output_tag}_Output_type_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:label","#{output_type_label} Output Type", "xsd:string"]]
               )
     end
     
     if output_value
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_value_annotation",
+              "process_#{process_with_output_tag}_Output_value_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [[SIO["has-value"][self.sio_verbose],output_value, output_value_datatype]]
               )
     end
     
     if output_comments_column
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_value_comments",
+              "process_#{process_with_output_tag}_Output_value_comments",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:comment","$(#{output_comments_column})", "xsd:string"]]
               )
     end
@@ -831,17 +1024,17 @@ class YARRRML_Template_Builder
     if output_measured_at_column
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_measured_at_timeinstant",
+        "process_#{process_with_output_tag}_output_measured_at_timeinstant",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
-             [SIO["measured-at"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_measured_at", "iri"],           
+             [SIO["measured-at"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at", "iri"],           
              ]
            )
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_measured_at_timeinstant_value",
+        "process_#{process_with_output_tag}_output_measured_at_timeinstant_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_measured_at",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
              ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],         
@@ -853,18 +1046,18 @@ class YARRRML_Template_Builder
     if output_start_column  # start and end will be attributes of the information object
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_start_atribute",
+        "process_#{process_with_output_tag}_output_has_start_atribute",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
               # need to add the start column into this URI so that, if it is empty, the attribute will not be created at all by SDMRDFizer
-             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})", "iri"],           
+             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})", "iri"],           
              ]
            )
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_start_attribute_value",
+        "process_#{process_with_output_tag}_output_has_start_attribute_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],         
@@ -876,18 +1069,18 @@ class YARRRML_Template_Builder
     if output_end_column  # start and end will be attributes of the information object
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_end_atribute",
+        "process_#{process_with_output_tag}_output_has_end_atribute",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
               # need to add the start column into this URI so that, if it is empty, the attribute will not be created at all by SDMRDFizer
-             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})", "iri"],           
+             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})", "iri"],           
              ]
            )
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_end_attribute_value",
+        "process_#{process_with_output_tag}_output_has_end_attribute_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],         
@@ -916,7 +1109,7 @@ class YARRRML_Template_Builder
       @mappings << mapping_clause(
           "#{uniqid}_output_custom_annotation",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
           [["$(#{predicate})", "$(#{value})", datatype]]
           )
           
@@ -965,9 +1158,9 @@ class YARRRML_Template_Builder
     end
 
     @mappings << mapping_clause(
-        "inout_from_#{inout_process_tag}_refers_to_concepts",
+        "inout_from_process_#{inout_process_tag}_refers_to_concepts",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{inout_process_tag}_Output",
         [
         [SIO["refers-to"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode", "iri"]
         ] 
@@ -975,7 +1168,7 @@ class YARRRML_Template_Builder
 
     if is_attribute
       @mappings << mapping_clause(
-      "has_attribute_of_inout_from_#{inout_process_tag}",
+      "has_attribute_of_inout_from_process_#{inout_process_tag}",
       ["#{source_tag}-source"],
       "this:individual_$(#{@personid_column})#Person",            
       [
@@ -986,7 +1179,7 @@ class YARRRML_Template_Builder
 
 #$stderr.puts types.inspect
     @mappings << mapping_clause(
-      "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
+      "inout_from_process_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
       ["#{source_tag}-source"],
       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
       
@@ -997,7 +1190,7 @@ class YARRRML_Template_Builder
 
     if refers_to_label    
       @mappings << mapping_clause(
-          "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_label",
+          "inout_from_process_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_label",
           ["#{source_tag}-source"],
           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode",
           [
@@ -1037,16 +1230,16 @@ class YARRRML_Template_Builder
 
     if output_unit
       @mappings << mapping_clause(
-              "#{process_tag}_Output_hasunit_unit",
+              "process_#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output",
+                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output",
                 [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit", "iri"]]
                 )
 
       @mappings << mapping_clause(
-              "#{process_tag}_Output_unit_annotation",
+              "process_#{process_tag}_Output_unit_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
               [["rdf:type",output_unit, "iri"]]
               )
 
@@ -1055,9 +1248,9 @@ class YARRRML_Template_Builder
     if output_unit and output_unit_label
     
       @mappings << mapping_clause(
-              "#{process_tag}_Output_unit_label_annotation",
+              "process_#{process_tag}_Output_unit_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
               [["rdfs:label",output_unit_label,"xsd:string"]
               ]
               )
