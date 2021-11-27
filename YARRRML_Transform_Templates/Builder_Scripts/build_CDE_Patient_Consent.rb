@@ -49,7 +49,7 @@ b.process_has_input({
     process_with_input_tag:  "patient_consenting",
     input_type: "http://purl.obolibrary.org/obo/ICO_0000001",  # informed consent form (input)
     input_type_tag: "consent_document",
-    input_has_value_column: "url" 
+    input_has_value_column: "consent_template" 
 })
 
 

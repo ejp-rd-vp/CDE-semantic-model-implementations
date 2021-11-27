@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Diagnosis Patient Role
+        value: " Role: Diagnosis Patient"
         datatype: xsd:string
   patientRole_diagnosis_realized_medical_diagnosis:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: medical diagnosis Process
+        value: 'Process: medical diagnosis'
         datatype: xsd:string
   medical_diagnosis_process_annotation_start:
     sources:
@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        datatype: xsd:string
   medical_diagnosis_process_annotation_end:
     sources:
     - cde_patient_diagnosis-source
@@ -147,6 +151,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
+        datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_medical_diagnosis:
     sources:
     - cde_patient_diagnosis-source
@@ -190,7 +198,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(diagnostic_opinion) Output Type"
+        value: 'Output Type: $(diagnostic_opinion)'
         datatype: xsd:string
   medical_diagnosis_Output_value_annotation:
     sources:
@@ -239,5 +247,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(diagnostic_opinion) Attribute"
+        value: 'Attribute Type: $(diagnostic_opinion)'
         datatype: xsd:string

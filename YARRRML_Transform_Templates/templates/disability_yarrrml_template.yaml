@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient Role
+        value: " Role: Patient"
         datatype: xsd:string
   patientRole_realized_disability_assessment_test:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(test_name) Process"
+        value: 'Process: $(test_name)'
         datatype: xsd:string
   disability_assessment_test_process_annotation_start:
     sources:
@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(test_date)'
+        datatype: xsd:string
   disability_assessment_test_process_annotation_end:
     sources:
     - questions-source
@@ -147,7 +151,11 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16342121775991929_process_custom_annotation:
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(test_date)'
+        datatype: xsd:string
+  16352236025640354_process_custom_annotation:
     sources:
     - questions-source
     s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
@@ -190,7 +198,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: disability score Output Type
+        value: 'Output Type: disability score'
         datatype: xsd:string
   disability_assessment_test_Output_value_annotation:
     sources:
@@ -225,5 +233,5 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity Process Input
+        value: 'Process Input: information content entity - Type: Questionnaire'
         datatype: xsd:string

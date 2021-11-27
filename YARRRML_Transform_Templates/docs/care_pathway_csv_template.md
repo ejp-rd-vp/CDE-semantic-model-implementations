@@ -5,7 +5,7 @@ The care pathway (currently limited to first-contact information)
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/care_pathway.csv)
+Please find example CSV file [here](../exemplar_csv/care_pathway.csv)
 
 ### Columns
 

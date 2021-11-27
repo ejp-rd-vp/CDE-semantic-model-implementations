@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Genetic Diagnosis Patient Role
+        value: " Role: Genetic Diagnosis Patient"
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_omim:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing OMIM Process
+        value: 'Process: genetic testing OMIM'
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_hgnc:
     sources:
@@ -127,7 +127,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing HGNC Process
+        value: 'Process: genetic testing HGNC'
         datatype: xsd:string
   patientRole_genetic_diagnosis_realized_patientRole_genetic_diagnosis_process_hgvs:
     sources:
@@ -153,7 +153,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: genetic testing HGVS Process
+        value: 'Process: genetic testing HGVS'
         datatype: xsd:string
   longitudinal_information_gathering_process_diseaseX_has_part_patientRole_genetic_diagnosis_process_omim:
     sources:
@@ -207,7 +207,7 @@ mappings:
     po:
     - predicates: rdf:type
       objects:
-        value: http://semanticscience.org/resource/SIO_001381
+        value: http://semanticscience.org/resource/SIO_001388
         type: iri
   patientRole_genetic_diagnosis_process_hgvs_Output_type_label_annotation:
     sources:
@@ -216,7 +216,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HGVS genome sequence variant Output Type
+        value: 'Output Type: measurement-value'
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgvs_Output_value_annotation:
     sources:
@@ -225,7 +225,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(hgvs_variant)"
+        value: "$(hgvs_string)"
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_omim_process_has_output:
     sources:
@@ -261,7 +261,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: OMIM genome sequence variant Output Type
+        value: 'Output Type: OMIM genome sequence variant'
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_omim_Output_value_annotation:
     sources:
@@ -270,7 +270,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(omim_number)"
+        value: "$(omim_uri)"
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgnc_process_has_output:
     sources:
@@ -306,7 +306,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: HGNC genome sequence variant Output Type
+        value: 'Output Type: HGNC genome sequence variant'
         datatype: xsd:string
   patientRole_genetic_diagnosis_process_hgnc_Output_value_annotation:
     sources:
@@ -315,7 +315,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(hgnc_code)"
+        value: "$(hgnc_uri)"
         datatype: xsd:string
   inout_from_patientRole_genetic_diagnosis_process_hgnc_refers_to_concepts:
     sources:
@@ -324,7 +324,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#hgnc_reference_TypedAttributeNode
+        value: "$(hgnc_uri)"
         type: iri
   has_attribute_of_inout_from_patientRole_genetic_diagnosis_process_hgnc:
     sources:
@@ -333,12 +333,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#hgnc_reference_TypedAttributeNode
+        value: "$(hgnc_uri)"
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_hgnc_refers_to_concept_hgnc_reference_type:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#hgnc_reference_TypedAttributeNode
+    s: "$(hgnc_uri)"
     po:
     - predicates: rdf:type
       objects:
@@ -346,16 +346,20 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: https://identifiers.org/$(hgnc_code)
+        value: http://purl.obolibrary.org/obo/NCIT_C171178
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/SIO_000015
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_hgnc_refers_to_concept_hgnc_reference_label:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#hgnc_reference_TypedAttributeNode
+    s: "$(hgnc_uri)"
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(hgnc_code) Attribute"
+        value: 'Attribute Type: $(hgnc_uri)'
         datatype: xsd:string
   inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concepts:
     sources:
@@ -364,7 +368,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
+        value: "$(clinvar_uri)"
         type: iri
   has_attribute_of_inout_from_patientRole_genetic_diagnosis_process_hgvs:
     sources:
@@ -373,12 +377,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
+        value: "$(clinvar_uri)"
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concept_hgvs_reference_type:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
+    s: "$(clinvar_uri)"
     po:
     - predicates: rdf:type
       objects:
@@ -386,16 +390,20 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C172243
+        value: http://purl.obolibrary.org/obo/NCIT_C171178
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/SIO_000015
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_hgvs_refers_to_concept_hgvs_reference_label:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#hgvs_reference_TypedAttributeNode
+    s: "$(clinvar_uri)"
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(hgvs_code) Attribute"
+        value: 'Attribute Type: $(hgvs_string)'
         datatype: xsd:string
   inout_from_patientRole_genetic_diagnosis_process_omim_refers_to_concepts:
     sources:
@@ -404,7 +412,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#omim_reference_TypedAttributeNode
+        value: "$(omim_uri)"
         type: iri
   has_attribute_of_inout_from_patientRole_genetic_diagnosis_process_omim:
     sources:
@@ -413,12 +421,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#omim_reference_TypedAttributeNode
+        value: "$(omim_uri)"
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_omim_refers_to_concept_omim_reference_type:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#omim_reference_TypedAttributeNode
+    s: "$(omim_uri)"
     po:
     - predicates: rdf:type
       objects:
@@ -426,14 +434,18 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: https://www.omim.org/entry/$(omim_number)
+        value: http://purl.obolibrary.org/obo/NCIT_C171178
+        type: iri
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/SIO_000015
         type: iri
   inout_from_patientRole_genetic_diagnosis_process_omim_refers_to_concept_omim_reference_label:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#omim_reference_TypedAttributeNode
+    s: "$(omim_uri)"
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(omim_number) Attribute"
+        value: 'Attribute Type: $(omim_uri)'
         datatype: xsd:string

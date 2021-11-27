@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient Role
+        value: " Role: Patient"
         datatype: xsd:string
   thisRole_realized_some_laboratory_measuring_process:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(processLabel) Process"
+        value: 'Process: $(processLabel)'
         datatype: xsd:string
   some_laboratory_measuring_process_process_annotation_start:
     sources:
@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        datatype: xsd:string
   some_laboratory_measuring_process_process_annotation_end:
     sources:
     - laboratory_measurement-source
@@ -147,6 +151,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
+        datatype: xsd:string
   some_laboratory_measuring_process_has_input_material_tested:
     sources:
     - laboratory_measurement-source
@@ -171,7 +179,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(material_tested_label) Process Input"
+        value: 'Process Input: $(material_tested_label) - Type: material_tested'
         datatype: xsd:string
   some_laboratory_measuring_process_has_target_target_entity:
     sources:
@@ -197,18 +205,31 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: "$(target_label) Process Target"
+        value: 'Process Target: $(target_label)'
         datatype: xsd:string
-  some_laboratory_measuring_process_has_target_process_protocol:
+  thisprocess_specified_by_laboratory_measurement_process_protocol_specifictype_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#thisprocess
     po:
-    - predicates: http://semanticscience.org/resource/conforms-to
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/process
+        type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Protocol: Process'
+        datatype: xsd:string
+  thisprocess_specified_by_laboratory_measurement_process_protocol:
+    sources:
+    - laboratory_measurement-source
+    s: this:individual_$(pid)_$(uniqid)_process#thisprocess
+    po:
+    - predicates: http://semanticscience.org/resource/is_specified_by
       objects:
         value: "$(protocolURI)"
         type: iri
-  some_laboratory_measuring_process_has_target_process_protocol_annotation:
+  thisprocess_specified_by_laboratory_measurement_process_protocol_annotation:
     sources:
     - laboratory_measurement-source
     s: "$(protocolURI)"
@@ -221,9 +242,13 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C42651
         type: iri
+    - predicates: rdf:type
+      objects:
+        value: http://purl.obolibrary.org/obo/NCIT_C42651
+        type: iri
     - predicates: rdfs:label
       objects:
-        value: Protocol Protocol
+        value: 'Protocol: $(protocolURI)'
         datatype: xsd:string
   some_laboratory_measuring_process_process_has_output:
     sources:
@@ -259,7 +284,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: measurement-value Output Type
+        value: 'Output Type: measurement-value'
         datatype: xsd:string
   some_laboratory_measuring_process_Output_value_annotation:
     sources:

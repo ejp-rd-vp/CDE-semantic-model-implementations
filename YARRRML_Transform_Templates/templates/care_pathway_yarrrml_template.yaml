@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: First Contact Patient Role
+        value: " Role: First Contact Patient"
         datatype: xsd:string
   patientRole_care_pathway_first_contact_realized_patientRole_care_pathway_first_contact_process:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: first contact with specialized center Process
+        value: 'Process: first contact with specialized center'
         datatype: xsd:string
   patientRole_care_pathway_first_contact_process_process_annotation_start:
     sources:
@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(first_contact_date)'
+        datatype: xsd:string
   patientRole_care_pathway_first_contact_process_process_annotation_end:
     sources:
     - cde_patient_care_pathway-source
@@ -147,7 +151,11 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
-  16342121753604743_process_custom_annotation:
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(first_contact_date)'
+        datatype: xsd:string
+  1635223601007772_process_custom_annotation:
     sources:
     - cde_patient_care_pathway-source
     s: this:individual_$(pid)_$(uniqid)_process#patientRole_care_pathway_first_contact_process

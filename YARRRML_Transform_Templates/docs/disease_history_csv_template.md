@@ -5,7 +5,7 @@ The CDE for disease history ("age" at onset, "age" at diagnosis)
 ## CSV file 
 
 ### Example CSV file
-Please find example CSV file [here](../csv/disease_history.csv)
+Please find example CSV file [here](../exemplar_csv/disease_history.csv)
 
 ### Columns
 

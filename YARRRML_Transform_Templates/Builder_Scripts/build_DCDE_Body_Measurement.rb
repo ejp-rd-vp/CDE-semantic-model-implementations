@@ -1,7 +1,6 @@
 require "yarrrml-template-builder"
 
-# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,valueDatatype,unitURI,unitLabel,date,comments
-
+# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,protocolURI,protocolLabel,value,valueDatatype,unitURI,unitLabel,date,comments
 b = YARRRML_Template_Builder.new({
   source_tag: "body_measurement",
   sio_verbose: 1,
@@ -26,14 +25,25 @@ b.role_in_process({
 # @param params [Hash]  a hash of options
 # @option params :process_with_protocol_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
 # @option params :protocol_type_tag  [String] a tag to differentiate this input from other inputs
-# @option params :protocol_type  [String] ("http://purl.obolibrary.org/obo/NCIT_C42651" - protocol)
-# @option params :protocol_type_label  [String] ("protocol")
+# @option params :process_type  [String] ("sio:process" - process) usually you want to be more specific, like "measuring" or "estimating"
+# @option params :process_type_column  [String] ("sio:process" - process)
+# @option params :process_type_label  [String] ("protocol")
+# @option params :process_type_label_column [String] ("protocol")
 # @option params :protocol_uri  [String] uri of the process protocol for all inputs
 # @option params :protocol_uri_column  [String] column header for the protocol uri column
-b.process_conforms_to({
+# @option params :protocol_label  [String] label of the process protocol for all inputs
+# @option params :protocol_label_column  [String] column header for the label for the protocol uri
+# @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to b
+
+# pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,protocolURI,protocolLabel,value,valueDatatype,unitURI,unitLabel,date,comments
+
+b.process_is_specified_by({
     process_with_target_tag:  "some_body_quality_measuring_process",
-    protocol_type_tag: "process_protocol",
-    protocol_uri_column: "protocolURI",  # informed consent form (input)
+    protocol_type_tag: "body_measuring_process_protocol",
+    process_type_column: "processURI",
+    process_type_label_column: "processLabel",
+    protocol_uri_column: "protocolURI", 
+    protocol_label_column: "protocolLabel",  
 })
 
 

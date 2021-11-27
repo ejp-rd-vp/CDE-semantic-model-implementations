@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for longitudinal information gathering Role
+        value: " Role: Patient for longitudinal information gathering"
         datatype: xsd:string
   longitudinal_information_gathering_role_realized_longitudinal_information_gathering_process_diseaseX:
     sources:
@@ -101,9 +101,9 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: patient longitudinal data collection Process
+        value: 'Process: patient longitudinal data collection'
         datatype: xsd:string
-  16342121808563542_process_custom_annotation:
+  16352236028626692_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX
@@ -112,7 +112,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C17747
         type: iri
-  163421218085637_process_custom_annotation:
+  16352236028626862_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX

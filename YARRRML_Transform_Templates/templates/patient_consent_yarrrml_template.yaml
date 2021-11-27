@@ -75,7 +75,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: Patient for status recording Role
+        value: " Role: Patient for status recording"
         datatype: xsd:string
   patientRole_consent_realized_patient_consenting:
     sources:
@@ -101,7 +101,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: consenting process Process
+        value: 'Process: consenting process'
         datatype: xsd:string
   patient_consenting_process_annotation_start:
     sources:
@@ -125,6 +125,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/start-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'Start Date: $(date)'
+        datatype: xsd:string
   patient_consenting_process_annotation_end:
     sources:
     - cde_patient_consent-source
@@ -147,6 +151,10 @@ mappings:
       objects:
         value: http://semanticscience.org/resource/end-date
         type: iri
+    - predicates: rdfs:label
+      objects:
+        value: 'End Date: $(date)'
+        datatype: xsd:string
   patient_consenting_has_input_consent_document:
     sources:
     - cde_patient_consent-source
@@ -171,7 +179,7 @@ mappings:
         type: iri
     - predicates: rdfs:label
       objects:
-        value: information content entity Process Input
+        value: 'Process Input: information content entity - Type: consent_document'
         datatype: xsd:string
   input_consent_document_has_value:
     sources:
@@ -180,7 +188,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
-        value: "$(url)"
+        value: "$(consent_template)"
         datatype: xsd:string
   patient_consenting_process_has_output:
     sources:
@@ -216,7 +224,7 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: Patient Consent Record Output Type
+        value: 'Output Type: Patient Consent Record'
         datatype: xsd:string
   patient_consenting_Output_value_annotation:
     sources:
@@ -265,5 +273,5 @@ mappings:
     po:
     - predicates: rdfs:label
       objects:
-        value: "$(result_label) Attribute"
+        value: 'Attribute Type: $(result_label)'
         datatype: xsd:string
