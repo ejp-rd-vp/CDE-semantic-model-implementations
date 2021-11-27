@@ -15,6 +15,7 @@ class YARRRML_Template_Builder
 
   SIO = {
 "entity" => ["http://semanticscience.org/resource/SIO_000000", "http://semanticscience.org/resource/entity"], 
+"day" => ["http://semanticscience.org/resource/SIO_000430", "http://semanticscience.org/resource/day"], 
 "has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
 "has-measurement-value" => ["http://semanticscience.org/resource/SIO_000216", "http://semanticscience.org/resource/has-measurement-value"], 
 "has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
@@ -22,6 +23,7 @@ class YARRRML_Template_Builder
 "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
 "has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
 "has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
+"has-agent" => ["http://semanticscience.org/resource/SIO_000139", "http://semanticscience.org/resource/has-agent"],
 "has-target" => ["http://semanticscience.org/resource/SIO_000291", "http://semanticscience.org/resource/has-target"],
 "is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
 "is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
@@ -30,9 +32,12 @@ class YARRRML_Template_Builder
 "is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
 "is-causally-related-to" => ["http://semanticscience.org/resource/SIO_000294", "http://semanticscience.org/resource/is-causally-related-to"],
 "is-causally-related-from" => ["http://semanticscience.org/resource/SIO_000352", "http://semanticscience.org/resource/is-causally-related-from"],
+"is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is-specified-by"],
+"has-component-part" => ["http://semanticscience.org/resource/SIO_000369", "http://semanticscience.org/resource/has-component-part"],
 # predicates
 # for processs
 "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
+"exists-at" => ["http://semanticscience.org/resource/SIO_000687", "http://semanticscience.org/resource/exists-at"],
 "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
 "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
 # for information artifact
@@ -49,6 +54,8 @@ class YARRRML_Template_Builder
 
 "is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
 "drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
+"specialized-object" => ["http://semanticscience.org/resource/SIO_001353", "http://semanticscience.org/resource/specialized-object"],
+"object" => ["http://semanticscience.org/resource/SIO_000776", "http://semanticscience.org/resource/object"],
 "is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
 "has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
 "realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],

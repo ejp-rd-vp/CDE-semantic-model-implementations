@@ -43,10 +43,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#longitudinal_information_gathering_role
         type: iri
-  person_has_role_longitudinal_information_gathering_role:
+  entity_has_role_longitudinal_information_gathering_role:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,7 +54,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -84,12 +84,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_process#longitudinal_information_gathering_process_diseaseX
+        value: this:individual_$(pid)_process#process_longitudinal_information_gathering_process_diseaseX
         type: iri
-  longitudinal_information_gathering_process_diseaseX_process_annotation:
+  process_longitudinal_information_gathering_process_diseaseX_process_annotation:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_process#longitudinal_information_gathering_process_diseaseX
+    s: this:individual_$(pid)_process#process_longitudinal_information_gathering_process_diseaseX
     po:
     - predicates: rdf:type
       objects:
@@ -103,19 +103,19 @@ mappings:
       objects:
         value: 'Process: patient longitudinal data collection'
         datatype: xsd:string
-  16352236028626692_process_custom_annotation:
+  16380141640306566_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX
+    s: this:individual_$(pid)_$(uniqid)_process#process_longitudinal_information_gathering_process_diseaseX
     po:
     - predicates: sio:refers-to
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C17747
         type: iri
-  16352236028626862_process_custom_annotation:
+  16380141640306723_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)_process#longitudinal_information_gathering_process_diseaseX
+    s: this:individual_$(pid)_$(uniqid)_process#process_longitudinal_information_gathering_process_diseaseX
     po:
     - predicates: rdfs:label
       objects:

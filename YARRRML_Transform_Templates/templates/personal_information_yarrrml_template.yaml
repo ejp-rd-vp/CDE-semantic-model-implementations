@@ -43,10 +43,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#patientRole_age
         type: iri
-  person_has_role_patientRole_age:
+  entity_has_role_patientRole_age:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,7 +54,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -103,10 +103,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#patientRole_sex
         type: iri
-  person_has_role_patientRole_sex:
+  entity_has_role_patientRole_sex:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -114,7 +114,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -144,12 +144,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#age_measuring_procedure
+        value: this:individual_$(pid)_$(uniqid)_process#process_age_measuring_procedure
         type: iri
-  age_measuring_procedure_process_annotation:
+  process_age_measuring_procedure_process_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)_process#age_measuring_procedure
+    s: this:individual_$(pid)_$(uniqid)_process#process_age_measuring_procedure
     po:
     - predicates: rdf:type
       objects:
@@ -170,12 +170,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#sex_measuring_procedure
+        value: this:individual_$(pid)_$(uniqid)_process#process_sex_measuring_procedure
         type: iri
-  sex_measuring_procedure_process_annotation:
+  process_sex_measuring_procedure_process_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)_process#sex_measuring_procedure
+    s: this:individual_$(pid)_$(uniqid)_process#process_sex_measuring_procedure
     po:
     - predicates: rdf:type
       objects:
@@ -189,34 +189,34 @@ mappings:
       objects:
         value: 'Process: sex measuring process'
         datatype: xsd:string
-  age_measuring_procedure_process_has_output:
+  process_age_measuring_procedure_process_has_output:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)_process#age_measuring_procedure
+    s: this:individual_$(pid)_$(uniqid)_process#process_age_measuring_procedure
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
+        value: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
         type: iri
-  age_measuring_procedure_Output_annotation:
+  process_age_measuring_procedure_Output_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  age_measuring_procedure_Output_type_annotation:
+  process_age_measuring_procedure_Output_type_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  age_measuring_procedure_Output_type_label_annotation:
+  process_age_measuring_procedure_Output_type_label_annotation:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
@@ -225,43 +225,43 @@ mappings:
       objects:
         value: 'Output Type: Birth Date'
         datatype: xsd:string
-  age_measuring_procedure_Output_value_annotation:
+  process_age_measuring_procedure_Output_value_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(birthdate)"
         datatype: xsd:date
-  sex_measuring_procedure_process_has_output:
+  process_sex_measuring_procedure_process_has_output:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)_process#sex_measuring_procedure
+    s: this:individual_$(pid)_$(uniqid)_process#process_sex_measuring_procedure
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
+        value: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
         type: iri
-  sex_measuring_procedure_Output_annotation:
+  process_sex_measuring_procedure_Output_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  sex_measuring_procedure_Output_type_annotation:
+  process_sex_measuring_procedure_Output_type_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  sex_measuring_procedure_Output_type_label_annotation:
+  process_sex_measuring_procedure_Output_type_label_annotation:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
@@ -270,25 +270,25 @@ mappings:
       objects:
         value: 'Output Type: $(sexLabel)'
         datatype: xsd:string
-  sex_measuring_procedure_Output_value_annotation:
+  process_sex_measuring_procedure_Output_value_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(sexLabel)"
         datatype: xsd:string
-  inout_from_sex_measuring_procedure_refers_to_concepts:
+  inout_from_process_sex_measuring_procedure_refers_to_concepts:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
         value: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
         type: iri
-  has_attribute_of_inout_from_sex_measuring_procedure:
+  has_attribute_of_inout_from_process_sex_measuring_procedure:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)#Person
@@ -297,7 +297,7 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
         type: iri
-  inout_from_sex_measuring_procedure_refers_to_concept_sexAttribute_type:
+  inout_from_process_sex_measuring_procedure_refers_to_concept_sexAttribute_type:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
@@ -314,7 +314,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C28421
         type: iri
-  inout_from_sex_measuring_procedure_refers_to_concept_sexAttribute_label:
+  inout_from_process_sex_measuring_procedure_refers_to_concept_sexAttribute_label:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
@@ -323,16 +323,16 @@ mappings:
       objects:
         value: 'Attribute Type: $(sexLabel)'
         datatype: xsd:string
-  inout_from_age_measuring_procedure_refers_to_concepts:
+  inout_from_process_age_measuring_procedure_refers_to_concepts:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
         value: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
         type: iri
-  has_attribute_of_inout_from_age_measuring_procedure:
+  has_attribute_of_inout_from_process_age_measuring_procedure:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)#Person
@@ -341,7 +341,7 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
         type: iri
-  inout_from_age_measuring_procedure_refers_to_concept_ageAttribute_type:
+  inout_from_process_age_measuring_procedure_refers_to_concept_ageAttribute_type:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
@@ -354,7 +354,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C68615
         type: iri
-  inout_from_age_measuring_procedure_refers_to_concept_ageAttribute_label:
+  inout_from_process_age_measuring_procedure_refers_to_concept_ageAttribute_label:
     sources:
     - cde_personal_information-source
     s: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode

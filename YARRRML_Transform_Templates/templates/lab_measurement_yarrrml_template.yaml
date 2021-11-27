@@ -43,10 +43,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#thisRole
         type: iri
-  person_has_role_thisRole:
+  entity_has_role_thisRole:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,7 +54,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -84,12 +84,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+        value: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
         type: iri
-  some_laboratory_measuring_process_process_annotation:
+  process_some_laboratory_measuring_process_process_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
     po:
     - predicates: rdf:type
       objects:
@@ -103,19 +103,19 @@ mappings:
       objects:
         value: 'Process: $(processLabel)'
         datatype: xsd:string
-  some_laboratory_measuring_process_process_annotation_start:
+  process_some_laboratory_measuring_process_process_annotation_start:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/has-start-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_startdate_$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process_startdate_$(date)
         type: iri
-  some_laboratory_measuring_process_process_annotation_start_value:
+  process_some_laboratory_measuring_process_process_annotation_start_value:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_startdate_$(date)
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process_startdate_$(date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -129,19 +129,19 @@ mappings:
       objects:
         value: 'Start Date: $(date)'
         datatype: xsd:string
-  some_laboratory_measuring_process_process_annotation_end:
+  process_some_laboratory_measuring_process_process_annotation_end:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_enddate_$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process_enddate_$(date)
         type: iri
-  some_laboratory_measuring_process_process_annotation_end_value:
+  process_some_laboratory_measuring_process_process_annotation_end_value:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process_enddate_$(date)
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process_enddate_$(date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -155,19 +155,19 @@ mappings:
       objects:
         value: 'End Date: $(date)'
         datatype: xsd:string
-  some_laboratory_measuring_process_has_input_material_tested:
+  process_some_laboratory_measuring_process_has_input_material_tested:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/has-input
       objects:
-        value: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
+        value: this:individual_$(pid)_$(uniqid)#process_unidentifiedProcess_Output
         type: iri
-  some_laboratory_measuring_process_has_input_material_tested_annotation:
+  process_some_laboratory_measuring_process_has_input_material_tested_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
+    s: this:individual_$(pid)_$(uniqid)#process_unidentifiedProcess_Output
     po:
     - predicates: rdf:type
       objects:
@@ -181,19 +181,19 @@ mappings:
       objects:
         value: 'Process Input: $(material_tested_label) - Type: material_tested'
         datatype: xsd:string
-  some_laboratory_measuring_process_has_target_target_entity:
+  process_some_laboratory_measuring_process_has_target_target_entity:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/has-target
       objects:
-        value: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Target
+        value: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Target
         type: iri
-  some_laboratory_measuring_process_has_target_target_entity_annotation:
+  process_some_laboratory_measuring_process_has_target_target_entity_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Target
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Target
     po:
     - predicates: rdf:type
       objects:
@@ -225,7 +225,7 @@ mappings:
     - laboratory_measurement-source
     s: this:individual_$(pid)_$(uniqid)_process#thisprocess
     po:
-    - predicates: http://semanticscience.org/resource/is_specified_by
+    - predicates: http://semanticscience.org/resource/is-specified-by
       objects:
         value: "$(protocolURI)"
         type: iri
@@ -250,34 +250,34 @@ mappings:
       objects:
         value: 'Protocol: $(protocolURI)'
         datatype: xsd:string
-  some_laboratory_measuring_process_process_has_output:
+  process_some_laboratory_measuring_process_process_has_output:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)_process#some_laboratory_measuring_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_some_laboratory_measuring_process
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+        value: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
         type: iri
-  some_laboratory_measuring_process_Output_annotation:
+  process_some_laboratory_measuring_process_Output_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  some_laboratory_measuring_process_Output_type_annotation:
+  process_some_laboratory_measuring_process_Output_type_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  some_laboratory_measuring_process_Output_type_label_annotation:
+  process_some_laboratory_measuring_process_Output_type_label_annotation:
     sources:
     - laboratory_measurement-source
     s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
@@ -286,46 +286,46 @@ mappings:
       objects:
         value: 'Output Type: measurement-value'
         datatype: xsd:string
-  some_laboratory_measuring_process_Output_value_annotation:
+  process_some_laboratory_measuring_process_Output_value_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(value)"
         datatype: "$(valueDatatype)"
-  some_laboratory_measuring_process_Output_value_comments:
+  process_some_laboratory_measuring_process_Output_value_comments:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
     po:
     - predicates: rdfs:comment
       objects:
         value: "$(comments)"
         datatype: xsd:string
-  some_laboratory_measuring_process_Output_hasunit_unit:
+  process_some_laboratory_measuring_process_Output_hasunit_unit:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
     po:
     - predicates: http://semanticscience.org/resource/has-unit
       objects:
         value: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output_unit
         type: iri
-  some_laboratory_measuring_process_Output_unit_annotation:
+  process_some_laboratory_measuring_process_Output_unit_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output_unit
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output_unit
     po:
     - predicates: rdf:type
       objects:
         value: "$(unitURI)"
         type: iri
-  some_laboratory_measuring_process_Output_unit_label_annotation:
+  process_some_laboratory_measuring_process_Output_unit_label_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output_unit
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output_unit
     po:
     - predicates: rdfs:label
       objects:

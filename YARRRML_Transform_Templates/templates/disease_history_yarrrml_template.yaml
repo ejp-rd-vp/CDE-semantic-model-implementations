@@ -43,10 +43,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset
         type: iri
-  person_has_role_patientRole_symptom_onset:
+  entity_has_role_patientRole_symptom_onset:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,7 +54,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -103,10 +103,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date
         type: iri
-  person_has_role_patientRole_diagnosis_date:
+  entity_has_role_patientRole_diagnosis_date:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -114,7 +114,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -144,12 +144,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patientRole_symptom_onset_process
+        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_symptom_onset_process
         type: iri
-  patientRole_symptom_onset_process_process_annotation:
+  process_patientRole_symptom_onset_process_process_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)_process#patientRole_symptom_onset_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_symptom_onset_process
     po:
     - predicates: rdf:type
       objects:
@@ -170,12 +170,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patientRole_diagnosis_date_process
+        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_diagnosis_date_process
         type: iri
-  patientRole_diagnosis_date_process_process_annotation:
+  process_patientRole_diagnosis_date_process_process_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)_process#patientRole_diagnosis_date_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_diagnosis_date_process
     po:
     - predicates: rdf:type
       objects:
@@ -189,52 +189,70 @@ mappings:
       objects:
         value: 'Process: data collection - diagnosis date recording process'
         datatype: xsd:string
-  longitudinal_information_gathering_process_has_part_patientRole_symptom_onset_process:
+  process_longitudinal_information_gathering_process_has_part_patientRole_symptom_onset_process:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_process#longitudinal_information_gathering_process
+    s: this:individual_$(pid)_process#process_longitudinal_information_gathering_process
     po:
     - predicates: http://semanticscience.org/resource/has-part
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patientRole_symptom_onset_process
+        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_symptom_onset_process
         type: iri
-  longitudinal_information_gathering_process_has_part_patientRole_diagnosis_date_process:
+  process_patientRole_symptom_onset_process_process_has_type:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_process#longitudinal_information_gathering_process
+    s: this:individual_$(pid)_process#process_patientRole_symptom_onset_process
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/process
+        type: iri
+  process_longitudinal_information_gathering_process_has_part_patientRole_diagnosis_date_process:
+    sources:
+    - cde_patient_disease_history-source
+    s: this:individual_$(pid)_process#process_longitudinal_information_gathering_process
     po:
     - predicates: http://semanticscience.org/resource/has-part
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patientRole_diagnosis_date_process
+        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_diagnosis_date_process
         type: iri
-  patientRole_symptom_onset_process_process_has_output:
+  process_patientRole_diagnosis_date_process_process_has_type:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)_process#patientRole_symptom_onset_process
+    s: this:individual_$(pid)_process#process_patientRole_diagnosis_date_process
+    po:
+    - predicates: rdf:type
+      objects:
+        value: http://semanticscience.org/resource/process
+        type: iri
+  process_patientRole_symptom_onset_process_process_has_output:
+    sources:
+    - cde_patient_disease_history-source
+    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_symptom_onset_process
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
+        value: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
         type: iri
-  patientRole_symptom_onset_process_Output_annotation:
+  process_patientRole_symptom_onset_process_Output_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  patientRole_symptom_onset_process_Output_type_annotation:
+  process_patientRole_symptom_onset_process_Output_type_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: "$(onset_uri)"
         type: iri
-  patientRole_symptom_onset_process_Output_type_label_annotation:
+  process_patientRole_symptom_onset_process_Output_type_label_annotation:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
@@ -243,43 +261,43 @@ mappings:
       objects:
         value: 'Output Type: date of onset (in official CDE this is age of onset)'
         datatype: xsd:string
-  patientRole_symptom_onset_process_Output_value_annotation:
+  process_patientRole_symptom_onset_process_Output_value_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(onset_date)"
         datatype: xsd:date
-  patientRole_diagnosis_date_process_process_has_output:
+  process_patientRole_diagnosis_date_process_process_has_output:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)_process#patientRole_diagnosis_date_process
+    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_diagnosis_date_process
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
+        value: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
         type: iri
-  patientRole_diagnosis_date_process_Output_annotation:
+  process_patientRole_diagnosis_date_process_Output_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  patientRole_diagnosis_date_process_Output_type_annotation:
+  process_patientRole_diagnosis_date_process_Output_type_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
     po:
     - predicates: rdf:type
       objects:
         value: "$(diagnosis_uri)"
         type: iri
-  patientRole_diagnosis_date_process_Output_type_label_annotation:
+  process_patientRole_diagnosis_date_process_Output_type_label_annotation:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
@@ -288,25 +306,25 @@ mappings:
       objects:
         value: 'Output Type: age at diagnosis'
         datatype: xsd:string
-  patientRole_diagnosis_date_process_Output_value_annotation:
+  process_patientRole_diagnosis_date_process_Output_value_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(diagnosis_date)"
         datatype: xsd:date
-  inout_from_patientRole_symptom_onset_process_refers_to_concepts:
+  inout_from_process_patientRole_symptom_onset_process_refers_to_concepts:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
         value: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
         type: iri
-  has_attribute_of_inout_from_patientRole_symptom_onset_process:
+  has_attribute_of_inout_from_process_patientRole_symptom_onset_process:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)#Person
@@ -315,7 +333,7 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
         type: iri
-  inout_from_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_type:
+  inout_from_process_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_type:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
@@ -328,7 +346,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/HP_0003674
         type: iri
-  inout_from_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_label:
+  inout_from_process_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_label:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
@@ -337,16 +355,16 @@ mappings:
       objects:
         value: 'Attribute Type: Stage or date of onset'
         datatype: xsd:string
-  inout_from_patientRole_diagnosis_date_process_refers_to_concepts:
+  inout_from_process_patientRole_diagnosis_date_process_refers_to_concepts:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
         value: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
         type: iri
-  has_attribute_of_inout_from_patientRole_diagnosis_date_process:
+  has_attribute_of_inout_from_process_patientRole_diagnosis_date_process:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)#Person
@@ -355,7 +373,7 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
         type: iri
-  inout_from_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_type:
+  inout_from_process_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_type:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
@@ -368,7 +386,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C156420
         type: iri
-  inout_from_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_label:
+  inout_from_process_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_label:
     sources:
     - cde_patient_disease_history-source
     s: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
