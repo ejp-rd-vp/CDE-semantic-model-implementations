@@ -272,37 +272,37 @@ def entity_identifier_role_mappings(params = {})
 
   abort "You MUST have a @entityid_column and a @uniqueid_column to use this library.  Sorry!" unless @entityid_column and @uniqueid_column
   @mappings << mapping_clause(
-                           "identifier_has_value_for_#{entity_role_tag}",
+                           "identifier_has_value_for_#{entity_tag}_#{entity_role_tag}",
                            ["#{source_tag}-source"],
-                           "this:individual_$(#{@entityid_column})#ID",
+                           "this:individual_#{entity_tag}_$(#{@entityid_column})#ID",
                            [[SIO["has-value"][self.sio_verbose], "$(#{@entityid_column})", "xsd:string"]]
                            )
 
   @mappings << mapping_clause(
                                 "identifier_denotes_role_#{entity_role_tag}",
                                 ["#{source_tag}-source"],
-                                "this:individual_$(#{@entityid_column})#ID",
+                                "this:individual_#{entity_tag}_$(#{@entityid_column})#ID",
                                 [
                                  ["a", "#{identifier_type}", "iri"],
                                  ["a", SIO["identifier"][self.sio_verbose], "iri"],
-                                 [SIO["denotes"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
+                                 [SIO["denotes"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
                                 ]
                                )
   @mappings << mapping_clause(
                               "entity_has_role_#{entity_role_tag}",
                               ["#{source_tag}-source"],
-                              "this:individual_$(#{@entityid_column})#Entity",
+                              "this:individual_#{entity_tag}_$(#{@entityid_column})#Entity",
                               [
                                ["a", "#{entity_type}", "iri"],
                                ["a", SIO["object"][self.sio_verbose], "iri"],
-                               [SIO["has-role"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
+                               [SIO["has-role"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
                               ]
                              )
 
   @mappings << mapping_clause(
                               "#{entity_role_tag}_annotation",
                               ["#{source_tag}-source"],
-                              "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}",
+                              "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}",
                               [
                                 ["a", "#{role_type}", "iri"],
                                 ["a", SIO["role"][self.sio_verbose], "iri"],
@@ -313,7 +313,7 @@ def entity_identifier_role_mappings(params = {})
     @mappings << mapping_clause(
                                 "#{entity_role_tag}_entity_label_annotation",
                                 ["#{source_tag}-source"],
-                                "this:individual_$(#{@entityid_column})#Entity",
+                                "this:individual_#{entity_tag}_$(#{@entityid_column})#Entity",
                                 [
                                   ["rdfs:label", " Role: #{entity_label}", "xsd:string"],
                                 ]
@@ -606,7 +606,7 @@ end
   def process_has_agent(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
     entityid_column = params.fetch(:entityid_column, "pid")
-    entity_tag = params.fetch(:entityid_column, "thisEntity")
+    entity_tag = params.fetch(:entity_tag, "thisEntity")
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
@@ -616,7 +616,7 @@ end
         "process_has_agent_#{entity_tag}",
         ["#{source_tag}-source"],
         root_url + "##{process_tag}",
-        [[SIO['has-agent'][self.sio_verbose], "this:individual_$(#{entityid_column})#Entity" , 'iri']]
+        [[SIO['has-agent'][self.sio_verbose], "this:individual_#{entity_tag}_$(#{entityid_column})#Entity" , 'iri']]
         )
       
       
@@ -1146,7 +1146,7 @@ end
           @mappings << mapping_clause(
               "process_#{process_with_output_tag}_Output_type_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:label","Output Type: #{output_type_label}", "xsd:string"]]
               )
     end
@@ -1279,10 +1279,12 @@ end
 #@option params  :inout_refers_to_label  [String]  ([]) an ontology term label
 #@option params  :inout_refers_to_label_column  [String]  ([])  column header for column of ontology term labels
 #@option params  :inout_refers_to_uri_column  [String]  ([])  column header for column containing the URIs of the in/out node (e.g. a specific clinical variant identifier)
-#@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of the patient?
+#@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of a patient/entity?
+#@option params  :entity_tag  [String]  (required)  then you must tag the entity or person, defaults to "thisPerson"
 #@option params  :base_types [Array] ([])  an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
 
   def input_output_refers_to(params)
+    entityid_column = params.fetch(:entityid_column, 'pid')
     inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
     refers_to_tag = params.fetch(:refers_to_tag, nil)
     inout_refers_to = params.fetch(:inout_refers_to, nil)  
@@ -1291,6 +1293,7 @@ end
     inout_refers_to_label_column = params.fetch(:inout_refers_to_label_column, nil ) 
     inout_refers_to_uri_column = params.fetch(:inout_refers_to_uri_column, nil ) 
     is_attribute = params.fetch(:is_attribute, true ) 
+    entity_tag = params.fetch(:entity_tag, "thisPerson" ) 
     base_types = params.fetch(:base_types, [] ) 
     
     refers_to = inout_refers_to_column ? "$(#{inout_refers_to_column})":inout_refers_to
@@ -1298,9 +1301,10 @@ end
 
     abort "must specify in_out_process_tag" unless inout_process_tag
     abort "must specify refers_to_tag" unless refers_to_tag
+    abort "must have an entity tag" unless entity_tag
     #$stderr.puts "is an attribute #{is_attribute}"
 
-    attribute_node_uri = inout_refers_to_uri_column ? "$(#{inout_refers_to_uri_column})":"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode"
+    attribute_node_uri = inout_refers_to_uri_column ? "$(#{inout_refers_to_uri_column})":"this:individual_#{entity_tag}_$(#{entityid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode"
     
     types = []
     types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
@@ -1312,7 +1316,7 @@ end
     @mappings << mapping_clause(
         "inout_from_process_#{inout_process_tag}_refers_to_concepts",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{inout_process_tag}_Output",
+        "this:individual_#{entity_tag}_$(#{entityid_column})_$(#{@uniqueid_column})#process_#{inout_process_tag}_Output",
         [
         [SIO["refers-to"][self.sio_verbose], attribute_node_uri, "iri"]
         ] 
@@ -1322,7 +1326,7 @@ end
       @mappings << mapping_clause(
       "has_attribute_of_inout_from_process_#{inout_process_tag}",
       ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})#Person",            
+      "this:individual_#{entity_tag}_$(#{entityid_column})#Entity",            
       [
        [SIO["has-attribute"][self.sio_verbose], attribute_node_uri, "iri"]
       ]
@@ -1384,7 +1388,7 @@ end
               "process_#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
                 "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output",
-                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit", "iri"]]
+                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit", "iri"]]
                 )
 
       @mappings << mapping_clause(
@@ -1420,6 +1424,7 @@ end
 # @option params :parent_entityid_column  [String] (required) the column that contains the parent entity id
 # @option params :part_entity_tag  [String] (required) the tag of the part
 # @option params :part_type_column  [String] (required) the column that contains the parent entity id
+# TODO  make it possible to explicitly compose entities from other modelled entities (part entity id column)
   def entity_has_component(params)
     parent_entityid_column = params.fetch(:parent_entityid_column, 'pid')  
     part_entity_tag = params.fetch(:part_entity_tag, nil)  
@@ -1435,7 +1440,7 @@ end
     @mappings << mapping_clause(
         "parent_entity_has_part_#{part_entity_tag}",
         ["#{source_tag}-source"],
-        "this:individual_$(#{parent_entityid_column})#Entity",
+        "this:individual_#{parent_entity_tag}_$(#{parent_entityid_column})#Entity",
         [[SIO["has-component-part"][self.sio_verbose], "this:individual_#{part_entity_tag}#comopnentEntity" , "iri"]]
         )
 
