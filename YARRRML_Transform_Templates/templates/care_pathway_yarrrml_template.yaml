@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole_care_pathway_first_contact:
+  identifier_has_value_for_thisPerson_patientRole_care_pathway_first_contact:
     sources:
     - cde_patient_care_pathway-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_care_pathway_first_contact:
     sources:
     - cde_patient_care_pathway-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
         type: iri
   entity_has_role_patientRole_care_pathway_first_contact:
     sources:
     - cde_patient_care_pathway-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
         type: iri
   patientRole_care_pathway_first_contact_annotation:
     sources:
     - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
     po:
     - predicates: a
       objects:
@@ -155,7 +155,7 @@ mappings:
       objects:
         value: 'End Date: $(first_contact_date)'
         datatype: xsd:string
-  16380141599201164_process_custom_annotation:
+  16382582008444731_process_custom_annotation:
     sources:
     - cde_patient_care_pathway-source
     s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process

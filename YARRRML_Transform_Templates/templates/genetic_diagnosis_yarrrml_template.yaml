@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole_genetic_diagnosis:
+  identifier_has_value_for_thisPerson_patientRole_genetic_diagnosis:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_genetic_diagnosis:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
         type: iri
   entity_has_role_patientRole_genetic_diagnosis:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
         type: iri
   patientRole_genetic_diagnosis_annotation:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
     po:
     - predicates: a
       objects:
@@ -239,7 +239,7 @@ mappings:
   process_patientRole_genetic_diagnosis_process_hgvs_Output_type_label_annotation:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis_process_hgvs_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_hgvs_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -284,7 +284,7 @@ mappings:
   process_patientRole_genetic_diagnosis_process_omim_Output_type_label_annotation:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis_process_omim_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_omim_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -329,7 +329,7 @@ mappings:
   process_patientRole_genetic_diagnosis_process_hgnc_Output_type_label_annotation:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis_process_hgnc_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_hgnc_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -347,7 +347,7 @@ mappings:
   inout_from_process_patientRole_genetic_diagnosis_process_hgnc_refers_to_concepts:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_hgnc_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_hgnc_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
@@ -356,7 +356,7 @@ mappings:
   has_attribute_of_inout_from_process_patientRole_genetic_diagnosis_process_hgnc:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
@@ -391,7 +391,7 @@ mappings:
   inout_from_process_patientRole_genetic_diagnosis_process_hgvs_refers_to_concepts:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_hgvs_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_hgvs_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
@@ -400,7 +400,7 @@ mappings:
   has_attribute_of_inout_from_process_patientRole_genetic_diagnosis_process_hgvs:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
@@ -435,7 +435,7 @@ mappings:
   inout_from_process_patientRole_genetic_diagnosis_process_omim_refers_to_concepts:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_omim_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patientRole_genetic_diagnosis_process_omim_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
@@ -444,7 +444,7 @@ mappings:
   has_attribute_of_inout_from_process_patientRole_genetic_diagnosis_process_omim:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:

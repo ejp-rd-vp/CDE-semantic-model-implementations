@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole_symptom_onset:
+  identifier_has_value_for_thisPerson_patientRole_symptom_onset:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_symptom_onset:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_symptom_onset
         type: iri
   entity_has_role_patientRole_symptom_onset:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_symptom_onset
         type: iri
   patientRole_symptom_onset_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_symptom_onset
     po:
     - predicates: a
       objects:
@@ -77,10 +77,10 @@ mappings:
       objects:
         value: " Role: Symptom Onset Patient"
         datatype: xsd:string
-  identifier_has_value_for_patientRole_diagnosis_date:
+  identifier_has_value_for_thisPerson_patientRole_diagnosis_date:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -89,7 +89,7 @@ mappings:
   identifier_denotes_role_patientRole_diagnosis_date:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -101,12 +101,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_diagnosis_date
         type: iri
   entity_has_role_patientRole_diagnosis_date:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -118,12 +118,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_diagnosis_date
         type: iri
   patientRole_diagnosis_date_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_diagnosis_date
     po:
     - predicates: a
       objects:
@@ -255,7 +255,7 @@ mappings:
   process_patientRole_symptom_onset_process_Output_type_label_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_symptom_onset_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -300,7 +300,7 @@ mappings:
   process_patientRole_diagnosis_date_process_Output_type_label_annotation:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis_date_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -318,25 +318,25 @@ mappings:
   inout_from_process_patientRole_symptom_onset_process_refers_to_concepts:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patientRole_symptom_onset_process_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_process_patientRole_symptom_onset_process:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
         type: iri
   inout_from_process_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_type:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -349,7 +349,7 @@ mappings:
   inout_from_process_patientRole_symptom_onset_process_refers_to_concept_age_at_onset_label:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#age_at_onset_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:
@@ -358,25 +358,25 @@ mappings:
   inout_from_process_patientRole_diagnosis_date_process_refers_to_concepts:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patientRole_diagnosis_date_process_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_process_patientRole_diagnosis_date_process:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
         type: iri
   inout_from_process_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_type:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -389,7 +389,7 @@ mappings:
   inout_from_process_patientRole_diagnosis_date_process_refers_to_concept_disagnosis_date_label:
     sources:
     - cde_patient_disease_history-source
-    s: this:individual_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#disagnosis_date_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

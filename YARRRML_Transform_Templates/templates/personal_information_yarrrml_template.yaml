@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole_age:
+  identifier_has_value_for_thisPerson_patientRole_age:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_age:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_age
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_age
         type: iri
   entity_has_role_patientRole_age:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_age
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_age
         type: iri
   patientRole_age_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_age
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_age
     po:
     - predicates: a
       objects:
@@ -77,10 +77,10 @@ mappings:
       objects:
         value: " Role: Patient for age assessment"
         datatype: xsd:string
-  identifier_has_value_for_patientRole_sex:
+  identifier_has_value_for_thisPerson_patientRole_sex:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -89,7 +89,7 @@ mappings:
   identifier_denotes_role_patientRole_sex:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -101,12 +101,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_sex
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_sex
         type: iri
   entity_has_role_patientRole_sex:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -118,12 +118,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_sex
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_sex
         type: iri
   patientRole_sex_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_sex
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_sex
     po:
     - predicates: a
       objects:
@@ -219,7 +219,7 @@ mappings:
   process_age_measuring_procedure_Output_type_label_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#age_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -264,7 +264,7 @@ mappings:
   process_sex_measuring_procedure_Output_type_label_annotation:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sex_measuring_procedure_Output
+    s: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -282,25 +282,25 @@ mappings:
   inout_from_process_sex_measuring_procedure_refers_to_concepts:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_sex_measuring_procedure_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_process_sex_measuring_procedure:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
         type: iri
   inout_from_process_sex_measuring_procedure_refers_to_concept_sexAttribute_type:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -317,7 +317,7 @@ mappings:
   inout_from_process_sex_measuring_procedure_refers_to_concept_sexAttribute_label:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#sexAttribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:
@@ -326,25 +326,25 @@ mappings:
   inout_from_process_age_measuring_procedure_refers_to_concepts:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_age_measuring_procedure_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_process_age_measuring_procedure:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
         type: iri
   inout_from_process_age_measuring_procedure_refers_to_concept_ageAttribute_type:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -357,7 +357,7 @@ mappings:
   inout_from_process_age_measuring_procedure_refers_to_concept_ageAttribute_label:
     sources:
     - cde_personal_information-source
-    s: this:individual_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#ageAttribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

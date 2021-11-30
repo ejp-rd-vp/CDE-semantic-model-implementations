@@ -1422,11 +1422,13 @@ end
 #
 # @param params [Hash]  a hash of options
 # @option params :parent_entityid_column  [String] (required) the column that contains the parent entity id
-# @option params :part_entity_tag  [String] (required) the tag of the part
+# @option params :parent_entity_tag  [String] (required) default "thisPerson" the tag of the parent entity
+# @option params :part_entity_tag  [String] (required) the tag of the part entity
 # @option params :part_type_column  [String] (required) the column that contains the parent entity id
 # TODO  make it possible to explicitly compose entities from other modelled entities (part entity id column)
   def entity_has_component(params)
-    parent_entityid_column = params.fetch(:parent_entityid_column, 'pid')  
+    parent_entityid_column = params.fetch(:parent_entityid_column, 'pid')
+    parent_entity_tag = params.fetch(:part_entity_tag, "thisPerson")  
     part_entity_tag = params.fetch(:part_entity_tag, nil)  
     part_type = params.fetch(:part_type, nil)  
     part_type_column = params.fetch(:part_type_column, nil)  

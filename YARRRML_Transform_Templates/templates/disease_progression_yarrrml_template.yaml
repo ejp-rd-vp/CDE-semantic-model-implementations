@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_longitudinal_information_gathering_role:
+  identifier_has_value_for_thisPerson_longitudinal_information_gathering_role:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_longitudinal_information_gathering_role:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#longitudinal_information_gathering_role
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#longitudinal_information_gathering_role
         type: iri
   entity_has_role_longitudinal_information_gathering_role:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#longitudinal_information_gathering_role
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#longitudinal_information_gathering_role
         type: iri
   longitudinal_information_gathering_role_annotation:
     sources:
     - cde_patient_disease_progression-source
-    s: this:individual_$(pid)_$(uniqid)#longitudinal_information_gathering_role
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#longitudinal_information_gathering_role
     po:
     - predicates: a
       objects:
@@ -103,7 +103,7 @@ mappings:
       objects:
         value: 'Process: patient longitudinal data collection'
         datatype: xsd:string
-  16380141640306566_process_custom_annotation:
+  1638258205119613_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#process_longitudinal_information_gathering_process_diseaseX
@@ -112,7 +112,7 @@ mappings:
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C17747
         type: iri
-  16380141640306723_process_custom_annotation:
+  16382582051196291_process_custom_annotation:
     sources:
     - cde_patient_disease_progression-source
     s: this:individual_$(pid)_$(uniqid)_process#process_longitudinal_information_gathering_process_diseaseX

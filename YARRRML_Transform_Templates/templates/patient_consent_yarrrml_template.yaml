@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole_consent:
+  identifier_has_value_for_thisPerson_patientRole_consent:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_consent:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_consent
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_consent
         type: iri
   entity_has_role_patientRole_consent:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_consent
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_consent
         type: iri
   patientRole_consent_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_consent
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_consent
     po:
     - predicates: a
       objects:
@@ -220,7 +220,7 @@ mappings:
   process_patient_consenting_Output_type_label_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -238,25 +238,25 @@ mappings:
   inout_from_process_patient_consenting_refers_to_concepts:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
         type: iri
   has_attribute_of_inout_from_process_patient_consenting:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
         type: iri
   inout_from_process_patient_consenting_refers_to_concept_consent_attribute_type:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -269,7 +269,7 @@ mappings:
   inout_from_process_patient_consenting_refers_to_concept_consent_attribute_label:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

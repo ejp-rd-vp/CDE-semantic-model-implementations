@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_thisRole:
+  identifier_has_value_for_thisPerson_thisRole:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_thisRole:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#thisRole
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#thisRole
         type: iri
   entity_has_role_thisRole:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)#Entity
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -58,12 +58,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#thisRole
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#thisRole
         type: iri
   thisRole_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#thisRole
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#thisRole
     po:
     - predicates: a
       objects:
@@ -280,7 +280,7 @@ mappings:
   process_some_laboratory_measuring_process_Output_type_label_annotation:
     sources:
     - laboratory_measurement-source
-    s: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output
     po:
     - predicates: rdfs:label
       objects:
@@ -311,7 +311,7 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/has-unit
       objects:
-        value: this:individual_$(pid)_$(uniqid)#some_laboratory_measuring_process_Output_unit
+        value: this:individual_$(pid)_$(uniqid)#process_some_laboratory_measuring_process_Output_unit
         type: iri
   process_some_laboratory_measuring_process_Output_unit_annotation:
     sources:
