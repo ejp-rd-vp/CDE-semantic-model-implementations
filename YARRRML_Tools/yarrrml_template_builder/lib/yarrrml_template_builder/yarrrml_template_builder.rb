@@ -965,18 +965,18 @@ end
             ["rdf:type", SIO["information-content-entity"][self.sio_verbose], "iri"],
             ]
           )
-      end
+    end
 
-      if attribute_label
+    if attribute_label
             @mappings << mapping_clause(
                 "attribute_#{attribute_tag}_measurement_value_label",
                 ["#{source_tag}-source"],
                 root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
                 [["rdfs:label", attribute_label]]
                 )
-      end
+    end
     
-      if attribute_value_unit_column
+    if attribute_value_unit_column
         @mappings << mapping_clause(
             "attribute_#{attribute_tag}_measurement_value_unit_node",
             ["#{source_tag}-source"],
@@ -994,9 +994,6 @@ end
               ["rdfs:label", "#{attribute_value_unit_label_column}", "iri"],
               ]
             )
-      end
-      
-
     end
 
     
