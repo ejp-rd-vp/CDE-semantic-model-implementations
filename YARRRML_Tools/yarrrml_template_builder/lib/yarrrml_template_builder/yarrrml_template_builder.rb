@@ -903,6 +903,8 @@ end
 # @option params :attribute_type  [URI] an ontological type for the attribute
 # @option params :attribute_type_column  [string] column header for attribute URIs
 # @option params :attribute_value_column  [string] column header for attribute URIs
+# @option params :attribute_label  [string] attribute value label
+# @option params :attribute_label_column  [string] column header for attribute value label
 # @option params :attribute_value_unit_column  [string] column header for attribute unit URIs
 # @option params :attribute_value_unit_label_column  [string] column header for attribute unit labels
 # 
@@ -910,6 +912,8 @@ end
   def build_attribute(params)
     attribute_tag  = params.fetch(:attribute_tag, nil)  # some one-word name
     attribute_type  = params.fetch(:attribute_type, nil)  
+    attribute_label  = params.fetch(:attribute_label, nil)
+    attribute_label_column  = params.fetch(:attribute_label_column, nil)  
     attribute_type_column  = params.fetch(:attribute_type_column, nil)  
     attribute_value_column  = params.fetch(:attribute_value_column, nil)  
     attribute_value_unit_column  = params.fetch(:attribute_value_unit_column, nil)  
@@ -919,6 +923,7 @@ end
     root_url = get_root_url(make_unique_process)
 
     attribute_type = attribute_type_column ? "$(#{attribute_type_column})":attribute_type
+    attribute_label = attribute_label_column ? "$(#{attribute_label_column})":attribute_label
     attribute_value_unit_column = "$(#{attribute_value_unit_column})"
     attribute_value_unit_label_column = "$(#{attribute_value_unit_label_column})"
 
@@ -955,8 +960,22 @@ end
           "attribute_#{attribute_tag}_measurement_value_value",
           ["#{source_tag}-source"],
           root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
-          [[SIO["has-value"][self.sio_verbose], "$(#{attribute_value_column})", "iri"]]
+          [
+            [SIO["has-value"][self.sio_verbose], "$(#{attribute_value_column})", "iri"],
+            ["rdf:type", SIO["information-content-entity"][self.sio_verbose], "iri"],
+            ]
           )
+      end
+
+      if attribute_label
+            @mappings << mapping_clause(
+                "attribute_#{attribute_tag}_measurement_value_label",
+                ["#{source_tag}-source"],
+                root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
+                [["rdfs:label", attribute_label]]
+                )
+      end
+    
       if attribute_value_unit_column
         @mappings << mapping_clause(
             "attribute_#{attribute_tag}_measurement_value_unit_node",
