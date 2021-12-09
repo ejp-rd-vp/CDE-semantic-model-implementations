@@ -100,7 +100,7 @@ b.process_hasoutput_output({
   b.input_output_refers_to({
     refers_to_tag: "hgnc_reference",
     inout_process_tag: "patientRole_genetic_diagnosis_process_hgnc",
-    inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C171178",  # sequence variant report
+    inout_refers_to: "http://edamontology.org/data_2298",  # HGNC ID
     inout_refers_to_uri_column: "hgnc_uri",
     inout_refers_to_label_column: "hgnc_uri",
     base_types: ["http://semanticscience.org/resource/SIO_000015"]  # info content entity
@@ -121,7 +121,7 @@ b.process_hasoutput_output({
   b.input_output_refers_to({
     refers_to_tag: "omim_reference",
     inout_process_tag: "patientRole_genetic_diagnosis_process_omim",
-    inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C171178",  # sequence variant report
+    inout_refers_to: "http://edamontology.org/data_1153",  # OMIM Accession
     inout_refers_to_uri_column: "omim_uri",
     inout_refers_to_label_column: "omim_uri",
     base_types: ["http://semanticscience.org/resource/SIO_000015"]  # info content entity

@@ -43,10 +43,10 @@ mappings:
       objects:
         value: this:individual_$(pid)_$(uniqid)#patientRole_genetic_diagnosis
         type: iri
-  person_has_role_patientRole_genetic_diagnosis:
+  entity_has_role_patientRole_genetic_diagnosis:
     sources:
     - cde_genetic_diagnosis-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,7 +54,7 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
@@ -346,7 +346,7 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C171178
+        value: http://edamontology.org/data_2298
         type: iri
     - predicates: rdf:type
       objects:
@@ -434,7 +434,7 @@ mappings:
         type: iri
     - predicates: rdf:type
       objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C171178
+        value: http://edamontology.org/data_1153
         type: iri
     - predicates: rdf:type
       objects:
