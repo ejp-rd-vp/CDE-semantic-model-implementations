@@ -1462,13 +1462,13 @@ end
         "parent_entity_has_part_#{part_entity_tag}",
         ["#{source_tag}-source"],
         "this:individual_#{parent_entity_tag}_$(#{parent_entityid_column})#Entity",
-        [[SIO["has-component-part"][self.sio_verbose], "this:individual_#{part_entity_tag}#comopnentEntity" , "iri"]]
+        [[SIO["has-component-part"][self.sio_verbose], "this:individual_#{part_entity_tag}#componentEntity" , "iri"]]
         )
 
     @mappings << mapping_clause(
       "parent_entity_has_part_#{part_entity_tag}",
       ["#{source_tag}-source"],
-      "this:individual_#{part_entity_tag}#comopnentEntity",
+      "this:individual_#{part_entity_tag}#componentEntity",
       [['rdf:type', part_type , "iri"]]
       )
     
