@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole_consent:
+  identifier_has_value_for_thisPerson_patientRole_consent:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole_consent:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_consent
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_consent
         type: iri
-  person_has_role_patientRole_consent:
+  entity_has_role_patientRole_consent:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,16 +54,16 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole_consent
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_consent
         type: iri
   patientRole_consent_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_consent
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_consent
     po:
     - predicates: a
       objects:
@@ -84,12 +84,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+        value: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting
         type: iri
-  patient_consenting_process_annotation:
+  process_patient_consenting_process_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting
     po:
     - predicates: rdf:type
       objects:
@@ -103,19 +103,19 @@ mappings:
       objects:
         value: 'Process: consenting process'
         datatype: xsd:string
-  patient_consenting_process_annotation_start:
+  process_patient_consenting_process_annotation_start:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting
     po:
     - predicates: http://semanticscience.org/resource/has-start-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_startdate_$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting_startdate_$(date)
         type: iri
-  patient_consenting_process_annotation_start_value:
+  process_patient_consenting_process_annotation_start_value:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting_startdate_$(date)
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting_startdate_$(date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -129,19 +129,19 @@ mappings:
       objects:
         value: 'Start Date: $(date)'
         datatype: xsd:string
-  patient_consenting_process_annotation_end:
+  process_patient_consenting_process_annotation_end:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#patient_consenting_enddate_$(date)
+        value: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting_enddate_$(date)
         type: iri
-  patient_consenting_process_annotation_end_value:
+  process_patient_consenting_process_annotation_end_value:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting_enddate_$(date)
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting_enddate_$(date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -155,19 +155,19 @@ mappings:
       objects:
         value: 'End Date: $(date)'
         datatype: xsd:string
-  patient_consenting_has_input_consent_document:
+  process_patient_consenting_has_input_consent_document:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting
     po:
     - predicates: http://semanticscience.org/resource/has-input
       objects:
-        value: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
+        value: this:individual_$(pid)_$(uniqid)#process_unidentifiedProcess_Output
         type: iri
-  patient_consenting_has_input_consent_document_annotation:
+  process_patient_consenting_has_input_consent_document_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
+    s: this:individual_$(pid)_$(uniqid)#process_unidentifiedProcess_Output
     po:
     - predicates: rdf:type
       objects:
@@ -184,79 +184,79 @@ mappings:
   input_consent_document_has_value:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#unidentifiedProcess_Output
+    s: this:individual_$(pid)_$(uniqid)#process_unidentifiedProcess_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(consent_template)"
         datatype: xsd:string
-  patient_consenting_process_has_output:
+  process_patient_consenting_process_has_output:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)_process#patient_consenting
+    s: this:individual_$(pid)_$(uniqid)_process#process_patient_consenting
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+        value: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
         type: iri
-  patient_consenting_Output_annotation:
+  process_patient_consenting_Output_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  patient_consenting_Output_type_annotation:
+  process_patient_consenting_Output_type_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  patient_consenting_Output_type_label_annotation:
+  process_patient_consenting_Output_type_label_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: rdfs:label
       objects:
         value: 'Output Type: Patient Consent Record'
         datatype: xsd:string
-  patient_consenting_Output_value_annotation:
+  process_patient_consenting_Output_value_annotation:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+    s: this:individual_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(result_label)"
         datatype: xsd:string
-  inout_from_patient_consenting_refers_to_concepts:
+  inout_from_process_patient_consenting_refers_to_concepts:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#patient_consenting_Output
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_patient_consenting_Output
     po:
     - predicates: http://semanticscience.org/resource/refers-to
       objects:
-        value: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
         type: iri
-  has_attribute_of_inout_from_patient_consenting:
+  has_attribute_of_inout_from_process_patient_consenting:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: http://semanticscience.org/resource/has-attribute
       objects:
-        value: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
         type: iri
-  inout_from_patient_consenting_refers_to_concept_consent_attribute_type:
+  inout_from_process_patient_consenting_refers_to_concept_consent_attribute_type:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
     po:
     - predicates: rdf:type
       objects:
@@ -266,10 +266,10 @@ mappings:
       objects:
         value: "$(result_uri)"
         type: iri
-  inout_from_patient_consenting_refers_to_concept_consent_attribute_label:
+  inout_from_process_patient_consenting_refers_to_concept_consent_attribute_label:
     sources:
     - cde_patient_consent-source
-    s: this:individual_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#consent_attribute_TypedAttributeNode
     po:
     - predicates: rdfs:label
       objects:

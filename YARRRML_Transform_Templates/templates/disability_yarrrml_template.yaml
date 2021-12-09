@@ -17,10 +17,10 @@ sources:
     referenceFormulation: "|||FORMULATION|||"
     iterator: "$"
 mappings:
-  identifier_has_value_for_patientRole:
+  identifier_has_value_for_thisPerson_patientRole:
     sources:
     - questions-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -29,7 +29,7 @@ mappings:
   identifier_denotes_role_patientRole:
     sources:
     - questions-source
-    s: this:individual_$(pid)#ID
+    s: this:individual_thisPerson_$(pid)#ID
     po:
     - predicates: a
       objects:
@@ -41,12 +41,12 @@ mappings:
         type: iri
     - predicates: http://semanticscience.org/resource/denotes
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole
         type: iri
-  person_has_role_patientRole:
+  entity_has_role_patientRole:
     sources:
     - questions-source
-    s: this:individual_$(pid)#Person
+    s: this:individual_thisPerson_$(pid)#Entity
     po:
     - predicates: a
       objects:
@@ -54,16 +54,16 @@ mappings:
         type: iri
     - predicates: a
       objects:
-        value: http://semanticscience.org/resource/person
+        value: http://semanticscience.org/resource/object
         type: iri
     - predicates: http://semanticscience.org/resource/has-role
       objects:
-        value: this:individual_$(pid)_$(uniqid)#patientRole
+        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole
         type: iri
   patientRole_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole
+    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole
     po:
     - predicates: a
       objects:
@@ -84,12 +84,12 @@ mappings:
     po:
     - predicates: http://semanticscience.org/resource/is-realized-in
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+        value: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
         type: iri
-  disability_assessment_test_process_annotation:
+  process_disability_assessment_test_process_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
     po:
     - predicates: rdf:type
       objects:
@@ -103,19 +103,19 @@ mappings:
       objects:
         value: 'Process: $(test_name)'
         datatype: xsd:string
-  disability_assessment_test_process_annotation_start:
+  process_disability_assessment_test_process_annotation_start:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
     po:
     - predicates: http://semanticscience.org/resource/has-start-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test_startdate_$(test_date)
+        value: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test_startdate_$(test_date)
         type: iri
-  disability_assessment_test_process_annotation_start_value:
+  process_disability_assessment_test_process_annotation_start_value:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test_startdate_$(test_date)
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test_startdate_$(test_date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -129,19 +129,19 @@ mappings:
       objects:
         value: 'Start Date: $(test_date)'
         datatype: xsd:string
-  disability_assessment_test_process_annotation_end:
+  process_disability_assessment_test_process_annotation_end:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
     po:
     - predicates: http://semanticscience.org/resource/has-end-time
       objects:
-        value: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test_enddate_$(test_date)
+        value: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test_enddate_$(test_date)
         type: iri
-  disability_assessment_test_process_annotation_end_value:
+  process_disability_assessment_test_process_annotation_end_value:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test_enddate_$(test_date)
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test_enddate_$(test_date)
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
@@ -155,73 +155,73 @@ mappings:
       objects:
         value: 'End Date: $(test_date)'
         datatype: xsd:string
-  16352236025640354_process_custom_annotation:
+  16382584961751902_process_custom_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
     po:
     - predicates: rdf:type
       objects:
         value: http://purl.obolibrary.org/obo/NCIT_C20993
         type: iri
-  disability_assessment_test_process_has_output:
+  process_disability_assessment_test_process_has_output:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
     po:
     - predicates: http://semanticscience.org/resource/has-output
       objects:
-        value: this:individual_$(pid)_$(uniqid)#disability_assessment_test_Output
+        value: this:individual_$(pid)_$(uniqid)#process_disability_assessment_test_Output
         type: iri
-  disability_assessment_test_Output_annotation:
+  process_disability_assessment_test_Output_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)#disability_assessment_test_Output
+    s: this:individual_$(pid)_$(uniqid)#process_disability_assessment_test_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  disability_assessment_test_Output_type_annotation:
+  process_disability_assessment_test_Output_type_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)#disability_assessment_test_Output
+    s: this:individual_$(pid)_$(uniqid)#process_disability_assessment_test_Output
     po:
     - predicates: rdf:type
       objects:
         value: http://semanticscience.org/resource/information-content-entity
         type: iri
-  disability_assessment_test_Output_type_label_annotation:
+  process_disability_assessment_test_Output_type_label_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)#disability_assessment_test_Output
+    s: this:individual_$(pid)_$(uniqid)#process_disability_assessment_test_Output
     po:
     - predicates: rdfs:label
       objects:
         value: 'Output Type: disability score'
         datatype: xsd:string
-  disability_assessment_test_Output_value_annotation:
+  process_disability_assessment_test_Output_value_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)#disability_assessment_test_Output
+    s: this:individual_$(pid)_$(uniqid)#process_disability_assessment_test_Output
     po:
     - predicates: http://semanticscience.org/resource/has-value
       objects:
         value: "$(score)"
         datatype: xsd:string
-  disability_assessment_test_has_input_Questionnaire:
+  process_disability_assessment_test_has_input_Questionnaire:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)_process#disability_assessment_test
+    s: this:individual_$(pid)_$(uniqid)_process#process_disability_assessment_test
     po:
     - predicates: http://semanticscience.org/resource/has-input
       objects:
-        value: this:individual_$(pid)_$(uniqid)#question_answering_process_Output
+        value: this:individual_$(pid)_$(uniqid)#process_question_answering_process_Output
         type: iri
-  disability_assessment_test_has_input_Questionnaire_annotation:
+  process_disability_assessment_test_has_input_Questionnaire_annotation:
     sources:
     - questions-source
-    s: this:individual_$(pid)_$(uniqid)#question_answering_process_Output
+    s: this:individual_$(pid)_$(uniqid)#process_question_answering_process_Output
     po:
     - predicates: rdf:type
       objects:

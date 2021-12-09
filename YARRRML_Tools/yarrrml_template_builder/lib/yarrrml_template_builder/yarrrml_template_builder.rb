@@ -14,61 +14,63 @@ class YARRRML_Template_Builder
   attr_accessor :mappings  
 
   SIO = {
-    "has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
-    "has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
-    "has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
-    "has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
-    "has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
-    "has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
-    "has-target" => ["http://semanticscience.org/resource/SIO_000291", "http://semanticscience.org/resource/has-target"],
-    "has-agent" => ["http://semanticscience.org/resource/SIO_000139", "http://semanticscience.org/resource/has-agent"],
-    "has-component-part" => ["http://semanticscience.org/resource/SIO_000369", "http://semanticscience.org/resource/has-component-part"],
-    "is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
-    "is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
-    "has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
-    "denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
-    "is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
-    # predicates
-    # for processs
-    "has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
-    "has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
-    "has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
-    "is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is_specified_by"],
+"entity" => ["http://semanticscience.org/resource/SIO_000000", "http://semanticscience.org/resource/entity"], 
+"day" => ["http://semanticscience.org/resource/SIO_000430", "http://semanticscience.org/resource/day"], 
+"has-attribute" => ["http://semanticscience.org/resource/SIO_000008", "http://semanticscience.org/resource/has-attribute"], 
+"has-measurement-value" => ["http://semanticscience.org/resource/SIO_000216", "http://semanticscience.org/resource/has-measurement-value"], 
+"has-quality" => ["http://semanticscience.org/resource/SIO_000217", "http://semanticscience.org/resource/has-quality"],
+"has-unit" => ["http://semanticscience.org/resource/SIO_000221", "http://semanticscience.org/resource/has-unit"],
+"has-value" => ["http://semanticscience.org/resource/SIO_000300", "http://semanticscience.org/resource/has-value"],
+"has-part" => ["http://semanticscience.org/resource/SIO_000028", "http://semanticscience.org/resource/has-part"],
+"has-role" => ["http://semanticscience.org/resource/SIO_000228", "http://semanticscience.org/resource/has-role"],
+"has-agent" => ["http://semanticscience.org/resource/SIO_000139", "http://semanticscience.org/resource/has-agent"],
+"has-target" => ["http://semanticscience.org/resource/SIO_000291", "http://semanticscience.org/resource/has-target"],
+"is-participant-in" => ["http://semanticscience.org/resource/SIO_000062", "http://semanticscience.org/resource/is-participant-in"],
+"is-about" => ["http://semanticscience.org/resource/SIO_000332", "http://semanticscience.org/resource/is-about"],
+"has-output" => ["http://semanticscience.org/resource/SIO_000229", "http://semanticscience.org/resource/has-output"],
+"denotes" => ["http://semanticscience.org/resource/SIO_000020", "http://semanticscience.org/resource/denotes"],
+"is-realized-in" => ["http://semanticscience.org/resource/SIO_000356", "http://semanticscience.org/resource/is-realized-in"],
+"is-causally-related-to" => ["http://semanticscience.org/resource/SIO_000294", "http://semanticscience.org/resource/is-causally-related-to"],
+"is-causally-related-from" => ["http://semanticscience.org/resource/SIO_000352", "http://semanticscience.org/resource/is-causally-related-from"],
+"is-specified-by" => ["http://semanticscience.org/resource/SIO_000339", "http://semanticscience.org/resource/is-specified-by"],
+"has-component-part" => ["http://semanticscience.org/resource/SIO_000369", "http://semanticscience.org/resource/has-component-part"],
+# predicates
+# for processs
+"has-start-time" => ["http://semanticscience.org/resource/SIO_000680", "http://semanticscience.org/resource/has-start-time"],
+"exists-at" => ["http://semanticscience.org/resource/SIO_000687", "http://semanticscience.org/resource/exists-at"],
+"has-end-time" => ["http://semanticscience.org/resource/SIO_000681", "http://semanticscience.org/resource/has-end-time"],
+"has-time-boundary" => ["http://semanticscience.org/resource/SIO_000679", "http://semanticscience.org/resource/has-time-boundary"],
+# for information artifact
+"measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
+# objects
+"start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
+"end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
+"start-date" => ["http://semanticscience.org/resource/SIO_000031", "http://semanticscience.org/resource/start-date"],
+"end-date" => ["http://semanticscience.org/resource/SIO_000032", "http://semanticscience.org/resource/end-date"],
+"time-instant" => ["http://semanticscience.org/resource/SIO_000418", "http://semanticscience.org/resource/time-instant"],
+#
 
-    # for information artifact
-    "measured-at" => [" http://semanticscience.org/resource/SIO_000793", " http://semanticscience.org/resource/measured-at"],
-    # objects
-    "start-time" => ["http://semanticscience.org/resource/SIO_000669", "http://semanticscience.org/resource/start-time"],
-    "end-time" => ["http://semanticscience.org/resource/SIO_000670", "http://semanticscience.org/resource/end-time"],
-    "start-date" => ["http://semanticscience.org/resource/SIO_000031", "http://semanticscience.org/resource/start-date"],
-    "end-date" => ["http://semanticscience.org/resource/SIO_000032", "http://semanticscience.org/resource/end-date"],
-    "time-instant" => ["http://semanticscience.org/resource/SIO_000418", "http://semanticscience.org/resource/time-instant"],
-    #
 
 
-
-    "is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
-    "drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
-    "sequence-variation-notation" => ["http://semanticscience.org/resource/SIO_001388", "http://semanticscience.org/resource/sequence_variation_notation"],
-    "is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
-    "has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
-    "realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],
-    "information-content-entity" =>  ["http://semanticscience.org/resource/SIO_000015", "http://semanticscience.org/resource/information-content-entity"],
-    "measurement-value" => ["http://semanticscience.org/resource/SIO_000070", "http://semanticscience.org/resource/measurement-value"],
-    "refers-to" => ["http://semanticscience.org/resource/SIO_000628", "http://semanticscience.org/resource/refers-to"],
-    "has-input" => ["http://semanticscience.org/resource/SIO_000230", "http://semanticscience.org/resource/has-input"],
-    "person" => ["http://semanticscience.org/resource/SIO_000498", "http://semanticscience.org/resource/person"],
-    "object" => ["http://semanticscience.org/resource/SIO_000776", "http://semanticscience.org/resource/object"],
-    "identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
-    "role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
-    "process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
-    "attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
-    "conforms-to" => ["http://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
-
-    "specialized-object" => ['http://semanticscience.org/resource/SIO_001353', "http://semanticscience.org/resource/specialized-object"],
-
-  }
-
+"is-component-part-of" => ["http://semanticscience.org/resource/SIO_000313", "http://semanticscience.org/resource/is-component-part-of"],
+"drug" => ["http://semanticscience.org/resource/SIO_010038", "http://semanticscience.org/resource/drug"],
+"specialized-object" => ["http://semanticscience.org/resource/SIO_001353", "http://semanticscience.org/resource/specialized-object"],
+"object" => ["http://semanticscience.org/resource/SIO_000776", "http://semanticscience.org/resource/object"],
+"is-base-for" => ["http://semanticscience.org/resource/SIO_000642", "http://semanticscience.org/resource/is-base-for"],
+"has-concretization" => ["http://semanticscience.org/resource/SIO_000213", "http://semanticscience.org/resource/has-concretization"],
+"realizable-entity" =>  ["http://semanticscience.org/resource/SIO_000340", "http://semanticscience.org/resource/realizable-entity"],
+"information-content-entity" =>  ["http://semanticscience.org/resource/SIO_000015", "http://semanticscience.org/resource/information-content-entity"],
+"measurement-value" => ["http://semanticscience.org/resource/SIO_000070", "http://semanticscience.org/resource/measurement-value"],
+"refers-to" => ["http://semanticscience.org/resource/SIO_000628", "http://semanticscience.org/resource/refers-to"],
+"has-input" => ["http://semanticscience.org/resource/SIO_000230", "http://semanticscience.org/resource/has-input"],
+"person" => ["http://semanticscience.org/resource/SIO_000498", "http://semanticscience.org/resource/person"],
+"identifier" => ["http://semanticscience.org/resource/SIO_000115", "http://semanticscience.org/resource/identifier"],
+"role" => ["http://semanticscience.org/resource/SIO_000016", "http://semanticscience.org/resource/role"],
+"process" => ["http://semanticscience.org/resource/SIO_000006", "http://semanticscience.org/resource/process"],
+"attribute" => ["http://semanticscience.org/resource/SIO_000614", "http://semanticscience.org/resource/attribute"],
+"conforms-to" => ["https://semanticscience.org/resource/CHEMINF_000047", "http://semanticscience.org/resource/conforms-to"],
+             
+}
 
 
 
@@ -270,37 +272,37 @@ def entity_identifier_role_mappings(params = {})
 
   abort "You MUST have a @entityid_column and a @uniqueid_column to use this library.  Sorry!" unless @entityid_column and @uniqueid_column
   @mappings << mapping_clause(
-                           "identifier_has_value_for_#{entity_role_tag}",
+                           "identifier_has_value_for_#{entity_tag}_#{entity_role_tag}",
                            ["#{source_tag}-source"],
-                           "this:individual_$(#{@entityid_column})#ID",
+                           "this:individual_#{entity_tag}_$(#{@entityid_column})#ID",
                            [[SIO["has-value"][self.sio_verbose], "$(#{@entityid_column})", "xsd:string"]]
                            )
 
   @mappings << mapping_clause(
                                 "identifier_denotes_role_#{entity_role_tag}",
                                 ["#{source_tag}-source"],
-                                "this:individual_$(#{@entityid_column})#ID",
+                                "this:individual_#{entity_tag}_$(#{@entityid_column})#ID",
                                 [
                                  ["a", "#{identifier_type}", "iri"],
                                  ["a", SIO["identifier"][self.sio_verbose], "iri"],
-                                 [SIO["denotes"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
+                                 [SIO["denotes"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
                                 ]
                                )
   @mappings << mapping_clause(
                               "entity_has_role_#{entity_role_tag}",
                               ["#{source_tag}-source"],
-                              "this:individual_$(#{@entityid_column})#Entity",
+                              "this:individual_#{entity_tag}_$(#{@entityid_column})#Entity",
                               [
                                ["a", "#{entity_type}", "iri"],
                                ["a", SIO["object"][self.sio_verbose], "iri"],
-                               [SIO["has-role"][self.sio_verbose], "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
+                               [SIO["has-role"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
                               ]
                              )
 
   @mappings << mapping_clause(
                               "#{entity_role_tag}_annotation",
                               ["#{source_tag}-source"],
-                              "this:individual_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}",
+                              "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}",
                               [
                                 ["a", "#{role_type}", "iri"],
                                 ["a", SIO["role"][self.sio_verbose], "iri"],
@@ -311,7 +313,7 @@ def entity_identifier_role_mappings(params = {})
     @mappings << mapping_clause(
                                 "#{entity_role_tag}_entity_label_annotation",
                                 ["#{source_tag}-source"],
-                                "this:individual_$(#{@entityid_column})#Entity",
+                                "this:individual_#{entity_tag}_$(#{@entityid_column})#Entity",
                                 [
                                   ["rdfs:label", " Role: #{entity_label}", "xsd:string"],
                                 ]
@@ -398,6 +400,7 @@ end
 # @option params :process_label_column  [String] the column header for the label associated with the process type in that row
 # @option params :process_start_column  [ISO 8601 date (only date)] (optional) the column header for the datestamp when that process started. NOTE:  For instantaneous processes, create ONLY the start date column, and an identical end date will be automatically generated
 # @option params :process_end_column  [ISO 8601 date (only date)]  (optional) the column header for the datestamp when that process ended
+# @option params :process_duration_column  [xsd:int]  (optional) the column header for the duration of the event measured in integer numbers of days
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def role_in_process(params)
     person_role_tag = params.fetch(:person_role_tag, 'thisRole')
@@ -409,6 +412,7 @@ end
     process_label_column = params.fetch(:process_label_column, nil) 
     process_start_column = params.fetch(:process_start_column, nil) 
     process_end_column = params.fetch(:process_end_column, nil)
+    process_duration_column = params.fetch(:process_end_column, nil)
     make_unique_process = params.fetch(:make_unique_process, true)
 
     process_type = process_type_column ? "$(#{process_type_column})":process_type
@@ -423,14 +427,14 @@ end
       ["#{source_tag}-source"],
       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
       [
-            [SIO["is-realized-in"][self.sio_verbose], root_url + "##{process_tag}","iri"]
+            [SIO["is-realized-in"][self.sio_verbose], root_url + "#process_#{process_tag}","iri"]
       ]
       )
     
     @mappings << mapping_clause(
-          "#{process_tag}_process_annotation",
+          "process_#{process_tag}_process_annotation",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
+           root_url + "#process_#{process_tag}",
            [
              ["rdf:type",SIO["process"][self.sio_verbose], "iri"],
              ["rdf:type","#{process_type}", "iri"],
@@ -441,17 +445,15 @@ end
       
     if process_start_column
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_start",
+        "process_#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
-           [
-             [SIO["has-start-time"][self.sio_verbose], root_url + "##{process_tag}_startdate_$(#{process_start_column})", "iri"]
-            ]
+           root_url + "#process_#{process_tag}",
+           [[SIO["has-start-time"][self.sio_verbose], root_url + "#process_#{process_tag}_startdate_$(#{process_start_column})", "iri"]]
            )
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_start_value",
+        "process_#{process_tag}_process_annotation_start_value",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}_startdate_$(#{process_start_column})",
+           root_url + "#process_#{process_tag}_startdate_$(#{process_start_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
@@ -461,15 +463,15 @@ end
       # now create the MIRROR  (!!!!) end time, if one is not provided
       unless process_end_column
         @mappings << mapping_clause(
-          "#{process_tag}_process_annotation_end",
+          "process_#{process_tag}_process_annotation_end",
             ["#{source_tag}-source"],
-             root_url + "##{process_tag}",
-             [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_start_column})", "iri"]]
+             root_url + "#process_#{process_tag}",
+             [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_$(#{process_start_column})", "iri"]]
         )
         @mappings << mapping_clause(
-          "#{process_tag}_process_annotation_end_value",
+          "process_#{process_tag}_process_annotation_end_value",
             ["#{source_tag}-source"],
-             root_url + "##{process_tag}_enddate_$(#{process_start_column})",
+             root_url + "#process_#{process_tag}_enddate_$(#{process_start_column})",
              [
                [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
                ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -482,15 +484,15 @@ end
     
     if process_end_column
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_end",
+        "process_#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
-           [[SIO["has-end-time"][self.sio_verbose], root_url + "##{process_tag}_enddate_$(#{process_end_column})", "iri"]]
+           root_url + "#process_#{process_tag}",
+           [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_$(#{process_end_column})", "iri"]]
            )
       @mappings << mapping_clause(
-        "#{process_tag}_process_annotation_end_value",
+        "process_#{process_tag}_process_annotation_end_value",
           ["#{source_tag}-source"],
-           root_url + "##{process_tag}_enddate_$(#{process_end_column})",
+           root_url + "#process_#{process_tag}_enddate_$(#{process_end_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -498,7 +500,26 @@ end
              ]
            )
     end
-      
+
+    if process_duration_column
+      @mappings << mapping_clause(
+        "#{process_tag}_process_annotation_duration",
+          ["#{source_tag}-source"],
+           root_url + "##{process_tag}",
+           [[SIO["exists-at"][self.sio_verbose], root_url + "##{process_tag}_exists_at_#{process_duration_column}", "iri"]]
+           )
+      @mappings << mapping_clause(
+        "#{process_tag}_process_annotation_duration_value",
+          ["#{source_tag}-source"],
+          root_url + "##{process_tag}_exists_at_#{process_duration_column}",
+           [
+             [SIO["has-value"][self.sio_verbose], "$(#{process_duration_column})", "xsd:int"],
+             ["rdf:type", SIO["day"][self.sio_verbose], "iri"],             
+             ["rdfs:label", "Duration: $(#{process_end_column}) days"],             
+             ]
+           )
+    end
+
   end
   
   
@@ -547,7 +568,7 @@ end
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-            root_url + "##{process_tag}",
+            root_url + "#process_#{process_tag}",
             [[predicate, "$(#{value})", datatype]]
             )
         
@@ -562,7 +583,7 @@ end
         @mappings << mapping_clause(
             "#{uniqid}_process_custom_annotation",
             ["#{source_tag}-source"],
-           root_url + "##{process_tag}",
+           root_url + "#process_#{process_tag}",
             [[predicate, value, datatype]]
             )
         
@@ -585,7 +606,7 @@ end
   def process_has_agent(params)
     process_tag = params.fetch(:process_tag, "thisprocess")  
     entityid_column = params.fetch(:entityid_column, "pid")
-    entity_tag = params.fetch(:entityid_column, "thisEntity")
+    entity_tag = params.fetch(:entity_tag, "thisEntity")
     make_unique_process = params.fetch(:make_unique_process, true)
 
     root_url = get_root_url(make_unique_process)
@@ -595,7 +616,7 @@ end
         "process_has_agent_#{entity_tag}",
         ["#{source_tag}-source"],
         root_url + "##{process_tag}",
-        [[SIO['has-agent'][self.sio_verbose], "this:individual_$(#{@entityid_column})#Entity" , 'iri']]
+        [[SIO['has-agent'][self.sio_verbose], "this:individual_#{entity_tag}_$(#{entityid_column})#Entity" , 'iri']]
         )
       
       
@@ -611,27 +632,53 @@ end
 # @param params [Hash]  a hash of options
 # @option params :parent_process_tag  [String] (required) the same process tag that is used in the "role in process"  for the parent process
 # @option params :part_process_tag  [String] (required) the same process tag that is used in the "role in process" for the process that is a part of the parent
+# @option params :part_process_type  [String] (optional) the rdf:type of the child process
+# @option params :part_process_type_column  [String] (optional) the rdf:type of the child process
 # @option params :parent_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
 # @option params :part_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_has_part(params)
     parent_process_tag = params.fetch(:parent_process_tag, nil)  
     part_process_tag = params.fetch(:part_process_tag, nil)  
+    part_process_type = params.fetch(:part_process_type, nil)  
+    part_process_type_column = params.fetch(:part_process_type_column, nil)  
     parent_unique_process = params.fetch(:parent_unique_process, true)
     part_unique_process = params.fetch(:part_unique_process, true)
 
     parent_root_url = get_root_url(parent_unique_process)
     part_root_url = get_root_url(part_unique_process)
 
+    part_process_type = part_process_type_column ? "$(#{part_process_type_column})":part_process_type
+
     abort "cannot create part relationship unless both parent and child processes have a tag" unless (parent_process_tag && part_process_tag)
       
     #uniqid = get_uniq_id
     
     @mappings << mapping_clause(
-        "#{parent_process_tag}_has_part_#{part_process_tag}",
+        "process_#{parent_process_tag}_has_part_#{part_process_tag}",
         ["#{source_tag}-source"],
-        parent_root_url + "##{parent_process_tag}",
-        [[SIO["has-part"][self.sio_verbose], part_root_url + "##{part_process_tag}" , "iri"]]
+        parent_root_url + "#process_#{parent_process_tag}",
+        [
+          [SIO["has-part"][self.sio_verbose], part_root_url + "#process_#{part_process_tag}" , "iri"],
+         ]
         )
+    @mappings << mapping_clause(
+        "process_#{part_process_tag}_process_has_type",
+        ["#{source_tag}-source"],
+        parent_root_url + "#process_#{part_process_tag}",
+        [
+          ["rdf:type", SIO["process"][self.sio_verbose], "iri"],
+         ]
+        )
+    if part_process_type
+      @mappings << mapping_clause(
+          "process_#{part_process_tag}_process_has_specific_type",
+          ["#{source_tag}-source"],
+          parent_root_url + "#process_#{part_process_tag}",
+          [
+            ["rdf:type", part_process_type, "iri"],
+           ]
+          )
+    end
     
   end
 
@@ -671,16 +718,16 @@ end
     target_label = target_type_label_column ? "$(#{target_type_label_column})":target_type_label
 
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{target_type_tag}",
+        "process_#{process_with_target_tag}_has_target_#{target_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_target_tag}",
-        [[SIO["has-target"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_target_tag}_Target", "iri"]]
+        root_url + "#process_#{process_with_target_tag}",
+        [[SIO["has-target"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_target_tag}_Target", "iri"]]
         )
     
     @mappings << mapping_clause(
-        "#{process_with_target_tag}_has_target_#{target_type_tag}_annotation",
+        "process_#{process_with_target_tag}_has_target_#{target_type_tag}_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_target_tag}_Target",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_target_tag}_Target",
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{target_type}", "iri"],
@@ -776,6 +823,169 @@ end
 
 
 
+# creates the process caused by
+#
+# Parameters passed as a hash.  there can be only one cause!
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_cause_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :cause_type  [URI] an ontological type for the cause (process or event or entity are all fine)
+# @option params :cause_type_column  [string] column header for cause URIs
+# TODO:  Allow any existing node to be a cause...
+  def process_caused_by(params)
+    process_with_cause_tag  = params.fetch(:process_with_cause_tag, nil)  # some one-word name
+    cause_type  = params.fetch(:cause_type, nil)  
+    cause_type_column  = params.fetch(:cause_type_column, nil)  
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+    cause_type = cause_type_column ? "$(#{cause_type_column})":cause_type
+
+    abort "must specify the process_with_cause_tag" unless process_with_cause_tag
+    abort "must specify the cause type" unless (cause_type or cause_type_column)
+        
+    @mappings << mapping_clause(
+        "process_#{process_with_cause_tag}_has_cause",
+        ["#{source_tag}-source"],
+        root_url + "#process_#{process_with_cause_tag}",
+        [[SIO["is-causally-related-from"][self.sio_verbose], root_url + "#cause_of_process_#{process_with_cause_tag}", "iri"]]
+        )
+    
+    @mappings << mapping_clause(
+        "process_#{process_with_cause_tag}_has_cause_annotation",
+        ["#{source_tag}-source"],
+        root_url + "#cause_of_process_#{process_with_cause_tag}",
+        [
+          ["rdf:type",SIO["entity"][self.sio_verbose], "iri"],
+          ["rdf:type",cause_type, "iri"],
+          ]
+        )
+    
+  end
+  
+
+# creates the process has_attribute
+#
+# Parameters passed as a hash.  there can be only one cause!
+#
+# @param params [Hash]  a hash of options
+# @option params :process_with_attribute_tag  [String] (required) the same process tag that is used in the "role in process" for which this is the input
+# @option params :attribute_tag  [string] the tag of the attribute 
+  def process_has_attribute(params)
+    process_with_attribute_tag  = params.fetch(:process_with_attribute_tag, nil)  # some one-word name
+    attribute_tag  = params.fetch(:attribute_tag, nil)  # some one-word name
+
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+    abort "must specify the process_with_attribute_tag" unless process_with_attribute_tag
+    abort "must specify the attribute_tag" unless (attribute_tag)
+        
+    @mappings << mapping_clause(
+        "process_#{process_with_attribute_tag}_has_attribute_#{attribute_tag}",
+        ["#{source_tag}-source"],
+        root_url + "#process_#{process_with_attribute_tag}",
+        [[SIO["has-attribute"][self.sio_verbose], root_url + "#attribute_#{attribute_tag}", "iri"]]
+        )
+  end
+  
+
+
+
+# creates the build attribute clauses
+#
+# Parameters passed as a hash.  
+#
+# @param params [Hash]  a hash of options
+# @option params :attribute_tag  [String] (required) a unique tag for the attribute
+# @option params :attribute_type  [URI] an ontological type for the attribute
+# @option params :attribute_type_column  [string] column header for attribute URIs
+# @option params :attribute_value_column  [string] column header for attribute URIs
+# @option params :attribute_value_unit_column  [string] column header for attribute unit URIs
+# @option params :attribute_value_unit_label_column  [string] column header for attribute unit labels
+# 
+# TODO:  Allow any existing node to be a cause...
+  def build_attribute(params)
+    attribute_tag  = params.fetch(:attribute_tag, nil)  # some one-word name
+    attribute_type  = params.fetch(:attribute_type, nil)  
+    attribute_type_column  = params.fetch(:attribute_type_column, nil)  
+    attribute_value_column  = params.fetch(:attribute_value_column, nil)  
+    attribute_value_unit_column  = params.fetch(:attribute_value_unit_column, nil)  
+    attribute_value_unit_label_column  = params.fetch(:attribute_value_unit_label_column, nil)  
+    make_unique_process = params.fetch(:make_unique_process, true)
+
+    root_url = get_root_url(make_unique_process)
+
+    attribute_type = attribute_type_column ? "$(#{attribute_type_column})":attribute_type
+    attribute_value_unit_column = "$(#{attribute_value_unit_column})"
+    attribute_value_unit_label_column = "$(#{attribute_value_unit_label_column})"
+
+    abort "must specify the attribute_tag" unless attribute_tag
+    abort "must specify the attribute_type" unless (attribute_type or attribute_type_column)
+    abort "must specify both a unit column and a unit label column" if (attribute_value_unit_column and !(attribute_value_unit_label_column))
+    
+    @mappings << mapping_clause(
+        "attribute_#{attribute_tag}_annotation",
+        ["#{source_tag}-source"],
+        root_url + "#attribute_#{attribute_tag}",
+        [
+          ["rdf:type",SIO["attribute"][self.sio_verbose], "iri"],
+          ["rdf:type",attribute_type, "iri"],
+          ]
+        )
+    
+    if attribute_value_column
+      @mappings << mapping_clause(
+          "attribute_#{attribute_tag}_measurement",
+          ["#{source_tag}-source"],
+          root_url + "#attribute_#{attribute_tag}",
+          [[SIO["has-measurement-value"][self.sio_verbose], root_url + "#measurement_of_attribute_#{attribute_tag}", "iri"]]
+          )
+
+    
+      @mappings << mapping_clause(
+          "attribute_#{attribute_tag}_measurement_value",
+          ["#{source_tag}-source"],
+          root_url + "#measurement_of_attribute_#{attribute_tag}",
+          [[SIO["has-measurement-value"][self.sio_verbose], root_url + "#measurementvalue_of_attribute_#{attribute_tag}", "iri"]]
+          )
+      @mappings << mapping_clause(
+          "attribute_#{attribute_tag}_measurement_value_value",
+          ["#{source_tag}-source"],
+          root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
+          [[SIO["has-value"][self.sio_verbose], "$(#{attribute_value_column})", "iri"]]
+          )
+      if attribute_value_unit_column
+        @mappings << mapping_clause(
+            "attribute_#{attribute_tag}_measurement_value_unit_node",
+            ["#{source_tag}-source"],
+            root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
+            [
+              [SIO["has-unit"][self.sio_verbose], root_url + "#measurementvalue_unit_of_attribute_#{attribute_tag}", "iri"],             
+              ]
+            )
+        @mappings << mapping_clause(
+            "attribute_#{attribute_tag}_measurement_value_unit_node_type",
+            ["#{source_tag}-source"],
+            root_url + "#measurementvalue_unit_of_attribute_#{attribute_tag}",
+            [
+              ["rdf:type", "#{attribute_value_unit_column}", "iri"],
+              ["rdfs:label", "#{attribute_value_unit_label_column}", "iri"],
+              ]
+            )
+      end
+      
+
+    end
+
+    
+  end
+
+
+
+
 # creates the process has input portion of the CDE
 #
 # Parameters passed as a hash
@@ -822,16 +1032,16 @@ end
     input_value_datatype = input_has_value_datatype_column ? "$(#{input_has_value_datatype_column})":input_has_value_datatype
 
     @mappings << mapping_clause(
-        "#{process_with_input_tag}_has_input_#{input_type_tag}",
+        "process_#{process_with_input_tag}_has_input_#{input_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_input_tag}",
-        [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output", "iri"]]
+        root_url + "#process_#{process_with_input_tag}",
+        [[SIO["has-input"][self.sio_verbose],"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output", "iri"]]
         )
     
     @mappings << mapping_clause(
-        "#{process_with_input_tag}_has_input_#{input_type_tag}_annotation",
+        "process_#{process_with_input_tag}_has_input_#{input_type_tag}_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output",
         [
           ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["rdf:type","#{input_type}", "iri"],
@@ -845,7 +1055,7 @@ end
       @mappings << mapping_clause(
       "input_#{input_type_tag}_has_value",
       ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{input_is_output_of_process_tag}_Output",
+      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output",
       [[SIO["has-value"][self.sio_verbose],"#{input_value}", "#{input_value_datatype}"]]
       )
     end
@@ -911,50 +1121,50 @@ end
    #return unless output_value
    
     @mappings << mapping_clause(
-        "#{process_with_output_tag}_process_has_output",
+        "process_#{process_with_output_tag}_process_has_output",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_output_tag}",
-        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output", "iri"]]
+        root_url + "#process_#{process_with_output_tag}",
+        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output", "iri"]]
         )
     @mappings << mapping_clause(
-        "#{process_with_output_tag}_Output_annotation",
+        "process_#{process_with_output_tag}_Output_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
         [["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"]]
         )      
     
     if output_type
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_type_annotation",
+              "process_#{process_with_output_tag}_Output_type_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdf:type",output_type, "iri"]]
               )
     end
     
     if output_type_label
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_type_label_annotation",
+              "process_#{process_with_output_tag}_Output_type_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:label","Output Type: #{output_type_label}", "xsd:string"]]
               )
     end
     
     if output_value
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_value_annotation",
+              "process_#{process_with_output_tag}_Output_value_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [[SIO["has-value"][self.sio_verbose],output_value, output_value_datatype]]
               )
     end
     
     if output_comments_column
           @mappings << mapping_clause(
-              "#{process_with_output_tag}_Output_value_comments",
+              "process_#{process_with_output_tag}_Output_value_comments",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:comment","$(#{output_comments_column})", "xsd:string"]]
               )
     end
@@ -963,17 +1173,17 @@ end
     if output_measured_at_column
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_measured_at_timeinstant",
+        "process_#{process_with_output_tag}_output_measured_at_timeinstant",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
-             [SIO["measured-at"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_measured_at", "iri"],           
+             [SIO["measured-at"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at", "iri"],           
              ]
            )
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_measured_at_timeinstant_value",
+        "process_#{process_with_output_tag}_output_measured_at_timeinstant_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_measured_at",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
              ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],         
@@ -985,18 +1195,18 @@ end
     if output_start_column  # start and end will be attributes of the information object
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_start_atribute",
+        "process_#{process_with_output_tag}_output_has_start_atribute",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
               # need to add the start column into this URI so that, if it is empty, the attribute will not be created at all by SDMRDFizer
-             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})", "iri"],           
+             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})", "iri"],           
              ]
            )
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_start_attribute_value",
+        "process_#{process_with_output_tag}_output_has_start_attribute_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],         
@@ -1008,18 +1218,18 @@ end
     if output_end_column  # start and end will be attributes of the information object
       
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_end_atribute",
+        "process_#{process_with_output_tag}_output_has_end_atribute",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
               # need to add the start column into this URI so that, if it is empty, the attribute will not be created at all by SDMRDFizer
-             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})", "iri"],           
+             [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})", "iri"],           
              ]
            )
       @mappings << mapping_clause(
-        "#{process_with_output_tag}_output_has_end_attribute_value",
+        "process_#{process_with_output_tag}_output_has_end_attribute_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})",
+          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],         
@@ -1048,7 +1258,7 @@ end
       @mappings << mapping_clause(
           "#{uniqid}_output_custom_annotation",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_with_output_tag}_Output",
+           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
           [["$(#{predicate})", "$(#{value})", datatype]]
           )
           
@@ -1069,10 +1279,12 @@ end
 #@option params  :inout_refers_to_label  [String]  ([]) an ontology term label
 #@option params  :inout_refers_to_label_column  [String]  ([])  column header for column of ontology term labels
 #@option params  :inout_refers_to_uri_column  [String]  ([])  column header for column containing the URIs of the in/out node (e.g. a specific clinical variant identifier)
-#@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of the patient?
+#@option params  :is_attribute  [Boolean]  (true)  is this output an attribute of a patient/entity?
+#@option params  :entity_tag  [String]  (required)  then you must tag the entity or person, defaults to "thisPerson"
 #@option params  :base_types [Array] ([])  an array of ontology terms that will be applied as the rdf:type for all the referred-to quality/attribute
 
   def input_output_refers_to(params)
+    entityid_column = params.fetch(:entityid_column, 'pid')
     inout_process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
     refers_to_tag = params.fetch(:refers_to_tag, nil)
     inout_refers_to = params.fetch(:inout_refers_to, nil)  
@@ -1081,6 +1293,7 @@ end
     inout_refers_to_label_column = params.fetch(:inout_refers_to_label_column, nil ) 
     inout_refers_to_uri_column = params.fetch(:inout_refers_to_uri_column, nil ) 
     is_attribute = params.fetch(:is_attribute, true ) 
+    entity_tag = params.fetch(:entity_tag, "thisPerson" ) 
     base_types = params.fetch(:base_types, [] ) 
     
     refers_to = inout_refers_to_column ? "$(#{inout_refers_to_column})":inout_refers_to
@@ -1088,9 +1301,10 @@ end
 
     abort "must specify in_out_process_tag" unless inout_process_tag
     abort "must specify refers_to_tag" unless refers_to_tag
+    abort "must have an entity tag" unless entity_tag
     #$stderr.puts "is an attribute #{is_attribute}"
 
-    attribute_node_uri = inout_refers_to_uri_column ? "$(#{inout_refers_to_uri_column})":"this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode"
+    attribute_node_uri = inout_refers_to_uri_column ? "$(#{inout_refers_to_uri_column})":"this:individual_#{entity_tag}_$(#{entityid_column})_$(#{@uniqueid_column})##{refers_to_tag}_TypedAttributeNode"
     
     types = []
     types << ["rdf:type", SIO["attribute"][self.sio_verbose], "iri"] if is_attribute  # add base type if its an attribute
@@ -1100,9 +1314,9 @@ end
     end
 
     @mappings << mapping_clause(
-        "inout_from_#{inout_process_tag}_refers_to_concepts",
+        "inout_from_process_#{inout_process_tag}_refers_to_concepts",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{inout_process_tag}_Output",
+        "this:individual_#{entity_tag}_$(#{entityid_column})_$(#{@uniqueid_column})#process_#{inout_process_tag}_Output",
         [
         [SIO["refers-to"][self.sio_verbose], attribute_node_uri, "iri"]
         ] 
@@ -1110,9 +1324,9 @@ end
 
     if is_attribute
       @mappings << mapping_clause(
-      "has_attribute_of_inout_from_#{inout_process_tag}",
+      "has_attribute_of_inout_from_process_#{inout_process_tag}",
       ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})#Person",            
+      "this:individual_#{entity_tag}_$(#{entityid_column})#Entity",            
       [
        [SIO["has-attribute"][self.sio_verbose], attribute_node_uri, "iri"]
       ]
@@ -1120,7 +1334,7 @@ end
     end
 
     @mappings << mapping_clause(
-      "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
+      "inout_from_process_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_type",
       ["#{source_tag}-source"],
       attribute_node_uri,
       
@@ -1131,7 +1345,7 @@ end
 
     if refers_to_label    
       @mappings << mapping_clause(
-          "inout_from_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_label",
+          "inout_from_process_#{inout_process_tag}_refers_to_concept_#{refers_to_tag}_label",
           ["#{source_tag}-source"],
           attribute_node_uri,
           [
@@ -1171,16 +1385,16 @@ end
 
     if output_unit
       @mappings << mapping_clause(
-              "#{process_tag}_Output_hasunit_unit",
+              "process_#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output",
-                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit", "iri"]]
+                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output",
+                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit", "iri"]]
                 )
 
       @mappings << mapping_clause(
-              "#{process_tag}_Output_unit_annotation",
+              "process_#{process_tag}_Output_unit_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
               [["rdf:type",output_unit, "iri"]]
               )
 
@@ -1189,9 +1403,9 @@ end
     if output_unit and output_unit_label
     
       @mappings << mapping_clause(
-              "#{process_tag}_Output_unit_label_annotation",
+              "process_#{process_tag}_Output_unit_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{process_tag}_Output_unit",
+              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
               [["rdfs:label",output_unit_label,"xsd:string"]
               ]
               )
@@ -1208,10 +1422,13 @@ end
 #
 # @param params [Hash]  a hash of options
 # @option params :parent_entityid_column  [String] (required) the column that contains the parent entity id
-# @option params :part_entity_tag  [String] (required) the tag of the part
+# @option params :parent_entity_tag  [String] (required) default "thisPerson" the tag of the parent entity
+# @option params :part_entity_tag  [String] (required) the tag of the part entity
 # @option params :part_type_column  [String] (required) the column that contains the parent entity id
+# TODO  make it possible to explicitly compose entities from other modelled entities (part entity id column)
   def entity_has_component(params)
-    parent_entityid_column = params.fetch(:parent_entityid_column, 'pid')  
+    parent_entityid_column = params.fetch(:parent_entityid_column, 'pid')
+    parent_entity_tag = params.fetch(:part_entity_tag, "thisPerson")  
     part_entity_tag = params.fetch(:part_entity_tag, nil)  
     part_type = params.fetch(:part_type, nil)  
     part_type_column = params.fetch(:part_type_column, nil)  
@@ -1225,7 +1442,7 @@ end
     @mappings << mapping_clause(
         "parent_entity_has_part_#{part_entity_tag}",
         ["#{source_tag}-source"],
-        "this:individual_$(#{parent_entityid_column})#Entity",
+        "this:individual_#{parent_entity_tag}_$(#{parent_entityid_column})#Entity",
         [[SIO["has-component-part"][self.sio_verbose], "this:individual_#{part_entity_tag}#comopnentEntity" , "iri"]]
         )
 
