@@ -1391,7 +1391,7 @@ end
   def output_has_unit(params)
     process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
 
-    output_unit = params.fetch(:output_unit_column, nil)  # URI
+    output_unit = params.fetch(:output_unit, nil)  # URI
     output_unit_column = params.fetch(:output_unit_column, nil)  # URI
     output_unit_label = params.fetch(:output_unit_label, nil)
     output_unit_label_column = params.fetch(:output_unit_label_column, nil)
