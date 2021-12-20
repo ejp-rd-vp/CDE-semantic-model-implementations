@@ -448,7 +448,7 @@ end
         "process_#{process_tag}_process_annotation_start",
           ["#{source_tag}-source"],
            root_url + "#process_#{process_tag}",
-           [[SIO["has-start-time"][self.sio_verbose], root_url + "#process_#{process_tag}_startdate_$(#{process_start_column})", "iri"]]
+           [[SIO["has-start-time"][self.sio_verbose], root_url + "#process_#{process_tag}_startdate_#{process_start_column}", "iri"]]
            )
       @mappings << mapping_clause(
         "process_#{process_tag}_process_annotation_start_value",
@@ -466,7 +466,7 @@ end
           "process_#{process_tag}_process_annotation_end",
             ["#{source_tag}-source"],
              root_url + "#process_#{process_tag}",
-             [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_$(#{process_start_column})", "iri"]]
+             [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_#{process_start_column}", "iri"]]
         )
         @mappings << mapping_clause(
           "process_#{process_tag}_process_annotation_end_value",
@@ -487,12 +487,12 @@ end
         "process_#{process_tag}_process_annotation_end",
           ["#{source_tag}-source"],
            root_url + "#process_#{process_tag}",
-           [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_$(#{process_end_column})", "iri"]]
+           [[SIO["has-end-time"][self.sio_verbose], root_url + "#process_#{process_tag}_enddate_#{process_end_column}", "iri"]]
            )
       @mappings << mapping_clause(
         "process_#{process_tag}_process_annotation_end_value",
           ["#{source_tag}-source"],
-           root_url + "#process_#{process_tag}_enddate_$(#{process_end_column})",
+           root_url + "#process_#{process_tag}_enddate_#{process_end_column}",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -513,9 +513,9 @@ end
           ["#{source_tag}-source"],
           root_url + "##{process_tag}_exists_at_#{process_duration_column}",
            [
-             [SIO["has-value"][self.sio_verbose], "$(#{process_duration_column})", "xsd:int"],
+             [SIO["has-value"][self.sio_verbose], "$(#{process_duration_column})"],
              ["rdf:type", SIO["day"][self.sio_verbose], "iri"],             
-             ["rdfs:label", "Duration: $(#{process_end_column}) days"],             
+             ["rdfs:label", "Duration: $(#{process_duration_column}) days"],             
              ]
            )
     end
@@ -924,8 +924,8 @@ end
 
     attribute_type = attribute_type_column ? "$(#{attribute_type_column})":attribute_type
     attribute_label = attribute_label_column ? "$(#{attribute_label_column})":attribute_label
-    attribute_value_unit_column = "$(#{attribute_value_unit_column})"
-    attribute_value_unit_label_column = "$(#{attribute_value_unit_label_column})"
+    attribute_value_unit_column = "$(#{attribute_value_unit_column})" if attribute_value_unit_column
+    attribute_value_unit_label_column = "$(#{attribute_value_unit_label_column})" if attribute_value_unit_label_column
 
     abort "must specify the attribute_tag" unless attribute_tag
     abort "must specify the attribute_type" unless (attribute_type or attribute_type_column)
@@ -961,7 +961,7 @@ end
           ["#{source_tag}-source"],
           root_url + "#measurementvalue_of_attribute_#{attribute_tag}",
           [
-            [SIO["has-value"][self.sio_verbose], "$(#{attribute_value_column})", "iri"],
+            [SIO["has-value"][self.sio_verbose], "$(#{attribute_value_column})", "xsd:string"],
             ["rdf:type", SIO["information-content-entity"][self.sio_verbose], "iri"],
             ]
           )
@@ -991,7 +991,7 @@ end
             root_url + "#measurementvalue_unit_of_attribute_#{attribute_tag}",
             [
               ["rdf:type", "#{attribute_value_unit_column}", "iri"],
-              ["rdfs:label", "#{attribute_value_unit_label_column}", "iri"],
+              ["rdfs:label", "#{attribute_value_unit_label_column}"],
               ]
             )
     end

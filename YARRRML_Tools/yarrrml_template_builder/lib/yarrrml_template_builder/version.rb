@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module YARRRMLTemplateBuilder
-  VERSION = "0.1.48"
+  VERSION = "0.1.51"
 end
