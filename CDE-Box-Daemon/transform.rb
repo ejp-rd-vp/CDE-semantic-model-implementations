@@ -12,6 +12,7 @@ get '/' do
   update()
   execute()
   cleanup()
+  metadata_update()
   "Execution complete.  See docker log for errors (if any)\n\n"
 
 end
@@ -25,6 +26,14 @@ def update
   $stderr.puts "second open3 complete #{o} #{e}"
     
 end
+
+def metadata_update
+  $stderr.puts "calling metadata updater image"
+  resp = RestClient.get("http://updater:4567/update")
+  $stderr.puts resp
+  $stderr.puts "\n\nMetadata Update complete\n\n"    
+end
+
 
 def cleanup
   $stderr.puts "closing cleanup open3"
