@@ -124,13 +124,13 @@ b.output_has_unit({
 
 # pid,uniqid,qualityURI,qualityLabel,processURI,processLabel,value,valueDatatype,unitURI, unitLabel,date,comments
 
-#b.input_output_refers_to({
-# inout_process_tag: "some_body_quality_measuring_process",
-# refers_to_tag: "measured_attribute",
-# inout_refers_to_column: "qualityURI",
-# inout_refers_to_label_column: "qualityLabel",
-# is_attribute: true,
-# base_types: ["http://semanticscience.org/resource/SIO_000614"]  # attribute  
-#})
+b.input_output_refers_to({
+    inout_process_tag: "some_laboratory_measuring_process",
+    refers_to_tag: "measured_attribute",
+    inout_refers_to: "http://quality.ontology.org/some_attribute",
+    inout_refers_to_label: "Some laboratory measured attribute",
+    is_attribute: true,
+    base_types: ["http://semanticscience.org/resource/SIO_000614", "https://w3id.org/biolink/vocab/Attribute"]  # attribute  
+})
 
 puts b.generate

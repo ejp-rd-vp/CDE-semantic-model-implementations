@@ -293,8 +293,9 @@ def entity_identifier_role_mappings(params = {})
                               ["#{source_tag}-source"],
                               "this:individual_#{entity_tag}_$(#{@entityid_column})#Entity",
                               [
-                               ["a", "#{entity_type}", "iri"],
-                               ["a", SIO["object"][self.sio_verbose], "iri"],
+                                ["a", "#{entity_type}", "iri"],
+                                ["a", "https://w3id.org/biolink/vocab/Case", "iri"],
+                                ["a", SIO["object"][self.sio_verbose], "iri"],
                                [SIO["has-role"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@entityid_column})_$(#{@uniqueid_column})##{entity_role_tag}", "iri"],
                               ]
                              )
@@ -437,6 +438,7 @@ end
            root_url + "#process_#{process_tag}",
            [
              ["rdf:type",SIO["process"][self.sio_verbose], "iri"],
+             ["a", "https://w3id.org/biolink/vocab/Process", "iri"],
              ["rdf:type","#{process_type}", "iri"],
              ["rdfs:label","Process: #{process_label}", "xsd:string"],
            ]
@@ -1059,8 +1061,9 @@ end
         ["#{source_tag}-source"],
         "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{input_is_output_of_process_tag}_Output",
         [
-          ["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"],
-          ["rdf:type","#{input_type}", "iri"],
+          ["a",SIO["information-content-entity"][self.sio_verbose], "iri"],
+          ["a", "https://w3id.org/biolink/vocab/InformationContentEntity", "iri"],
+          ["a","#{input_type}", "iri"],
           ["rdfs:label","Process Input: #{input_label} - Type: #{input_type_tag}", "xsd:string"],
           ]
         )
@@ -1146,7 +1149,10 @@ end
         "process_#{process_with_output_tag}_Output_annotation",
         ["#{source_tag}-source"],
         "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
-        [["rdf:type",SIO["information-content-entity"][self.sio_verbose], "iri"]]
+        [
+          ["a",SIO["information-content-entity"][self.sio_verbose], "iri"],
+          ["a", "https://w3id.org/biolink/vocab/InformationContentEntity", "iri"],
+        ]
         )      
     
     if output_type
