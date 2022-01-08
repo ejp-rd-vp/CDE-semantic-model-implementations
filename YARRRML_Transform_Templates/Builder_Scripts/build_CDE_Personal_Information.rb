@@ -90,7 +90,7 @@ b.input_output_refers_to(  {
   refers_to_tag: "sexAttribute",
   inout_refers_to_column: "sexURI",
   inout_refers_to_label_column: "sexLabel",
-  base_types: ["http://purl.obolibrary.org/obo/NCIT_C28421"],
+  base_types: ["http://purl.obolibrary.org/obo/NCIT_C28421", "https://w3id.org/biolink/vocab/BiologicalSex"],
   is_attribute: true
 })
 
@@ -99,6 +99,7 @@ b.input_output_refers_to(  {
   refers_to_tag: "ageAttribute",
   inout_refers_to: "http://purl.obolibrary.org/obo/NCIT_C68615",  
   inout_refers_to_label: "Birth Date",
+  base_types: ["https://w3id.org/biolink/vocab/Attribute"],
   is_attribute: true
                            
 })
