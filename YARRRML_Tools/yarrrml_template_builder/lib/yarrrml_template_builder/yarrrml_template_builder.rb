@@ -1099,6 +1099,7 @@ end
 #
 # @param params [Hash]  a hash of options
 # @option params :process_with_output_tag  [String] Required - the same process tag that is used in the "role in process" for which this is the output
+# @option params  :entity_tag  [String]  (required)  the entity or person that the output is about (gthe participant), defaults to "thisPerson"
 # @option params :output_value  [String]  the default value of that output (defaults to nil, and the output node is not created in the RDF)
 # @option params :output_value_column  [String]   the column header for the value of that output (e.g. the column that contains "80"  for "80 mmHg")
 # @option params :output_type  [String]  the URL associated with the output ontological type (defaults to http://semanticscience.org/resource/realizable-entity)
@@ -1115,6 +1116,7 @@ end
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to be globally unique, or based only on the patient ID.  this can be used to merge nodes over multiple runs of different yarrrml transforms.
   def process_hasoutput_output(params)
     process_with_output_tag = params.fetch(:process_with_output_tag, "thisprocess")  # some one-word name
+    entity_tag = params.fetch(:entity_tag, "thisPerson" ) 
     output_value = params.fetch(:output_value, nil)
     output_value_column = params.fetch(:output_value_column, nil)
     output_type = params.fetch(:output_type, SIO["information-content-entity"][self.sio_verbose])
@@ -1146,12 +1148,12 @@ end
         "process_#{process_with_output_tag}_process_has_output",
         ["#{source_tag}-source"],
         root_url + "#process_#{process_with_output_tag}",
-        [[SIO["has-output"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output", "iri"]]
+        [[SIO["has-output"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output", "iri"]]
         )
     @mappings << mapping_clause(
         "process_#{process_with_output_tag}_Output_annotation",
         ["#{source_tag}-source"],
-        "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+        "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
         [
           ["a",SIO["information-content-entity"][self.sio_verbose], "iri"],
           ["a", "https://w3id.org/biolink/vocab/InformationContentEntity", "iri"],
@@ -1162,7 +1164,7 @@ end
           @mappings << mapping_clause(
               "process_#{process_with_output_tag}_Output_type_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+              "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdf:type",output_type, "iri"]]
               )
     end
@@ -1171,7 +1173,7 @@ end
           @mappings << mapping_clause(
               "process_#{process_with_output_tag}_Output_type_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+              "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:label","Output Type: #{output_type_label}", "xsd:string"]]
               )
     end
@@ -1180,7 +1182,7 @@ end
           @mappings << mapping_clause(
               "process_#{process_with_output_tag}_Output_value_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+              "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [[SIO["has-value"][self.sio_verbose],output_value, output_value_datatype]]
               )
     end
@@ -1189,7 +1191,7 @@ end
           @mappings << mapping_clause(
               "process_#{process_with_output_tag}_Output_value_comments",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+              "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
               [["rdfs:comment","$(#{output_comments_column})", "xsd:string"]]
               )
     end
@@ -1200,7 +1202,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_with_output_tag}_output_measured_at_timeinstant",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+          "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
              [SIO["measured-at"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at", "iri"],           
              ]
@@ -1208,7 +1210,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_with_output_tag}_output_measured_at_timeinstant_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at",
+          "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_measured_at",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_timeinstant_column})", "xsd:date"],
              ["rdf:type", SIO["time-instant"][self.sio_verbose], "iri"],         
@@ -1222,7 +1224,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_with_output_tag}_output_has_start_atribute",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+          "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
               # need to add the start column into this URI so that, if it is empty, the attribute will not be created at all by SDMRDFizer
              [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})", "iri"],           
@@ -1231,7 +1233,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_with_output_tag}_output_has_start_attribute_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})",
+          "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_start_attribute_$(#{output_start_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],         
@@ -1245,7 +1247,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_with_output_tag}_output_has_end_atribute",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+          "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
            [
               # need to add the start column into this URI so that, if it is empty, the attribute will not be created at all by SDMRDFizer
              [SIO["has-attribute"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})", "iri"],           
@@ -1254,7 +1256,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_with_output_tag}_output_has_end_attribute_value",
           ["#{source_tag}-source"],
-          "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})",
+          "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output_end_attribute_$(#{output_end_column})",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{output_end_column})", "xsd:date"],
              ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],         
@@ -1283,7 +1285,7 @@ end
       @mappings << mapping_clause(
           "#{uniqid}_output_custom_annotation",
           ["#{source_tag}-source"],
-           "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
+           "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_with_output_tag}_Output",
           [["$(#{predicate})", "$(#{value})", datatype]]
           )
           
