@@ -803,7 +803,7 @@ end
     @mappings << mapping_clause(
       "#{process_with_protocol_tag}_specified_by_#{protocol_type_tag}_specifictype_annotation",
       ["#{source_tag}-source"],
-      root_url + "##{process_with_protocol_tag}",
+      root_url + "#process_#{process_with_protocol_tag}",
       [
         ["rdf:type","#{process_type}", "iri"],
         ["rdfs:label","Protocol: #{process_type_label}", "xsd:string"],
@@ -813,7 +813,7 @@ end
     @mappings << mapping_clause(
         "#{process_with_protocol_tag}_specified_by_#{protocol_type_tag}",
         ["#{source_tag}-source"],
-        root_url + "##{process_with_protocol_tag}",
+        root_url + "#process_#{process_with_protocol_tag}",
         [[SIO["is-specified-by"][self.sio_verbose], protocol_uri, "iri"]]
         )
     
