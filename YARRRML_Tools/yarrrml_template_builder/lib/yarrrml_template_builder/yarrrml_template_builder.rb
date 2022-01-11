@@ -394,6 +394,7 @@ end
 # @param params [Hash]  a hash of options
 # @option params :person_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see person_role_tag above, synchronize these tags!
 # @option params :entity_role_tag  [String] the tag of the role that is fulfilled in this process (default 'thisRole') - see entity_role_tag above, synchronize these tags!
+# @option params :entity_tag  [String] (thisPerson) the tag of the role that is fulfilled in this process (default 'thisRole') - see entity_role_tag above, synchronize these tags!
 # @option params :process_type  [String] the URL for the ontological type of the process (defaults to http://semanticscience.org/resource/process)
 # @option params :process_type_column  [String] the column header that contains the URL for the ontological type of the process - overrides process_type
 # @option params :process_tag  [String] some single-word tag for that process; defaults to "thisprocess"
@@ -414,6 +415,8 @@ end
     process_start_column = params.fetch(:process_start_column, nil) 
     process_end_column = params.fetch(:process_end_column, nil)
     process_duration_column = params.fetch(:process_end_column, nil)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
+
     make_unique_process = params.fetch(:make_unique_process, true)
 
     process_type = process_type_column ? "$(#{process_type_column})":process_type
@@ -426,7 +429,7 @@ end
     @mappings << mapping_clause(
       "#{person_role_tag}_realized_#{process_tag}",
       ["#{source_tag}-source"],
-      "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
+      "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})##{person_role_tag}",
       [
             [SIO["is-realized-in"][self.sio_verbose], root_url + "#process_#{process_tag}","iri"]
       ]

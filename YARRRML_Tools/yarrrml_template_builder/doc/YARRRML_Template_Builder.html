@@ -139,7 +139,7 @@
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-end-time</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000681</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/has-end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-time-boundary</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000679</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/has-time-boundary</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
 <span class='comment'># for information artifact
-</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>measured-at</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> http://semanticscience.org/resource/SIO_000793</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> http://semanticscience.org/resource/measured-at</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>measured-at</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000793</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/measured-at</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
 <span class='comment'># objects
 </span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>start-time</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000669</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/start-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>end-time</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/SIO_000670</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://semanticscience.org/resource/end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -1605,11 +1605,6 @@
       <pre class="lines">
 
 
-912
-913
-914
-915
-916
 917
 918
 919
@@ -1693,10 +1688,15 @@
 997
 998
 999
-1000</pre>
+1000
+1001
+1002
+1003
+1004
+1005</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 912</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 917</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build_attribute'>build_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_attribute_tag'>attribute_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:attribute_tag</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -1713,8 +1713,8 @@
 
   <span class='id identifier rubyid_attribute_type'>attribute_type</span> <span class='op'>=</span> <span class='id identifier rubyid_attribute_type_column'>attribute_type_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_type_column'>attribute_type_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_attribute_type'>attribute_type</span>
   <span class='id identifier rubyid_attribute_label'>attribute_label</span> <span class='op'>=</span> <span class='id identifier rubyid_attribute_label_column'>attribute_label_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_label_column'>attribute_label_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_attribute_label'>attribute_label</span>
-  <span class='id identifier rubyid_attribute_value_unit_column'>attribute_value_unit_column</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_column'>attribute_value_unit_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_attribute_value_unit_column'>attribute_value_unit_column</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_column'>attribute_value_unit_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_attribute_value_unit_column'>attribute_value_unit_column</span>
+  <span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span>
 
   <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>must specify the attribute_tag</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_attribute_tag'>attribute_tag</span>
   <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>must specify the attribute_type</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_attribute_type'>attribute_type</span> <span class='kw'>or</span> <span class='id identifier rubyid_attribute_type_column'>attribute_type_column</span><span class='rparen'>)</span>
@@ -1750,7 +1750,7 @@
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#measurementvalue_of_attribute_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_tag'>attribute_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='lbracket'>[</span>
-          <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_column'>attribute_value_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+          <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_column'>attribute_value_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
           <span class='rbracket'>]</span>
         <span class='rparen'>)</span>
@@ -1780,7 +1780,7 @@
           <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#measurementvalue_unit_of_attribute_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_tag'>attribute_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
           <span class='lbracket'>[</span>
             <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_column'>attribute_value_unit_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_value_unit_label_column'>attribute_value_unit_label_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
             <span class='rbracket'>]</span>
           <span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -1915,15 +1915,6 @@
       <pre class="lines">
 
 
-1445
-1446
-1447
-1448
-1449
-1450
-1451
-1452
-1453
 1454
 1455
 1456
@@ -1942,10 +1933,19 @@
 1469
 1470
 1471
-1472</pre>
+1472
+1473
+1474
+1475
+1476
+1477
+1478
+1479
+1480
+1481</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1445</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1454</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_entity_has_component'>entity_has_component</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parent_entityid_column'>parent_entityid_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:parent_entityid_column</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pid</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2302,7 +2302,8 @@
 322
 323
 324
-325</pre>
+325
+326</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 250</span>
@@ -2353,8 +2354,9 @@
                               <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
                               <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entity_tag'>entity_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@entityid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#Entity</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
                               <span class='lbracket'>[</span>
-                               <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entity_type'>entity_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-                               <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>object</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entity_type'>entity_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://w3id.org/biolink/vocab/Case</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>object</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
                                <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-role</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entity_tag'>entity_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@entityid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entity_role_tag'>entity_role_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
                               <span class='rbracket'>]</span>
                              <span class='rparen'>)</span>
@@ -2535,13 +2537,13 @@
       <pre class="lines">
 
 
-1478
-1479
-1480
-1481</pre>
+1487
+1488
+1489
+1490</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1478</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1487</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_uniq_id'>get_uniq_id</span>
       <span class='kw'>return</span>  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
@@ -2765,15 +2767,6 @@
       <pre class="lines">
 
 
-1302
-1303
-1304
-1305
-1306
-1307
-1308
-1309
-1310
 1311
 1312
 1313
@@ -2837,10 +2830,19 @@
 1371
 1372
 1373
-1374</pre>
+1374
+1375
+1376
+1377
+1378
+1379
+1380
+1381
+1382
+1383</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1302</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1311</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_input_output_refers_to'>input_output_refers_to</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_entityid_column'>entityid_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:entityid_column</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pid</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -3219,15 +3221,6 @@
       <pre class="lines">
 
 
-1391
-1392
-1393
-1394
-1395
-1396
-1397
-1398
-1399
 1400
 1401
 1402
@@ -3259,15 +3252,24 @@
 1428
 1429
 1430
-1431</pre>
+1431
+1432
+1433
+1434
+1435
+1436
+1437
+1438
+1439
+1440</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1391</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1400</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_has_unit'>output_has_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:inout_process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unidentifiedProcess</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_output_unit'>output_unit</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># URI
+  <span class='id identifier rubyid_output_unit'>output_unit</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># URI
 </span>  <span class='id identifier rubyid_output_unit_column'>output_unit_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># URI
 </span>  <span class='id identifier rubyid_output_unit_label'>output_unit_label</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit_label</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_unit_label_column'>output_unit_label_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:output_unit_label_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
@@ -3557,7 +3559,6 @@
       <pre class="lines">
 
 
-347
 348
 349
 350
@@ -3591,10 +3592,11 @@
 378
 379
 380
-381</pre>
+381
+382</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 347</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 348</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_person_identifier_role_mappings'>person_identifier_role_mappings</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@personid_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:personid_column</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pid</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -3737,11 +3739,6 @@
       <pre class="lines">
 
 
-835
-836
-837
-838
-839
 840
 841
 842
@@ -3767,10 +3764,15 @@
 862
 863
 864
-865</pre>
+865
+866
+867
+868
+869
+870</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 835</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 840</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_caused_by'>process_caused_by</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_cause_tag'>process_with_cause_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_cause_tag</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -3911,11 +3913,6 @@
       <pre class="lines">
 
 
-606
-607
-608
-609
-610
 611
 612
 613
@@ -3928,10 +3925,15 @@
 620
 621
 622
-623</pre>
+623
+624
+625
+626
+627
+628</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 606</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 611</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_agent'>process_has_agent</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  
@@ -4073,11 +4075,6 @@
       <pre class="lines">
 
 
-536
-537
-538
-539
-540
 541
 542
 543
@@ -4132,10 +4129,15 @@
 592
 593
 594
-595</pre>
+595
+596
+597
+598
+599
+600</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 536</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 541</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_annotations'>process_has_annotations</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_tag'>process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  
@@ -4288,11 +4290,6 @@
       <pre class="lines">
 
 
-875
-876
-877
-878
-879
 880
 881
 882
@@ -4305,10 +4302,15 @@
 889
 890
 891
-892</pre>
+892
+893
+894
+895
+896
+897</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 875</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 880</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_attribute'>process_has_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_attribute_tag'>process_with_attribute_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_attribute_tag</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -4359,11 +4361,6 @@
       <pre class="lines">
 
 
-1026
-1027
-1028
-1029
-1030
 1031
 1032
 1033
@@ -4413,10 +4410,16 @@
 1077
 1078
 1079
-1080</pre>
+1080
+1081
+1082
+1083
+1084
+1085
+1086</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1026</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1031</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_input'>process_has_input</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_input_tag'>process_with_input_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_input_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -4454,8 +4457,9 @@
       <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input_is_output_of_process_tag'>input_is_output_of_process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
       <span class='lbracket'>[</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input_type'>input_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://w3id.org/biolink/vocab/InformationContentEntity</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input_type'>input_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Process Input: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input_label'>input_label</span><span class='embexpr_end'>}</span><span class='tstring_content'> - Type: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input_type_tag'>input_type_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='rbracket'>]</span>
       <span class='rparen'>)</span>
@@ -4631,11 +4635,6 @@
       <pre class="lines">
 
 
-639
-640
-641
-642
-643
 644
 645
 646
@@ -4675,10 +4674,15 @@
 680
 681
 682
-683</pre>
+683
+684
+685
+686
+687
+688</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 639</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 644</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_part'>process_has_part</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parent_process_tag'>parent_process_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:parent_process_tag</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>  
@@ -4884,11 +4888,6 @@
       <pre class="lines">
 
 
-701
-702
-703
-704
-705
 706
 707
 708
@@ -4921,10 +4920,15 @@
 735
 736
 737
-738</pre>
+738
+739
+740
+741
+742
+743</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 701</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 706</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_has_target'>process_has_target</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_target_tag'>process_with_target_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_target_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -5226,12 +5230,6 @@
       <pre class="lines">
 
 
-1110
-1111
-1112
-1113
-1114
-1115
 1116
 1117
 1118
@@ -5399,10 +5397,19 @@
 1280
 1281
 1282
-1283</pre>
+1283
+1284
+1285
+1286
+1287
+1288
+1289
+1290
+1291
+1292</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1110</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 1116</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_hasoutput_output'>process_hasoutput_output</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_output_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -5443,7 +5450,10 @@
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output_annotation</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
       <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_with_output_tag'>process_with_output_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Output</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-      <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='lbracket'>[</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>information-content-entity</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://w3id.org/biolink/vocab/InformationContentEntity</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='rbracket'>]</span>
       <span class='rparen'>)</span>      
   
   <span class='kw'>if</span> <span class='id identifier rubyid_output_type'>output_type</span>
@@ -5789,11 +5799,6 @@
       <pre class="lines">
 
 
-761
-762
-763
-764
-765
 766
 767
 768
@@ -5848,10 +5853,15 @@
 817
 818
 819
-820</pre>
+820
+821
+822
+823
+824
+825</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 761</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 766</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_is_specified_by'>process_is_specified_by</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_with_protocol_tag'>process_with_protocol_tag</span>  <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_with_protocol_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thisprocess</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># some one-word name
@@ -5982,6 +5992,22 @@
           <span class="name">:entity_role_tag</span>
           <span class="type">(<tt>String</tt>)</span>
           <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>the tag of the role that is fulfilled in this process (default &#39;thisRole&#39;) - see entity_role_tag above, synchronize these tags!</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:entity_tag</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>thisPerson</tt>
             
           </span>
           
@@ -6130,8 +6156,6 @@
       <pre class="lines">
 
 
-405
-406
 407
 408
 409
@@ -6248,10 +6272,15 @@
 520
 521
 522
-523</pre>
+523
+524
+525
+526
+527
+528</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 405</span>
+      <pre class="code"><span class="info file"># File 'lib/yarrrml_template_builder/yarrrml_template_builder.rb', line 407</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_role_in_process'>role_in_process</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_person_role_tag'>person_role_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:person_role_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>thisRole</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -6264,6 +6293,8 @@
   <span class='id identifier rubyid_process_start_column'>process_start_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_start_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span> 
   <span class='id identifier rubyid_process_end_column'>process_end_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_end_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_process_duration_column'>process_duration_column</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:process_end_column</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_entity_tag'>entity_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:entity_tag</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>thisPerson</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_make_unique_process'>make_unique_process</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:make_unique_process</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_process_type'>process_type</span> <span class='op'>=</span> <span class='id identifier rubyid_process_type_column'>process_type_column</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_type_column'>process_type_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='op'>:</span><span class='id identifier rubyid_process_type'>process_type</span>
@@ -6276,7 +6307,7 @@
   <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person_role_tag'>person_role_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_realized_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
     <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person_role_tag'>person_role_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this:individual_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entity_tag'>entity_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@personid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)_$(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uniqueid_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person_role_tag'>person_role_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
     <span class='lbracket'>[</span>
           <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>is-realized-in</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
     <span class='rbracket'>]</span>
@@ -6288,6 +6319,7 @@
          <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
          <span class='lbracket'>[</span>
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://w3id.org/biolink/vocab/Process</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_type'>process_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Process: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_label'>process_label</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:string</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
          <span class='rbracket'>]</span>
@@ -6299,7 +6331,7 @@
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_annotation_start</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
          <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-start-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_startdate_$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_start_column'>process_start_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-start-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_startdate_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_start_column'>process_start_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
          <span class='rparen'>)</span>
     <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_annotation_start_value</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -6317,7 +6349,7 @@
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_annotation_end</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
            <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-           <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate_$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_start_column'>process_start_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+           <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_start_column'>process_start_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
       <span class='rparen'>)</span>
       <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_annotation_end_value</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -6338,12 +6370,12 @@
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_annotation_end</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
          <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate_$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_end_column'>process_end_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+         <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-end-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_end_column'>process_end_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
          <span class='rparen'>)</span>
     <span class='ivar'>@mappings</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mapping_clause'>mapping_clause</span><span class='lparen'>(</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_process_annotation_end_value</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-         <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate_$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_end_column'>process_end_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+         <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#process_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_enddate_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_end_column'>process_end_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
          <span class='lbracket'>[</span>
            <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_end_column'>process_end_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>end-date</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
@@ -6364,9 +6396,9 @@
         <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_tag'>source_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>-source</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='id identifier rubyid_root_url'>root_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_tag'>process_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>_exists_at_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_duration_column'>process_duration_column</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
          <span class='lbracket'>[</span>
-           <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_duration_column'>process_duration_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xsd:int</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+           <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>has-value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_duration_column'>process_duration_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
            <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdf:type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SIO-constant" title="YARRRML_Template_Builder::SIO (constant)">SIO</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>day</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sio_verbose'>sio_verbose</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iri</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
-           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Duration: $(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_end_column'>process_end_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>) days</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
+           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rdfs:label</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Duration: $(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_duration_column'>process_duration_column</span><span class='embexpr_end'>}</span><span class='tstring_content'>) days</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>             
            <span class='rbracket'>]</span>
          <span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -6382,7 +6414,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Dec 18 09:08:00 2021 by
+  Generated on Tue Jan 11 14:45:22 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.26 (ruby-2.7.2).
 </div>
