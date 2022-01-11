@@ -76,7 +76,7 @@ b.process_has_target({
 # @option params :protocol_label_column  [String] column header for the label for the protocol uri
 # @option params :make_unique_process [boolean] (true)  (optional) if you want the core URI to b
 b.process_is_specified_by({
-    process_with_target_tag:  "some_laboratory_measuring_process",
+    process_with_protocol_tag:  "some_laboratory_measuring_process",
     protocol_type_tag: "laboratory_measurement_process_protocol",
     process_type_column: "processURI",
     process_type_label_column: "processLabel",
