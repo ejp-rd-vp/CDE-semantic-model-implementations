@@ -219,8 +219,10 @@ class YARRRML_Template_Builder
   end
 
 
-  def get_root_url(uniq)
-    if uniq
+  def get_root_url(uniq, entity)
+    if uniq and entity
+      "this:individual_#{entity}_$(#{@personid_column})_$(#{@uniqueid_column})_process"
+    elsif uniq
       "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})_process"
     else
       "this:individual_$(#{@personid_column})_process"
@@ -424,7 +426,7 @@ end
 
     person_role_tag = entity_role_tag if entity_role_tag
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
     @mappings << mapping_clause(
       "#{person_role_tag}_realized_#{process_tag}",
@@ -543,8 +545,9 @@ end
     process_annotations_columns = params.fetch(:process_annotations_columns, [])  
     process_annotations = params.fetch(:process_annotations, [])  
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
 
     if !process_annotations_columns.empty?
@@ -613,8 +616,9 @@ end
     entityid_column = params.fetch(:entityid_column, "pid")
     entity_tag = params.fetch(:entity_tag, "thisEntity")
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
 
     @mappings << mapping_clause(
@@ -648,9 +652,10 @@ end
     part_process_type_column = params.fetch(:part_process_type_column, nil)  
     parent_unique_process = params.fetch(:parent_unique_process, true)
     part_unique_process = params.fetch(:part_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    parent_root_url = get_root_url(parent_unique_process)
-    part_root_url = get_root_url(part_unique_process)
+    parent_root_url = get_root_url(parent_unique_process,entity_tag)
+    part_root_url = get_root_url(part_unique_process,entity_tag)
 
     part_process_type = part_process_type_column ? "$(#{part_process_type_column})":part_process_type
 
@@ -711,8 +716,9 @@ end
     target_type_label  = params.fetch(:target_type_label, "information content entity")  # some one-word name
     target_type_label_column  = params.fetch(:target_type_label_column, nil)  # some one-word name
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
     
     
     abort "must specify the process_with_target_tag
@@ -777,8 +783,9 @@ end
     protocol_type  = params.fetch(:protocol_type, "http://purl.obolibrary.org/obo/NCIT_C42651")   # Protocol
     protocol_type_column  = params.fetch(:protocol_type_column, nil)   
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
     
     
     abort "must specify the process_with_target_tag and the protocol type tag
@@ -842,8 +849,9 @@ end
     cause_type  = params.fetch(:cause_type, nil)  
     cause_type_column  = params.fetch(:cause_type_column, nil)  
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
     cause_type = cause_type_column ? "$(#{cause_type_column})":cause_type
 
@@ -880,10 +888,11 @@ end
   def process_has_attribute(params)
     process_with_attribute_tag  = params.fetch(:process_with_attribute_tag, nil)  # some one-word name
     attribute_tag  = params.fetch(:attribute_tag, nil)  # some one-word name
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
     make_unique_process = params.fetch(:make_unique_process, true)
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
     abort "must specify the process_with_attribute_tag" unless process_with_attribute_tag
     abort "must specify the attribute_tag" unless (attribute_tag)
@@ -924,8 +933,9 @@ end
     attribute_value_unit_column  = params.fetch(:attribute_value_unit_column, nil)  
     attribute_value_unit_label_column  = params.fetch(:attribute_value_unit_label_column, nil)  
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
     attribute_type = attribute_type_column ? "$(#{attribute_type_column})":attribute_type
     attribute_label = attribute_label_column ? "$(#{attribute_label_column})":attribute_label
@@ -1041,8 +1051,9 @@ end
     input_has_value_datatype  = params.fetch(:input_has_value_datatype, "xsd:string")  # some one-word name
     input_has_value_datatype_column  = params.fetch(:input_has_value_datatype_column, nil)  # some one-word name
     make_unique_process = params.fetch(:make_unique_process, true)
+    entity_tag = params.fetch(:entity_tag, 'thisPerson')
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
     
     
     abort "must specify the process_with_input_tag (the identifier of the process that receives the input) before you can use the process_has_input function" unless process_with_input_tag
@@ -1107,7 +1118,6 @@ end
 # @option params :output_type_label  [String] the the label of that ontological type (defaults to "measurement-value")
 # @option params :output_type_label_column  [String] the column header for the label of that ontological type (overrides output_type_label)
 # @option params :output_value_datatype  [xsd:type]  the xsd:type for that kind of measurement (defaults to xsd:string)
-# @option params :output_value_datatype_column  [String]  the column header for the xsd:type for that kind of measurement (overrides output_value_datatype)
 # @option params :output_comments_column  [String]  the column header for amy textual comments.  text must not contain a comma!!  defaults to nil
 # @option params :output_start_column  [xsd:date] the column header for start date, if the observation is time-constrained (e.g. symptoms from 2020-01-01 to 2020-01-05)
 # @option params :output_end_column  [xsd:date]   the column header for end date, if the observation is time-constrained (e.g. symptoms from symptoms from 2020-01-01 to 2020-01-05)
@@ -1124,7 +1134,7 @@ end
     output_type_label = params.fetch(:output_type_label, "measurement-value")
     output_type_label_column = params.fetch(:output_type_label_column, nil)
     output_value_datatype = params.fetch(:output_value_datatype, "xsd:string")
-    output_value_datatype_column = params.fetch(:output_value_datatype_column, nil)
+    #output_value_datatype_column = params.fetch(:output_value_datatype_column, nil)
     output_comments_column = params.fetch(:output_comments_column, nil)
     output_start_column = params.fetch(:output_start_column, nil)
     output_end_column = params.fetch(:output_end_column, nil)
@@ -1137,10 +1147,10 @@ end
     output_value = output_value_column ? "$(#{output_value_column})":output_value
     output_type = output_type_column ? "$(#{output_type_column})":output_type
     output_type_label = output_type_label_column ? "$(#{output_type_label_column})":output_type_label
-    output_value_datatype = output_value_datatype_column ? "$(#{output_value_datatype_column})":output_value_datatype
+    #output_value_datatype = output_value_datatype_column ? "$(#{output_value_datatype_column})":output_value_datatype
     
 
-    root_url = get_root_url(make_unique_process)
+    root_url = get_root_url(make_unique_process, entity_tag)
 
    #return unless output_value
    
@@ -1401,6 +1411,7 @@ end
   
   def output_has_unit(params)
     process_tag = params.fetch(:inout_process_tag, 'unidentifiedProcess')
+    entity_tag = params.fetch(:entity_tag, "thisPerson" ) 
 
     output_unit = params.fetch(:output_unit, nil)  # URI
     output_unit_column = params.fetch(:output_unit_column, nil)  # URI
@@ -1414,14 +1425,14 @@ end
       @mappings << mapping_clause(
               "process_#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
-                "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output",
+                "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output",
                 [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit", "iri"]]
                 )
 
       @mappings << mapping_clause(
               "process_#{process_tag}_Output_unit_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
+              "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
               [["rdf:type",output_unit, "iri"]]
               )
 
@@ -1432,7 +1443,7 @@ end
       @mappings << mapping_clause(
               "process_#{process_tag}_Output_unit_label_annotation",
               ["#{source_tag}-source"],
-              "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
+              "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit",
               [["rdfs:label",output_unit_label,"xsd:string"]
               ]
               )

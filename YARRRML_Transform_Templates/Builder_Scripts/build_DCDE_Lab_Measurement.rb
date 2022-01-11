@@ -88,7 +88,7 @@ b.process_is_specified_by({
 b.process_hasoutput_output({
     process_with_output_tag: "some_laboratory_measuring_process",
     output_value_column: "value",
-    output_value_datatype_column: "valueDatatype",
+    output_value_datatype: "xsd:float",
     output_comments_column: "comments",
     })
 

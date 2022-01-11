@@ -9,7 +9,7 @@ Please find example CSV file [here](../exemplar_csv/lab_measurement.csv)
 
 ### Columns
 
- pid,uniqid,processURI,processLabel,protocolURI,protocolLabel,material_tested,material_tested_label,target,target_label,value,valueDatatype,unitURI,unitLabel,date,comments
+ pid,uniqid,processURI,processLabel,protocolURI,protocolLabel,material_tested,material_tested_label,target,target_label,value,unitURI,unitLabel,date,comments
 
 ## Notes:
   * pid - patient unique identifier
@@ -26,7 +26,6 @@ Please find example CSV file [here](../exemplar_csv/lab_measurement.csv)
   * target:  the compound being measured in the sample. Child of  http://purl.obolibrary.org/obo/NCIT_C1908 (Drug, Food, Chemical or Biomedical Material) such as "http://purl.obolibrary.org/obo/NCIT_C399" (creatinine)
   * target_label:  label of that compound (e.g. "creatinine")
   * value:  the value of the measurement
-  * valueDatatype: select one of:  xsd:string, xsd:int, xsd:float  or if you know a more specific type, use that (be aware that xsd:integer may not be cross-platform compatible)
   * unitURI: select a Unit of Measure Ontology URI e.g. http://purl.obolibrary.org/obo/UO_0000015 (centimeter)
   * unitLabel:  the label for that unit URI (e.g. "centimeter")
   * date:  ISO 8601 formatted date  (not date time!)
