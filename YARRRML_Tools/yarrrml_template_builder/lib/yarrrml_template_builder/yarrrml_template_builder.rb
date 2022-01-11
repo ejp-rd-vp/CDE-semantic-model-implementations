@@ -460,7 +460,7 @@ end
       @mappings << mapping_clause(
         "process_#{process_tag}_process_annotation_start_value",
           ["#{source_tag}-source"],
-           root_url + "#process_#{process_tag}_startdate_$(#{process_start_column})",
+           root_url + "#process_#{process_tag}_startdate_#{process_start_column}",
            [
              [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
              ["rdf:type", SIO["start-date"][self.sio_verbose], "iri"],             
@@ -478,7 +478,7 @@ end
         @mappings << mapping_clause(
           "process_#{process_tag}_process_annotation_end_value",
             ["#{source_tag}-source"],
-             root_url + "#process_#{process_tag}_enddate_$(#{process_start_column})",
+             root_url + "#process_#{process_tag}_enddate_#{process_start_column}",
              [
                [SIO["has-value"][self.sio_verbose], "$(#{process_start_column})", "xsd:date"],
                ["rdf:type", SIO["end-date"][self.sio_verbose], "iri"],             
@@ -1426,7 +1426,7 @@ end
               "process_#{process_tag}_Output_hasunit_unit",
                 ["#{source_tag}-source"],
                 "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output",
-                [[SIO["has-unit"][self.sio_verbose], "this:individual_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit", "iri"]]
+                [[SIO["has-unit"][self.sio_verbose], "this:individual_#{entity_tag}_$(#{@personid_column})_$(#{@uniqueid_column})#process_#{process_tag}_Output_unit", "iri"]]
                 )
 
       @mappings << mapping_clause(
