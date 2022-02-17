@@ -43,12 +43,12 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Phenotypic_Process","rdfs:label","Process: Comparative phenotypic assessment","xsd:string"],
 ["this:$(pid)_$(uniqid)#Phenotypic_Startdate","rdfs:label","Startdate: $(date)","xsd:string"],
 ["this:$(pid)_$(uniqid)#Phenotypic_Enddate","rdfs:label","Enddate: $(date)","xsd:string"],
-["this:$(pid)_$(uniqid)#Phenotypic_Output","rdfs:label","Output type: $(HR_Label)","xsd:string"],
-["this:$(pid)_$(uniqid)#Phenotypic_Attribute","rdfs:label","Attribute type: $(HR_Label)","xsd:string"],
+["this:$(pid)_$(uniqid)#Phenotypic_Output","rdfs:label","Output type: $(HP_Label)","xsd:string"],
+["this:$(pid)_$(uniqid)#Phenotypic_Attribute","rdfs:label","Attribute type: $(HP_Label)","xsd:string"],
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)##Phenotypic_Startdate","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(pid)_$(uniqid)#Phenotypic_Startdate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Phenotypic_Enddate","sio:SIO_000300","$(date)","xsd:date"]]
 
 config = dict(

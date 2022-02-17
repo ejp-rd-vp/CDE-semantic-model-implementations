@@ -20,6 +20,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Diagnosis_Process","sio:SIO_000681","this:$(pid)_$(uniqid)#Diagnosis_Enddate","iri"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Process","sio:SIO_000229","this:$(pid)_$(uniqid)#Diagnosis_Output","iri"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Output","sio:SIO_000628","this:$(pid)_$(uniqid)#Diagnosis_Attribute","iri"],
+
 # Types
 ["this:$(pid)_$(uniqid)#ID","rdf:type","sio:SIO_000115","iri"],
 ["this:$(pid)_$(uniqid)#Entity","rdf:type","sio:SIO_000498","iri"],
@@ -33,12 +34,13 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Diagnosis_Output","rdf:type","sio:SIO_001003","iri"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Attribute","rdf:type","$(ordo_uri)","iri"],
+
 # Labels
 ["this:$(pid)_$(uniqid)#Diagnosis_Role","rdfs:label","Role: Diagnosis patient","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Process","rdfs:label","Process: Medical diagnosis","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Startdate","rdfs:label","Startdate: $(date)","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Enddate","rdfs:label","Enddate: $(date)","xsd:string"],
-["this:$(pid)_$(uniqid)#Diagnosis_Output","rdfs:label","Output type: Diagnosis)","xsd:string"],
+["this:$(pid)_$(uniqid)#Diagnosis_Output","rdfs:label","Output type: Diagnosis","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_Attribute","rdfs:label","Attribute type: $(diagnostic_opinion)","xsd:string"],
 
 # Values

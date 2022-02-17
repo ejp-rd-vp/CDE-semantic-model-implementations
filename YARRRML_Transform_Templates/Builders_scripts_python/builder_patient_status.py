@@ -51,7 +51,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)#Status_Output","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(pid)_$(uniqid)#Status_Output","sio:SIO_000300","$(status_label)","xsd:string"],
 ["this:$(pid)_$(uniqid)#Death_information_Output","sio:SIO_000300","$(death_date)","xsd:date"]]
 
 

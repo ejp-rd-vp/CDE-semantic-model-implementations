@@ -68,7 +68,9 @@ triplets = [
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)#Age_Output","sio:SIO_000300","$(age)","xsd:float"]]
+["this:$(pid)_$(uniqid)#Age_Output","sio:SIO_000300","$(age)","xsd:float"],
+["this:$(pid)_$(uniqid)#Sex_Output","sio:SIO_000300","$(sexLabel)","xsd:string"]]
+
 
 config = dict(
   source_name = "source_cde_test",

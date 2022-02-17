@@ -26,8 +26,9 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Disability_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)#Disability_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)#Disability_Process","rdf:type","sio:SIO_000006","iri"],
+["this:$(pid)_$(uniqid)#Disability_Process","rdf:type","obo:NCIT_C20993","iri"],
 ["this:$(pid)_$(uniqid)#Disability_Process","rdf:type","$(test_uri)","iri"],
-["this:$(pid)_$(uniqid)#Disability_Startdate","rdf:type","obo:NCIT_C107391","iri"],
+["this:$(pid)_$(uniqid)#Disability_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(uniqid)#Disability_Enddate","rdf:type","sio:SIO_000032","iri"],
 ["this:$(pid)_$(uniqid)#Disability_Output","rdf:type","sio:SIO_000015","iri"],
 ["this:$(pid)_$(uniqid)#Disability_Input","rdf:type","sio:SIO_000015","iri"],
@@ -43,7 +44,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)##Disability_Startdate","sio:SIO_000300","$(test_date)","xsd:date"],
+["this:$(pid)_$(uniqid)#Disability_Startdate","sio:SIO_000300","$(test_date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Disability_Enddate","sio:SIO_000300","$(test_date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Disability_Output","sio:SIO_000300","$(score)","xsd:string"]]
 

@@ -22,12 +22,15 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Genetic_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#HGVS_Process","iri"],
 ["this:$(pid)_$(uniqid)#Genetic_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#OMIM_Process","iri"],
 ["this:$(pid)_$(uniqid)#Genetic_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#HGNC_Process","iri"],
+
 ["this:$(pid)_$(uniqid)#HGVS_Process","sio:SIO_000229","this:$(pid)_$(uniqid)#HGVS_Output","iri"],
 ["this:$(pid)_$(uniqid)#HGVS_Output","sio:SIO_000628","this:$(pid)_$(uniqid)#HGVS_Attribute","iri"],
+
 ["this:$(pid)_$(uniqid)#OMIM_Process","sio:SIO_000229","this:$(pid)_$(uniqid)#OMIM_Output","iri"],
 ["this:$(pid)_$(uniqid)#OMIM_Output","sio:SIO_000628","$(omim_uri)","iri"],
-["this:$(pid)_$(uniqid)#OMIM_Process","sio:SIO_000229","this:$(pid)_$(uniqid)#HGNC_Output","iri"],
-["this:$(pid)_$(uniqid)#OMIM_Output","sio:SIO_000628","$(clinvar_uri)","iri"],
+
+["this:$(pid)_$(uniqid)#HGNC_Process","sio:SIO_000229","this:$(pid)_$(uniqid)#HGNC_Output","iri"],
+["this:$(pid)_$(uniqid)#HGNC_Output","sio:SIO_000628","$(clinvar_uri)","iri"],
 
 # Types
 ["this:$(pid)_$(uniqid)#ID","rdf:type","sio:SIO_000115","iri"],
@@ -51,10 +54,10 @@ triplets = [
 ["$(omim_uri)","rdf:type","sio:SIO_000015","iri"],
 ["$(omim_uri)","rdf:type","edam:data_1153","iri"],
 
-["this:$(pid)_$(uniqid)#HGNCProcess","rdf:type","obo:NCIT_C15709","iri"],
-["this:$(pid)_$(uniqid)#HGNCProcess","rdf:type","sio:SIO_000006","iri"],
-["this:$(pid)_$(uniqid)#HGNCOutput","rdf:type","sio:SIO_000015","iri"],
-["this:$(pid)_$(uniqid)#HGNCOutput","rdf:type","sio:SIO_001381","iri"],
+["this:$(pid)_$(uniqid)#HGNC_Process","rdf:type","obo:NCIT_C15709","iri"],
+["this:$(pid)_$(uniqid)#HGNC_Process","rdf:type","sio:SIO_000006","iri"],
+["this:$(pid)_$(uniqid)#HGNC_Output","rdf:type","sio:SIO_000015","iri"],
+["this:$(pid)_$(uniqid)#HGNC_Output","rdf:type","sio:SIO_001381","iri"],
 ["$(clinvar_uri)","rdf:type","sio:SIO_000614","iri"],
 ["$(clinvar_uri)","rdf:type","sio:SIO_000015","iri"],
 ["$(clinvar_uri)","rdf:type","edam:data_2298","iri"],
@@ -65,12 +68,14 @@ triplets = [
 ["this:$(pid)_$(uniqid)#HGVS_Process","rdfs:label","Process: HGVS genetic testing","xsd:string"],
 ["this:$(pid)_$(uniqid)#HGVS_Output","rdfs:label","Output type: HGVS measurement value","xsd:string"],
 ["this:$(pid)_$(uniqid)#HGVS_Attribute","rdfs:label","Attribute type: $(hgvs_string)","xsd:string"],
+
 ["this:$(pid)_$(uniqid)#OMIM_Process","rdfs:label","Process: OMIM genetic testing","xsd:string"],
 ["this:$(pid)_$(uniqid)#OMIM_Output","rdfs:label","Output type: OMIM genome sequence variant","xsd:string"],
-["this:$(pid)_$(uniqid)#OMIM_Attribute","rdfs:label","Attribute type: $(omim_uri)","xsd:string"],
-["this:$(pid)_$(uniqid)#OMIM_Process","rdfs:label","Process: HGNC genetic testing","xsd:string"],
-["this:$(pid)_$(uniqid)#OMIM_Output","rdfs:label","Output type: HGNC genome sequence variant","xsd:string"],
-["this:$(pid)_$(uniqid)#OMIM_Attribute","rdfs:label","Attribute type: $(clinvar_uri)","xsd:string"],
+["$(omim_uri)","rdfs:label","Attribute type: $(omim_uri)","xsd:string"],
+
+["this:$(pid)_$(uniqid)#HGNC_Process","rdfs:label","Process: HGNC genetic testing","xsd:string"],
+["this:$(pid)_$(uniqid)#HGNC_Output","rdfs:label","Output type: HGNC genome sequence variant","xsd:string"],
+["$(clinvar_uri)","rdfs:label","Attribute type: $(clinvar_uri)","xsd:string"],
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],

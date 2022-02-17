@@ -61,7 +61,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)##Undiagnosed_Startdate","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(pid)_$(uniqid)#Undiagnosed_Startdate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Undiagnosed_Enddate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Undiagnosed_Output","sio:SIO_000300","Undiagnosed","xsd:string"],
 ["this:$(pid)_$(uniqid)#Phenotype_Input","sio:SIO_000300","$(hp_label)","xsd:string"],
