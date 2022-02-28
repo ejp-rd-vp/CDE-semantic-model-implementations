@@ -1,184 +1,203 @@
----
+mapping:
+  20220228114929724954_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Care_pathway_Role
+      predicate: sio:SIO_000020
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220228114929724968_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Care_pathway_Role
+      predicate: sio:SIO_000228
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228114929724973_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Care_pathway_Process
+      predicate: sio:SIO_000356
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Role
+  20220228114929724977_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Care_pathway_Startdate
+      predicate: sio:SIO_000680
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Process
+  20220228114929724982_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Care_pathway_Enddate
+      predicate: sio:SIO_000681
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Process
+  20220228114929724987_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000115
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220228114929724990_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000498
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228114929724994_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000016
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Role
+  20220228114929724997_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:OBI_0000093
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Role
+  20220228114929725001_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000006
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Process
+  20220228114929725004_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:NCIT_C16205
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Process
+  20220228114929725008_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:NCIT_C159705
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Process
+  20220228114929725011_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000031
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Startdate
+  20220228114929725017_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000032
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Enddate
+  20220228114929725020_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Role: First contact patient'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Role
+  20220228114929725025_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Process: First contact with specialized center'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Process
+  20220228114929725028_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Startdate: $(first_contact_date)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Startdate
+  20220228114929725031_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Enddate: $(first_contact_date)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Enddate
+  20220228114929725034_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: $(pid)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220228114929725038_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:date
+        value: $(first_contact_date)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Startdate
+  20220228114929725041_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:date
+        value: $(first_contact_date)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Care_pathway_Enddate
 prefixes:
+  obo: http://purl.obolibrary.org/obo/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#
-  ex: https://ejp-rd.eu/ids/
-  obo: http://purl.obolibrary.org/obo/
   sio: http://semanticscience.org/resource/
-  vocab: https://ejp-rd.eu/vocab/
-  pico: https://data.cochrane.org/ontologies/pico/
-  ndfrt: http://purl.bioontology.org/ontology/NDFRT/
-  edam: http://purl.bioontology.org/ontology/EDAM/
-  ordo: http://www.orpha.net/ORDO/
-  this: "|||BASE|||"
+  this: '|||BASE|||'
+  xsd: http://www.w3.org/2001/XMLSchema#
 sources:
-  cde_patient_care_pathway-source:
-    access: "|||DATA|||"
-    referenceFormulation: "|||FORMULATION|||"
-    iterator: "$"
-mappings:
-  identifier_has_value_for_thisPerson_patientRole_care_pathway_first_contact:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_thisPerson_$(pid)#ID
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(pid)"
-        datatype: xsd:string
-  identifier_denotes_role_patientRole_care_pathway_first_contact:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_thisPerson_$(pid)#ID
-    po:
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/identifier
-        type: iri
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/identifier
-        type: iri
-    - predicates: http://semanticscience.org/resource/denotes
-      objects:
-        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
-        type: iri
-  entity_has_role_patientRole_care_pathway_first_contact:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_thisPerson_$(pid)#Entity
-    po:
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/person
-        type: iri
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/object
-        type: iri
-    - predicates: http://semanticscience.org/resource/has-role
-      objects:
-        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
-        type: iri
-  patientRole_care_pathway_first_contact_annotation:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
-    po:
-    - predicates: a
-      objects:
-        value: http://purl.obolibrary.org/obo/OBI_0000093
-        type: iri
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/role
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: " Role: First Contact Patient"
-        datatype: xsd:string
-  patientRole_care_pathway_first_contact_realized_patientRole_care_pathway_first_contact_process:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_care_pathway_first_contact
-    po:
-    - predicates: http://semanticscience.org/resource/is-realized-in
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process
-        type: iri
-  process_patientRole_care_pathway_first_contact_process_process_annotation:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/process
-        type: iri
-    - predicates: rdf:type
-      objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C159705
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: 'Process: first contact with specialized center'
-        datatype: xsd:string
-  process_patientRole_care_pathway_first_contact_process_process_annotation_start:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process
-    po:
-    - predicates: http://semanticscience.org/resource/has-start-time
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process_startdate_$(first_contact_date)
-        type: iri
-  process_patientRole_care_pathway_first_contact_process_process_annotation_start_value:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process_startdate_$(first_contact_date)
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(first_contact_date)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/start-date
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: 'Start Date: $(first_contact_date)'
-        datatype: xsd:string
-  process_patientRole_care_pathway_first_contact_process_process_annotation_end:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process
-    po:
-    - predicates: http://semanticscience.org/resource/has-end-time
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process_enddate_$(first_contact_date)
-        type: iri
-  process_patientRole_care_pathway_first_contact_process_process_annotation_end_value:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process_enddate_$(first_contact_date)
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(first_contact_date)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/end-date
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: 'End Date: $(first_contact_date)'
-        datatype: xsd:string
-  16382584944933143_process_custom_annotation:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://purl.obolibrary.org/obo/NCIT_C16205
-        type: iri
-  process_longitudinal_information_gathering_process_diseaseX_has_part_patientRole_care_pathway_first_contact_process:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_process#process_longitudinal_information_gathering_process_diseaseX
-    po:
-    - predicates: http://semanticscience.org/resource/has-part
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_patientRole_care_pathway_first_contact_process
-        type: iri
-  process_patientRole_care_pathway_first_contact_process_process_has_type:
-    sources:
-    - cde_patient_care_pathway-source
-    s: this:individual_$(pid)_process#process_patientRole_care_pathway_first_contact_process
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/process
-        type: iri
+  source_cde_test:
+    access: '|||DATA|||'
+    iterator: $
+    referenceFormulation: '|||FORMULATION|||'
+
