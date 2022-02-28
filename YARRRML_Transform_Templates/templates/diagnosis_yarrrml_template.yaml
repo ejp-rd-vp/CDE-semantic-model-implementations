@@ -1,260 +1,284 @@
----
+mapping:
+  20220228114930292708_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Role
+      predicate: sio:SIO_000020
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220228114930292723_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Role
+      predicate: sio:SIO_000228
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228114930292727_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Attribute
+      predicate: sio:SIO_000008
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228114930292731_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Process
+      predicate: sio:SIO_000356
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Role
+  20220228114930292735_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Startdate
+      predicate: sio:SIO_000680
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Process
+  20220228114930292738_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Enddate
+      predicate: sio:SIO_000681
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Process
+  20220228114930292744_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Output
+      predicate: sio:SIO_000229
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Process
+  20220228114930292747_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Diagnosis_Attribute
+      predicate: sio:SIO_000628
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Output
+  20220228114930292751_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000115
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220228114930292756_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000498
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228114930292759_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000016
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Role
+  20220228114930292763_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:OBI_0000093
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Role
+  20220228114930292766_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000006
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Process
+  20220228114930292770_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_001001
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Process
+  20220228114930292774_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000031
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Startdate
+  20220228114930292778_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000032
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Enddate
+  20220228114930292781_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Output
+  20220228114930292785_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_001003
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Output
+  20220228114930292788_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000614
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Attribute
+  20220228114930292792_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(ordo_uri)
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Attribute
+  20220228114930292796_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Role: Diagnosis patient'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Role
+  20220228114930292800_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Process: Medical diagnosis'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Process
+  20220228114930292804_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Startdate: $(date)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Startdate
+  20220228114930292807_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Enddate: $(date)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Enddate
+  20220228114930292810_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Output type: Diagnosis'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Output
+  20220228114930292813_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Attribute type: $(diagnostic_opinion)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Attribute
+  20220228114930292816_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: $(pid)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220228114930292820_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:date
+        value: $(date)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Startdate
+  20220228114930292823_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:date
+        value: $(date)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Enddate
+  20220228114930292827_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: $(diagnostic_opinion)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Diagnosis_Output
 prefixes:
+  obo: http://purl.obolibrary.org/obo/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#
-  ex: https://ejp-rd.eu/ids/
-  obo: http://purl.obolibrary.org/obo/
   sio: http://semanticscience.org/resource/
-  vocab: https://ejp-rd.eu/vocab/
-  pico: https://data.cochrane.org/ontologies/pico/
-  ndfrt: http://purl.bioontology.org/ontology/NDFRT/
-  edam: http://purl.bioontology.org/ontology/EDAM/
-  ordo: http://www.orpha.net/ORDO/
-  this: "|||BASE|||"
+  this: '|||BASE|||'
+  xsd: http://www.w3.org/2001/XMLSchema#
 sources:
-  cde_patient_diagnosis-source:
-    access: "|||DATA|||"
-    referenceFormulation: "|||FORMULATION|||"
-    iterator: "$"
-mappings:
-  identifier_has_value_for_thisPerson_patientRole_diagnosis:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)#ID
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(pid)"
-        datatype: xsd:string
-  identifier_denotes_role_patientRole_diagnosis:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)#ID
-    po:
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/identifier
-        type: iri
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/identifier
-        type: iri
-    - predicates: http://semanticscience.org/resource/denotes
-      objects:
-        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_diagnosis
-        type: iri
-  entity_has_role_patientRole_diagnosis:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)#Entity
-    po:
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/person
-        type: iri
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/object
-        type: iri
-    - predicates: http://semanticscience.org/resource/has-role
-      objects:
-        value: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_diagnosis
-        type: iri
-  patientRole_diagnosis_annotation:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)_$(uniqid)#patientRole_diagnosis
-    po:
-    - predicates: a
-      objects:
-        value: http://purl.obolibrary.org/obo/OBI_0000093
-        type: iri
-    - predicates: a
-      objects:
-        value: http://semanticscience.org/resource/role
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: " Role: Diagnosis Patient"
-        datatype: xsd:string
-  patientRole_diagnosis_realized_medical_diagnosis:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#patientRole_diagnosis
-    po:
-    - predicates: http://semanticscience.org/resource/is-realized-in
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis
-        type: iri
-  process_medical_diagnosis_process_annotation:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/process
-        type: iri
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/SIO_001001
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: 'Process: medical diagnosis'
-        datatype: xsd:string
-  process_medical_diagnosis_process_annotation_start:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis
-    po:
-    - predicates: http://semanticscience.org/resource/has-start-time
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis_startdate_$(date)
-        type: iri
-  process_medical_diagnosis_process_annotation_start_value:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis_startdate_$(date)
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(date)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/start-date
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: 'Start Date: $(date)'
-        datatype: xsd:string
-  process_medical_diagnosis_process_annotation_end:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis
-    po:
-    - predicates: http://semanticscience.org/resource/has-end-time
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis_enddate_$(date)
-        type: iri
-  process_medical_diagnosis_process_annotation_end_value:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis_enddate_$(date)
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(date)"
-        datatype: xsd:date
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/end-date
-        type: iri
-    - predicates: rdfs:label
-      objects:
-        value: 'End Date: $(date)'
-        datatype: xsd:string
-  process_longitudinal_information_gathering_process_diseaseX_has_part_medical_diagnosis:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_process#process_longitudinal_information_gathering_process_diseaseX
-    po:
-    - predicates: http://semanticscience.org/resource/has-part
-      objects:
-        value: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis
-        type: iri
-  process_medical_diagnosis_process_has_type:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_process#process_medical_diagnosis
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/process
-        type: iri
-  process_medical_diagnosis_process_has_output:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)_process#process_medical_diagnosis
-    po:
-    - predicates: http://semanticscience.org/resource/has-output
-      objects:
-        value: this:individual_$(pid)_$(uniqid)#process_medical_diagnosis_Output
-        type: iri
-  process_medical_diagnosis_Output_annotation:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_medical_diagnosis_Output
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/information-content-entity
-        type: iri
-  process_medical_diagnosis_Output_type_annotation:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_medical_diagnosis_Output
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/SIO_001003
-        type: iri
-  process_medical_diagnosis_Output_type_label_annotation:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_medical_diagnosis_Output
-    po:
-    - predicates: rdfs:label
-      objects:
-        value: 'Output Type: $(diagnostic_opinion)'
-        datatype: xsd:string
-  process_medical_diagnosis_Output_value_annotation:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_$(pid)_$(uniqid)#process_medical_diagnosis_Output
-    po:
-    - predicates: http://semanticscience.org/resource/has-value
-      objects:
-        value: "$(diagnostic_opinion)"
-        datatype: xsd:string
-  inout_from_process_medical_diagnosis_refers_to_concepts:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)_$(uniqid)#process_medical_diagnosis_Output
-    po:
-    - predicates: http://semanticscience.org/resource/refers-to
-      objects:
-        value: this:individual_thisPerson_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
-        type: iri
-  has_attribute_of_inout_from_process_medical_diagnosis:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)#Entity
-    po:
-    - predicates: http://semanticscience.org/resource/has-attribute
-      objects:
-        value: this:individual_thisPerson_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
-        type: iri
-  inout_from_process_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_type:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
-    po:
-    - predicates: rdf:type
-      objects:
-        value: http://semanticscience.org/resource/attribute
-        type: iri
-    - predicates: rdf:type
-      objects:
-        value: "$(ordo_uri)"
-        type: iri
-  inout_from_process_medical_diagnosis_refers_to_concept_medical_diagnosis_attribute_label:
-    sources:
-    - cde_patient_diagnosis-source
-    s: this:individual_thisPerson_$(pid)_$(uniqid)#medical_diagnosis_attribute_TypedAttributeNode
-    po:
-    - predicates: rdfs:label
-      objects:
-        value: 'Attribute Type: $(diagnostic_opinion)'
-        datatype: xsd:string
+  source_cde_test:
+    access: '|||DATA|||'
+    iterator: $
+    referenceFormulation: '|||FORMULATION|||'
+
