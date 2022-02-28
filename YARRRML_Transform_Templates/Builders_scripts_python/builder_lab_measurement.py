@@ -14,7 +14,7 @@ triplets = [
 # Nodes
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000020","this:$(pid)_$(uniqid)#Lab_measurement_Role","iri"],
 ["this:$(pid)_$(uniqid)#Entity","sio:SIO_000228","this:$(pid)_$(uniqid)#Lab_measurement_Role","iri"],
-["this:$(pid)_$(uniqid)#Entity","sio:SIO_000228","this:$(pid)_$(uniqid)#Lab_measurement_Attribute","iri"],
+["this:$(pid)_$(uniqid)#Entity","sio:SIO_000008","this:$(pid)_$(uniqid)#Lab_measurement_Attribute","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#Lab_measurement_Process","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Process","sio:SIO_000680","this:$(pid)_$(uniqid)#Lab_measurement_Startdate","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Process","sio:SIO_000681","this:$(pid)_$(uniqid)#Lab_measurement_Enddate","iri"],
@@ -32,7 +32,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Lab_measurement_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Process","rdf:type","sio:SIO_000006","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Process","rdf:type","$(processURI)","iri"],
-["this:$(pid)_$(uniqid)#Lab_measurement_Startdate","rdf:type","obo:NCIT_C107391","iri"],
+["this:$(pid)_$(uniqid)#Lab_measurement_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Enddate","rdf:type","sio:SIO_000032","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Output","rdf:type","sio:SIO_000015","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Input","rdf:type","sio:SIO_000015","iri"],
@@ -42,6 +42,7 @@ triplets = [
 ["$(protocolURI)","rdf:type","sio:SIO_000015","iri"],
 ["$(protocolURI)","rdf:type","obo:NCIT_C42651","iri"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Unit","rdf:type","$(unitURI)","iri"],
+["this:$(pid)_$(uniqid)#Lab_measurement_Attribute","rdf:type","sio:SIO_000614","iri"],
 
 # Labels
 ["this:$(pid)_$(uniqid)#Lab_measurement_Role","rdfs:label","Role: Patient","xsd:string"],
@@ -54,10 +55,11 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Lab_measurement_Target","rdfs:label","Target type: $(target_label)","xsd:string"],
 ["$(protocolURI)","rdfs:label","Protocol: $(protocolLabel)","xsd:string"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Unit","rdfs:label","Target type: $(unitLabel)","xsd:string"],
+["this:$(pid)_$(uniqid)#Lab_measurement_Attribute","rdfs:label","Lab measurement attribute","xsd:string"],
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)##Lab_measurement_Startdate","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(pid)_$(uniqid)#Lab_measurement_Startdate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Enddate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Lab_measurement_Output","sio:SIO_000300","$(value)","xsd:float"]]
 
