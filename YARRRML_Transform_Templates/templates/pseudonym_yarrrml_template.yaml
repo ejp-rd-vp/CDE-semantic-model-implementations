@@ -1,5 +1,5 @@
 mapping:
-  20220228114928874415_source_cde_test:
+  20220228150011788749_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -8,7 +8,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#ID
-  20220228114928874430_source_cde_test:
+  20220228150011788763_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -17,7 +17,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114928874435_source_cde_test:
+  20220228150011788768_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -26,7 +26,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#ID
-  20220228114928874439_source_cde_test:
+  20220228150011788772_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -35,7 +35,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114928874442_source_cde_test:
+  20220228150011788775_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -44,7 +44,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Birthdate_Role
-  20220228114928874447_source_cde_test:
+  20220228150011788781_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string

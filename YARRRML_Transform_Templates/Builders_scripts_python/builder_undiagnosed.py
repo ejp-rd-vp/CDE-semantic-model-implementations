@@ -15,6 +15,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000020","this:$(pid)_$(uniqid)#Undiagnosed_Role","iri"],
 ["this:$(pid)_$(uniqid)#Entity","sio:SIO_000228","this:$(pid)_$(uniqid)#Undiagnosed_Role","iri"],
 ["this:$(pid)_$(uniqid)#Entity","sio:SIO_000008","this:$(pid)_$(uniqid)#Undiagnosed_Attribute","iri"],
+["this:$(pid)_$(uniqid)#Entity","sio:SIO_000008","this:$(pid)_$(uniqid)#Phenotype_Attribute","iri"],
+["this:$(pid)_$(uniqid)#Entity","sio:SIO_000008","$(clinvar_uri)","iri"],
 ["this:$(pid)_$(uniqid)#Undiagnosed_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#Undiagnosed_Process","iri"],
 ["this:$(pid)_$(uniqid)#Undiagnosed_Process","sio:SIO_000680","this:$(pid)_$(uniqid)#Undiagnosed_Startdate","iri"],
 ["this:$(pid)_$(uniqid)#Undiagnosed_Process","sio:SIO_000681","this:$(pid)_$(uniqid)#Undiagnosed_Enddate","iri"],
@@ -23,7 +25,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Undiagnosed_Process","sio:SIO_000230","this:$(pid)_$(uniqid)#Genotype_Input","iri"],
 ["this:$(pid)_$(uniqid)#Undiagnosed_Output","sio:SIO_000628","this:$(pid)_$(uniqid)#Undiagnosed_Attribute","iri"],
 ["this:$(pid)_$(uniqid)#Phenotype_Input","sio:SIO_000628","this:$(pid)_$(uniqid)#Phenotype_Attribute","iri"],
-["this:$(pid)_$(uniqid)#Genotype_Input","sio:SIO_000628","this:$(pid)_$(uniqid)#Genotype_Attribute","iri"],
+["this:$(pid)_$(uniqid)#Genotype_Input","sio:SIO_000628","$(clinvar_uri)","iri"],
 
 # Types
 ["this:$(pid)_$(uniqid)#ID","rdf:type","sio:SIO_000115","iri"],
@@ -44,8 +46,8 @@ triplets = [
 
 ["this:$(pid)_$(uniqid)#Genotype_Input","rdf:type","sio:SIO_000015","iri"],
 ["this:$(pid)_$(uniqid)#Genotype_Input","rdf:type","sio:SIO_001388","iri"],
-["this:$(pid)_$(uniqid)#Genotype_Attribute","rdf:type","sio:SIO_000614","iri"],
-["this:$(pid)_$(uniqid)#Genotype_Attribute","rdf:type","$(clinvar_uri)","iri"],
+["$(clinvar_uri)","rdf:type","sio:SIO_000614","iri"],
+["$(clinvar_uri)","rdf:type","obo:NCIT_C171178","iri"],
 
 # Labels
 ["this:$(pid)_$(uniqid)#Undiagnosed_Role","rdfs:label","Role: Undiagnosed patient","xsd:string"],
@@ -57,7 +59,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Phenotype_Input","rdfs:label","Input type: HP_Phenotype","xsd:string"],
 ["this:$(pid)_$(uniqid)#Phenotype_Attribute","rdfs:label","Attribute type: $(hp_label)","xsd:string"],
 ["this:$(pid)_$(uniqid)#Genotype_Input","rdfs:label","Input type: HGVS_Genotype","xsd:string"],
-["this:$(pid)_$(uniqid)#Genotype_Attribute","rdfs:label","Attribute type: $(hgvs_string)","xsd:string"],
+["$(clinvar_uri)","rdfs:label","Attribute type: $(hgvs_string)","xsd:string"],
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],

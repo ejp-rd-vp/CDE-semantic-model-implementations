@@ -49,7 +49,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)##Consent_Startdate","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(pid)_$(uniqid)#Consent_Startdate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Consent_Enddate","sio:SIO_000300","$(date)","xsd:date"],
 ["this:$(pid)_$(uniqid)#Consent_Output","sio:SIO_000300","$(result_label)","xsd:string"],
 ["this:$(pid)_$(uniqid)#Consent_Input","sio:SIO_000300","$(consent_template)","xsd:string"]]
