@@ -51,7 +51,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Symptom_onset_Role","rdfs:label","Role: Symptom onset patient","xsd:string"],
 ["this:$(pid)_$(uniqid)#Symptom_onset_Process","rdfs:label","Process: Symptom onset date recording process","xsd:string"],
 ["this:$(pid)_$(uniqid)#Symptom_onset_Output","rdfs:label","Output type: Date of onset","xsd:string"],
-["this:$(pid)_$(uniqid)#Symptom_onset_Attribute","rdfs:label","Attribute type: Stage or date of onset)","xsd:string"],
+["this:$(pid)_$(uniqid)#Symptom_onset_Attribute","rdfs:label","Attribute type: Stage or date of onset","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_date_Role","rdfs:label","Role: Diagnosis date patient","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_date_Process","rdfs:label","Process: Diagnosis date recording process","xsd:string"],
 ["this:$(pid)_$(uniqid)#Diagnosis_date_Output","rdfs:label","Output type: Age at diagnosis","xsd:string"],

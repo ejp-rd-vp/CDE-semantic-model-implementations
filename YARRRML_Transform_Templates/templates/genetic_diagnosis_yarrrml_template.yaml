@@ -1,5 +1,5 @@
 mapping:
-  20220228114930578233_source_cde_test:
+  20220228150013536632_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -8,7 +8,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#ID
-  20220228114930578248_source_cde_test:
+  20220228150013536647_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -17,25 +17,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114930578252_source_cde_test:
-    predicateobject:
-    - objects:
-        type: iri
-        value: this:$(pid)_$(uniqid)#HGVS_Attribute
-      predicate: sio:SIO_000008
-    sources:
-    - source_cde_test
-    subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114930578256_source_cde_test:
-    predicateobject:
-    - objects:
-        type: iri
-        value: $(omim_uri)
-      predicate: sio:SIO_000008
-    sources:
-    - source_cde_test
-    subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114930578261_source_cde_test:
+  20220228150013536652_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -44,7 +26,25 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114930578267_source_cde_test:
+  20220228150013536657_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(omim_uri)
+      predicate: sio:SIO_000008
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228150013536660_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(hgnc_uri)
+      predicate: sio:SIO_000008
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220228150013536665_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -53,7 +53,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Genetic_Role
-  20220228114930578270_source_cde_test:
+  20220228150013536669_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -62,7 +62,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Genetic_Role
-  20220228114930578274_source_cde_test:
+  20220228150013536672_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -71,7 +71,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Genetic_Role
-  20220228114930578278_source_cde_test:
+  20220228150013536676_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -80,16 +80,16 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Process
-  20220228114930578281_source_cde_test:
+  20220228150013536679_source_cde_test:
     predicateobject:
     - objects:
         type: iri
-        value: this:$(pid)_$(uniqid)#HGVS_Attribute
+        value: $(clinvar_uri)
       predicate: sio:SIO_000628
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Output
-  20220228114930578284_source_cde_test:
+  20220228150013536682_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -98,7 +98,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Process
-  20220228114930578288_source_cde_test:
+  20220228150013536686_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -107,7 +107,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Output
-  20220228114930578292_source_cde_test:
+  20220228150013536690_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -116,16 +116,16 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Process
-  20220228114930578296_source_cde_test:
+  20220228150013536695_source_cde_test:
     predicateobject:
     - objects:
         type: iri
-        value: $(clinvar_uri)
+        value: $(hgnc_uri)
       predicate: sio:SIO_000628
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Output
-  20220228114930578300_source_cde_test:
+  20220228150013536701_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -134,7 +134,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#ID
-  20220228114930578304_source_cde_test:
+  20220228150013536704_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -143,7 +143,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Entity
-  20220228114930578308_source_cde_test:
+  20220228150013536708_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -152,7 +152,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Genetic_Role
-  20220228114930578312_source_cde_test:
+  20220228150013536711_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -161,7 +161,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Genetic_Role
-  20220228114930578315_source_cde_test:
+  20220228150013536715_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -170,7 +170,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Process
-  20220228114930578319_source_cde_test:
+  20220228150013536718_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -179,7 +179,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Process
-  20220228114930578322_source_cde_test:
+  20220228150013536721_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -188,7 +188,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Output
-  20220228114930578327_source_cde_test:
+  20220228150013536726_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -197,7 +197,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Output
-  20220228114930578330_source_cde_test:
+  20220228150013536730_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -205,8 +205,8 @@ mapping:
       predicate: rdf:type
     sources:
     - source_cde_test
-    subjects: this:$(pid)_$(uniqid)#HGVS_Attribute
-  20220228114930578334_source_cde_test:
+    subjects: $(clinvar_uri)
+  20220228150013536734_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -214,8 +214,8 @@ mapping:
       predicate: rdf:type
     sources:
     - source_cde_test
-    subjects: this:$(pid)_$(uniqid)#HGVS_Attribute
-  20220228114930578337_source_cde_test:
+    subjects: $(clinvar_uri)
+  20220228150013536739_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -223,8 +223,8 @@ mapping:
       predicate: rdf:type
     sources:
     - source_cde_test
-    subjects: this:$(pid)_$(uniqid)#HGVS_Attribute
-  20220228114930578342_source_cde_test:
+    subjects: $(clinvar_uri)
+  20220228150013536742_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -233,7 +233,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Process
-  20220228114930578345_source_cde_test:
+  20220228150013536745_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -242,7 +242,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Process
-  20220228114930578348_source_cde_test:
+  20220228150013536749_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -251,7 +251,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Output
-  20220228114930578352_source_cde_test:
+  20220228150013536752_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -260,7 +260,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Output
-  20220228114930578356_source_cde_test:
+  20220228150013536757_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -269,7 +269,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: $(omim_uri)
-  20220228114930578360_source_cde_test:
+  20220228150013536760_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -278,7 +278,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: $(omim_uri)
-  20220228114930578363_source_cde_test:
+  20220228150013536764_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -287,7 +287,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: $(omim_uri)
-  20220228114930578366_source_cde_test:
+  20220228150013536767_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -296,7 +296,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Process
-  20220228114930578370_source_cde_test:
+  20220228150013536770_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -305,7 +305,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Process
-  20220228114930578373_source_cde_test:
+  20220228150013536774_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -314,7 +314,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Output
-  20220228114930578377_source_cde_test:
+  20220228150013536778_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -323,7 +323,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Output
-  20220228114930578382_source_cde_test:
+  20220228150013536783_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -331,8 +331,8 @@ mapping:
       predicate: rdf:type
     sources:
     - source_cde_test
-    subjects: $(clinvar_uri)
-  20220228114930578385_source_cde_test:
+    subjects: $(hgnc_uri)
+  20220228150013536786_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -340,8 +340,8 @@ mapping:
       predicate: rdf:type
     sources:
     - source_cde_test
-    subjects: $(clinvar_uri)
-  20220228114930578389_source_cde_test:
+    subjects: $(hgnc_uri)
+  20220228150013536789_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -349,8 +349,8 @@ mapping:
       predicate: rdf:type
     sources:
     - source_cde_test
-    subjects: $(clinvar_uri)
-  20220228114930578392_source_cde_test:
+    subjects: $(hgnc_uri)
+  20220228150013536793_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -359,7 +359,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#Genetic_Role
-  20220228114930578395_source_cde_test:
+  20220228150013536796_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -368,7 +368,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Process
-  20220228114930578399_source_cde_test:
+  20220228150013536800_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -377,7 +377,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Output
-  20220228114930578402_source_cde_test:
+  20220228150013536803_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -385,8 +385,8 @@ mapping:
       predicate: rdfs:label
     sources:
     - source_cde_test
-    subjects: this:$(pid)_$(uniqid)#HGVS_Attribute
-  20220228114930578406_source_cde_test:
+    subjects: $(clinvar_uri)
+  20220228150013536806_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -395,7 +395,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Process
-  20220228114930578410_source_cde_test:
+  20220228150013536811_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -404,7 +404,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Output
-  20220228114930578413_source_cde_test:
+  20220228150013536815_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -413,7 +413,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: $(omim_uri)
-  20220228114930578417_source_cde_test:
+  20220228150013536818_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -422,7 +422,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Process
-  20220228114930578421_source_cde_test:
+  20220228150013536822_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -431,16 +431,16 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGNC_Output
-  20220228114930578424_source_cde_test:
+  20220228150013536825_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
-        value: 'Attribute type: $(clinvar_uri)'
+        value: 'Attribute type: $(hgnc_uri)'
       predicate: rdfs:label
     sources:
     - source_cde_test
-    subjects: $(clinvar_uri)
-  20220228114930578427_source_cde_test:
+    subjects: $(hgnc_uri)
+  20220228150013536828_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -449,7 +449,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#ID
-  20220228114930578431_source_cde_test:
+  20220228150013536831_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -458,7 +458,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#HGVS_Output
-  20220228114930578434_source_cde_test:
+  20220228150013536834_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
@@ -467,11 +467,11 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)#OMIM_Output
-  20220228114930578438_source_cde_test:
+  20220228150013536839_source_cde_test:
     predicateobject:
     - objects:
         datatype: xsd:string
-        value: $(clinvar_uri)
+        value: $(hgnc_uri)
       predicate: sio:SIO_000300
     sources:
     - source_cde_test
