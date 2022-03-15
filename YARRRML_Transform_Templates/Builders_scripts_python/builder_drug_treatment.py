@@ -17,7 +17,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)#Treatment_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#Treatment_Process","iri"],
 ["this:$(pid)_$(uniqid)#Treatment_Process","sio:SIO_000680","this:$(pid)_$(uniqid)#Treatment_Startdate","iri"],
 ["this:$(pid)_$(uniqid)#Treatment_Process","sio:SIO_000681","this:$(pid)_$(uniqid)#Treatment_Enddate","iri"],
-["this:$(pid)_$(uniqid)#Treatment_Process","sio:CHEMINF_000047 ","this:$(pid)_$(uniqid)#Treatment_Prescription_Output","iri"],
+["this:$(pid)_$(uniqid)#Treatment_Process","sio:CHEMINF_000047","this:$(pid)_$(uniqid)#Treatment_Prescription_Output","iri"],
 ["this:$(pid)_$(uniqid)#Treatment_Process","sio:SIO_000230","this:$(pid)_$(uniqid)#Treatment_Input","iri"],
 ["this:$(pid)_$(uniqid)#Treatment_Process","sio:SIO_000139","this:$(pid)_$(uniqid)#Treatment_Drug_Attribute","iri"],
 ["this:$(pid)_$(uniqid)#Treatment_Prescription_Output","sio:SIO_000628","this:$(pid)_$(uniqid)#Treatment_Drug_Attribute","iri"],

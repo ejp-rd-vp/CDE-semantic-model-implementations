@@ -1,0 +1,2 @@
+med_atc_uri,med_atc_label,med_atc_type,startdate,enddate,dose,unitLabel,unitURI,freq,freqLabel,freqURI,routeURI,routeLabel,processURI,processLabel,comments,uniqid
+https://www.whocc.no/atc_ddd_index/?code=L01XC02,rituximab,http://purl.obolibrary.org/obo/NCIT_C1702,2019/04/05,2021/08/08,60,miligram,http://purl.obolibrary.org/obo/UO_0000022,1,per day,http://purl.obolibrary.org/obo/NCIT_C66968,http://purl.obolibrary.org/obo/NCIT_C38288,Oral Route of Administration,http://purl.obolibrary.org/obo/NCIT_C49236,Therapeutic Procedure,comments,20220315095719196666
