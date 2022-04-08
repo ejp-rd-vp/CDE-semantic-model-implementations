@@ -17,6 +17,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Status_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Status_Process","iri"],
 ["this:$(pid)_$(uniqid)_Status_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Status_Output","iri"],
+["this:$(pid)_$(uniqid)_Status_Process","sio:SIO_000680","this:$(pid)_$(uniqid)_Status_Startdate","iri"],
+["this:$(pid)_$(uniqid)_Status_Process","sio:SIO_000681","this:$(pid)_$(uniqid)_Status_Enddate","iri"],
 ["this:$(pid)_$(uniqid)_Status_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Status_Attribute","iri"],
 
 ["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Death_information_Attribute","iri"],
@@ -33,7 +35,10 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Status_Process","rdf:type","sio:SIO_000006","iri"],
 ["this:$(pid)_$(uniqid)_Status_Output","rdf:type","sio:SIO_000015","iri"],
 ["this:$(pid)_$(uniqid)_Status_Attribute","rdf:type","sio:SIO_000614","iri"],
+["this:$(pid)_$(uniqid)_Status_Attribute","rdf:type","obo:NCIT_C166244","iri"],
 ["this:$(pid)_$(uniqid)_Status_Attribute","rdf:type","$(status_uri)","iri"],
+["this:$(pid)_$(uniqid)_Status_Startdate","rdf:type","sio:SIO_000031","iri"],
+["this:$(pid)_$(uniqid)_Status_Enddate","rdf:type","sio:SIO_000032","iri"],
 
 ["this:$(pid)_$(uniqid)_Death_information_Process","rdf:type","sio:SIO_000006","iri"],
 ["this:$(pid)_$(uniqid)_Death_information_Output","rdf:type","sio:SIO_000015","iri"],
@@ -43,16 +48,20 @@ triplets = [
 # Labels
 ["this:$(pid)_$(uniqid)_Status_Role","rdfs:label","Role: Patient for status recording","xsd:string"],
 ["this:$(pid)_$(uniqid)_Status_Process","rdfs:label","Process: Status recording process","xsd:string"],
+["this:$(pid)_$(uniqid)_Status_Startdate","rdfs:label","Startdate: $(date)","xsd:string"],
+["this:$(pid)_$(uniqid)_Status_Enddate","rdfs:label","Enddate: $(date)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Status_Output","rdfs:label","Output type: $(status_label)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Status_Attribute","rdfs:label","Attribute type: $(status_label)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Death_information_Process","rdfs:label","Process: Death information recording process","xsd:string"],
-["this:$(pid)_$(uniqid)_Death_information_Output","rdfs:label","Output type: Patient death information)","xsd:string"],
+["this:$(pid)_$(uniqid)_Death_information_Output","rdfs:label","Output type: Patient death information","xsd:string"],
 ["this:$(pid)_$(uniqid)_Death_information_Attribute","rdfs:label","Attribute type: Date of death","xsd:string"],
 
 # Values
 ["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Status_Output","sio:SIO_000300","$(status_label)","xsd:string"],
-["this:$(pid)_$(uniqid)_Death_information_Output","sio:SIO_000300","$(death_date)","xsd:date"]]
+["this:$(pid)_$(uniqid)_Death_information_Output","sio:SIO_000300","$(death_date)","xsd:date"],
+["this:$(pid)_$(uniqid)_Status_Startdate","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(pid)_$(uniqid)_Status_Enddate","sio:SIO_000300","$(date)","xsd:date"]]
 
 
 config = dict(

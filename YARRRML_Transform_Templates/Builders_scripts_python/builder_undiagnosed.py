@@ -41,6 +41,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Undiagnosed_Attribute","rdf:type","obo:NCIT_C113725","iri"],
 
 ["this:$(pid)_$(uniqid)_Phenotype_Input","rdf:type","sio:SIO_000015","iri"],
+["this:$(pid)_$(uniqid)_Phenotype_Input","rdf:type","obo:NCIT_C102741","iri"],
 ["this:$(pid)_$(uniqid)_Phenotype_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Phenotype_Attribute","rdf:type","$(hp_uri)","iri"],
 
