@@ -12,33 +12,33 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)#ID","sio:SIO_000020","this:$(pid)_$(uniqid)#Care_pathway_Role","iri"],
-["this:$(pid)_$(uniqid)#Entity","sio:SIO_000228","this:$(pid)_$(uniqid)#Care_pathway_Role","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Role","sio:SIO_000356","this:$(pid)_$(uniqid)#Care_pathway_Process","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Process","sio:SIO_000680","this:$(pid)_$(uniqid)#Care_pathway_Startdate","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Process","sio:SIO_000681","this:$(pid)_$(uniqid)#Care_pathway_Enddate","iri"],
+["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Care_pathway_Role","iri"],
+["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Care_pathway_Role","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Care_pathway_Process","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Process","sio:SIO_000680","this:$(pid)_$(uniqid)_Care_pathway_Startdate","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Process","sio:SIO_000681","this:$(pid)_$(uniqid)_Care_pathway_Enddate","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)#ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)#Entity","rdf:type","sio:SIO_000498","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Role","rdf:type","sio:SIO_000016","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Role","rdf:type","obo:OBI_0000093","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Process","rdf:type","sio:SIO_000006","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Process","rdf:type","obo:NCIT_C16205","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Process","rdf:type","obo:NCIT_C159705","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Startdate","rdf:type","sio:SIO_000031","iri"],
-["this:$(pid)_$(uniqid)#Care_pathway_Enddate","rdf:type","sio:SIO_000032","iri"],
+["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Role","rdf:type","sio:SIO_000016","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Role","rdf:type","obo:OBI_0000093","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Process","rdf:type","sio:SIO_000006","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Process","rdf:type","obo:NCIT_C16205","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Process","rdf:type","obo:NCIT_C159705","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Startdate","rdf:type","sio:SIO_000031","iri"],
+["this:$(pid)_$(uniqid)_Care_pathway_Enddate","rdf:type","sio:SIO_000032","iri"],
 
 # Labels
-["this:$(pid)_$(uniqid)#Care_pathway_Role","rdfs:label","Role: First contact patient","xsd:string"],
-["this:$(pid)_$(uniqid)#Care_pathway_Process","rdfs:label","Process: First contact with specialized center","xsd:string"],
-["this:$(pid)_$(uniqid)#Care_pathway_Startdate","rdfs:label","Startdate: $(first_contact_date)","xsd:string"],
-["this:$(pid)_$(uniqid)#Care_pathway_Enddate","rdfs:label","Enddate: $(first_contact_date)","xsd:string"],
+["this:$(pid)_$(uniqid)_Care_pathway_Role","rdfs:label","Role: First contact patient","xsd:string"],
+["this:$(pid)_$(uniqid)_Care_pathway_Process","rdfs:label","Process: First contact with specialized center","xsd:string"],
+["this:$(pid)_$(uniqid)_Care_pathway_Startdate","rdfs:label","Startdate: $(first_contact_date)","xsd:string"],
+["this:$(pid)_$(uniqid)_Care_pathway_Enddate","rdfs:label","Enddate: $(first_contact_date)","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)#ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)#Care_pathway_Startdate","sio:SIO_000300","$(first_contact_date)","xsd:date"],
-["this:$(pid)_$(uniqid)#Care_pathway_Enddate","sio:SIO_000300","$(first_contact_date)","xsd:date"]]
+["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_$(uniqid)_Care_pathway_Startdate","sio:SIO_000300","$(first_contact_date)","xsd:date"],
+["this:$(pid)_$(uniqid)_Care_pathway_Enddate","sio:SIO_000300","$(first_contact_date)","xsd:date"]]
 
 
 config = dict(
