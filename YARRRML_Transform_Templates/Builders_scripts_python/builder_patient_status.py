@@ -1,4 +1,4 @@
-from embuilder.builder import EMB
+# from embuilder.builder import EMB
 
 prefixes = dict(
   rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ,
@@ -73,6 +73,6 @@ config = dict(
   csv_name = "source_1" # parameter only needed in case you pick "csv" as configuration
 )
 
-yarrrml = EMB(config)
-test = yarrrml.transform(prefixes, triplets)
-print(test)
+# builder = EMB(config, prefixes, triplets)
+# test = builder.transform_YARRRML()
+# print(test)
