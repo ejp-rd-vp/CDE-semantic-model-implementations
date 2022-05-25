@@ -3,17 +3,17 @@ from embuilder.builder import EMB
 
 a =__import__(sys.argv[1])
 
-if sys.argv[2] == "OBDA" or "obda":
+if sys.argv[2] == "obda":
     builder = EMB(a.config, a.prefixes, a.triplets)
     test = builder.transform_OBDA()
     print(test)
 
-elif sys.argv[2] == "YARRRML" or "yarrrml":
+elif sys.argv[2] == "yarrrml":
     builder = EMB(a.config, a.prefixes, a.triplets)
     test = builder.transform_YARRRML()
     print(test)
 
-elif sys.argv[2] == "ShEx" or "shex":
+elif sys.argv[2] == "shex":
     builder = EMB(a.config, a.prefixes, a.triplets)
     test = builder.transform_ShEx("this")
     print(test)

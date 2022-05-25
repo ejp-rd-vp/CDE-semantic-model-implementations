@@ -1,21 +1,29 @@
 # EMbuilder workflow:
 
-#### You can use ```embuilder.py``` to execute any of the Python3-based builder scripts from this repository. You only need to execute embuilder.py file using as arguments:
+## Instalation:
+Please install builder module for Python:
+
+```python
+pip install EMbuilder
+```
+
+## Use case:
+
+#### You can use ```emb.py``` to execute any of the Python3-based builder scripts from this repository. You only need to execute embuilder.py file using as arguments:
 + name of the builder you want to execute
 + the representation you want to obtain: YARRRML, ShEx or OBDA
 
-### Use cases:
-
+### Examples:
 For executing yarrrml for Pseudonym builder:
 
 ```python3
-python3 embuilder.py builder_pseudonym yarrrml
+python3 emb.py builder_pseudonym yarrrml
 ```
 
 For executing ShEx for Diagnosis builder:
 
 ```python3
-python3 embuilder.py builder_diagnosis shex
+python3 emb.py builder_diagnosis shex
 ```
 
 You can also iterate this process using ```exploit.sh``` to execute multiple scripts at once, providing all tagnames of the builder (builder_TAGNAME.py) and the path to store them:
