@@ -18,4 +18,4 @@ elif sys.argv[2] == "shex":
     test = builder.transform_ShEx("this")
     print(test)
 else:
-    sys.exit(" Argument used for defining the method is not correct, please add 'obda' 'shex' or 'yarrrml' as second parameter to define the method")
+    sys.exit("Argument used for defining the method is not correct, please add 'obda' 'shex' or 'yarrrml' as second parameter to define the method")
