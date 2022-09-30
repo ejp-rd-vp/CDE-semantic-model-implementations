@@ -12,8 +12,8 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Disability_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Disability_Role","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Disability_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Disability_Role","iri"],
 ["this:$(pid)_$(uniqid)_Disability_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Disability_Process","iri"],
 ["this:$(pid)_$(uniqid)_Disability_Process","sio:SIO_000680","this:$(pid)_$(uniqid)_Disability_Startdate","iri"],
 ["this:$(pid)_$(uniqid)_Disability_Process","sio:SIO_000681","this:$(pid)_$(uniqid)_Disability_Enddate","iri"],
@@ -21,8 +21,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Disability_Process","sio:SIO_000230","this:$(pid)_$(uniqid)_Disability_Input","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Disability_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Disability_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Disability_Process","rdf:type","sio:SIO_000006","iri"],
@@ -43,7 +43,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Disability_Input","rdfs:label","Input type: Questionnaire","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Disability_Startdate","sio:SIO_000300","$(test_date)","xsd:date"],
 ["this:$(pid)_$(uniqid)_Disability_Enddate","sio:SIO_000300","$(test_date)","xsd:date"],
 ["this:$(pid)_$(uniqid)_Disability_Output","sio:SIO_000300","$(score)","xsd:string"]]

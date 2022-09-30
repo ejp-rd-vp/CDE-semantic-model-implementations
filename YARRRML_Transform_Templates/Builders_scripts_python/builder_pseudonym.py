@@ -12,16 +12,16 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:denotes","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:has-role","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
+["this:$(pid)_ID","sio:denotes","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
+["this:$(pid)_Entity","sio:has-role","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Role","rdf:type","obo:OBI_0000093","iri"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"]]
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"]]
 
 config = dict(
   source_name = "source_cde_test",

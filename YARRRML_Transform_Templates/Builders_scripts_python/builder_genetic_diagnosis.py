@@ -13,11 +13,11 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Genetic_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Genetic_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","$(clinvar_uri)","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","$(omim_uri)","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","$(hgnc_uri)","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Genetic_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Genetic_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","$(clinvar_uri)","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","$(omim_uri)","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","$(hgnc_uri)","iri"],
 
 ["this:$(pid)_$(uniqid)_Genetic_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_HGVS_Process","iri"],
 ["this:$(pid)_$(uniqid)_Genetic_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_OMIM_Process","iri"],
@@ -33,8 +33,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_HGNC_Output","sio:SIO_000628","$(hgnc_uri)","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Genetic_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Genetic_Role","rdf:type","obo:OBI_0000093","iri"],
 
@@ -78,7 +78,7 @@ triplets = [
 ["$(hgnc_uri)","rdfs:label","Attribute type: $(hgnc_uri)","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_HGVS_Output","sio:SIO_000300","$(hgvs_string)","xsd:string"],
 ["this:$(pid)_$(uniqid)_OMIM_Output","sio:SIO_000300","$(omim_uri)","xsd:string"],
 ["this:$(pid)_$(uniqid)_HGNC_Output","sio:SIO_000300","$(hgnc_uri)","xsd:string"]]

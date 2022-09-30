@@ -12,23 +12,23 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Status_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Status_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Status_Attribute","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Status_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Status_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Status_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Status_Process","iri"],
 ["this:$(pid)_$(uniqid)_Status_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Status_Output","iri"],
 ["this:$(pid)_$(uniqid)_Status_Process","sio:SIO_000680","this:$(pid)_$(uniqid)_Status_Startdate","iri"],
 ["this:$(pid)_$(uniqid)_Status_Process","sio:SIO_000681","this:$(pid)_$(uniqid)_Status_Enddate","iri"],
 ["this:$(pid)_$(uniqid)_Status_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Status_Attribute","iri"],
 
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Death_information_Attribute","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Death_information_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Death_information_Process","iri"],
 ["this:$(pid)_$(uniqid)_Death_information_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Death_information_Output","iri"],
 ["this:$(pid)_$(uniqid)_Death_information_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Death_information_Attribute","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Status_Process","rdf:type","sio:SIO_001052","iri"],
@@ -57,7 +57,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Death_information_Attribute","rdfs:label","Attribute type: Date of death","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Status_Output","sio:SIO_000300","$(status_label)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Death_information_Output","sio:SIO_000300","$(death_date)","xsd:date"],
 ["this:$(pid)_$(uniqid)_Status_Startdate","sio:SIO_000300","$(date)","xsd:date"],

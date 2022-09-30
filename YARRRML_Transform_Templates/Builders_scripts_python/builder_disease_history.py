@@ -12,23 +12,23 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Symptom_onset_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Symptom_onset_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Symptom_onset_Attribute","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Symptom_onset_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Symptom_onset_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Symptom_onset_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Symptom_onset_Process","iri"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Symptom_onset_Output","iri"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Symptom_onset_Attribute","iri"],
 
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Diagnosis_date_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Diagnosis_date_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Diagnosis_date_Attribute","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Diagnosis_date_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Diagnosis_date_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Diagnosis_date_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_date_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Diagnosis_date_Process","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_date_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Diagnosis_date_Output","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_date_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Diagnosis_date_Attribute","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Process","rdf:type","sio:SIO_000006","iri"],
@@ -58,7 +58,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Diagnosis_date_Attribute","rdfs:label","Attribute type: Stage or date of diagnosis","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Symptom_onset_Output","sio:SIO_000300","$(onset_date)","xsd:date"],
 ["this:$(pid)_$(uniqid)_Diagnosis_date_Output","sio:SIO_000300","$(diagnosis_date)","xsd:date"]]
 
