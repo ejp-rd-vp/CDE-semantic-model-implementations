@@ -48,7 +48,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Birthdate_Role","rdfs:label","Role: Patient for age assessment","xsd:string"],
 ["this:$(pid)_$(uniqid)_Birthdate_Process","rdfs:label","Process: age measuring process","xsd:string"],
 ["this:$(pid)_$(uniqid)_Birthdate_Output","rdfs:label","Output type: Birth date","xsd:string"],
-["this:$(pid)_$(uniqid)_Birthdate_Attribute","rdfs:label","Attribute type: Birth date)","xsd:string"],
+["this:$(pid)_$(uniqid)_Birthdate_Attribute","rdfs:label","Attribute type: Birth date","xsd:string"],
 ["this:$(pid)_$(uniqid)_Sex_Role","rdfs:label","Role: Patient for gender assessment","xsd:string"],
 ["this:$(pid)_$(uniqid)_Sex_Process","rdfs:label","Process: sex measuring process","xsd:string"],
 ["this:$(pid)_$(uniqid)_Sex_Output","rdfs:label","Output type: $(sexLabel)","xsd:string"],
