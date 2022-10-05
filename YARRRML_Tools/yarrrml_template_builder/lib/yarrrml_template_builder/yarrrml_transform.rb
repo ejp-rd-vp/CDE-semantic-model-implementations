@@ -56,7 +56,7 @@ class YARRRML_Transform
     
     @datatype_tag = params.fetch( :datatype_tag, nil)
     unless @datatype_tag
-          $stderr.puts "must have a datatype_tag parameter.  Aborting"
+          warn "must have a datatype_tag parameter.  Aborting"
           self.failure = true
           return nil
     end
@@ -110,7 +110,7 @@ class YARRRML_Transform
     @template.gsub!("|||FORMULATION|||", self.formulation)
     @template.gsub!("|||BASE|||", self.baseURI)
     File.open(self.yarrrmlfilename_client, "w") {|f| f.puts @template}
-    $stderr.puts "Ready to yarrrml transform #{self.datatype_tag} from #{self.yarrrmlfilename_client} "
+    warn "Ready to yarrrml transform #{self.datatype_tag} from #{self.yarrrmlfilename_client} "
 
   end
   
@@ -153,11 +153,12 @@ CONFIG
 #
 #
   def yarrrml_transform
-    $stderr.puts "running docker yarrrml-parser:ejp-latest"
+    warn "running docker yarrrml-parser:ejp-latest"
     #parser_start_string = "docker run -e PARSERIN=#{self.yarrrmlfilename} -e PARSEROUT=#{self.outputrmlfile} --rm --name yarrrml-parser -v $PWD/data:/data markw/yarrrml-parser-ejp:latest"
-    $stderr.puts "yarrrml to rml starting with: #{self.yarrrml_transform_base_url} PARSERIN=#{self.yarrrmlfilename_server} -e PARSEROUT=#{self.outputrmlfile}"
-    resp = RestClient.get("#{self.yarrrml_transform_base_url}/?parserin=#{self.yarrrmlfilename_server}&parserout=#{self.outputrmlfile}")
-    $stderr.puts "#{resp}: rml file has been created in #{self.outputrmlfile} - ready to make FAIR data"
+    warn "yarrrml to rml starting with: #{self.yarrrml_transform_base_url} PARSERIN=#{self.yarrrmlfilename_server} -e PARSEROUT=#{self.outputrmlfile}"
+    #resp = RestClient.get("#{self.yarrrml_transform_base_url}/?parserin=#{self.yarrrmlfilename_server}&parserout=#{self.outputrmlfile}")
+    resp = RestClient.execute(method: :get, url: "#{self.yarrrml_transform_base_url}/?parserin=#{self.yarrrmlfilename_server}&parserout=#{self.outputrmlfile}", timeout: 9000000)
+    warn "#{resp}: rml file has been created in #{self.outputrmlfile} - ready to make FAIR data"
   end
   
   
@@ -168,10 +169,10 @@ CONFIG
 #
 #executes the sdmrdfizer transformation using the .ini file created by the 'initialize' routine
   def make_fair_data
-    $stderr.puts "making FAIR data with #{self.rdfizer_base_url}/graph_creation/#{self.inifile_server}"  # this is sdmrdfizer
-    response = RestClient.get(self.rdfizer_base_url + "/graph_creation" + self.inifile_server)
-    $stderr.puts response.code
-    $stderr.puts "FAIR data is avaialable in .#{self.outputrdffolder}/#{self.datatype_tag}.nt"
+    warn "making FAIR data with #{self.rdfizer_base_url}/graph_creation/#{self.inifile_server}"  # this is sdmrdfizer
+    response = RestClient.execute(method: :get, url: self.rdfizer_base_url + "/graph_creation" + self.inifile_server, timeout: 900000000)
+    warn response.code
+    warn "FAIR data is avaialable in .#{self.outputrdffolder}/#{self.datatype_tag}.nt"
   end
   
   
