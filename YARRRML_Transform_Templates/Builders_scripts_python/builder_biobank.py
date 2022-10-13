@@ -12,8 +12,8 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Sample_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Sample_Role","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Sample_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Sample_Role","iri"],
 ["this:$(pid)_$(uniqid)_Sample_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Sample_Process","iri"],
 ["this:$(pid)_$(uniqid)_Sample_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Specimen_Output","iri"],
 
@@ -23,8 +23,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Biobank_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Specimen_Output","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Sample_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Sample_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Sample_Process","rdf:type","sio:SIO_000006","iri"],
@@ -47,16 +47,14 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Biobank_Process","rdfs:label","Process: Sample storage process","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Biobank_ID","sio:SIO_000300","$(biobank_id)","xsd:string"]]
 
 config = dict(
   source_name = "source_cde_test",
-  configuration = "ejp",    # Two options for this parameter:
-                            # ejp: it defines CDE-in-a-Box references, being compatible with this workflow  
-                            # csv: No workflow defined, set the source configuration for been used by CSV as data source
-                            
-  csv_name = "source_1" # parameter only needed in case you pick "csv" as configuration
+  configuration = "ejp",   
+  csv_name = "source_1",
+  basicURI = "this"
 )
 
 # builder = EMB(config, prefixes, triplets)
