@@ -27,12 +27,13 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Diagnosis_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Process","rdf:type","sio:SIO_000006","iri"],
-["this:$(pid)_$(uniqid)_Diagnosis_Process","rdf:type","sio:SIO_001001","iri"],
+["this:$(pid)_$(uniqid)_Diagnosis_Process","rdf:type","obo:NCIT_C15220","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Enddate","rdf:type","sio:SIO_000032","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Output","rdf:type","sio:SIO_000015","iri"],
-["this:$(pid)_$(uniqid)_Diagnosis_Output","rdf:type","sio:SIO_001003","iri"],
+["this:$(pid)_$(uniqid)_Diagnosis_Output","rdf:type","obo:NCIT_C103159","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Attribute","rdf:type","sio:SIO_000614","iri"],
+["this:$(pid)_$(uniqid)_Diagnosis_Attribute","rdf:type","obo:NCIT_C25482","iri"],
 ["this:$(pid)_$(uniqid)_Diagnosis_Attribute","rdf:type","$(ordo_uri)","iri"],
 
 # Labels

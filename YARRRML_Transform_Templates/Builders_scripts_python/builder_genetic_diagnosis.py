@@ -43,24 +43,21 @@ triplets = [
 ["this:$(pid)_$(uniqid)_HGVS_Output","rdf:type","sio:SIO_000015","iri"],
 ["this:$(pid)_$(uniqid)_HGVS_Output","rdf:type","sio:SIO_001388","iri"],
 ["$(clinvar_uri)","rdf:type","sio:SIO_000614","iri"],
-["$(clinvar_uri)","rdf:type","sio:SIO_000015","iri"],
-["$(clinvar_uri)","rdf:type","obo:NCIT_C171178","iri"],
+["$(clinvar_uri)","rdf:type","obo:NCIT_C17938","iri"],
 
 ["this:$(pid)_$(uniqid)_OMIM_Process","rdf:type","obo:NCIT_C15709","iri"],
 ["this:$(pid)_$(uniqid)_OMIM_Process","rdf:type","sio:SIO_000006","iri"],
 ["this:$(pid)_$(uniqid)_OMIM_Output","rdf:type","sio:SIO_000015","iri"],
-["this:$(pid)_$(uniqid)_OMIM_Output","rdf:type","sio:SIO_001381","iri"],
+["this:$(pid)_$(uniqid)_OMIM_Output","rdf:type","edam:data_1153","iri"],
 ["$(omim_uri)","rdf:type","sio:SIO_000614","iri"],
-["$(omim_uri)","rdf:type","sio:SIO_000015","iri"],
-["$(omim_uri)","rdf:type","edam:data_1153","iri"],
+["$(omim_uri)","rdf:type","obo:NCIT_C17938","iri"],
 
 ["this:$(pid)_$(uniqid)_HGNC_Process","rdf:type","obo:NCIT_C15709","iri"],
 ["this:$(pid)_$(uniqid)_HGNC_Process","rdf:type","sio:SIO_000006","iri"],
 ["this:$(pid)_$(uniqid)_HGNC_Output","rdf:type","sio:SIO_000015","iri"],
-["this:$(pid)_$(uniqid)_HGNC_Output","rdf:type","sio:SIO_001381","iri"],
+["this:$(pid)_$(uniqid)_HGNC_Output","rdf:type","edam:data_2298","iri"],
 ["$(hgnc_uri)","rdf:type","sio:SIO_000614","iri"],
-["$(hgnc_uri)","rdf:type","sio:SIO_000015","iri"],
-["$(hgnc_uri)","rdf:type","edam:data_2298","iri"],
+["$(hgnc_uri)","rdf:type","obo:NCIT_C17938","iri"],
 
 
 # Labels

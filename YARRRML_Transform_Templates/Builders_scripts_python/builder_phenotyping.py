@@ -26,14 +26,12 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Phenotypic_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Process","rdf:type","sio:SIO_000006","iri"],
-["this:$(pid)_$(uniqid)_Phenotypic_Process","rdf:type","obo:OBI_0001546","iri"],
-["this:$(pid)_$(uniqid)_Phenotypic_Process","rdf:type","obo:NCIT_C16205","iri"],
-["this:$(pid)_$(uniqid)_Phenotypic_Process","rdf:type","obo:NCIT_C18020","iri"],
+["this:$(pid)_$(uniqid)_Phenotypic_Process","rdf:type","obo:NCIT_C25305","iri"],
 
 ["this:$(pid)_$(uniqid)_Phenotypic_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Enddate","rdf:type","sio:SIO_000032","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Output","rdf:type","sio:SIO_000015","iri"],
-["this:$(pid)_$(uniqid)_Phenotypic_Output","rdf:type","obo:NCIT_C102741","iri"],
+["this:$(pid)_$(uniqid)_Phenotypic_Output","rdf:type","obo:NCIT_C125204","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Attribute","rdf:type","sio:SIO_010056","iri"],
 ["this:$(pid)_$(uniqid)_Phenotypic_Attribute","rdf:type","$(HP_IRI)","iri"],
@@ -53,11 +51,9 @@ triplets = [
 
 config = dict(
   source_name = "source_cde_test",
-  configuration = "ejp",    # Two options for this parameter:
-                            # ejp: it defines CDE-in-a-Box references, being compatible with this workflow  
-                            # csv: No workflow defined, set the source configuration for been used by CSV as data source
-                            
-  csv_name = "source_1" # parameter only needed in case you pick "csv" as configuration
+  configuration = "ejp",   
+  csv_name = "source_1",
+  basicURI = "this"
 )
 
 # builder = EMB(config, prefixes, triplets)

@@ -24,7 +24,6 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Care_pathway_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Care_pathway_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Care_pathway_Process","rdf:type","sio:SIO_000006","iri"],
-["this:$(pid)_$(uniqid)_Care_pathway_Process","rdf:type","obo:NCIT_C16205","iri"],
 ["this:$(pid)_$(uniqid)_Care_pathway_Process","rdf:type","obo:NCIT_C159705","iri"],
 ["this:$(pid)_$(uniqid)_Care_pathway_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(uniqid)_Care_pathway_Enddate","rdf:type","sio:SIO_000032","iri"],
@@ -43,11 +42,9 @@ triplets = [
 
 config = dict(
   source_name = "source_cde_test",
-  configuration = "ejp",    # Two options for this parameter:
-                            # ejp: it defines CDE-in-a-Box references, being compatible with this workflow  
-                            # csv: No workflow defined, set the source configuration for been used by CSV as data source
-                            
-  csv_name = "source_1" # parameter only needed in case you pick "csv" as configuration
+  configuration = "ejp",   
+  csv_name = "source_1",
+  basicURI = "this"
 )
 
 # builder = EMB(config, prefixes, triplets)

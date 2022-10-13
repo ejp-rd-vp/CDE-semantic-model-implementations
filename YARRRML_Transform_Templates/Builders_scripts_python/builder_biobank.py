@@ -52,11 +52,9 @@ triplets = [
 
 config = dict(
   source_name = "source_cde_test",
-  configuration = "ejp",    # Two options for this parameter:
-                            # ejp: it defines CDE-in-a-Box references, being compatible with this workflow  
-                            # csv: No workflow defined, set the source configuration for been used by CSV as data source
-                            
-  csv_name = "source_1" # parameter only needed in case you pick "csv" as configuration
+  configuration = "ejp",   
+  csv_name = "source_1",
+  basicURI = "this"
 )
 
 # builder = EMB(config, prefixes, triplets)

@@ -31,9 +31,10 @@ triplets = [
 ["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Status_Role","rdf:type","obo:OBI_0000093","iri"],
-["this:$(pid)_$(uniqid)_Status_Process","rdf:type","sio:SIO_001052","iri"],
+["this:$(pid)_$(uniqid)_Status_Process","rdf:type","obo:NCIT_C142470","iri"],
 ["this:$(pid)_$(uniqid)_Status_Process","rdf:type","sio:SIO_000006","iri"],
 ["this:$(pid)_$(uniqid)_Status_Output","rdf:type","sio:SIO_000015","iri"],
+["this:$(pid)_$(uniqid)_Status_Output","rdf:type","obo:NCIT_C103159","iri"],
 ["this:$(pid)_$(uniqid)_Status_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Status_Attribute","rdf:type","obo:NCIT_C166244","iri"],
 ["this:$(pid)_$(uniqid)_Status_Attribute","rdf:type","$(status_uri)","iri"],
@@ -41,7 +42,9 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Status_Enddate","rdf:type","sio:SIO_000032","iri"],
 
 ["this:$(pid)_$(uniqid)_Death_information_Process","rdf:type","sio:SIO_000006","iri"],
+["this:$(pid)_$(uniqid)_Death_information_Process","rdf:type","obo:NCIT_C142470","iri"],
 ["this:$(pid)_$(uniqid)_Death_information_Output","rdf:type","sio:SIO_000015","iri"],
+["this:$(pid)_$(uniqid)_Death_information_Output","rdf:type","obo:NCIT_C103159","iri"],
 ["this:$(pid)_$(uniqid)_Death_information_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Death_information_Attribute","rdf:type","obo:NCIT_C70810","iri"],
 
