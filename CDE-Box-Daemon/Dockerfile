@@ -1,7 +1,7 @@
-FROM ruby:2.7.2
+FROM ruby:3.0.0
 
 RUN apt-get -y update
-RUN apt-get -y install git-all
+RUN apt-get -y install git
 RUN gem install bundler:2.2.10
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1

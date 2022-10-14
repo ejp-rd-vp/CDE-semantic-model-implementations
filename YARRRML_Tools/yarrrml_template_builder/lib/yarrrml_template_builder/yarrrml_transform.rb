@@ -134,6 +134,8 @@ all_in_one_file: yes
 remove_duplicate: yes
 enrichment: yes
 name: #{datatype}
+ordered: yes
+large_file: true
 
 [dataset1]
 name: #{datatype}
