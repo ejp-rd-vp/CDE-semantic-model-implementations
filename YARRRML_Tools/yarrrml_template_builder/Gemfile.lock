@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    yarrrml_template_builder (0.1.52)
+    yarrrml_template_builder (0.1.54)
       rest-client (~> 2.1.0)
       yaml (~> 0.1.0)
 
