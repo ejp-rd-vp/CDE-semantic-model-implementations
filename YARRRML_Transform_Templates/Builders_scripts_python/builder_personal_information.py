@@ -5,6 +5,7 @@ prefixes = dict(
   rdfs = "http://www.w3.org/2000/01/rdf-schema#" ,
   obo = "http://purl.obolibrary.org/obo/" ,
   sio = "http://semanticscience.org/resource/" ,
+  efo = "http://www.ebi.ac.uk/efo/",
   xsd = "http://www.w3.org/2001/XMLSchema#",
   this = "http://my_example.com/")
 
@@ -12,34 +13,38 @@ prefixes = dict(
 triplets = [
 
 # Nodes
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Birthdate_Attribute","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Birthdate_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Birthdate_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Birthdate_Process","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Birthdate_Output","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Birthdate_Attribute","iri"],
 
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Sex_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Sex_Role","iri"],
-["this:$(pid)_$(uniqid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Sex_Attribute","iri"],
+["this:$(pid)_ID","sio:SIO_000020","this:$(pid)_$(uniqid)_Sex_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000228","this:$(pid)_$(uniqid)_Sex_Role","iri"],
+["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Sex_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Sex_Process","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Sex_Output","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Sex_Attribute","iri"],
 
 # Types
-["this:$(pid)_$(uniqid)_ID","rdf:type","sio:SIO_000115","iri"],
-["this:$(pid)_$(uniqid)_Entity","rdf:type","sio:SIO_000498","iri"],
+["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
+["this:$(pid)_Entity","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Process","rdf:type","sio:SIO_000006","iri"],
+["this:$(pid)_$(uniqid)_Birthdate_Process","rdf:type","obo:NCIT_C142470","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Output","rdf:type","sio:SIO_000015","iri"],
+["this:$(pid)_$(uniqid)_Birthdate_Output","rdf:type","efo:EFO_0006921","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Birthdate_Attribute","rdf:type","obo:NCIT_C68615","iri"],
 
 ["this:$(pid)_$(uniqid)_Sex_Role","rdf:type","sio:SIO_000016","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Role","rdf:type","obo:OBI_0000093","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Process","rdf:type","sio:SIO_000006","iri"],
+["this:$(pid)_$(uniqid)_Sex_Process","rdf:type","obo:NCIT_C142470","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Output","rdf:type","sio:SIO_000015","iri"],
+["this:$(pid)_$(uniqid)_Sex_Output","rdf:type","obo:NCIT_C103159","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Attribute","rdf:type","$(sexURI)","iri"],
 ["this:$(pid)_$(uniqid)_Sex_Attribute","rdf:type","obo:NCIT_C28421","iri"],
@@ -55,9 +60,10 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Sex_Attribute","rdfs:label","Attribute type: $(sexLabel)","xsd:string"],
 
 # Values
-["this:$(pid)_$(uniqid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(pid)_$(uniqid)_Birthdate_Output","sio:SIO_000300","$(birthdate)","xsd:date"],
-["this:$(pid)_$(uniqid)_Sex_Output","sio:SIO_000300","$(sexLabel)","xsd:string"]]
+["this:$(pid)_$(uniqid)_Sex_Output","sio:SIO_000300","$(sexLabel)","xsd:string"]
+]
 
 config = dict(
   source_name = "source_cde_test",
