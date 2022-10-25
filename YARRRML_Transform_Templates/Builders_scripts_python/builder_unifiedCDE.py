@@ -17,9 +17,7 @@ triplets = [
 ["this:$(pid)_Entity","sio:SIO_000008","this:$(pid)_$(uniqid)_Attribute","iri"],
 ["this:$(pid)_$(uniqid)_Role","sio:SIO_000356","this:$(pid)_$(uniqid)_Process","iri"],
 ["this:$(pid)_$(uniqid)_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Output","iri"],
-["this:$(pid)_$(uniqid)_Process","sio:SIO_000230","this:$(pid)_$(uniqid)_Input","iri"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Attribute","iri"],
-["this:$(pid)_$(uniqid)_Input","sio:SIO_000628","this:$(pid)_$(uniqid)_Attribute","iri"],
 
 # Types
 ["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri"],
@@ -30,8 +28,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Process","rdf:type","$(processURI)","iri"],
 ["this:$(pid)_$(uniqid)_Output","rdf:type","sio:SIO_000015","iri"],
 ["this:$(pid)_$(uniqid)_Output","rdf:type","$(outputURI)","iri"],
-["this:$(pid)_$(uniqid)_Input","rdf:type","sio:SIO_000015","iri"],
-["this:$(pid)_$(uniqid)_Input","rdf:type","$(inputURI)","iri"],
+
 ["this:$(pid)_$(uniqid)_Attribute","rdf:type","sio:SIO_000614","iri"],
 ["this:$(pid)_$(uniqid)_Attribute","rdf:type","$(attributeURI)","iri"],
 ["this:$(pid)_$(uniqid)_Attribute","rdf:type","$(valueAttributeIRI)","iri"],
@@ -43,16 +40,31 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Role","rdfs:label","Patient role","xsd:string"],
 ["this:$(pid)_$(uniqid)_Process","rdfs:label","$(model) measurement process","xsd:string"],
 ["this:$(pid)_$(uniqid)_Output","rdfs:label","$(model) measurement output","xsd:string"],
-["this:$(pid)_$(uniqid)_Input","rdfs:label","$(model) measurement input","xsd:string"],
 ["this:$(pid)_$(uniqid)_Attribute","rdfs:label","$(model) attribute","xsd:string"],
 
 
 # Values
 ["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string"],
-["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(valueOutputDate)","xsd:datetime"],
-["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(valueOutputNumber)","xsd:float"],
-["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(valueOutputString)","xsd:string"],
-["this:$(pid)_$(uniqid)_Input","sio:SIO_000300","$(valueInputString)","xsd:string"]
+["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(valueOutput)","$(datatype)"]
+
+
+
+# Metadata:
+
+["this:$(chonoid)_Chronoid","sio:SIO_000680","this:$(chonoid)_Startdate"],
+["this:$(chonoid)_Chronoid","sio:SIO_000681","this:$(chonoid)_Enddate"],
+
+["this:$(chonoid)_Startdate","rdfs:label","$(model) startdate: $(startdate)","xsd:string"],
+["this:$(chonoid)_Enddate","rdfs:label","$(model) enddate: $(enddate)","xsd:string"],
+
+["this:$(chonoid)_Startdate","rdf:type","sio:SIO_000031","iri"],
+["this:$(chonoid)_Enddate","rdf:type","sio:SIO_000032","iri"],
+
+["this:$(chonoid)_Startdate","sio:SIO_000300","$(startdate)","xsd:date"]
+["this:$(chonoid)_Enddate","sio:SIO_000300","$(enddate)","xsd:date"]
+
+["this:$(chonoid)_Chronoid","sio:SIO_000068","this:$(pid)_Timeline"],
+["this:$(pid)_Timeline","sio:SIO_000332","$(pid)"]
 ]
 
 config = dict(
