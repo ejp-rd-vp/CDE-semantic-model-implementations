@@ -1,0 +1,17 @@
+model,processURI,outputURI,attributeURI,valueAttributeIRI,valueOutput,datatype,stardate,enddate,pid,chronoid,startdate
+Birth_date,http://purl.obolibrary.org/obo/NCIT_C142470,http://www.ebi.ac.uk/efo/EFO_0006921,http://purl.obolibrary.org/obo/NCIT_C68615,,2010-10,xsd:date,,,500-0001,,
+Sex,http://purl.obolibrary.org/obo/NCIT_C142470,http://purl.obolibrary.org/obo/NCIT_C103159,http://purl.obolibrary.org/obo/NCIT_C28421,http://purl.obolibrary.org/obo/NCIT_C20197,Male,xsd:string,,,500-0001,,
+Care_pathway,http://purl.obolibrary.org/obo/NCIT_C159705,http://purl.obolibrary.org/obo/NCIT_C25716,http://purl.obolibrary.org/obo/NCIT_C164021,,2020-01-13,xsd:date,,,500-0001,,
+Diagnosis,http://purl.obolibrary.org/obo/NCIT_C15220,http://purl.obolibrary.org/obo/NCIT_C103159,http://purl.obolibrary.org/obo/NCIT_C2991,http://www.orpha.net/ORDO/Orphanet_93552,,xsd:string,,,500-0001,,
+Date_of_diagnosis,http://purl.obolibrary.org/obo/NCIT_C142470,,http://purl.obolibrary.org/obo/NCIT_C156420,http://purl.obolibrary.org/obo/NCIT_C25164,2011-01-01,xsd:date,,,500-0001,,
+Onset_of_symptoms,http://purl.obolibrary.org/obo/NCIT_C142470,,http://purl.obolibrary.org/obo/NCIT_C25279,http://purl.obolibrary.org/obo/NCIT_C25164,2010-12,xsd:date,,,500-0001,,
+Phenotype,http://purl.obolibrary.org/obo/NCIT_C25305,http://purl.obolibrary.org/obo/NCIT_C125204,http://semanticscience.org/resource/SIO_010056,http://purl.obolibrary.org/obo/HP_0002633,Vasculitis,xsd:date,,,500-0001,,
+Consent,http://purl.obolibrary.org/obo/OBI_0000810,http://purl.obolibrary.org/obo/DUO_0000001,http://purl.obolibrary.org/obo/NCIT_C25460,,Consent to data being shared for clinical care,xsd:string,,2020-01-13,500-0001,,2020-01-13
+Birth_date,http://purl.obolibrary.org/obo/NCIT_C142470,http://www.ebi.ac.uk/efo/EFO_0006921,http://purl.obolibrary.org/obo/NCIT_C68615,,2010-01,xsd:date,,,500-0002,,
+Sex,http://purl.obolibrary.org/obo/NCIT_C142470,http://purl.obolibrary.org/obo/NCIT_C103159,http://purl.obolibrary.org/obo/NCIT_C28421,http://purl.obolibrary.org/obo/NCIT_C20197,Male,xsd:string,,,500-0002,,
+Care_pathway,http://purl.obolibrary.org/obo/NCIT_C159705,http://purl.obolibrary.org/obo/NCIT_C25716,http://purl.obolibrary.org/obo/NCIT_C164021,,2016-01-01,xsd:date,,,500-0002,,
+Diagnosis,http://purl.obolibrary.org/obo/NCIT_C15220,http://purl.obolibrary.org/obo/NCIT_C103159,http://purl.obolibrary.org/obo/NCIT_C2991,http://www.orpha.net/ORDO/Orphanet_9999982,,xsd:string,,,500-0002,,
+Date_of_diagnosis,http://purl.obolibrary.org/obo/NCIT_C142470,,http://purl.obolibrary.org/obo/NCIT_C156420,http://purl.obolibrary.org/obo/NCIT_C25164,2016-02-01,xsd:date,,,500-0002,,
+Onset_of_symptoms,http://purl.obolibrary.org/obo/NCIT_C142470,,http://purl.obolibrary.org/obo/NCIT_C25279,http://purl.obolibrary.org/obo/NCIT_C25164,2015-01,xsd:date,,,500-0002,,
+Phenotype,http://purl.obolibrary.org/obo/NCIT_C25305,http://purl.obolibrary.org/obo/NCIT_C125204,http://semanticscience.org/resource/SIO_010056,http://purl.obolibrary.org/obo/HP_0002633,Vasculitis,xsd:date,,,500-0002,,
+Consent,http://purl.obolibrary.org/obo/OBI_0000810,http://purl.obolibrary.org/obo/DUO_0000001,http://purl.obolibrary.org/obo/NCIT_C25460,,Consent to data being shared for clinical care,xsd:string,,2021-05-01,500-0002,,2021-05-01
