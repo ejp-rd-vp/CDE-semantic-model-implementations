@@ -187,7 +187,7 @@
 - **enddate**: ISO 8601 formatted end date of observation 
 
 
-## CDE - Genotype OMIM:
+## CDE - Genotype:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)

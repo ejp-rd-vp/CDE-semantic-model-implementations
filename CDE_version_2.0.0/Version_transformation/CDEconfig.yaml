@@ -1,0 +1,103 @@
+Birth_date:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueOutput: birthdate
+
+Sex:
+  columns:
+    pid: pid
+    valueAttributeIRI: sexURI
+    valueOutput: sexLabel
+
+Status:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueOutput: status label
+    valueAttributeIRI: status_uri
+    startdate: date
+    enddate: date
+
+Date_of_death:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueOutput: death_date
+    startdate: date
+    enddate: date
+
+Care_pathway:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueOutput: first_visit_date
+    
+Diagnosis:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueAttributeIRI: ordo_uri
+    valueOutput: diagnostic_opinion
+    startdate: date
+    enddate: date
+
+Date_of_diagnosis:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueOutput: diagnosis_date
+    outputURI: diagnosis_uri
+    startdate: diagnosis_date
+    enddate: diagnosis_date
+
+Onset_of_symptoms:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    outputURI: onset_uri
+    valueOutput: onset_date
+    startdate: onset_date
+    enddate: onset_date
+
+Genotype_OMIM:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    outputURI: hgvs_string
+    valueAttributeIRI: omim_uri
+
+Genotype_HGNC:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    outputURI: hgvs_string
+    valueAttributeIRI: hgnc_code 
+    
+Phenotype:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueAttributeIRI: HP_IRI
+    valueOutput: HP_Label
+    startdate: date
+    enddate: date
+
+Consent:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    valueOutput: result_label
+    outputURI: result_uri
+    startdate: date
+    enddate: date
+
+Disability:
+  columns:
+    pid: pid
+    uniqid: uniqid
+    processURI: test_uri
+    valueOutput: score
+    startdate: test_date
+    enddate: test_date
+    
