@@ -4,15 +4,11 @@
 
 This repository is fed by a variety of implementations based on **Common Data Element Semantic Model** registry [(see Github page).](https://github.com/ejp-rd-vp/CDE-semantic-model)
 
-**RDF transformation**: From EJP-RD, we have developed [CDE-in-a-box](https://github.com/ejp-rd-vp/cde-in-box) toolkit to help users to obtain RDF-based patient record-level data. This implementation requires two basic elements: **YARRRML templates and CSV datatable** We can find all docuementation to obtain this requirements at his repository, [here](/CDE_version_2.0.0/)
+## CDE RDF transformation toolkit (CDE-in-a-box)
 
+From EJP-RD, we have developed [CDE-in-a-box](https://github.com/ejp-rd-vp/cde-in-box) toolkit to help users to obtain RDF-based patient record-level data. The transformation tools use `YARRRML` to capture triple transformation rules. Our YARRRML transformation files take `CSV` as input file format with certain headers for each CDE modules. If you would like to know more about the YARRRML and CSV templates, please click [here](/CDE_version_2.0.0/).
 
-## CDE transformation toolkit (CDE-in-a-box)
-
-The transformation tools make use of YARRRML to capture triple transformation rules. Our YARRRML transformation files take `CSV` as input file format with certain headers for each CDE modules. If you would like to know more about the YARRRML and CSV templates, please click [here](YARRRML_Transform_Templates/README.md).
-
-
-## RDF transformation locally
+## CDE RDF transformation locally
 
 You can also perform your RDf transformation locally without using CDE--in-a-box toolkit, we have develop Docker compose images to cover this process
 
@@ -34,7 +30,7 @@ VERSION is some version that will appear in the filename of the gem.
 ./data/mydataY.csv...
 ./data/triples/  (output FAIR data ends up here)
 ./config/
-./config/***_yarrrml_template.yaml (*** is a one-word tag of the "type" of data, e.g. "height")
+./config/{TAGNAME}_yarrrml_template.yaml ({TAGNAME} is a one-word tag of the "type" of data, e.g. "height")
 ```
 
 1) Need to have sdmrdfizer and yarrrml-parser services running ./data mounted as /data and ./config as /config. You can use docker-compose to run both services:
