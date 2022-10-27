@@ -257,9 +257,9 @@
 
 
 ## Example CSV file:
-Please find example CSV file [here](../exemplar_csv/unifiedCDE.csv)
+Please find example CSV file [here](/CDE_version_2.0.0/CSV_template_doc/exemplar_unifiedCDE.csv)
 
 
 ## YARRRML template:
-Please find the YARRRML template for this module [here](../templates/unifiedCDE_yarrrml_template.yaml)
+Please find the YARRRML template for this module [here](/CDE_version_2.0.0/YARRRML/unifiedCDE_yarrrml_template.yaml)
   
