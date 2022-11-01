@@ -19,7 +19,7 @@
 
 
 
-## CDE - Birth date:
+## CDE - Birthdate:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
@@ -30,7 +30,7 @@
 - **valueOutput**: ISO 8601 formatted date (not date time)
 - **datatype** : xsd:date
 - **valueAttributeIRI**: None
-- **model**: Birth_date
+- **model**: Birthdate
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
@@ -56,7 +56,7 @@
 
 
 
-## CDE - Patient Status:
+## CDE - Status:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
@@ -71,7 +71,7 @@
     * http://semanticscience.org/resource/SIO_010058 (alive)
     * http://purl.obolibrary.org/obo/NCIT_C70740 (lost to follow-up)
     * http://purl.obolibrary.org/obo/NCIT_C124784 (refused to participate)
-- **model**: Patient_status
+- **model**: Status
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
@@ -148,7 +148,7 @@
 - **enddate**: ISO 8601 formatted end date of observation 
 
 
-## CDE - Onset_of_symptoms:
+## CDE - Date of symptoms:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
@@ -166,7 +166,7 @@
 - **valueOutput**: ISO 8601 formatted date of symptom's onset (not date time) in case of date of diagnosis is defined as a date
 - **datatype**: xsd:date (in case of date of diagnosis is defined as a date)
 - **valueAttributeIRI**: None
-- **model**: Onset_of_symptoms
+- **model**: Date_of_symptoms
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
@@ -223,7 +223,7 @@
 - **enddate**: ISO 8601 formatted end date of observation 
 
 
-## CDE - Biobanking:
+## CDE - Biobank:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
@@ -234,7 +234,7 @@
 - **valueOutput**: Biobank Identifier as https://directory.bbmri-eric.eu/
 - **datatype**: xsd:string
 - **valueAttributeIRI**: None
-- **model**: Biobanking
+- **model**: Biobank
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
@@ -250,7 +250,7 @@
 - **valueOutput**: the numeric score of the output from the test
 - **datatype**: xsd:integer
 - **valueAttributeIRI**: None
-- **model**: Consent
+- **model**: Disability
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
 

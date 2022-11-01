@@ -1,4 +1,4 @@
-Birth_date:
+Birthdate:
   columns:
     pid: pid
     uniqid: uniqid
@@ -51,7 +51,7 @@ Date_of_diagnosis:
     startdate: diagnosis_date
     enddate: diagnosis_date
 
-Onset_of_symptoms:
+Date_of_symptoms:
   columns:
     pid: pid
     uniqid: uniqid
