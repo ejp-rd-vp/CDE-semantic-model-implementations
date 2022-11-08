@@ -200,8 +200,8 @@
 - **valueOutput**: HGVS variant notation code
 - **datatype**: xsd:string
 - **valueAttributeIRI**: One of the following:
-    * OMIM gene code constructed by appending the OMIM number to ", https://www.omim.org/entry/{OMIM code}" e.g. https://www.omim.org/entry/310200
-    * HGNC gene code this constructed by appending the HGNC code to https://bioregistry.io/{HGNC code}  e.g. https://bioregistry.io/HGNC:2928
+    * OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
+    * HGNC gene code this constructed by appending the HGNC code to https://bioregistry.io/{HGNC code} e.g. https://bioregistry.io/HGNC:2928
 - **model**: Genotype
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
@@ -231,7 +231,7 @@
 - **processURI**: http://purl.obolibrary.org/obo/OMIABIS_0000061
 - **outputURI**: http://purl.obolibrary.org/obo/NCIT_C115570
 - **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C25429
-- **valueOutput**: Biobank Identifier as https://directory.bbmri-eric.eu/
+- **valueOutput**: Biobank Identifier as https://directory.bbmri-eric.eu/{biobank id}
 - **datatype**: xsd:string
 - **valueAttributeIRI**: None
 - **model**: Biobank
