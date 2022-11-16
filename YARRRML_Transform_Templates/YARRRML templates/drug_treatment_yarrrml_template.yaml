@@ -1,0 +1,464 @@
+mapping:
+  20220315095718855647_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Role
+      predicate: sio:SIO_000020
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220315095718855662_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Role
+      predicate: sio:SIO_000228
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220315095718855666_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Process
+      predicate: sio:SIO_000356
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Role
+  20220315095718855670_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Startdate
+      predicate: sio:SIO_000680
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855675_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Enddate
+      predicate: sio:SIO_000681
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855680_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+      predicate: sio:CHEMINF_000047
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855684_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Input
+      predicate: sio:SIO_000230
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855687_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+      predicate: sio:SIO_000139
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855691_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+      predicate: sio:SIO_000628
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+  20220315095718855694_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Dose_Attribute
+      predicate: sio:SIO_000628
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+  20220315095718855698_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Unit
+      predicate: sio:SIO_000221
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Dose_Attribute
+  20220315095718855701_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Frequency
+      predicate: sio:SIO_000900
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Dose_Attribute
+  20220315095718855705_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+      predicate: sio:SIO_000313
+    sources:
+    - source_cde_test
+    subjects: $(med_atc_uri)
+  20220315095718855709_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000115
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220315095718855713_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000498
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Entity
+  20220315095718855717_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000016
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Role
+  20220315095718855720_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:OBI_0000093
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Role
+  20220315095718855724_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000006
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855728_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(processURI)
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855731_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000031
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Startdate
+  20220315095718855735_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000032
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Enddate
+  20220315095718855739_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+  20220315095718855742_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:NCIT_C28180
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+  20220315095718855746_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Input
+  20220315095718855749_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(routeURI)
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Input
+  20220315095718855753_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(unitURI)
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Unit
+  20220315095718855757_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:NCIT_C177929
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: $(med_atc_uri)
+  20220315095718855760_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(med_atc_type)
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: $(med_atc_uri)
+  20220315095718855764_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: obo:NCIT_C25488
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Dose_Attribute
+  20220315095718855768_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000614
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Dose_Attribute
+  20220315095718855771_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_010038
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+  20220315095718855774_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000614
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+  20220315095718855778_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: $(freqURI)
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Frequency
+  20220315095718855781_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Role: Patient'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Role
+  20220315095718855784_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Process: $(processLabel)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Process
+  20220315095718855788_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Startdate: $(startdate)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Startdate
+  20220315095718855792_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Enddate: $(enddate)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Enddate
+  20220315095718855796_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: Prescription
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+  20220315095718855799_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: $(comments)
+      predicate: rdfs:comment
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Prescription_Output
+  20220315095718855802_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Route of administration: $(routeLabel)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Input
+  20220315095718855805_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Unit: $(unitLabel)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Unit
+  20220315095718855808_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: Dose attribute
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Dose_Attribute
+  20220315095718855811_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: Drug attribute
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+  20220315095718855816_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Frequency: $(freqLabel)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Frequency
+  20220315095718855819_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: 'Drug component: $(med_atc_label)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: $(med_atc_uri)
+  20220315095718855822_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:string
+        value: $(pid)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#ID
+  20220315095718855826_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:date
+        value: $(startdate)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Startdate
+  20220315095718855829_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:date
+        value: $(enddate)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Enddate
+  20220315095718855832_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:float
+        value: $(dose)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Drug_Attribute
+  20220315095718855836_source_cde_test:
+    predicateobject:
+    - objects:
+        datatype: xsd:integer
+        value: $(freq)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)#Treatment_Frequency
+prefixes:
+  obo: http://purl.obolibrary.org/obo/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  sio: http://semanticscience.org/resource/
+  this: '|||BASE|||'
+  xsd: http://www.w3.org/2001/XMLSchema#
+sources:
+  source_cde_test:
+    access: '|||DATA|||'
+    iterator: $
+    referenceFormulation: '|||FORMULATION|||'
+
