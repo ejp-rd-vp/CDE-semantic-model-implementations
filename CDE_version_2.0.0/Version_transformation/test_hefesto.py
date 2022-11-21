@@ -3,17 +3,17 @@ import yaml
 
 location_config_file = "CDEconfig.yaml" ## USE THIS YAML FROM THIS GITHUB REPO
 location_data_input = "exemplarCDEdata.csv" ## ADD HERE THE LOCARTION OF YOUR CSV DATA
-cde_tagname = ["Birth_date","Sex"] # DEFINED ALL COMMON DATA ELEMENTS TO OBATIN FROM THIS DATA
+cde_tagname = ["Birthdate","Sex"] # DEFINED ALL COMMON DATA ELEMENTS TO OBATIN FROM THIS DATA
 
 ## possible tagnames for your CDEs:  
-# "Birth_date"
+# "Birthdate"
 # "Sex"
 # "Status"
 # "Date_of_death"
-# "Care pathway"
+# "Care_pathway"
 # "Diagnosis"
 # "Date_of_diagnosis"
-# "Onset_of_symptoms"
+# "Date_of_symptoms"
 # "Genotype_OMIM"
 # "Genotype_HGNC"
 # "Phenotype"

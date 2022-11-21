@@ -42,7 +42,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string", "this:$(context_id)_Context"],
-["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(valueOutput)","$(datatype)", "this:$(context_id)_Context"],
+["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(value)","$(datatype)", "this:$(context_id)_Context"],
 
 # Metadata:
 ["this:$(context_id)_Context","sio:SIO_000680","this:$(context_id)_Startdate","iri"],

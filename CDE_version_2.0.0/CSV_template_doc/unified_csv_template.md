@@ -276,6 +276,7 @@
 - **model**: Body_measurement
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
+- **comments**: Human readable comments of any kind related to this procedure
 
 ## DCDE - Laboratory measurement:
 
@@ -300,6 +301,7 @@
 - **model**: Lab_measurement
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
+- **comments**: Human readable comments of any kind related to this procedure
 
 
 ## DCDE - Imaging:
@@ -318,6 +320,7 @@
 - **model**: Imaging
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
+- **comments**: Human readable comments of any kind related to this procedure
 
 
 
@@ -342,6 +345,7 @@
 - **model**: Medications
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
+- **comments**: Human readable comments of any kind related to this procedure
 
 
 ## DCDE - Treatment:
@@ -360,6 +364,7 @@
 - **model**: Treatment
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
+- **comments**: Human readable comments of any kind related to this procedure
 
 
 ## DCDE - Clinical trials:
@@ -378,6 +383,7 @@
 - **model**: Clinical_trials
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
+- **comments**: Human readable comments of any kind related to this procedure
 
 ## Example CSV file:
 Please find example CSV file [here](/CDE_version_2.0.0/CSV_template_doc/exemplar_unifiedCDE.csv)

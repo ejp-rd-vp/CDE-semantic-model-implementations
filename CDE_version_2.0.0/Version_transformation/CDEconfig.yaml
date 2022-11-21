@@ -2,19 +2,19 @@ Birthdate:
   columns:
     pid: pid
     uniqid: uniqid
-    valueOutput: birthdate
+    value: birthdate
 
 Sex:
   columns:
     pid: pid
     valueAttributeIRI: sexURI
-    valueOutput: sexLabel
+    value: sexLabel
 
 Status:
   columns:
     pid: pid
     uniqid: uniqid
-    valueOutput: status label
+    value: status label
     valueAttributeIRI: status_uri
     startdate: date
     enddate: date
@@ -23,7 +23,7 @@ Date_of_death:
   columns:
     pid: pid
     uniqid: uniqid
-    valueOutput: death_date
+    value: death_date
     startdate: date
     enddate: date
 
@@ -31,14 +31,14 @@ Care_pathway:
   columns:
     pid: pid
     uniqid: uniqid
-    valueOutput: first_visit_date
+    value: first_visit_date
     
 Diagnosis:
   columns:
     pid: pid
     uniqid: uniqid
     valueAttributeIRI: ordo_uri
-    valueOutput: diagnostic_opinion
+    value: diagnostic_opinion
     startdate: date
     enddate: date
 
@@ -46,7 +46,7 @@ Date_of_diagnosis:
   columns:
     pid: pid
     uniqid: uniqid
-    valueOutput: diagnosis_date
+    value: diagnosis_date
     outputURI: diagnosis_uri
     startdate: diagnosis_date
     enddate: diagnosis_date
@@ -56,7 +56,7 @@ Date_of_symptoms:
     pid: pid
     uniqid: uniqid
     outputURI: onset_uri
-    valueOutput: onset_date
+    value: onset_date
     startdate: onset_date
     enddate: onset_date
 
@@ -79,7 +79,7 @@ Phenotype:
     pid: pid
     uniqid: uniqid
     valueAttributeIRI: HP_IRI
-    valueOutput: HP_Label
+    value: HP_Label
     startdate: date
     enddate: date
 
@@ -87,7 +87,7 @@ Consent:
   columns:
     pid: pid
     uniqid: uniqid
-    valueOutput: result_label
+    value: result_label
     outputURI: result_uri
     startdate: date
     enddate: date
@@ -97,7 +97,7 @@ Disability:
     pid: pid
     uniqid: uniqid
     processURI: test_uri
-    valueOutput: score
+    value: score
     startdate: test_date
     enddate: test_date
     
