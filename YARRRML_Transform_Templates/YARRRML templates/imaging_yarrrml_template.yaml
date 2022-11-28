@@ -272,7 +272,7 @@ mappings:
   1638258495749789_output_custom_annotation:
     sources:
     - imaging-source
-    s: "$(imageID)"
+    s: this:individual_$(pid)_$(uniqid)#process_some_imaging_process_Target
     po:
     - predicates: http://semanticscience.org/resource/SIO_000205
       objects:
