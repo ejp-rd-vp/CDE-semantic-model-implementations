@@ -1,66 +1,75 @@
 Birthdate:
+  cde: Birthdate
   columns:
     pid: pid
     uniqid: uniqid
-    value: birthdate
+    valueOutput: birthdate
 
 Sex:
+  cde: Sex
   columns:
     pid: pid
     valueAttributeIRI: sexURI
-    value: sexLabel
+    valueOutput: sexLabel
 
 Status:
+  cde: Status
   columns:
     pid: pid
     uniqid: uniqid
-    value: status label
+    valueOutput: status label
     valueAttributeIRI: status_uri
     startdate: date
     enddate: date
 
 Date_of_death:
+  cde: Date_of_death
   columns:
     pid: pid
     uniqid: uniqid
-    value: death_date
+    valueOutput: death_date
     startdate: date
     enddate: date
 
 Care_pathway:
+  cde: Care_pathway
   columns:
     pid: pid
     uniqid: uniqid
-    value: first_visit_date
+    valueOutput: first_visit_date
     
 Diagnosis:
+  cde: Diagnosis
   columns:
     pid: pid
     uniqid: uniqid
     valueAttributeIRI: ordo_uri
-    value: diagnostic_opinion
+    valueOutput: diagnostic_opinion
     startdate: date
     enddate: date
 
 Date_of_diagnosis:
+  cde: Date_of_diagnosis
   columns:
     pid: pid
     uniqid: uniqid
-    value: diagnosis_date
+    valueOutput: diagnosis_date
     outputURI: diagnosis_uri
     startdate: diagnosis_date
     enddate: diagnosis_date
 
 Date_of_symptoms:
+  cde: Date_of_symptoms
   columns:
     pid: pid
     uniqid: uniqid
     outputURI: onset_uri
-    value: onset_date
+    valueOutput: onset_date
     startdate: onset_date
     enddate: onset_date
 
 Genotype_OMIM:
+  cde: Genotype_OMIM
   columns:
     pid: pid
     uniqid: uniqid
@@ -68,6 +77,7 @@ Genotype_OMIM:
     valueAttributeIRI: omim_uri
 
 Genotype_HGNC:
+  cde: Genotype_HGNC
   columns:
     pid: pid
     uniqid: uniqid
@@ -75,29 +85,32 @@ Genotype_HGNC:
     valueAttributeIRI: hgnc_code 
     
 Phenotype:
+  cde: Phenotype
   columns:
     pid: pid
     uniqid: uniqid
     valueAttributeIRI: HP_IRI
-    value: HP_Label
+    valueOutput: HP_Label
     startdate: date
     enddate: date
 
 Consent:
+  cde: Consent
   columns:
     pid: pid
     uniqid: uniqid
-    value: result_label
+    valueOutput: result_label
     outputURI: result_uri
     startdate: date
     enddate: date
 
 Disability:
+  cde: Disability
   columns:
     pid: pid
     uniqid: uniqid
     processURI: test_uri
-    value: score
+    valueOutput: score
     startdate: test_date
     enddate: test_date
     
