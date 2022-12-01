@@ -1,16 +1,19 @@
 Birthdate:
+  cde: Birthdate
   columns:
     pid: pid
     uniqid: uniqid
     valueOutput: birthdate
 
 Sex:
+  cde: Sex
   columns:
     pid: pid
     valueAttributeIRI: sexURI
     valueOutput: sexLabel
 
 Status:
+  cde: Status
   columns:
     pid: pid
     uniqid: uniqid
@@ -20,6 +23,7 @@ Status:
     enddate: date
 
 Date_of_death:
+  cde: Date_of_death
   columns:
     pid: pid
     uniqid: uniqid
@@ -28,12 +32,14 @@ Date_of_death:
     enddate: date
 
 Care_pathway:
+  cde: Care_pathway
   columns:
     pid: pid
     uniqid: uniqid
     valueOutput: first_visit_date
     
 Diagnosis:
+  cde: Diagnosis
   columns:
     pid: pid
     uniqid: uniqid
@@ -43,6 +49,7 @@ Diagnosis:
     enddate: date
 
 Date_of_diagnosis:
+  cde: Date_of_diagnosis
   columns:
     pid: pid
     uniqid: uniqid
@@ -52,6 +59,7 @@ Date_of_diagnosis:
     enddate: diagnosis_date
 
 Date_of_symptoms:
+  cde: Date_of_symptoms
   columns:
     pid: pid
     uniqid: uniqid
@@ -61,6 +69,7 @@ Date_of_symptoms:
     enddate: onset_date
 
 Genotype_OMIM:
+  cde: Genotype_OMIM
   columns:
     pid: pid
     uniqid: uniqid
@@ -68,6 +77,7 @@ Genotype_OMIM:
     valueAttributeIRI: omim_uri
 
 Genotype_HGNC:
+  cde: Genotype_HGNC
   columns:
     pid: pid
     uniqid: uniqid
@@ -75,6 +85,7 @@ Genotype_HGNC:
     valueAttributeIRI: hgnc_code 
     
 Phenotype:
+  cde: Phenotype
   columns:
     pid: pid
     uniqid: uniqid
@@ -84,6 +95,7 @@ Phenotype:
     enddate: date
 
 Consent:
+  cde: Consent
   columns:
     pid: pid
     uniqid: uniqid
@@ -93,6 +105,7 @@ Consent:
     enddate: date
 
 Disability:
+  cde: Disability
   columns:
     pid: pid
     uniqid: uniqid
