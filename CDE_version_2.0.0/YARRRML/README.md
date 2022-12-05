@@ -14,5 +14,5 @@ pip install EMbuilder
 For executing yarrrml builder:
 
 ```python3
-python3 builder_unifiedCDE.py >> unifiedCDE_yarrrml_template.yaml
+python3 builder_CDE.py >> CDE_yarrrml_template.yaml
 ```
