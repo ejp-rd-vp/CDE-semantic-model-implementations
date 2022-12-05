@@ -1,0 +1,322 @@
+mapping:
+  20221205182819981790_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_Role
+      predicate: sio:SIO_000020
+    - objects:
+        type: iri
+        value: sio:SIO_000115
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: Identifier
+      predicate: rdfs:label
+    - objects:
+        datatype: xsd:string
+        value: $(pid)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_ID
+  20221205182819981806_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_Role
+      predicate: sio:SIO_000228
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_Attribute
+      predicate: sio:SIO_000008
+    - objects:
+        type: iri
+        value: sio:SIO_000498
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: Person
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_Entity
+  20221205182819981814_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_Process
+      predicate: sio:SIO_000356
+    - objects:
+        type: iri
+        value: sio:SIO_000016
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: obo:OBI_0000093
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: Patient role
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Role
+  20221205182819981827_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_Output
+      predicate: sio:SIO_000229
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_$(inputLabel)
+      predicate: sio:SIO_000230
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_$(targetLabel)
+      predicate: sio:SIO_000291
+    - objects:
+        type: iri
+        value: sio:SIO_000006
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(processURI)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) measurement process
+      predicate: rdfs:label
+    - objects:
+        datatype: xsd:string
+        value: $(comments)
+      predicate: rdfs:comment
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Process
+  20221205182819981835_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_Attribute
+      predicate: sio:SIO_000628
+    - objects:
+        type: iri
+        value: this:$(pid)_$(uniqid)_$(unitLabel)
+      predicate: sio:SIO_000221
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(outputURI)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) measurement output
+      predicate: rdfs:label
+    - objects:
+        datatype: $(datatype)
+        value: $(valueOutput)
+      predicate: sio:SIO_000300
+    - objects:
+        datatype: $(datatype)
+        value: $(valueInput)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Output
+  20221205182819981840_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(inputURI)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: 'Input: $(inputLabel)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_$(inputLabel)
+  20221205182819981845_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(targetURI)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: 'Target: $(targetLabel)'
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_$(targetLabel)
+  20221205182819981853_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000074
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(unitURI)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(unitLabel) unit
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_$(unitLabel)
+  20221205182819981859_source_cde_test:
+    graph: this:$(context_id)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000614
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(attributeURI)
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(valueAttributeIRI)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) attribute
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Attribute
+  20221205182819981864_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(context_id)_Startdate
+      predicate: sio:SIO_000680
+    - objects:
+        type: iri
+        value: this:$(context_id)_Enddate
+      predicate: sio:SIO_000681
+    - objects:
+        type: iri
+        value: this:$(pid)_Timeline
+      predicate: sio:SIO_000068
+    - objects:
+        type: iri
+        value: obo:NCIT_C25616
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(context_id)_Context
+  20221205182819981870_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_Person
+      predicate: sio:SIO_000332
+    - objects:
+        type: iri
+        value: sio:SIO_000417
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: obo:NCIT_C54576
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_Timeline
+  20221205182819981874_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: this:$(pid)_Identifier
+      predicate: sio:SIO_000671
+    - objects:
+        type: iri
+        value: sio:SIO_000498
+      predicate: rdf:type
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_Person
+  20221205182819981878_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000031
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: '$(model) startdate: $(startdate)'
+      predicate: rdfs:label
+    - objects:
+        datatype: xsd:date
+        value: $(startdate)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(context_id)_Startdate
+  20221205182819981884_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000032
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: '$(model) enddate: $(enddate)'
+      predicate: rdfs:label
+    - objects:
+        datatype: xsd:date
+        value: $(enddate)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(context_id)_Enddate
+  20221205182819981889_source_cde_test:
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000115
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(pid)
+      predicate: sio:SIO_000300
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_Identifier
+prefixes:
+  obo: http://purl.obolibrary.org/obo/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  sio: http://semanticscience.org/resource/
+  this: '|||BASE|||'
+  xsd: http://www.w3.org/2001/XMLSchema#
+sources:
+  source_cde_test:
+    access: '|||DATA|||'
+    iterator: $
+    referenceFormulation: '|||FORMULATION|||'
+

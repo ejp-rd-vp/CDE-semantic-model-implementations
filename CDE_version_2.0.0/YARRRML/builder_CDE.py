@@ -34,7 +34,7 @@ triplets = [
 
 # Labels
 ["this:$(pid)_ID","rdfs:label","Identifier","xsd:string", "this:$(context_id)_Context"],
-["this:$(pid)_Person","rdfs:label","Person","xsd:string", "this:$(context_id)_Context"],
+["this:$(pid)_Entity","rdfs:label","Person","xsd:string", "this:$(context_id)_Context"],
 ["this:$(pid)_$(uniqid)_Role","rdfs:label","Patient role","xsd:string", "this:$(context_id)_Context"],
 ["this:$(pid)_$(uniqid)_Process","rdfs:label","$(model) measurement process","xsd:string", "this:$(context_id)_Context"],
 ["this:$(pid)_$(uniqid)_Output","rdfs:label","$(model) measurement output","xsd:string", "this:$(context_id)_Context"],
@@ -42,7 +42,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string", "this:$(context_id)_Context"],
-["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(valueOutput)","$(datatype)", "this:$(context_id)_Context"],
+["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(value)","$(datatype)", "this:$(context_id)_Context"],
 
 # Metadata:
 ["this:$(context_id)_Context","sio:SIO_000680","this:$(context_id)_Startdate","iri"],
@@ -64,7 +64,7 @@ triplets = [
 
 ["this:$(context_id)_Startdate","sio:SIO_000300","$(startdate)","xsd:date"],
 ["this:$(context_id)_Enddate","sio:SIO_000300","$(enddate)","xsd:date"],
-["this:$(pid)_Identifier","sio:SIO_000332","$(pid)","xsd:string"]
+["this:$(pid)_Identifier","sio:SIO_000300","$(pid)","xsd:string"]
 ]
 
 config = dict(

@@ -267,6 +267,10 @@
         *    Quantitation (please use this by default) http://purl.obolibrary.org/obo/NCIT_C48937
         *    Estimate (http://purl.obolibrary.org/obo/NCIT_C25498)
 - **outputURI**: http://purl.obolibrary.org/obo/NCIT_C93940
+- **inputURI**: None
+- **inputLabel**: None
+- **targetURI**: None
+- **targetLabel**: None
 - **attributeURI**: Child of Personal Attribute: http://purl.obolibrary.org/obo/NCIT_C19332
 - **valueOutput**: Resulting value from this observation
 - **datatype**: xsd:float (by default but could be another different datatype)
@@ -311,12 +315,16 @@
 - **context_id**: Time-oriented identifier to relate models with same date of observation
 - **processURI**: child of Imaging technique http://purl.obolibrary.org/obo/NCIT_C17369  (example: obo:Digital X-Ray http://purl.obolibrary.org/obo/NCIT_C18001)
 - **outputURI**: http://purl.obolibrary.org/obo/NCIT_C19477
+- **inputURI**: None
+- **inputLabel**: None
 - **targetURI**: Child of Anatomic Structure, System, or Substance http://purl.obolibrary.org/obo/NCIT_C12219 (ex: obo:Palmar Region http://purl.obolibrary.org/obo/NCIT_C33252)
 - **targetLabel**: Human readable label that describes this body part (ex: Palmar Region)
 - **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C94607
 - **valueOutput**: Preferably a URI-based GUID of the file (must be a GUID system compatible with RDF Resource identifiers)
 - **datatype**: xsd:string
 - **valueAttributeIRI**: None
+- **unitURI**: None
+- **unitLabel**: None
 - **model**: Imaging
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
@@ -356,6 +364,10 @@
 - **context_id**: Time-oriented identifier to relate models with same date of observation
 - **processURI**: Child of Intervention or Procedure http://purl.obolibrary.org/obo/NCIT_C25218 (ex: obo:Transplant Conditioning http://purl.obolibrary.org/obo/NCIT_C64468 )
 - **outputURI**: Any conceptual entity presented at this process (ex obo:Fludarabine http://purl.obolibrary.org/obo/NCIT_C1094 )
+- **inputURI**: None
+- **inputLabel**: None
+- **targetURI**: None
+- **targetLabel**: None
 - **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C25178
 - **valueOutput**: Human readable label that describes the resulting value of this treatment
 - **datatype**: Any datatype that is describe at this treatment result
@@ -377,20 +389,24 @@
 - **outputURI**: http://purl.obolibrary.org/obo/NCIT_C115575
 - **inputURI**: http://purl.obolibrary.org/obo/NCIT_C16696
 - **inputLabel**: Human readable label that describes this medical center.
+- **targetURI**: None
+- **targetLabel**: None
 - **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C2991
 - **valueOutput**: Human readable label that defines clinical trial final output
 - **valueInput**: GUID for this medical center where this clinical trial is taking place.
 - **datatype**: xsd:string
 - **valueAttributeIRI**: Orphanet disease ontology (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **unitURI**: None
+- **unitLabel**: None
 - **model**: Clinical_trials
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Example CSV file:
-Please find example CSV file [here](/CDE_version_2.0.0/CSV_template_doc/exemplar_unifiedCDE.csv)
+Please find example CSV file [here](/CDE_version_2.0.0/CSV_template_doc/exemplar_CDE.csv)
 
 
 ## YARRRML template:
-Please find the YARRRML template for this module [here](/CDE_version_2.0.0/YARRRML/unifiedCDE_yarrrml_template.yaml)
+Please find the YARRRML template for this module [here](/CDE_version_2.0.0/YARRRML/CDE_yarrrml_template.yaml)
   
