@@ -16,40 +16,53 @@ This library consumes a CSV with your CDE data YAML configuration file to define
 
 **Preparation**
 
-You can use this pipeline to define the location of each component (`CDEconfig.yaml`, CSV input data file and your resulting CSV)
+You can use this [pipeline](/CDE_version_2.0.0/Version_transformation/test_hefesto.py) to define the path of [version 1.0.0 CDE-based CSV input data files](/CDE_version_1.0.0/exemplar_csv/), and perform the transformation:
 
 ```py
 from Hefesto.main import Hefesto
 import yaml
+from perseo.main import get_files
+import pandas as pd
 
-location_config_file = "CDEconfig.yaml" ## USE THIS YAML FROM THIS GITHUB REPO
-location_data_input = "exemplarCDEdata.csv" ## ADD HERE THE LOCARTION OF YOUR CSV DATA
-cde_tagname = ["Birth_date","Sex"] # DEFINED ALL COMMON DATA ELEMENTS TO OBATIN FROM THIS DATA
 
-## possible tagnames for your CDEs:  
-# "Birth_date"
-# "Sex"
-# "Status"
-# "Date_of_death"
-# "Care pathway"
-# "Diagnosis"
-# "Date_of_diagnosis"
-# "Onset_of_symptoms"
-# "Genotype_OMIM"
-# "Genotype_HGNC"
-# "Phenotype"
-# "Consent"
-# "Disability"
+path_config_file = "CDEconfig.yaml" ## USE THIS YAML FROM THIS GITHUB REPO
+path_files= "../../CDE_version_1.0.0/exemplar_csv/"
 
-with open(location_config_file) as file:
+with open(path_config_file) as file:
     configuration = yaml.load(file, Loader=yaml.FullLoader)
 
-for tag in cde_tagname:
-    for config in configuration.items():
-        if config[0] == tag:
-            configuration_entry = {tag: config[1]}
-            test = Hefesto.transform_shape(path_datainput = location_data_input, configuration = {tag: config[1]})
-            test.to_csv ("../CSV_template_doc/exemplar_unifiedCDE_{}.csv".format(tag), index = False, header=True)
+
+
+all_files = get_files(path_files, format="csv")
+print(all_files)
+
+
+model_relation = dict(
+    personal_information = ["Birthdate", "Sex"],
+    patient_status = ["Status","Date_of_death"],
+    care_pathway = ["Care_pathway"],
+    diagnosis = ["Diagnosis"],
+    disease_history = ["Date_of_diagnosis", "Date_of_symptoms"],
+    genetic_diagnosis = ["Genotype_OMIM", "Genotype_HGNC"],
+    phenotyping = ["Phenotype"],
+    patient_consent = ["Consent"],
+    disability = ["Disability"]
+)
+
+resulting_table = pd.DataFrame(index=[1])
+
+for model in model_relation.items():
+    file = model[0] + ".csv"
+    if file in all_files:
+        for element in model[1]:
+            for config in configuration.items():
+                if config[1]["cde"] == element:
+                    path = path_files + file
+                    test = Hefesto(datainput = path)
+                    transform = test.transform_shape(configuration={element: config[1]}, clean_blanks=False)
+                    resulting_table = pd.concat([transform, resulting_table])
+resulting_table.to_csv ("unifiedCDE_fromV1.csv", index = False, header=True)
+
 ```
 **Execution**
 
