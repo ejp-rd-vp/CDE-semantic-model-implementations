@@ -1,32 +1,43 @@
 from Hefesto.main import Hefesto
 import yaml
+from perseo.main import get_files
+import pandas as pd
 
 
-location_config_file = "CDEconfig.yaml" ## USE THIS YAML FROM THIS GITHUB REPO
-location_data_input = "exemplarCDEdata.csv" ## ADD HERE THE LOCARTION OF YOUR CSV DATA
-cde_tagname = ["Birthdate","Sex"] # DEFINED ALL COMMON DATA ELEMENTS TO OBATIN FROM THIS DATA
+path_config_file = "CDEconfig.yaml" ## USE THIS YAML FROM THIS GITHUB REPO
+path_files= "../../CDE_version_1.0.0/exemplar_csv/"
 
-# # possible tagnames for your CDEs:  
-# "Birthdate"
-# "Sex"
-# "Status"
-# "Date_of_death"
-# "Care_pathway"
-# "Diagnosis"
-# "Date_of_diagnosis"
-# "Date_of_symptoms"
-# "Genotype_OMIM"
-# "Genotype_HGNC"
-# "Phenotype"
-# "Consent"
-# "Disability"
-
-with open(location_config_file) as file:
+with open(path_config_file) as file:
     configuration = yaml.load(file, Loader=yaml.FullLoader)
 
-for tag in cde_tagname:
-    for config in configuration.items():
-        if config[1]["cde"] == tag:
-            test = Hefesto(datainput = location_data_input)
-            transform = test.transform_shape(configuration={tag: config[1]})
-            test.to_csv ("../CSV_template_doc/exemplar_unifiedCDE_{}.csv".format(tag), index = False, header=True)
+
+
+all_files = get_files(path_files, format="csv")
+print(all_files)
+
+
+model_relation = dict(
+    personal_information = ["Birthdate", "Sex"],
+    patient_status = ["Status","Date_of_death"],
+    care_pathway = ["Care_pathway"],
+    diagnosis = ["Diagnosis"],
+    disease_history = ["Date_of_diagnosis", "Date_of_symptoms"],
+    genetic_diagnosis = ["Genotype_OMIM", "Genotype_HGNC"],
+    phenotyping = ["Phenotype"],
+    patient_consent = ["Consent"],
+    disability = ["Disability"]
+)
+
+resulting_table = pd.DataFrame(index=[1])
+
+for model in model_relation.items():
+    file = model[0] + ".csv"
+    if file in all_files:
+        for element in model[1]:
+            for config in configuration.items():
+                if config[1]["cde"] == element:
+                    path = path_files + file
+                    test = Hefesto(datainput = path)
+                    transform = test.transform_shape(configuration={element: config[1]}, clean_blanks=False)
+                    resulting_table = pd.concat([transform, resulting_table])
+resulting_table.to_csv ("unifiedCDE_fromV1.csv", index = False, header=True)

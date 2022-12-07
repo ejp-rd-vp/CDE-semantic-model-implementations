@@ -9,6 +9,7 @@ Sex:
   cde: Sex
   columns:
     pid: pid
+    uniqid: uniqid
     valueAttributeIRI: sexURI
     valueOutput: sexLabel
 
@@ -37,6 +38,8 @@ Care_pathway:
     pid: pid
     uniqid: uniqid
     valueOutput: first_visit_date
+    startdate: first_visit_date
+    enddate: first_visit_date
     
 Diagnosis:
   cde: Diagnosis
