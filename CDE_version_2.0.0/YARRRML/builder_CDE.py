@@ -4,7 +4,7 @@ prefixes = dict(
   rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ,
   rdfs = "http://www.w3.org/2000/01/rdf-schema#" ,
   obo = "http://purl.obolibrary.org/obo/" ,
-  sio = "http://semanticscience.org/resource/" ,
+  sio = "https://sio.semanticscience.org/resource/" ,
   xsd = "http://www.w3.org/2001/XMLSchema#",
   this = "http://my_example.com/")
 
@@ -64,7 +64,8 @@ triplets = [
 
 ["this:$(context_id)_Startdate","sio:SIO_000300","$(startdate)","xsd:date"],
 ["this:$(context_id)_Enddate","sio:SIO_000300","$(enddate)","xsd:date"],
-["this:$(pid)_Identifier","sio:SIO_000300","$(pid)","xsd:string"]
+["this:$(pid)_Identifier","sio:SIO_000300","$(pid)","xsd:string"],
+["this:$(context_id)_Context","sio:SIO_000300","$(context_id)","xsd:string"]
 ]
 
 config = dict(

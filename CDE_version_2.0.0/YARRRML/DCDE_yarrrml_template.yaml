@@ -1,5 +1,5 @@
 mapping:
-  20221205182819981790_source_cde_test:
+  20221207180930257853_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -21,7 +21,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_ID
-  20221205182819981806_source_cde_test:
+  20221207180930257869_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -43,7 +43,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Entity
-  20221205182819981814_source_cde_test:
+  20221207180930257880_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -65,7 +65,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Role
-  20221205182819981827_source_cde_test:
+  20221207180930257889_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -99,7 +99,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Process
-  20221205182819981835_source_cde_test:
+  20221207180930257897_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -127,13 +127,13 @@ mapping:
         value: $(valueOutput)
       predicate: sio:SIO_000300
     - objects:
-        datatype: $(datatype)
+        datatype: xsd:integer
         value: $(valueInput)
       predicate: sio:SIO_000300
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Output
-  20221205182819981840_source_cde_test:
+  20221207180930257902_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -151,7 +151,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_$(inputLabel)
-  20221205182819981845_source_cde_test:
+  20221207180930257907_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -169,7 +169,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_$(targetLabel)
-  20221205182819981853_source_cde_test:
+  20221207180930257914_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -187,7 +187,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_$(unitLabel)
-  20221205182819981859_source_cde_test:
+  20221207180930257920_source_cde_test:
     graph: this:$(context_id)_Context
     predicateobject:
     - objects:
@@ -209,7 +209,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Attribute
-  20221205182819981864_source_cde_test:
+  20221207180930257926_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -227,10 +227,14 @@ mapping:
         type: iri
         value: obo:NCIT_C25616
       predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(context_id)
+      predicate: sio:SIO_000300
     sources:
     - source_cde_test
     subjects: this:$(context_id)_Context
-  20221205182819981870_source_cde_test:
+  20221207180930257932_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -247,7 +251,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Timeline
-  20221205182819981874_source_cde_test:
+  20221207180930257936_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -260,7 +264,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Person
-  20221205182819981878_source_cde_test:
+  20221207180930257940_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -277,7 +281,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(context_id)_Startdate
-  20221205182819981884_source_cde_test:
+  20221207180930257947_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -294,7 +298,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(context_id)_Enddate
-  20221205182819981889_source_cde_test:
+  20221207180930257951_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -311,7 +315,7 @@ prefixes:
   obo: http://purl.obolibrary.org/obo/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#
-  sio: http://semanticscience.org/resource/
+  sio: https://sio.semanticscience.org/resource/
   this: '|||BASE|||'
   xsd: http://www.w3.org/2001/XMLSchema#
 sources:
