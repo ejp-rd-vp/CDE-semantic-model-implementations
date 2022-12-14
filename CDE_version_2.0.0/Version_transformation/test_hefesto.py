@@ -40,4 +40,4 @@ for model in model_relation.items():
                     test = Hefesto(datainput = path)
                     transform = test.transform_shape(configuration={element: config[1]}, clean_blanks=False)
                     resulting_table = pd.concat([transform, resulting_table])
-resulting_table.to_csv ("unifiedCDE_fromV1.csv", index = False, header=True)
+resulting_table.to_csv ("CDE.csv", index = False, header=True)
