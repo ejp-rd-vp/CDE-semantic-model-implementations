@@ -108,7 +108,7 @@ mapping:
       predicate: rdfs:label
     - objects:
         datatype: $(datatype)
-        value: $(value)
+        value: $(valueOutput)
       predicate: sio:SIO_000300
     sources:
     - source_cde_test

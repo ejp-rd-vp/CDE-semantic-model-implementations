@@ -55,7 +55,7 @@ triplets = [
 
 # Values
 ["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string", "this:$(context_id)_Context"],
-["this:$(pid)_$(uniqid)_Dose","sio:SIO_000300","$(value)","$(datatype)", "this:$(context_id)_Context"],
+["this:$(pid)_$(uniqid)_Dose","sio:SIO_000300","$(valueOutput)","$(datatype)", "this:$(context_id)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","sio:SIO_000300","$(valueFrequency)","xsd:integer", "this:$(context_id)_Context"],
 
 # Metadata:
