@@ -4,7 +4,7 @@
 
 ## YARRRML template creation:
 
-Our current functional **YARRRML** CDE template is located [here](/CDE_version_2.0.0/YARRRML/unifiedCDE_yarrrml_template.yaml). 
+Our current functional **YARRRML** CDE template is located [here](/CDE_version_2.0.0/YARRRML/CDE_yarrrml_template.yaml). 
 Also all information related to our **YARRRML template builder** is located [here](/CDE_version_2.0.0/YARRRML/README.md).
 
 ## CSV template documentation:
