@@ -10,7 +10,7 @@ Also all information related to our **YARRRML template builder** is located [her
 ## CSV template documentation:
 
 Documentation for all **CSV data requirements** needed to generate each common data element, please go [here](/CDE_version_2.0.0/CSV_template_doc/).
-Also, **exemplar CSV** for our CDE model is located [here](/CDE_version_2.0.0/CSV_template_doc/exemplar_unifiedCDE.csv).
+Also, **exemplar CSV** for our CDE model is located [here](/CDE_version_2.0.0/CSV_template_doc/CDE.csv).
 
 ## Transformation pipeline from previous version:
 
