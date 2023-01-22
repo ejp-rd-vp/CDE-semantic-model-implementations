@@ -22,7 +22,7 @@ model_relation = dict(
     care_pathway = ["Care_pathway"],
     diagnosis = ["Diagnosis"],
     disease_history = ["Date_of_diagnosis", "Date_of_symptoms"],
-    genetic_diagnosis = ["Genotype_OMIM", "Genotype_HGNC"],
+    genetic_diagnosis = ["Genotype_OMIM", "Genotype_HGNC", "Genotype_HGVS"],
     phenotyping = ["Phenotype"],
     patient_consent = ["Consent"],
     disability = ["Disability"]
@@ -38,6 +38,6 @@ for model in model_relation.items():
                 if config[1]["cde"] == element:
                     path = path_files + file
                     test = Hefesto(datainput = path)
-                    transform = test.transform_shape(configuration={element: config[1]}, clean_blanks=False)
+                    transform = test.transform_shape(configuration={element: config[1]})
                     resulting_table = pd.concat([transform, resulting_table])
-resulting_table.to_csv ("CDE.csv", index = False, header=True)
+resulting_table.to_csv ("resulting_V1_CDE.csv", index = False, header=True)
