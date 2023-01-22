@@ -1,35 +1,13 @@
-# Unified CDE model
+# Glossary: Data source requirements for CDE semantic model.
 
-
-## General Glossary for any CDE:
-
-- **pid**: Patient unique identifier
-- **uniqid**: Row unique identifier (ex: millisecond timestamp)
-- **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: Domain-specific term to define the process among sio:process 
-- **outputURI**: Domain-specific term to define the output among sio:information-content-entity
-- **attributeURI**: Domain-specific term to define the input among sio:attribute
-- **valueOutput**: Datetime value from ouput node
-- **datatype** : Output value datatype defined XSD scheme 
-- **valueAttributeIRI**: IRI datatype from attribute node
-- **model**: defines which CDE are we generating
-- **startdate**: ISO 8601 formatted start date of observation
-- **enddate**: ISO 8601 formatted end date of observation 
-
-
-
+The name of each parameter that defines this common data elements are not the column names, but the same you have to referenced using a [YAML file](../Version_transformation/CDEconfig.yaml) to preprocess your data source (CSV) using [Hefesto](https://github.com/pabloalarconm/Hefesto) module before making the RDF transformation.
 
 ## CDE - Birthdate:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
-- **outputURI**: http://www.ebi.ac.uk/efo/EFO_0006921
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C68615
-- **valueOutput**: ISO 8601 formatted date (not date time)
-- **datatype** : xsd:date
-- **valueAttributeIRI**: None
+- **valueOutput_date**: ISO 8601 formatted date (not date time)
 - **model**: Birthdate
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
@@ -40,11 +18,7 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C103159
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C28421
-- **valueOutput**: Human readable label that defines sex (ex: Female)
-- **datatype** : xsd:string 
+- **valueOutput_string**: Human readable label that defines sex (ex: Female)
 - **valueAttributeIRI**: one of the following: 
     * http://purl.obolibrary.org/obo/NCIT_C16576 (Female) ; 
     * http://purl.obolibrary.org/obo/NCIT_C20197 (Male); 
@@ -61,11 +35,7 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C103159
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C166244
-- **valueOutput**: Human readable label that defines status (ex: Alive)
-- **datatype** : xsd:string
+- **valueOutput_string**: Human readable label that defines status (ex: Alive)
 - **valueAttributeIRI**: one of the following: 
     * http://semanticscience.org/resource/SIO_010059 (dead)
     * http://semanticscience.org/resource/SIO_010058 (alive)
@@ -81,11 +51,7 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C103159
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C70810
-- **valueOutput**: ISO 8601 formatted date of death (not date time)
-- **datatype** : xsd:date 
+- **valueOutput_date**: ISO 8601 formatted date of death (not date time)
 - **valueAttributeIRI**: one of the following: 
     * http://semanticscience.org/resource/SIO_010059 (dead)
     * http://semanticscience.org/resource/SIO_010058 (alive)
@@ -101,12 +67,7 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C159705 
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C25716
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C164021
-- **valueOutput**: ISO 8601 formatted date of first confirmed visit (not date time)
-- **datatype** : xsd:date 
-- **valueAttributeIRI**: None
+- **valueOutput_date**: ISO 8601 formatted date of first confirmed visit (not date time)
 - **model**: Care_pathway
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
@@ -117,56 +78,42 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C15220 
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C103159
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C2991
-- **valueOutput**: Label that describes diagnosis information
-- **datatype** : xsd:string
+- **valueOutput_string**: Label that describes diagnosis information
 - **valueAttributeIRI**: Orphanet disease ontology (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
 - **model**: Diagnosis
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
 
-## CDE - Date of diagnosis:
+## CDE - Onset of diagnosis:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
-- **outputURI**: one of the following:
+- **valueAttributeIRI**: one of the following:
     * http://purl.obolibrary.org/obo/NCIT_C81318 (Prenatal)
     * http://purl.obolibrary.org/obo/NCIT_C81317 (Postnatal)
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
-    * http://purl.obolibrary.org/obo/NCIT_C25164 (Date) - use this when you are going to provide a date
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C156420
-- **valueOutput**: ISO 8601 formatted date of diagnosis (not date time) in case of date of diagnosis is defined as a date
-- **datatype**: xsd:date (in case of date of diagnosis is defined as a date)
-- **valueAttributeIRI**: None
-- **model**: Date_of_diagnosis
+    * http://purl.obolibrary.org/obo/NCIT_C93613 (Onset Date) - use this when you are going to provide a date
+- **valueOutput_date**: ISO 8601 formatted date of diagnosis (not date time) in case of date of diagnosis is defined as a date
+- **model**: Onset_diagnosis
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
 
-## CDE - Date of symptoms:
+## CDE - Onset of symptoms:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
 - **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
-- **outputURI**: one of the following:
-    * http://purl.obolibrary.org/obo/HP_0410280 (Pediatric onset)
-    * http://purl.obolibrary.org/obo/HP_0003581 (Adult onset)
-    * http://purl.obolibrary.org/obo/HP_0030674 (Antenatal onset)
-    * http://purl.obolibrary.org/obo/HP_0003623 (Neonatal onset)
-    * http://purl.obolibrary.org/obo/HP_0003577 (Congenital onset)
+- **valueAttributeIRI**: one of the following:
+    * http://purl.obolibrary.org/obo/NCIT_C81318 (Prenatal)
+    * http://purl.obolibrary.org/obo/NCIT_C81317 (Postnatal)
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
-    * http://purl.obolibrary.org/obo/NCIT_C25164  (Date) - use this when you are going to provide a date
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C25279
-- **valueOutput**: ISO 8601 formatted date of symptom's onset (not date time) in case of date of diagnosis is defined as a date
-- **datatype**: xsd:date (in case of date of diagnosis is defined as a date)
-- **valueAttributeIRI**: None
-- **model**: Date_of_symptoms
+    * http://purl.obolibrary.org/obo/NCIT_C93613 (Onset Date) - use this when you are going to provide a date
+- **valueOutput_date**: ISO 8601 formatted date of symptom's onset (not date time) in case of date of diagnosis is defined as a date
+- **model**: Onset_symptoms
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
@@ -176,48 +123,55 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C25305
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C125204
-- **attributeURI**: http://semanticscience.org/resource/SIO_010056
-- **valueOutput**: Label that describes phenotype information
-- **datatype** : xsd:string
+- **valueOutput_string**: Label that describes phenotype information
 - **valueAttributeIRI**: Full Human Phenotype Ontology (HPO) URI 
 - **model**: Phenotype
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
 
-## CDE - Genotype:
+## CDE - Genotype_OMIM:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/NCIT_C15709
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C17248
-- **attributeURI**: Gene ID type, one of the following:
-    * http://edamontology.org/data_1153 for OMIM ID
-    * http://edamontology.org/data_2295 for HGNC ID
-- **valueOutput**: HGVS variant notation code
-- **datatype**: xsd:string
-- **valueAttributeIRI**: One of the following:
-    * OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
-    * HGNC gene code this constructed by appending the HGNC code to https://bioregistry.io/{HGNC code} e.g. https://bioregistry.io/HGNC:2928
-- **model**: Genotype
+- **valueOutput_string**: OMIM variant/gene notation code
+- **valueAttributeIRI**: OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
+- **model**: Genotype_OMIM
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
 
+
+## CDE - Genotype_HGNC:
+
+- **pid**: Patient unique identifier
+- **uniqid**: Row unique identifier (ex: millisecond timestamp)
+- **context_id**: Time-oriented identifier to relate models with same date of observation
+- **valueOutput_string**: HGNC gene notation code
+- **valueAttributeIRI**: HGNC gene code this constructed by appending the HGNC code to https://bioregistry.io/{HGNC code} e.g. https://bioregistry.io/HGNC:2928
+- **model**: Genotype_HGNC
+- **startdate**: ISO 8601 formatted start date of observation
+- **enddate**: ISO 8601 formatted end date of observation 
+
+
+## CDE - Genotype_HGVS:
+
+- **pid**: Patient unique identifier
+- **uniqid**: Row unique identifier (ex: millisecond timestamp)
+- **context_id**: Time-oriented identifier to relate models with same date of observation
+- **valueOutput_string**: HGVS variant notation code
+- **valueAttributeIRI**: URI of the clinical variant (e.g. https://identifiers.org/clinvar:4886)
+- **model**: Genotype_HGVS
+- **startdate**: ISO 8601 formatted start date of observation
+- **enddate**: ISO 8601 formatted end date of observation 
 
 ## CDE - Consent:
 
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/OBI_0000810
 - **outputURI**: Some child of http://purl.obolibrary.org/obo/DUO_0000001 (ICO/DUI Data Use Permission) or http://purl.obolibrary.org/obo/OBIB_0000488 (willingness to be contacted)
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C25460
-- **valueOutput**: Some label describing consent outcome
-- **datatype**: xsd:string
-- **valueAttributeIRI**: None
+- **valueOutput_string**: Some label describing consent outcome
 - **model**: Consent
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
@@ -228,12 +182,7 @@
 - **pid**: Patient unique identifier
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
-- **processURI**: http://purl.obolibrary.org/obo/OMIABIS_0000061
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C115570
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C25429
-- **valueOutput**: Biobank Identifier as https://directory.bbmri-eric.eu/{biobank id}
-- **datatype**: xsd:string
-- **valueAttributeIRI**: None
+- **valueOutput_string**: Biobank Identifier as https://directory.bbmri-eric.eu/{biobank id}
 - **model**: Biobank
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation 
@@ -245,17 +194,12 @@
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
 - **processURI**: Some child of http://purl.obolibrary.org/obo/NCIT_C20993 (research or clinical assessment tool)
-- **outputURI**: http://purl.obolibrary.org/obo/NCIT_C25338
-- **attributeURI**: http://purl.obolibrary.org/obo/NCIT_C21007
-- **valueOutput**: the numeric score of the output from the test
-- **datatype**: xsd:integer
-- **valueAttributeIRI**: None
+- **valueOutput_float**: the numeric score of the output from the test
 - **model**: Disability
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: ISO 8601 formatted end date of observation
 
-
-
+## Glossary for all identified DCDE:
 
 ## DCDE - Body measurement:
 
