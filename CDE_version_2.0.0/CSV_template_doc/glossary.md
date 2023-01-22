@@ -91,8 +91,8 @@ The name of each parameter that defines this common data elements are not the co
 - **uniqid**: Row unique identifier (ex: millisecond timestamp)
 - **context_id**: Time-oriented identifier to relate models with same date of observation
 - **valueAttributeIRI**: one of the following:
-    * http://purl.obolibrary.org/obo/NCIT_C81318 (Prenatal)
-    * http://purl.obolibrary.org/obo/NCIT_C81317 (Postnatal)
+    * http://purl.obolibrary.org/obo/HP_0030674 (Antenatal onset)
+    * http://purl.obolibrary.org/obo/HP_0003577 (Congenital onset)
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
     * http://purl.obolibrary.org/obo/NCIT_C93613 (Onset Date) - use this when you are going to provide a date
 - **valueOutput_date**: ISO 8601 formatted date of diagnosis (not date time) in case of date of diagnosis is defined as a date
@@ -108,8 +108,8 @@ The name of each parameter that defines this common data elements are not the co
 - **context_id**: Time-oriented identifier to relate models with same date of observation
 - **processURI**: http://purl.obolibrary.org/obo/NCIT_C142470 
 - **valueAttributeIRI**: one of the following:
-    * http://purl.obolibrary.org/obo/NCIT_C81318 (Prenatal)
-    * http://purl.obolibrary.org/obo/NCIT_C81317 (Postnatal)
+    * http://purl.obolibrary.org/obo/HP_0030674 (Antenatal onset)
+    * http://purl.obolibrary.org/obo/HP_0003577 (Congenital onset)
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
     * http://purl.obolibrary.org/obo/NCIT_C93613 (Onset Date) - use this when you are going to provide a date
 - **valueOutput_date**: ISO 8601 formatted date of symptom's onset (not date time) in case of date of diagnosis is defined as a date
