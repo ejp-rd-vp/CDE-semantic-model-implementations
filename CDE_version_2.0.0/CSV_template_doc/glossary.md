@@ -18,7 +18,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **value**: ISO 8601 formatted date of death (not date time)
-- **condition_id**: one of the following: 
+- **attribute_id**: one of the following: 
     * http://semanticscience.org/resource/SIO_010059 (dead)
     * http://semanticscience.org/resource/SIO_010058 (alive)
     * http://purl.obolibrary.org/obo/NCIT_C70740 (lost to follow-up)
@@ -44,7 +44,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **condition_id**: one of the following:
+- **attribute_id**: one of the following:
     * http://purl.obolibrary.org/obo/HP_0030674 (Antenatal onset)
     * http://purl.obolibrary.org/obo/HP_0003577 (Congenital onset)
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
@@ -60,7 +60,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **condition_id**: one of the following: 
+- **attribute_id**: one of the following: 
     * http://purl.obolibrary.org/obo/NCIT_C16576 (Female) ; 
     * http://purl.obolibrary.org/obo/NCIT_C20197 (Male); 
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) ; 
@@ -74,7 +74,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **condition_id**: one of the following: 
+- **attribute_id**: one of the following: 
     * http://semanticscience.org/resource/SIO_010059 (dead)
     * http://semanticscience.org/resource/SIO_010058 (alive)
     * http://purl.obolibrary.org/obo/NCIT_C70740 (lost to follow-up)
@@ -88,7 +88,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **condition_id**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **attribute_id**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
 - **model**: Diagnosis
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: (OPTIONAL) ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
@@ -98,7 +98,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **condition_id**: OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
+- **attribute_id**: OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
 - **model**: Genetic
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: (OPTIONAL) ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
@@ -155,7 +155,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **condition_id**: Child of Personal Attribute: http://purl.obolibrary.org/obo/NCIT_C19332
+- **attribute_id**: Child of Personal Attribute: http://purl.obolibrary.org/obo/NCIT_C19332
 - **value**: Resulting value from this observation
 - **value_datatype**: xsd:float by default (but could be another different datatype)
 - **unit_type**: Child of UO:unit http://purl.obolibrary.org/obo/UO_0000000
@@ -226,7 +226,7 @@ or obo:Material (example: obo: Tumor Tissue http://purl.obolibrary.org/obo/NCIT_
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **agent_id**: GUID for this medical center where this clinical trial is taking place.
-- **condition_id**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **attribute_id**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
 - **model**: Clinical_trial
 - **startdate**: ISO 8601 formatted start date of observation
 - **enddate**: (OPTIONAL) ISO 8601 formatted enddate of observation in case it is different from `startdate`.
