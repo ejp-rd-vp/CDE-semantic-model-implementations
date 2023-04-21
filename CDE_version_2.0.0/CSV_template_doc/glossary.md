@@ -130,7 +130,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **value**: Biobank Identifier as https://directory.bbmri-eric.eu/{biobank id}
+- **agent_id**: Biobank Identifier as https://directory.bbmri-eric.eu/{biobank id}
 - **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:string by default
 - **model**: Biobank
 - **startdate**: ISO 8601 formatted start date of observation
