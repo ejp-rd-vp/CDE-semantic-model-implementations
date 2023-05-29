@@ -100,14 +100,17 @@ triplets = [
 ["this:$(uniqid)_Context","sio:SIO_000068","this:$(pid)_$(context_id)_Mayor_context","iri"],
 ["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000680","this:$(pid)_$(context_id)_Startdate","iri"],
 ["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000681","this:$(pid)_$(context_id)_Enddate","iri"],
+["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000793","this:$(pid)_$(context_id)_Age","iri"],
 
 ["this:$(pid)_$(context_id)_Mayor_context","rdf:type","obo:NCIT_C25616","iri"],
 ["this:$(pid)_$(context_id)_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(context_id)_Enddate","rdf:type","sio:SIO_000032","iri"],
+["this:$(pid)_$(context_id)_Age","rdf:type","sio:SIO_001013","iri"],
 
 ["this:$(pid)_$(context_id)_Startdate","sio:SIO_000300","$(context_startdate)","xsd:date"],
 ["this:$(pid)_$(context_id)_Enddate","sio:SIO_000300","$(context_enddate)","xsd:date"],
 ["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000300","$(context_id)","xsd:string"],
+["this:$(pid)_$(context_id)_Age","sio:SIO_000300","$(age)","xsd:float"]
 ]
 
 config = dict(
