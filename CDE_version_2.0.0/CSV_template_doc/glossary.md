@@ -29,12 +29,12 @@ This is a glossary that describes what are the data requirements for our Common 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **value**: ISO 8601 formatted date of death (not date time)
-- **attribute_id**: one of the following: 
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
+- **attribute_type**: one of the following: 
     * http://semanticscience.org/resource/SIO_010059 (dead)
     * http://semanticscience.org/resource/SIO_010058 (alive)
     * http://purl.obolibrary.org/obo/NCIT_C70740 (lost to follow-up)
     * http://purl.obolibrary.org/obo/NCIT_C124784 (refused to participate)
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
 - **model**: Deathdate
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
@@ -53,38 +53,12 @@ This is a glossary that describes what are the data requirements for our Common 
 - **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
-## Symptoms onset date:
+## Symptoms or signs:
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **attribute_id**: one of the following:
-    * http://purl.obolibrary.org/obo/HP_0030674 (Antenatal onset)
-    * http://purl.obolibrary.org/obo/HP_0003577 (Congenital onset)
-    * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
-    * http://purl.obolibrary.org/obo/NCIT_C93613 (Onset Date) - use this when you are going to provide a date
-    * http://purl.obolibrary.org/obo/NCIT_C69217 (Age Started) - use this when are going to provide an age of onset
-- **value**: ISO 8601 formatted date of symptom's onset (not date time)
-- **value_datatype**: XSD datatype that defines `value` column type, its suggested to use xsd:date
-- **model**: Symptoms_onset_date
-- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
-- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
-- **comments**: Human readable comments of any kind related to this procedure
-
-
-## Symptoms onset age:
-
-- **pid**: Patient unique identifier
-- **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **attribute_id**: one of the following:
-    * http://purl.obolibrary.org/obo/HP_0030674 (Antenatal onset)
-    * http://purl.obolibrary.org/obo/HP_0003577 (Congenital onset)
-    * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) 
-    * http://purl.obolibrary.org/obo/NCIT_C93613 (Onset Date) - use this when you are going to provide a date
-    * http://purl.obolibrary.org/obo/NCIT_C69217 (Age Started) - use this when are going to provide an age of onset
-- **value**: Age of symptom onset 
-- **value_datatype**: XSD datatype that defines `value` column type, its suggested to use xsd:float
-- **model**: Symptoms_onset_age
+- **attribute_type**: IRI that defines clinical symptom or sign: For example Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **model**: Symptom
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
 - **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
@@ -94,7 +68,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **attribute_id**: one of the following: 
+- **attribute_type**: one of the following: 
     * http://purl.obolibrary.org/obo/NCIT_C16576 (Female) ; 
     * http://purl.obolibrary.org/obo/NCIT_C20197 (Male); 
     * http://purl.obolibrary.org/obo/NCIT_C124294 (Undetermined) ; 
@@ -105,11 +79,11 @@ This is a glossary that describes what are the data requirements for our Common 
 - **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
-## Status:
+## Participation status:
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **attribute_id**: one of the following: 
+- **attribute_type**: one of the following: 
     * http://semanticscience.org/resource/SIO_010059 (dead)
     * http://semanticscience.org/resource/SIO_010058 (alive)
     * http://purl.obolibrary.org/obo/NCIT_C70740 (lost to follow-up)
@@ -124,7 +98,7 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **attribute_id**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **attribute_type**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
 - **model**: Diagnosis
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
@@ -135,7 +109,8 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **attribute_id**: OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
+- **attribute**: OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
+- **attribute_id**: Human readable label that defines the genetic identifier. Example: HNGC:489
 - **model**: Genetic
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
@@ -229,7 +204,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **process_type**: child of Imaging technique http://purl.obolibrary.org/obo/NCIT_C17369  (example: obo:Digital X-Ray http://purl.obolibrary.org/obo/NCIT_C18001)
 - **target_type**: Child of Anatomic Structure, System, or Substance http://purl.obolibrary.org/obo/NCIT_C12219 (ex: obo:Palmar Region http://purl.obolibrary.org/obo/NCIT_C33252)
-- **valueIRI**: Preferably a URI-based GUID of the file (must be a GUID system compatible with RDF Resource identifiers)
+- **attribute**: Preferably a URI-based GUID of the file (must be a GUID system compatible with RDF Resource identifiers)
 - **model**: Imaging
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
@@ -273,7 +248,7 @@ or obo:Material (example: obo: Tumor Tissue http://purl.obolibrary.org/obo/NCIT_
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **agent_id**: GUID for this medical center where this clinical trial is taking place.
-- **attribute_id**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **attribute_type**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
 - **model**: Clinical_trial
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
