@@ -24,6 +24,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Attribute","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000221","this:$(pid)_$(uniqid)_Unit","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000900","this:$(pid)_$(uniqid)_Frequency","iri", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Attribute","sio:SIO_000671","$(attribute_id)","iri", "this:$(uniqid)_Context"],
 
 # Types
 ["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri", "this:$(uniqid)_Context"],
@@ -43,12 +44,14 @@ triplets = [
 ["$(agent_id)","rdf:type","sio:SIO_000015","iri", "this:$(uniqid)_Context"],
 ["$(agent_id)","rdf:type","$(agent_type)","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Attribute","rdf:type","sio:SIO_000614","iri", "this:$(uniqid)_Context"],
-["this:$(pid)_$(uniqid)_Attribute","sio:SIO_000332","$(attribute_type)","iri", "this:$(uniqid)_Context"],
-["this:$(pid)_$(uniqid)_Attribute","rdf:type","$(attribute_id)","iri", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Attribute","sio:SIO_000332","$(attribute_type2)","iri", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Attribute","rdf:type","$(attribute_type)","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Unit","rdf:type","sio:SIO_000074","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Unit","rdf:type","$(unit_type)","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdf:type","sio:SIO_001367","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdf:type","$(frequency_type)","iri", "this:$(uniqid)_Context"],
+["$(attribute_id)","rdf:type","sio:SIO_000115","iri", "this:$(uniqid)_Context"],
+["$(attribute_id)","rdf:type","$(attribute_id_type)","iri", "this:$(uniqid)_Context"],
 
 # Labels
 ["this:$(pid)_ID","rdfs:label","Identifier","xsd:string", "this:$(uniqid)_Context"],
@@ -63,6 +66,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Attribute","rdfs:label","$(model) attribute","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Unit","rdfs:label","$(model) unit of measurement","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdfs:label","$(model) frequency","xsd:string", "this:$(uniqid)_Context"],
+["$(attribute_id)","rdfs:label","$(model) attribute identifier","xsd:string", "this:$(uniqid)_Context"],
 
 # Values
 ["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string", "this:$(uniqid)_Context"],
@@ -72,6 +76,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(value_integer)","xsd:integer", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Process","rdfs:comments","$(comments)","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","sio:SIO_000300","$(frequency_value)","xsd:integer", "this:$(uniqid)_Context"],
+["$(attribute_id)","sio:SIO_000300","$(attribute_id_value)","xsd:string", "this:$(uniqid)_Context"],
 
 # Context:
 ["this:$(uniqid)_Context","sio:SIO_000680","this:$(uniqid)_Startdate","iri"],
