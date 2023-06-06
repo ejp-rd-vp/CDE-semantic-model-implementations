@@ -14,6 +14,8 @@ Every data element defined by the European Joint Project - Rare Diseases is desc
 
 Hefesto serves as a module dedicated to performing a curation step prior to the conversion of data into RDF. The primary transformations carried out by Hefesto include:
 
+* Adding every domain specific ontological term required to define every instances of the model, these terms are specific for every data element.
+
 * Splitting the column labeled as `value` into distinct datatypes. This enables YARRRML to interpret each datatype differently, facilitating the subsequent processing.
 
 * Conducting a sanity check on the `stardate` and `enddate` columns to ensure data consistency and validity.
