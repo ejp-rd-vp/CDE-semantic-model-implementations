@@ -1,28 +1,42 @@
-# EJP-RD Common Data Elements Semantic Model implementation 
+# Common Data Element semantic model implementation 
 
-<hr>
-
-This repository is fed by a variety of implementations based on **Common Data Element Semantic Model** registry [(see Github page).](https://github.com/ejp-rd-vp/CDE-semantic-model)
-
-## CDE RDF transformation toolkit (CDE-in-a-box)
-
-From EJP-RD, we have developed [CDE-in-a-box](https://github.com/ejp-rd-vp/cde-in-box) toolkit to help users to obtain RDF-based patient record-level data. The transformation tools use `YARRRML` to capture triple transformation rules. Our YARRRML transformation files take `CSV` as input file format with certain headers for each CDE modules. If you would like to know more about the YARRRML and CSV templates, please click [here](/CDE_version_2.0.0/).
-
-## CDE RDF transformation locally
-
-You can also perform your RDf transformation locally without using CDE--in-a-box toolkit, we have develop Docker compose images to cover this process
-
-**Instructions:**
-```bash
-bundle install
-gem build   
-gem install yarrrml_template_builder-{VERSION}.gem
-```
-VERSION is some version that will appear in the filename of the gem.
+[Common Data Element Semantic Model](https://github.com/ejp-rd-vp/CDE-semantic-model) defines a set of clinical data elements used in the healthcare domain of knowledge. However, it doesn't specify a way for implementing it. There's several ways to implement this CDE semantic model, from the European Joint Project for Rare Diseases (EJPRD) we propose an implementation workflow.
 
 
-0) Default folder structure, relative to where you will run the transformation script:
+<p align="center"> 
+	<img src="CDE_version_2.0.0/misc/workflow.png"> 
+	<p align="center">Figure 1: Common data element overall worflow </p> 
+</p> 
 
+This implementation consumes a CSV-based data table that contains patient data under a certain glossary that defines the data template. Also, consumes a YARRRML template that references each one of the data requirements and defines the RDF shape based on the CDE semantic model. Both artifacts are the requirement to perform an RDF transformation tool to obtain functional RDF-based data.
+
+[YARRRML](https://rml.io/yarrrml/spec/) is not an easy language for creating and maintaining complex triplets patterns, that's why we have created a YARRRML builder that consumes a Python script with all information required to generate a fully functional [YARRRML file](/CDE_version_2.0.0/YARRRML/CDE_yarrrml_template.yaml). Also all information related to our **YARRRML template builder** is located [here](/CDE_version_2.0.0/YARRRML/README.md).
+
+Due to having some YARRRML limitations to define certain references in template and the need of a quality control step at data level before perfoming the data transformation. We have created a Python3-based module (Hefesto) to cover some data curation and adaptation for this workflow. Documentation for all **CSV data requirements** needed to generate each data element, please go [here](/CDE_version_2.0.0/CSV_docs/).
+
+We have created a Dockerized Ruby-based web service that contains YARRRML2RML parser and a RDF transformation tool named RDFizer that performs the transformation to RDF.
+
+All these elements, properly Dockerized to work as a workflow, have been mounted into our [FAIR-in-a-box](https://github.com/ejp-rd-vp/FiaB) interface that controls all this patient data transformation using the version 2 of the Common Data Element Semantic model.
+
+### [YARRRML template](/CDE_version_2.0.0/YARRRML/)
+
+Have a look at `YARRRML` folder to know more about the YARRRML builder and the resulting YARRRML templates.
+
+### [CSV documentation](/CDE_version_2.0.0/CSV_docs/)
+
+Check the folder named `CSV_docs` to obtain some exemplar data (before and after our curation step) and also, a glossary to populate your CSV properly to generate CDE-based patient data.
+
+## Implementation without using FAIR-in-a-box
+
+Despite the whole implementation is ready using [FAIR-in-a-box](https://github.com/ejp-rd-vp/FiaB) interface, you have the option to perform RDF transformations locally, without relying on the FAIR-in-a-box toolkit. To support this process, we have developed Docker compose images that cover the entire transformation pipeline.
+
+### YARRRML and CSV preparation:
+
+First, create your YARRRML template using a YARRRML template builder or select the appropriate YARRRML template. Save the template as {TAGNAME}_yarrrml_template.yaml and place it in the ./config folder, for example, "height_yarrrml_template.yaml".
+
+In the ./data folder, create a CSV file with the required headings for your desired transformation, following the guidelines provided in the accompanying documentation. Save the file as {TAGNAME}.csv, e.g., "height.csv".
+
+1) **Folder distribution:**
 ```bash
 .
 ./data/   (this folder is mounted into sdmrdfizer - see step 1 below)
@@ -33,12 +47,27 @@ VERSION is some version that will appear in the filename of the gem.
 ./config/{TAGNAME}_yarrrml_template.yaml ({TAGNAME} is a one-word tag of the "type" of data, e.g. "height")
 ```
 
-1) Need to have sdmrdfizer and yarrrml-parser services running ./data mounted as /data and ./config as /config. You can use docker-compose to run both services:
+The {TAGNAME} serves as a coordinating identifier among various components during the automation steps and must precisely match the "tag" portion of the template name.
+
+
+2) **Gems and Docker images preparation:**
+
+```bash
+bundle install
+gem build   
+gem install yarrrml_template_builder-{VERSION}.gem
+```
+
+Here, the VERSION refers to a specific version that will appear in the filename of the gem.
+
+3) **RDF transformation execution:**
+
+
+Ensure that the `sdmrdfizer_ejp` and `yarrrml-parser-ejp` services are running, with the ./data folder mounted as /data and ./config folder mounted as /config. You can use Docker Compose to run both services:
 
 ```yaml
-version: "2.0"
+version: "3.0"
 services:
-
 
     yarrrml_transform:
         image: markw/yarrrml-parser-ejp:latest
@@ -48,7 +77,6 @@ services:
         volumes:
             - ./data:/data
 
-
     rdfizer:
         image: markw/sdmrdfizer_ejp:0.5.0
         container_name: rdfizer
@@ -57,40 +85,6 @@ services:
         volumes:
             - ./data:/data
             - ./config:/config
+
 ```
-
-2) Create your template using a [yarrrml template builder](/CDE_version_2.0.0/YARRRML/) or select the appropriate [YARRRML template](/CDE_version_2.0.0/YARRRML/unifiedCDE_yarrrml_template.yaml). Named it as {TAGNAME}_yarrrrml_template.yaml and put it in the ./config folder, e.g. "height_yarrrml_template.yaml").
-
-3) In the ./data folder, create a CSV file with the necessary headings for your desired transform, following this [documentation](/CDE_version_2.0.0/CSV_template_doc/unified_csv_template.md). Named it as {TAGNAME}.csv, e.g. "height.csv".
-
-4) This TAGNAME is used to coordinate between many of the components during the automation steps, so it must match exactly with the "tag" portion of the template name.
-
-5) Execute the transformation: You can use [rdf_transform.rb](/CDE_version_2.0.0/RDF_tranformation/rdf_transform.rb) by changing the tag described as datatype_tag parameter at YARRRML_Transform:
-
-```ruby
-#!ruby
-
-require "yarrrml-template-builder"
-
-$stderr.puts "this script will do an rdf transformation of the height.csv file, in the ./data folder using the yarrrml file in the ./config folder"
-$stderr.puts "you must already have the docker-compose up before running this script.  If you see failures, that is likely why :-)"
-datatype_tag = "height"  # the "tag" of your data
-data_path_client = "./data"
-data_path_server = "/data"  # assumes you are running my docker image
-config_path_client = "./config"
-config_path_server = "/config"  # assumes you are running my docker image
-rdfizer_base_url = "http://localhost:4000"  # again, my docker
-yarrrml_transform_base_url = "http://localhost:3000"  # again, my docker
-
-y = YARRRML_Transform.new(
-	datatype_tag: datatype_tag, 
-	data_path_client: data_path_client,
-	data_path_server: data_path_server,
-	config_path_client: config_path_client,
-	config_path_server: config_path_server,
-	rdfizer_base_url: rdfizer_base_url,
-	yarrrml_transform_base_url: yarrrml_transform_base_url,
-	)
-y.yarrrml_transform
-y.make_fair_data
-```
+Once this services are running, utilize the [rdf_transform.rb](/CDE_version_2.0.0/misc/rdf_transform.rb) script, making sure to modify the `datatype_tag` parameter within the proper TAGNAME from your YARRRML and CSV files. RDF file should be created a `./data/triples` folder.
