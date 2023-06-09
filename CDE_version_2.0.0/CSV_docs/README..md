@@ -27,3 +27,7 @@ Hefesto serves as a module dedicated to performing a curation step prior to the 
 In conclusion, the implementation of the Common Data Element (CDE) Semantic Model for CSV data entails a meticulous and technically advanced workflow. By leveraging the power of the CDE YARRRML templates and incorporating the critical curation step executed by the Hefesto toolkit, this implementation achieves robustness, accuracy, and reliability in generating RDF-based CDE-oriented patient data.
 
 For more information about the different ways to implement Hefesto, please check the [Github repository](https://github.com/pabloalarconm/Hefesto).
+
+## Exemplar CDE data
+
+You can also find an exemplar patient data table **before and after** Hefesto implementation at `exemplar_data` folder
