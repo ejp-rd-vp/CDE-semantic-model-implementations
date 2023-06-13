@@ -64,6 +64,30 @@ This is a glossary that describes what are the data requirements for our Common 
 - **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
+## Age of Symptoms onset:
+
+- **pid**: Patient unique identifier
+- **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
+- **model**: Symptom_onset_age
+- **value**: Age of onset value
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default
+- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
+- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
+- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **comments**: Human readable comments of any kind related to this procedure
+
+## Symptoms onset date:
+
+- **pid**: Patient unique identifier
+- **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
+- **model**: Symptom_onset_date
+- **value**: ISO 8601 formatted date of symptom onset (not date time)
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
+- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
+- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
+- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **comments**: Human readable comments of any kind related to this procedure
+
 ## Sex:
 
 - **pid**: Patient unique identifier
