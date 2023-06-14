@@ -7,9 +7,8 @@ This is a glossary that describes what are the data requirements for our Common 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **value**: ISO 8601 formatted date (not date time)
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
 - **model**: Birthdate
-- **startdate**: ISO 8601 formatted start date of observation
+- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.  
 - **comments**: Human readable comments of any kind related to this procedure
 
@@ -18,7 +17,6 @@ This is a glossary that describes what are the data requirements for our Common 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **value**: Year of birth defined as YYYY.
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:integer by default
 - **model**: Birthyear
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.  
@@ -28,64 +26,40 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **value**: ISO 8601 formatted date of death (not date time)
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
-- **valueIRI**: one of the following: 
-    * http://semanticscience.org/resource/SIO_010059 (dead)
-    * http://semanticscience.org/resource/SIO_010058 (alive)
-    * http://purl.obolibrary.org/obo/NCIT_C70740 (lost to follow-up)
-    * http://purl.obolibrary.org/obo/NCIT_C124784 (refused to participate)
+- **value**: ISO 8601 formatted date of death (not date time), or age in which the patient died.
+- **value_datatype**: XSD datatype that defines `value` column type.
+    - xsd:date in case you added date.
+    - xsd:integer in case you added age.
 - **model**: Deathdate
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
-- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## First Confirmed Visit:
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **value**: ISO 8601 formatted date of first confirmed visit (not date time)
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
+- **value**: ISO 8601 formatted date of first confirmed visit (not date time) or age in case you added the age of the first confirmed visit.
+- **value_datatype**: XSD datatype that defines `value` column type.
+    - xsd:date in case you added date.
+    - xsd:integer in case you added age.
 - **model**: First_visit
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
-## Symptoms or signs:
+
+## Symptoms onset:
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **valueIRI**: IRI that defines clinical symptom or sign: For example Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
-- **model**: Symptom
+- **model**: Symptom_onset
+- **value**: ISO 8601 formatted date of symptom onset (not date time) or age in case you added the age of symptom onset. This value represent the onset perceived by the patient, as a difference of the clinical encounter, defined as `startdate`.
+- **value_datatype**: XSD datatype that defines `value` column type.
+    - xsd:date in case you added date.
+    - xsd:integer in case you added age.
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
-- **comments**: Human readable comments of any kind related to this procedure
-
-## Age of Symptoms onset:
-
-- **pid**: Patient unique identifier
-- **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **model**: Symptom_onset_age
-- **value**: Age of onset value
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default
-- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
-- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
-- **comments**: Human readable comments of any kind related to this procedure
-
-## Symptoms onset date:
-
-- **pid**: Patient unique identifier
-- **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **model**: Symptom_onset_date
-- **value**: ISO 8601 formatted date of symptom onset (not date time)
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:date by default
-- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
-- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Sex:
@@ -99,8 +73,7 @@ This is a glossary that describes what are the data requirements for our Common 
     * http://purl.obolibrary.org/obo/NCIT_C17998 (Unknown, use this for foetal undetermined) 
 - **model**: Sex
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
-- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Participation status:
@@ -118,11 +91,22 @@ This is a glossary that describes what are the data requirements for our Common 
 - **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
+## Symptoms or signs:
+
+- **pid**: Patient unique identifier
+- **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
+- **valueIRI**: IRI that defines clinical symptom or sign: For example Human Phenotype ontology (HPO) term represented with a full URL such as http://purl.obolibrary.org/obo/HP_0001251
+- **model**: Symptom
+- **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
+- **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
+- **age**: *(OPTIONAL)* Patient age when the patient started to perceive the symptoms.
+- **comments**: Human readable comments of any kind related to this procedure
+
 ## Diagnosis:
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **valueIRI**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
+- **valueIRI**: IRI that defines clinical condition as disease or disorder: Orphanet disease ontology (ORDO) represented with a full URL such as http://www.orpha.net/ORDO/Orphanet_199630
 - **model**: Diagnosis
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
@@ -150,7 +134,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **model**: Consent_contacted
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Consent for Data (Re)Use Permission:
@@ -162,7 +146,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **model**: Consent_used
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Biobank:
@@ -174,7 +158,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **model**: Biobank
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 
@@ -183,12 +167,12 @@ This is a glossary that describes what are the data requirements for our Common 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **process_type**: Some child of http://purl.obolibrary.org/obo/NCIT_C20993 (research or clinical assessment tool)
-- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default, but depending on your score's datatype, it could be different
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default, but depending on your score's datatype, it could be different.
 - **value**: the numeric score of the output from the test
 - **model**: Disability
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 
@@ -198,12 +182,12 @@ This is a glossary that describes what are the data requirements for our Common 
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **valueIRI**: Child of Personal Attribute: http://purl.obolibrary.org/obo/NCIT_C19332
 - **value**: Resulting value from this observation
-- **value_datatype**: xsd:float by default (but could be another different datatype)
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default, but depending on your score's datatype, it could be different.
 - **unit_type**: Child of UO:unit http://purl.obolibrary.org/obo/UO_0000000
 - **model**: Body_measurement
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Laboratory measurement:
@@ -212,13 +196,13 @@ This is a glossary that describes what are the data requirements for our Common 
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **input_type**: Material input represented as Child of Anatomic, Structure, System, or Substance http://purl.obolibrary.org/obo/NCIT_C12219 (ex: obo:Urine)
 - **value**: Resulting value from this analysis
-- **value_datatype**: xsd:float by default (but could be another different datatype)
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default, but depending on your score's datatype, it could be different.
 - **target_type**: Compound being measured in the sample. Child of Drug, Food, Chemical or Biomedical Material http://purl.obolibrary.org/obo/NCIT_C1908 (ex: obo:Creatinine http://purl.obolibrary.org/obo/NCIT_C399)
 - **unit_type**: Child of UO:unit http://purl.obolibrary.org/obo/UO_0000000
 - **model**: Lab_measurement
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 
@@ -232,7 +216,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **model**: Imaging
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 ## Medications and Therapies:
@@ -241,7 +225,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **route_type**: Child of Route of Administration http://purl.obolibrary.org/obo/NCIT_C38114 (example: obo:Sublingual Route of Administration http://purl.obolibrary.org/obo/NCIT_C38300 )
 - **value**: Dose value prescribe to the patient
-- **value_datatype**: xsd:float by default (others like xsd:integer are also an option)
+- **value_datatype**: XSD datatype that defines `value` column type, for this case is xsd:float by default, but depending on your score's datatype, it could be different.
 - **unit_type**: Child of UO:unit http://purl.obolibrary.org/obo/UO_0000000
 - **frequency_type**: Child of obo:Temporal Qualifier http://purl.obolibrary.org/obo/NCIT_C21514 (ex: obo:Per Day)
 - **frequency_value**: Frequency value prescribe to the patient
@@ -249,7 +233,7 @@ This is a glossary that describes what are the data requirements for our Common 
 - **model**: Medications
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 
@@ -263,7 +247,7 @@ or obo:Material (example: obo: Tumor Tissue http://purl.obolibrary.org/obo/NCIT_
 - **model**: Surgery
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
 
 
@@ -272,9 +256,8 @@ or obo:Material (example: obo: Tumor Tissue http://purl.obolibrary.org/obo/NCIT_
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **agent_id**: GUID for this medical center where this clinical trial is taking place.
-- **valueIRI**: IRI that defines clinical condition: Human Phenotype ontology (HPO) term or Orphanet disease ontology (ORDO) (full URL such as http://www.orpha.net/ORDO/Orphanet_100031)
-- **model**: Clinical_trial
+- **valueIRI**: IRI that defines clinical condition as disease or disorder: Orphanet disease ontology (ORDO) represented with a full URL such as http://www.orpha.net/ORDO/Orphanet_199630- **model**: Clinical_trial
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
-- **age**: *(OPTIONAL)* Patient age when this observation was taken, this age information can be both an addition or an alternative for start/end date information.
+- **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
 - **comments**: Human readable comments of any kind related to this procedure
