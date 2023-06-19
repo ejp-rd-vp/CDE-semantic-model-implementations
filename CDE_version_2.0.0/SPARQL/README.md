@@ -1,0 +1,1 @@
+# Exemplar SPARQL for any Common Data Element representation.

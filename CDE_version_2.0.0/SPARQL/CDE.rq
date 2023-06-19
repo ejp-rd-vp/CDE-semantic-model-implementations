@@ -1,0 +1,35 @@
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX sio: <https://sio.semanticscience.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ordo: <http://www.orpha.net/ORDO/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?individual_id ?process_label ?value ?attribute_type ?attribute_type2 ?attribute_id_type ?attribute_id_value ?comments ?target_type ?agent_id ?route_type ?input_type ?uniqid ?context_id ?value_startdate ?value_enddate ?date_value ?age_value
+WHERE {
+    GRAPH ?g {
+        ?role sio:SIO_000356 ?process ;  a sio:SIO_000016 .
+        ?process a sio:SIO_000006 , ?process_type ; sio:SIO_000229 ?output; rdfs:label ?process_label ; sio:SIO_000291 ?target; sio:SIO_000230 ?input; sio:SIO_000552 ?route; sio:SIO_000680 ?startdate; sio:SIO_000681 ?enddate. FILTER (?process_type != sio:SIO_000006) .
+        ?output sio:SIO_000628 ?attribute; a sio:SIO_000015 ; rdfs:label ?output_label.
+        OPTIONAL{?process rdfs:comments ?comments}
+        OPTIONAL{?startdate a sio:SIO_000031 ; sio:SIO_000300 ?value_startdate .}
+        OPTIONAL{?enddate a sio:SIO_000032 ; sio:SIO_000300 ?value_enddate .}
+        OPTIONAL{?output a ?output_type; sio:SIO_000300 ?value. FILTER (?output_type != sio:SIO_000015) .}
+        OPTIONAL{?input a sio:SIO_000015, ?input_type. FILTER(?input_type != sio:SIO_000015)} 
+        OPTIONAL{?target a sio:SIO_000015, ?target_type. FILTER(?target_type != sio:SIO_000015)}
+        OPTIONAL{?process sio:SIO_000139 ?agent_id .}
+        OPTIONAL{?agent_id a ?agent_type, sio:SIO_000015 . FILTER(?agent_type = obo:NCIT_C16696 || ?agent_type = obo:NCIT_C177929)}
+        OPTIONAL{?route a ?route_type, sio:SIO_000015 .FILTER (?route_type != sio:SIO_000015)}
+        ?attribute a sio:SIO_000614.
+        OPTIONAL{?attribute a ?attribute_type FILTER (?attribute_type != sio:SIO_000614)}
+        OPTIONAL{?attribute sio:SIO_000332 ?attribute_type2. FILTER (?attribute_type2 != sio:SIO_000614)}
+        OPTIONAL{?attribute sio:SIO_000671 ?attribute_id.}
+        OPTIONAL{?attribute_id a sio:SIO_000115, ?attribute_id_type; sio:SIO_000300 ?attribute_id_value. FILTER (?attribute_id_type != sio:SIO_000115) }
+    }
+    ?g a obo:NCIT_C62143 ; sio:SIO_000068 ?timeline, ?context ; sio:SIO_000687 ?age, ?date ; sio:SIO_000300 ?uniqid .
+    OPTIONAL{?context a obo:NCIT_C25499 ; sio:SIO_000300 ?context_id .}
+    OPTIONAL{?date a sio:SIO_000418, obo:NCIT_C25164 ; sio:SIO_000300 ?date_value .}
+    OPTIONAL{?age a sio:SIO_001013, obo:NCIT_C25150 ; sio:SIO_000300 ?age_value . }
+    ?timeline a obo:NCIT_C54576, sio:SIO_000417; sio:SIO_000332 ?individual .
+    ?individual a sio:SIO_000498 ; sio:SIO_000671 ?individual_identifier .       
+    ?individual_identifier a sio:SIO_000115 ; sio:SIO_000300 ?individual_id .
+}
