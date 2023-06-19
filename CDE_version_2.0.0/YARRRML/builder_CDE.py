@@ -21,6 +21,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Process","sio:SIO_000552","this:$(pid)_$(uniqid)_Route","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Process","sio:SIO_000230","this:$(pid)_$(uniqid)_Input","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Process","sio:SIO_000229","this:$(pid)_$(uniqid)_Output","iri", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Process","sio:SIO_000680","this:$(pid)_$(uniqid)_Startdate","iri","this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Process","sio:SIO_000681","this:$(pid)_$(uniqid)_Enddate", "iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Attribute","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000221","this:$(pid)_$(uniqid)_Unit","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000900","this:$(pid)_$(uniqid)_Frequency","iri", "this:$(uniqid)_Context"],
@@ -52,6 +54,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Frequency","rdf:type","$(frequency_type)","iri", "this:$(uniqid)_Context"],
 ["$(attribute_id)","rdf:type","sio:SIO_000115","iri", "this:$(uniqid)_Context"],
 ["$(attribute_id)","rdf:type","$(attribute_id_type)","iri", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Startdate","rdf:type","sio:SIO_000031","iri", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Enddate","rdf:type","sio:SIO_000032","iri","this:$(uniqid)_Context"],
 
 # Labels
 ["this:$(pid)_ID","rdfs:label","Identifier","xsd:string", "this:$(uniqid)_Context"],
@@ -67,6 +71,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Unit","rdfs:label","$(model) unit of measurement","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdfs:label","$(model) frequency","xsd:string", "this:$(uniqid)_Context"],
 ["$(attribute_id)","rdfs:label","$(model) attribute identifier","xsd:string", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Startdate","rdfs:label","$(model) startdate: $(startdate)","xsd:string", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Enddate","rdfs:label","$(model) enddate: $(enddate)","xsd:string", "this:$(uniqid)_Context"],
 
 # Values
 ["this:$(pid)_ID","sio:SIO_000300","$(pid)","xsd:string", "this:$(uniqid)_Context"],
@@ -77,45 +83,48 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Process","rdfs:comments","$(comments)","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","sio:SIO_000300","$(frequency_value)","xsd:integer", "this:$(uniqid)_Context"],
 ["$(attribute_id)","sio:SIO_000300","$(attribute_id_value)","xsd:string", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Startdate","sio:SIO_000300","$(startdate)","xsd:date", "this:$(uniqid)_Context"],
+["this:$(pid)_$(uniqid)_Enddate","sio:SIO_000300","$(enddate)","xsd:date", "this:$(uniqid)_Context"],
 
 # Context:
-["this:$(uniqid)_Context","sio:SIO_000680","this:$(uniqid)_Startdate","iri"],
-["this:$(uniqid)_Context","sio:SIO_000681","this:$(uniqid)_Enddate", "iri"],
+["this:$(uniqid)_Context","sio:SIO_000687","this:$(uniqid)_Date","iri"],
+["this:$(uniqid)_Context","sio:SIO_000687","this:$(uniqid)_Age","iri"],
 ["this:$(uniqid)_Context","sio:SIO_000068","this:$(pid)_Timeline","iri"],
 ["this:$(pid)_Timeline","sio:SIO_000332","this:$(pid)_Person","iri"],
 ["this:$(pid)_Person","sio:SIO_000671","this:$(pid)_Identifier","iri"],
 
-["this:$(uniqid)_Context","rdf:type","obo:NCIT_C25616","iri"],
-["this:$(uniqid)_Startdate","rdf:type","sio:SIO_000031","iri"],
-["this:$(uniqid)_Enddate","rdf:type","sio:SIO_000032","iri"],
+["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000793","this:$(pid)_$(context_id)_Age","iri"],
+
+["this:$(uniqid)_Context","rdf:type","obo:NCIT_C62143","iri"],
+["this:$(uniqid)_Date","rdf:type","sio:SIO_000418","iri"],
+["this:$(uniqid)_Date","rdf:type","obo:NCIT_C25164","iri"],
+["this:$(uniqid)_Age","rdf:type","sio:SIO_001013","iri"],
+["this:$(uniqid)_Age","rdf:type","obo:NCIT_C25150","iri"],
 ["this:$(pid)_Timeline","rdf:type","sio:SIO_000417","iri"],
 ["this:$(pid)_Timeline","rdf:type","obo:NCIT_C54576","iri"],
 ["this:$(pid)_Person","rdf:type","sio:SIO_000498","iri"],
 ["this:$(pid)_Identifier","rdf:type","sio:SIO_000115","iri"],
 
-["this:$(uniqid)_Startdate","rdfs:label","$(model) startdate: $(startdate)","xsd:string"],
-["this:$(uniqid)_Enddate","rdfs:label","$(model) enddate: $(enddate)","xsd:string"],
+["this:$(uniqid)_Date","rdfs:label","$(model) date when it ocurred: $(date)","xsd:string"],
+["this:$(uniqid)_Age","rdfs:label","$(model) age when it ocurred: $(age)","xsd:string"],
 
-["this:$(uniqid)_Startdate","sio:SIO_000300","$(startdate)","xsd:date"],
-["this:$(uniqid)_Enddate","sio:SIO_000300","$(enddate)","xsd:date"],
-["this:$(pid)_Identifier","sio:SIO_000300","$(pid)","xsd:string"],
 ["this:$(uniqid)_Context","sio:SIO_000300","$(uniqid)","xsd:string"],
+["this:$(uniqid)_Date","sio:SIO_000300","$(date)","xsd:date"],
+["this:$(uniqid)_Age","sio:SIO_000300","$(age)","xsd:float"],
+["this:$(pid)_Identifier","sio:SIO_000300","$(pid)","xsd:string"],
 
 # Mayor Context:
 ["this:$(uniqid)_Context","sio:SIO_000068","this:$(pid)_$(context_id)_Mayor_context","iri"],
 ["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000680","this:$(pid)_$(context_id)_Startdate","iri"],
 ["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000681","this:$(pid)_$(context_id)_Enddate","iri"],
-["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000793","this:$(pid)_$(context_id)_Age","iri"],
 
-["this:$(pid)_$(context_id)_Mayor_context","rdf:type","obo:NCIT_C25616","iri"],
+["this:$(pid)_$(context_id)_Mayor_context","rdf:type","obo:NCIT_C25499","iri"],
 ["this:$(pid)_$(context_id)_Startdate","rdf:type","sio:SIO_000031","iri"],
 ["this:$(pid)_$(context_id)_Enddate","rdf:type","sio:SIO_000032","iri"],
-["this:$(pid)_$(context_id)_Age","rdf:type","sio:SIO_001013","iri"],
 
 ["this:$(pid)_$(context_id)_Startdate","sio:SIO_000300","$(context_startdate)","xsd:date"],
 ["this:$(pid)_$(context_id)_Enddate","sio:SIO_000300","$(context_enddate)","xsd:date"],
-["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000300","$(context_id)","xsd:string"],
-["this:$(pid)_$(context_id)_Age","sio:SIO_000300","$(age)","xsd:float"]
+["this:$(pid)_$(context_id)_Mayor_context","sio:SIO_000300","$(context_id)","xsd:string"]
 ]
 
 config = dict(

@@ -237,14 +237,16 @@ This is a glossary that describes what are the data requirements for our Common 
 - **comments**: Human readable comments of any kind related to this procedure
 
 
-## Intervention (Surgery):
+## Interventions:
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
 - **process_type**: Child of Intervention or Procedure http://purl.obolibrary.org/obo/NCIT_C25218 (ex: obo:Tumor Resection http://purl.obolibrary.org/obo/NCIT_C164212)
-- **target_type**:  Child of Anatomic Structure, System, or Substance
+- **target_type**:  *(RECOMMENDED)* Child of Anatomic Structure, System, or Substance
+- **agent_id**: *(IN CASE OF ANY)* ATC URI-code for drugs components. (example: https://www.whocc.no/atc_ddd_index/?code=A07EA01)
+- **route_type**: *(IN CASE OF ANY)* Child of Route of Administration http://purl.obolibrary.org/obo/NCIT_C38114 (example: obo:Sublingual Route of Administration http://purl.obolibrary.org/obo/NCIT_C38300 )
 or obo:Material (example: obo: Tumor Tissue http://purl.obolibrary.org/obo/NCIT_C18009)
-- **model**: Surgery
+- **model**: Intervention
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`.
 - **age**: *(OPTIONAL)* Patient age when this observation ocurred, this age information can be both an addition or an alternative for start/end date information.
