@@ -4,9 +4,8 @@
 
 
 <p align="center"> 
-	<img src="misc/workflow.png"> 
+	<img src="/CDE_version_2.0.0/misc/workflow.png"> 
 	<p align="center">Figure 1: Common data element overall worflow </p> 
-
 </p> 
 
 This implementation consumes a CSV-based data table that contains patient data under a certain glossary that defines the data template. Also, consumes a YARRRML template that references each one of the data requirements and defines the RDF shape based on the CDE semantic model. Both artifacts are the requirement to perform an RDF transformation tool to obtain functional RDF-based data.
@@ -33,59 +32,37 @@ Despite the whole implementation is ready using [FAIR-in-a-box](https://github.c
 
 ### YARRRML and CSV preparation:
 
-First, create your YARRRML template using a YARRRML template builder or select the appropriate YARRRML template. Save the template as {TAGNAME}_yarrrml_template.yaml and place it in the ./config folder, for example, "height_yarrrml_template.yaml".
+First, create your YARRRML template using a YARRRML template builder or select the appropriate YARRRML template. Save the template as {TAGNAME}_yarrrml.yaml and place it in the ./data folder, for example, "height_yarrrml.yaml".
 
-In the ./data folder, create a CSV file with the required headings for your desired transformation, following the guidelines provided in the accompanying documentation. Save the file as {TAGNAME}.csv, e.g., "height.csv".
+In the same ./data folder, create a CSV file with the required headings for your desired transformation, following the guidelines provided in the [accompanying documentation](/CDE_version_2.0.0/CSV_docs/glossary.md). Save the file as {TAGNAME}.csv, e.g., "height.csv". The {TAGNAME} serves as a coordinating identifier among various components during the automation steps and must precisely match the "tag" portion of the template name.
 
 1) **Folder distribution:**
 ```bash
 .
-./data/   (this folder is mounted into sdmrdfizer - see step 1 below)
-./data/mydataX.csv  (input csv files)
-./data/mydataY.csv...
-./data/triples/  (output FAIR data ends up here)
-./config/
-./config/{TAGNAME}_yarrrml_template.yaml ({TAGNAME} is a one-word tag of the "type" of data, e.g. "height")
+./data/
+./data/{TAGNAME}.csv  # Input csv files,  TAGNAME explained above
+./data/{TAGNAME}_yarrrml.yaml # YARRRML template
+./data/triples/  # Output FAIR data ends up here, this folder will be automatically created.
+./docker-compose.yaml # Docker image that will execute the transformation (see step 2 below)
 ```
 
-The {TAGNAME} serves as a coordinating identifier among various components during the automation steps and must precisely match the "tag" portion of the template name.
+2) **RDF transformation execution:**
 
-
-2) **Gems and Docker images preparation:**
-
-```bash
-bundle install
-gem build   
-gem install yarrrml_template_builder-{VERSION}.gem
-```
-
-Here, the VERSION refers to a specific version that will appear in the filename of the gem.
-
-3) **RDF transformation execution:**
-
-
-Ensure that the `sdmrdfizer_ejp` and `yarrrml-parser-ejp` services are running, with the ./data folder mounted as /data and ./config folder mounted as /config. You can use Docker Compose to run both services:
+You can use Docker Compose to run the services:
 
 ```yaml
-version: "3.0"
+version: "3"
 services:
-
-    yarrrml_transform:
-        image: markw/yarrrml-parser-ejp:latest
-        container_name: yarrrml_transform
-        ports:
-            - "3000:3000"
-        volumes:
-            - ./data:/data
-
-    rdfizer:
-        image: markw/sdmrdfizer_ejp:0.5.0
-        container_name: rdfizer
-        ports:
-            - "4000:4000"
-        volumes:
-            - ./data:/data
-            - ./config:/config
-
+  yarrml-rdfizer:
+    image: markw/yarrrml-rml-ejp:0.0.2
+    container_name: yarrrml-rdfizer
+    environment:
+      # (nquads (default), trig, trix, jsonld, hdt, turtle)
+      - SERIALIZATION=nquads
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./data:/mnt/data
 ```
-Once this services are running, utilize the [rdf_transform.rb](/CDE_version_2.0.0/misc/rdf_transform.rb) script, making sure to modify the `datatype_tag` parameter within the proper TAGNAME from your YARRRML and CSV files. RDF file should be created a `./data/triples` folder.
+
+Once this services are running, call in your local browser this link: http://127.0.0.1:4567/{TAGNAME}   (where {TAGNAME} is the data/template tag name, as in the examples above, like "height"). RDF file should be created a `./data/triples` folder.
