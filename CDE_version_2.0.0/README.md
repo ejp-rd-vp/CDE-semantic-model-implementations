@@ -14,7 +14,7 @@ This implementation consumes a CSV-based data table that contains patient data u
 
 Due to having some YARRRML limitations to define certain references in template and the need of a quality control step at data level before perfoming the data transformation. We have created a Python3-based module (Hefesto) to cover some data curation and adaptation for this workflow. Documentation for all **CSV data requirements** needed to generate each data element, please go [here](/CDE_version_2.0.0/CSV_docs/).
 
-We have created a Dockerized Ruby-based web service that contains YARRRML2RML parser and a RDF transformation tool named RDFizer that performs the transformation to RDF.
+We have created a Dockerized web service that contains YARRRML2RML parser and a RDF transformation tool named [RMLMapper](https://rml.io/) that performs the transformation to RDF.
 
 All these elements, properly Dockerized to work as a workflow, have been mounted into our [FAIR-in-a-box](https://github.com/ejp-rd-vp/FiaB) interface that controls all this patient data transformation using the version 2 of the Common Data Element Semantic model.
 
