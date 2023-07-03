@@ -117,8 +117,8 @@ This is a glossary that describes what are the data requirements for our Common 
 
 - **pid**: Patient unique identifier
 - **context_id**: *(OPTIONAL)* Contextual identifier in case you want to relate several data elements under a common context (ex: certain diagnosis/phenotype relationship or some elements under same visit occurrence)
-- **valueIRI**: OMIM gene code constructed by appending the OMIM number to, https://www.omim.org/entry/{OMIM code} e.g. https://www.omim.org/entry/310200
-- **value**: Human readable label that defines the genetic identifier. Example: HNGC:489
+- **valueIRI**: Genetic code constructed by appending the HGVS/HGNC/OMIM code, e.g. https://www.omim.org/entry/310200
+- **value**: *(OPTIONAL)*  Human readable label that defines the genetic identifier. Example: HNGC:489
 - **model**: Genetic
 - **startdate**: *(OPTIONAL)* ISO 8601 formatted start date of observation
 - **enddate**: *(OPTIONAL)* ISO 8601 formatted enddate of observation in case it is different from `startdate`. 

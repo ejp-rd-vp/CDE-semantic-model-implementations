@@ -26,7 +26,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000628","this:$(pid)_$(uniqid)_Attribute","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000221","this:$(pid)_$(uniqid)_Unit","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000900","this:$(pid)_$(uniqid)_Frequency","iri", "this:$(uniqid)_Context"],
-["this:$(pid)_$(uniqid)_Attribute","sio:SIO_000671","$(attribute_id)","iri", "this:$(uniqid)_Context"],
+# ["this:$(pid)_$(uniqid)_Attribute","sio:SIO_000671","$(attribute_id)","iri", "this:$(uniqid)_Context"],
 
 # Types
 ["this:$(pid)_ID","rdf:type","sio:SIO_000115","iri", "this:$(uniqid)_Context"],
@@ -52,8 +52,8 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Unit","rdf:type","$(unit_type)","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdf:type","sio:SIO_001367","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdf:type","$(frequency_type)","iri", "this:$(uniqid)_Context"],
-["$(attribute_id)","rdf:type","sio:SIO_000115","iri", "this:$(uniqid)_Context"],
-["$(attribute_id)","rdf:type","$(attribute_id_type)","iri", "this:$(uniqid)_Context"],
+# ["$(attribute_id)","rdf:type","sio:SIO_000115","iri", "this:$(uniqid)_Context"],
+# ["$(attribute_id)","rdf:type","$(attribute_id_type)","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Startdate","rdf:type","sio:SIO_000031","iri", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Enddate","rdf:type","sio:SIO_000032","iri","this:$(uniqid)_Context"],
 
@@ -65,12 +65,12 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Output","rdfs:label","$(model) measurement output","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Input","rdfs:label","$(model) input","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Target","rdfs:label","$(model) target","xsd:string", "this:$(uniqid)_Context"],
-["this:$(pid)_$(uniqid)_Agent","rdfs:label","$(model) agent","xsd:string", "this:$(uniqid)_Context"],
+["$(agent_id)","rdfs:label","$(model) agent","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Route","rdfs:label","$(model) route","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Attribute","rdfs:label","$(model) attribute","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Unit","rdfs:label","$(model) unit of measurement","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","rdfs:label","$(model) frequency","xsd:string", "this:$(uniqid)_Context"],
-["$(attribute_id)","rdfs:label","$(model) attribute identifier","xsd:string", "this:$(uniqid)_Context"],
+# ["$(attribute_id)","rdfs:label","$(model) attribute identifier","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Startdate","rdfs:label","$(model) startdate: $(startdate)","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Enddate","rdfs:label","$(model) enddate: $(enddate)","xsd:string", "this:$(uniqid)_Context"],
 
@@ -82,7 +82,7 @@ triplets = [
 ["this:$(pid)_$(uniqid)_Output","sio:SIO_000300","$(value_integer)","xsd:integer", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Process","rdfs:comments","$(comments)","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Frequency","sio:SIO_000300","$(frequency_value)","xsd:integer", "this:$(uniqid)_Context"],
-["$(attribute_id)","sio:SIO_000300","$(attribute_id_value)","xsd:string", "this:$(uniqid)_Context"],
+# ["$(attribute_id)","sio:SIO_000300","$(attribute_id_value)","xsd:string", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Startdate","sio:SIO_000300","$(startdate)","xsd:date", "this:$(uniqid)_Context"],
 ["this:$(pid)_$(uniqid)_Enddate","sio:SIO_000300","$(enddate)","xsd:date", "this:$(uniqid)_Context"],
 
@@ -129,8 +129,8 @@ triplets = [
 
 config = dict(
   source_name = "source_cde_test",
-  configuration = "ejp",   
-  csv_name = "source_1",
+  configuration = "default",   
+  csv_name = "/mnt/data/CDE",
   basicURI = "this"
 )
 

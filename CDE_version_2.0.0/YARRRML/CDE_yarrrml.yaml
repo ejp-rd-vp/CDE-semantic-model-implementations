@@ -1,5 +1,5 @@
 mapping:
-  20230616174523165455_source_cde_test:
+  20230626145918188927_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -21,7 +21,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_ID
-  20230616174523165473_source_cde_test:
+  20230626145918188981_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -43,7 +43,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Entity
-  20230616174523165480_source_cde_test:
+  20230626145918188991_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -65,7 +65,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Role
-  20230616174523165491_source_cde_test:
+  20230626145918189007_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -85,8 +85,18 @@ mapping:
         value: this:$(pid)_$(uniqid)_Input
       predicate: sio:SIO_000230
     - objects:
+        function: grel:controls_if
+        parameters:
+          - parameter: grel:bool_b
+            value:
+              function: idlab-fn:isNull
+              parameters:
+                - [idlab-fn:str, $(value_id)]
+          - parameter: grel:any_true
+            value: this:$(pid)_$(uniqid)_Output
+          - parameter: grel:any_false
+            value: $(value_id)
         type: iri
-        value: this:$(pid)_$(uniqid)_Output
       predicate: sio:SIO_000229
     - objects:
         type: iri
@@ -115,7 +125,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Process
-  20230616174523165502_source_cde_test:
+  20230626145918189017_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -160,14 +170,93 @@ mapping:
       predicate: sio:SIO_000300
     sources:
     - source_cde_test
-    subjects: this:$(pid)_$(uniqid)_Output
-  20230616174523165509_source_cde_test:
+    subjects:
+      function: grel:controls_if
+      parameters:
+        - parameter: grel:bool_b
+          value:
+            function: idlab-fn:isNull
+            parameters:
+              - [idlab-fn:str, $(value_id)]
+        - parameter: grel:any_true
+          value: this:$(pid)_$(uniqid)_Output
+        - parameter: grel:any_false
+          value: $(value_id)
+  20230626145918189024_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
         type: iri
-        value: $(attribute_id)
-      predicate: sio:SIO_000671
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(input_type)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) input
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Input
+  20230626145918189030_source_cde_test:
+    graph: this:$(uniqid)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(target_type)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) target
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Target
+  20230626145918189036_source_cde_test:
+    graph: this:$(uniqid)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(route_type)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) route
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: this:$(pid)_$(uniqid)_Route
+  20230626145918189041_source_cde_test:
+    graph: this:$(uniqid)_Context
+    predicateobject:
+    - objects:
+        type: iri
+        value: sio:SIO_000015
+      predicate: rdf:type
+    - objects:
+        type: iri
+        value: $(agent_type)
+      predicate: rdf:type
+    - objects:
+        datatype: xsd:string
+        value: $(model) agent
+      predicate: rdfs:label
+    sources:
+    - source_cde_test
+    subjects: $(agent_id)
+  20230626145918189047_source_cde_test:
+    graph: this:$(uniqid)_Context
+    predicateobject:
     - objects:
         type: iri
         value: sio:SIO_000614
@@ -187,75 +276,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Attribute
-  20230616174523165514_source_cde_test:
-    graph: this:$(uniqid)_Context
-    predicateobject:
-    - objects:
-        type: iri
-        value: sio:SIO_000015
-      predicate: rdf:type
-    - objects:
-        type: iri
-        value: $(input_type)
-      predicate: rdf:type
-    - objects:
-        datatype: xsd:string
-        value: $(model) input
-      predicate: rdfs:label
-    sources:
-    - source_cde_test
-    subjects: this:$(pid)_$(uniqid)_Input
-  20230616174523165519_source_cde_test:
-    graph: this:$(uniqid)_Context
-    predicateobject:
-    - objects:
-        type: iri
-        value: sio:SIO_000015
-      predicate: rdf:type
-    - objects:
-        type: iri
-        value: $(target_type)
-      predicate: rdf:type
-    - objects:
-        datatype: xsd:string
-        value: $(model) target
-      predicate: rdfs:label
-    sources:
-    - source_cde_test
-    subjects: this:$(pid)_$(uniqid)_Target
-  20230616174523165526_source_cde_test:
-    graph: this:$(uniqid)_Context
-    predicateobject:
-    - objects:
-        type: iri
-        value: sio:SIO_000015
-      predicate: rdf:type
-    - objects:
-        type: iri
-        value: $(route_type)
-      predicate: rdf:type
-    - objects:
-        datatype: xsd:string
-        value: $(model) route
-      predicate: rdfs:label
-    sources:
-    - source_cde_test
-    subjects: this:$(pid)_$(uniqid)_Route
-  20230616174523165530_source_cde_test:
-    graph: this:$(uniqid)_Context
-    predicateobject:
-    - objects:
-        type: iri
-        value: sio:SIO_000015
-      predicate: rdf:type
-    - objects:
-        type: iri
-        value: $(agent_type)
-      predicate: rdf:type
-    sources:
-    - source_cde_test
-    subjects: $(agent_id)
-  20230616174523165539_source_cde_test:
+  20230626145918189052_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -273,7 +294,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Unit
-  20230616174523165546_source_cde_test:
+  20230626145918189059_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -295,29 +316,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Frequency
-  20230616174523165551_source_cde_test:
-    graph: this:$(uniqid)_Context
-    predicateobject:
-    - objects:
-        type: iri
-        value: sio:SIO_000115
-      predicate: rdf:type
-    - objects:
-        type: iri
-        value: $(attribute_id_type)
-      predicate: rdf:type
-    - objects:
-        datatype: xsd:string
-        value: $(model) attribute identifier
-      predicate: rdfs:label
-    - objects:
-        datatype: xsd:string
-        value: $(attribute_id_value)
-      predicate: sio:SIO_000300
-    sources:
-    - source_cde_test
-    subjects: $(attribute_id)
-  20230616174523165556_source_cde_test:
+  20230626145918189064_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -335,7 +334,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Startdate
-  20230616174523165561_source_cde_test:
+  20230626145918189069_source_cde_test:
     graph: this:$(uniqid)_Context
     predicateobject:
     - objects:
@@ -353,17 +352,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(uniqid)_Enddate
-  20230616174523165565_source_cde_test:
-    graph: this:$(uniqid)_Context
-    predicateobject:
-    - objects:
-        datatype: xsd:string
-        value: $(model) agent
-      predicate: rdfs:label
-    sources:
-    - source_cde_test
-    subjects: this:$(pid)_$(uniqid)_Agent
-  20230616174523165572_source_cde_test:
+  20230626145918189076_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -392,7 +381,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(uniqid)_Context
-  20230616174523165577_source_cde_test:
+  20230626145918189080_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -409,7 +398,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Timeline
-  20230616174523165581_source_cde_test:
+  20230626145918189084_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -422,7 +411,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Person
-  20230616174523165586_source_cde_test:
+  20230626145918189091_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -447,7 +436,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(context_id)_Mayor_context
-  20230616174523165592_source_cde_test:
+  20230626145918189096_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -468,7 +457,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(uniqid)_Date
-  20230616174523165599_source_cde_test:
+  20230626145918189101_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -489,7 +478,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(uniqid)_Age
-  20230616174523165603_source_cde_test:
+  20230626145918189107_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -502,7 +491,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_Identifier
-  20230616174523165607_source_cde_test:
+  20230626145918189111_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -515,7 +504,7 @@ mapping:
     sources:
     - source_cde_test
     subjects: this:$(pid)_$(context_id)_Startdate
-  20230616174523165612_source_cde_test:
+  20230626145918189115_source_cde_test:
     predicateobject:
     - objects:
         type: iri
@@ -533,11 +522,14 @@ prefixes:
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   sio: https://sio.semanticscience.org/resource/
-  this: '|||BASE|||'
+  this: http://my_example.com/
   xsd: http://www.w3.org/2001/XMLSchema#
+  grel: http://users.ugent.be/~bjdmeest/function/grel.ttl#
+  idlab-fn: http://example.com/idlab/function/
+
 sources:
   source_cde_test:
-    access: '|||DATA|||'
+    access: /mnt/data/CDE.csv
     iterator: $
-    referenceFormulation: '|||FORMULATION|||'
+    referenceFormulation: csv
 
