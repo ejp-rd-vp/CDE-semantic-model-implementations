@@ -1,3 +1,7 @@
+# NOTE THAT VERSION 1 CDE MODELS ARE NOW DEPRECATED!!
+
+# DO NOT USE!
+
 # Templates for YARRRML documents that can be fed into the CDE-in-a-box pipeline
 
 In this repository we are providing yarrrml for different CDE and DCDE modules and associated CSV documentation file, explaining required columns and values for the input files. Please find documentation for each modules below.
