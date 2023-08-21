@@ -2,9 +2,9 @@
 
 ## CONTENTS
 
-* [Quick Start](#QuickStart)
-* [Full EJP Implementation](#Details)
-* [Using the CDE Semantic Model "standalone"](#Standalone)
+* [Quick Start](https://github.com/ejp-rd-vp/CDE-semantic-model-implementations/blob/master/README.md#QuickStart)
+* [Full EJP Implementation](https://github.com/ejp-rd-vp/CDE-semantic-model-implementations/blob/master/README.md#Details)
+* [Using the CDE Semantic Model "standalone"](https://github.com/ejp-rd-vp/CDE-semantic-model-implementations/blob/master/README.md#Standalone)
 
 
 <a name="QuickStart"></a>
