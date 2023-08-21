@@ -9,7 +9,7 @@
 
 <a name="QuickStart"></a>
 ## Quick Start
-To jump directly to the "just tell me what I have to do to make this work", please [follow this link](https://github.com/ejp-rd-vp/FiaB/blob/master/CDE%20version%202%20Models%20FiaB).
+To jump directly to the "just tell me what I have to do to make this work", please [follow this link](https://github.com/ejp-rd-vp/FiaB/tree/main/CDE%20Version2%20Models%20FiaB).
 
 If you want to understand more deeply what you are doing, read on!
 
