@@ -51,7 +51,7 @@ Check the folder named `CSV_docs` to obtain some exemplar data (before and after
 
 <a name="Standalone"></a>
 
-## Implementation without using FAIR-in-a-box
+## Standalone implementation (without using FAIR-in-a-box)
 
 Despite the whole implementation is ready using [FAIR-in-a-box](https://github.com/ejp-rd-vp/FiaB) interface, you have the option to perform RDF transformations locally, without relying on the FAIR-in-a-box toolkit. To support this process, we have developed Docker compose images that cover the entire transformation pipeline.
 
