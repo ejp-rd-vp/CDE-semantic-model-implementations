@@ -14,9 +14,9 @@ To jump directly to the "just tell me what I have to do to make this work", plea
 If you want to understand more deeply what you are doing, read on!
 
 ---
+<a name="Details"></a>
 
 ## CDE Model in Detail
-<a name="Details"></a>
 
 
 [Common Data Element Semantic Model](https://github.com/ejp-rd-vp/CDE-semantic-model) defines a set of clinical data elements used in the healthcare domain of knowledge. However, it doesn't specify a mechanism for bringing these to life. For the European Joint Project for Rare Diseases (EJPRD) we propose an implementation workflow that can be described as follows:
