@@ -1,5 +1,9 @@
 # Common Data Element semantic model implementation 
 
+# *IMPORTANT ANNOUNCEMENT!*
+This Github repository is currently deprecated, The new stable version of this semantic model is maintained as Clinical And Registry Entries (CARE) Semantic Model. This model implementation is maintained at this different [Github registry](https://github.com/ejp-rd-vp/CARE-SM-Implementation)
+
+
 ## CONTENTS
 
 * [Quick Start](https://github.com/ejp-rd-vp/CDE-semantic-model-implementations/blob/master/README.md#QuickStart)
